@@ -5,37 +5,37 @@ const productSchema = new Schema ({
 title: {
     type: String,
     required: true
-}, 
+},
 price : {
-    type: Number, 
+    type: Number,
     required: true
-}, 
+},
 image : {
-    type : String, 
+    type : String,
     required : true,
-}, 
+},
 categoryStore : {
-    type : String, 
+    type : String,
     required: true
-}, 
+},
 description : {
-    type : String, 
-}, 
-stock : { 
-    type : Number, 
-    required: true 
-}, 
+    type : String,
+},
+stock : {
+    type : Number,
+    required: true
+},
 available : {
-    type : Boolean, 
+    type : Boolean,
     required : true
-}, 
+},
 store : {
     type : Schema.Types.ObjectId,
     required : true,
     ref : "store"
-}, 
+},
 active : {
-    type : Boolean, 
+    type : Boolean,
     required : true,
     default: true
 }
