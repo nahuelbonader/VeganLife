@@ -31,7 +31,7 @@ available : {
 },
 store : {
     type : Schema.Types.ObjectId,
-    required : true,
+    required : false,
     ref : "store"
 },
 active : {

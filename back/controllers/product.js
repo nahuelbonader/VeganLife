@@ -7,7 +7,7 @@ const ProductController = {
            .catch(err => next(err))
   },
   findById(req,res,next){
-    Product.findById({_id:req.params.id})
+    Product.findById({_id:req.params.id, active: true})
            .populate({path:"store",select:"name"})
            .then(product => res.send(product))
            .catch(err => next(err))

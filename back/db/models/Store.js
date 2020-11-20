@@ -11,7 +11,7 @@ const storeSchema = new Schema({
   admins : [{
     type : Schema.Types.ObjectId,
     ref : "user"
-     }],  
+     }],
 
   address: {
     type: String,
