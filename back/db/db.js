@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const chalk = require("chalk");
 
-mongoose.connect("mongodb+srv://cluster0.9q5tu.mongodb.net/veganlife", {
+mongoose.connect("mongodb+srv://veganlife:veganlife@cluster0.9q5tu.mongodb.net/veganlife?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
