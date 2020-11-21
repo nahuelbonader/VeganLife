@@ -1,4 +1,9 @@
 const router = require("express").Router();
+const usersRoutes = require('./users')
+const productsRoutes = require("./products")
+
+router.use('/users', usersRoutes)
+router.use('/products', productsRoutes)
 
 router.use("/users", require ("./users"));
 router.use("/categories", require("./categories"));
