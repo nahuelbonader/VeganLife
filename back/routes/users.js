@@ -18,7 +18,7 @@ router.get("/:id/showfav/recipe", UserController.showFavRecipes)
 router.put("/:id/addfav/recipe/:recipeId", UserController.addFavRecipe)
 
 //Stores
-router.get("/:id/showfav/recipe", UserController.showFavStores)
+router.get("/:id/showfav/store", UserController.showFavStores)
 router.put("/:id/addfav/store/:storeId", UserController.addFavSotre)
 
 module.exports = router
