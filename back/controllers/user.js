@@ -41,7 +41,7 @@ const UserController = {
   addFavProduct(req,res,next){
     User.findById(req.params.id)
         .then(user => {
-            user.favsProducts.push(req.body.favsProducts)
+            user.favsProducts.push(req.params.productId)
             user.save()
           res.status(201).send(user)
         })
@@ -60,7 +60,7 @@ const UserController = {
   addFavRecipe(req,res,next){
     User.findById(req.params.id)
         .then(user => {
-          user.favsRecipe.push(req.body.favsRecipe)
+          user.favsRecipe.push(req.params.recipeId)
           user.save()
           res.status(201).send(user)
         })
@@ -79,7 +79,7 @@ const UserController = {
   addFavSotre(req,res,next){
     User.findById(req.params.id)
         .then(user => {
-          user.favsStores.push(req.body.favsStores)
+          user.favsStores.push(req.params.storeId)
           user.save()
           res.status(201).send(user)
         })
