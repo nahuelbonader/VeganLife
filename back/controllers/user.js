@@ -48,6 +48,16 @@ const UserController = {
         .catch(err => next(err))
   },
 
+  deleteFavProduct(req,res,next){
+    User.findById({_id: req.params.id})
+    .populate({path:"favsProducts",select:"title"})
+        .then(user => {
+          user.favsProducts = user.favsProducts.filter(e =>  e._id != req.params.productId)
+          user.save()
+          res.send(user)
+        })
+        .catch(err => next(err))
+  },
 
 //--------------------------Recipes---------------------------------------------
   showFavRecipes(req,res,next){
@@ -67,6 +77,17 @@ const UserController = {
         .catch(err => next(err))
   },
 
+  deleteFavrecipe(req,res,next){
+    User.findById({_id: req.params.id})
+    .populate({path:"favsRecipe",select:"title"})
+        .then(user => {
+         user.favsRecipe = user.favsRecipe.filter(e =>  e._id != req.params.recipeId)
+         user.save()
+          res.send(user)
+        })
+        .catch(err => next(err))
+  },
+
 
 //---------------------------Stores---------------------------------------------
   showFavStores(req,res,next){
@@ -82,6 +103,16 @@ const UserController = {
           user.favsStores.push(req.params.storeId)
           user.save()
           res.status(201).send(user)
+        })
+        .catch(err => next(err))
+  },
+  deleteFavStore(req,res,next){
+    User.findById({_id: req.params.id})
+    .populate({path:"favsStores",select:"name"})
+       .then(user => {
+        user.favsStores = user.favsStores.filter(e =>  e._id != req.params.storeId)
+        user.save()
+          res.send(user)
         })
         .catch(err => next(err))
   }

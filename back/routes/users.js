@@ -12,13 +12,16 @@ router.put("/delete/:id", UserController.delete)
 //Products
 router.get("/:id/showfav/product", UserController.showFavProducts)
 router.put("/:id/addfav/product/:productId", UserController.addFavProduct)
+router.delete("/:id/delfav/product/:productId", UserController.deleteFavProduct)
 
 //Recipes
 router.get("/:id/showfav/recipe", UserController.showFavRecipes)
 router.put("/:id/addfav/recipe/:recipeId", UserController.addFavRecipe)
+router.delete("/:id/delfav/recipe/:recipeId", UserController.deleteFavrecipe)
 
 //Stores
 router.get("/:id/showfav/store", UserController.showFavStores)
 router.put("/:id/addfav/store/:storeId", UserController.addFavSotre)
+router.delete("/:id/delfav/store/:storeId", UserController.deleteFavStore)
 
 module.exports = router
