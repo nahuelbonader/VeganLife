@@ -7,6 +7,6 @@ const {
 } = require("../controllers/purchases-controller");
 
 router.route("/").get(findPurchases).post(createPurchase);
-router.route("/:id").get(findPurchase.put(updatePurchase));
+router.route("/:id").get(findPurchase).put(updatePurchase);
 
 module.exports = router;
