@@ -1,27 +1,11 @@
-const express = require("express")
-const router = express.Router()
-const UserController = require('../controllers/user')
+const router = require("express").Router();
+const UserController = require("../controllers/users-controller");
 
-router.get("/", UserController.findAll)
-router.get("/:id", UserController.findById)
-router.post("/", UserController.create)
-router.put("/:id", UserController.update)
-router.put("/delete/:id", UserController.delete)
+router.route("/").get(UserController.findAll).post(UserController.create);
+router
+  .route("/:id")
+  .get(UserController.findById)
+  .put(UserController.update)
+  .delete(UserController.delete);
 
-//------------------------Favourites--------------------------------------------
-//Products
-router.get("/:id/showfav/product", UserController.showFavProducts)
-router.put("/:id/addfav/product/:productId", UserController.addFavProduct)
-router.delete("/:id/delfav/product/:productId", UserController.deleteFavProduct)
-
-//Recipes
-router.get("/:id/showfav/recipe", UserController.showFavRecipes)
-router.put("/:id/addfav/recipe/:recipeId", UserController.addFavRecipe)
-router.delete("/:id/delfav/recipe/:recipeId", UserController.deleteFavrecipe)
-
-//Stores
-router.get("/:id/showfav/store", UserController.showFavStores)
-router.put("/:id/addfav/store/:storeId", UserController.addFavSotre)
-router.delete("/:id/delfav/store/:storeId", UserController.deleteFavStore)
-
-module.exports = router
+module.exports = router;
