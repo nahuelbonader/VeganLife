@@ -8,10 +8,6 @@ const {
 } = require("../controllers/recipes-controlelrs");
 
 router.route("/").get(findRecipes).post(createRecipe);
-router
-  .route("/:recipeId")
-  .put(updateRecipe)
-  .delete(deleteRecipe)
-  .get(findRecipe);
+router.route("/:id").put(updateRecipe).delete(deleteRecipe).get(findRecipe);
 
 module.exports = router;

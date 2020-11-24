@@ -20,7 +20,7 @@ const recipeController = {
       .catch((err) => next(err));
   },
   updateRecipe(req, res, next) {
-    Recipe.findByIdAndUpdate(req.params.recipeId, req.body, { new: true })
+    Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true })
       .then((recipe) =>
         recipe
           .populate({ path: "owner", select: ["name", "image"] })
@@ -31,17 +31,13 @@ const recipeController = {
       .catch((err) => next(err));
   },
   deleteRecipe(req, res, next) {
-    Recipe.findByIdAndUpdate(
-      req.params.recipeId,
-      { active: false },
-      { new: true }
-    )
+    Recipe.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
       .then((recipe) => res.status(200).send(recipe))
       .catch((err) => next(err));
   },
   findRecipe(req, res, next) {
     // esto se podría manejar desde el front sin hacer un fetch
-    Recipe.findById(req.params.recipeId)
+    Recipe.findById(req.params.id)
       .populate({ path: "owner", select: ["name", "image"] })
       .populate({ path: "category", select: "name" })
       .then((recipe) => res.send(recipe))
