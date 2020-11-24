@@ -1,2 +1,8 @@
+//Node
 node_modules
 .env
+
+//Expo
+.expo
+__generated__
+web-build

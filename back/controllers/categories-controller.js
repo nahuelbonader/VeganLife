@@ -21,16 +21,12 @@ const categoriesController = {
       .catch((err) => next(err));
   },
   updateCategory(req, res, next) {
-    Category.findByIdAndUpdate(req.params.categorieId, req.body, { new: true })
+    Category.findByIdAndUpdate(req.params.id, req.body, { new: true })
       .then((category) => res.status(200).send(category))
       .catch((err) => next(err));
   },
   deleteCategory(req, res) {
-    Category.findByIdAndUpdate(
-      req.params.categorieId,
-      { active: false },
-      { new: true }
-    )
+    Category.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
       .then((category) => res.status(200).send(category))
       .catch((err) => next(err));
   },
