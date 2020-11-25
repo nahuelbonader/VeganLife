@@ -3,7 +3,7 @@ import { View,Text, StyleSheet } from "react-native";
 import SingleRecipe from '../components/SingleRecipe'
 import axios from 'axios'
 
-const Recipe = ({productId}) => {
+const Recipe = ({recipeId}) => {
 const [image, setImage] = useState("")
 const [ingredients, setIngredients] = useState("")
 const [title, setTitle] = useState("")
@@ -13,7 +13,7 @@ const [ownerName, setOwnerName] = useState("")
 
 
  useEffect(()=>{
-    axios.get(`http://192.168.1.39:1337/api/recipes/${productId}`)
+    axios.get(`http://192.168.1.39:1337/api/recipes/${recipeId}`)
          .then(res => res.data)
          .then(data=> {
            setImage(data.image)
