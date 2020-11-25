@@ -1,15 +1,15 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-// Components
-import Login from '../front/src/screens/Login'
-import Register from '../front/src/screens/Register'
-import Prueba from '../front/src/screens/Prueba'
+import FeedRecetas from './src/screens/FeedRecetaScreen'
+import Login from './src/screens/LoginScreen'
+import Register from './src/screens/RegisterScreen'
+import Prueba from './src/screens/PruebaScreen'
 
 
 const navigator = createStackNavigator(
 
   {
+    FeedRecetas: FeedRecetas,
     Login,
     Register,
     Prueba

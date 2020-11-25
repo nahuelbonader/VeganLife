@@ -28,7 +28,8 @@ const handleSubmit = () =>{
 
     
 
-    firebase.auth().signInWithEmailAndPassword(email,password).then(({user})=>console.log('RESPUESTA',user))
+    firebase.auth().signInWithEmailAndPassword(email,password)
+    .then(({user})=>user ? navigation.navigate('FeedRecetas') : console.log('Usuario no Logueado'))
     .catch((err)=>{
         console.log('ERROR DE AUTENTICACION', err)
         if (String(err)==='Error: The password is invalid or the user does not have a password.')
