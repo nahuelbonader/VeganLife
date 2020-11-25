@@ -1,4 +1,4 @@
-const { Category } = require("../db/models");
+const { Category, Recipe } = require("../db/models");
 
 const categoriesController = {
   findCategories(req, res, next) {
@@ -29,7 +29,7 @@ const categoriesController = {
     Category.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
       .then((category) => res.status(200).send(category))
       .catch((err) => next(err));
-  },
+  }
 };
 
 module.exports = categoriesController;
