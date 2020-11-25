@@ -1,13 +1,15 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from "./src/screens/HomeScreen";
+import FeedRecetaContainer from './src/containers/FeedRecetaContainer'
 
 const navigator = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    Feed: FeedRecetaContainer,
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Feed",
     defaultNavigationOptions: {
       title: "App"
     }
