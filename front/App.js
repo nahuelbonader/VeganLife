@@ -1,13 +1,22 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import FeedRecetas from './src/screens/FeedRecetaScreen'
+import Login from './src/screens/LoginScreen'
+import Register from './src/screens/RegisterScreen'
+import Prueba from './src/screens/PruebaScreen'
 import Recipe from "./src/screens/SingleRecipe";
 
 const navigator = createStackNavigator(
+
   {
-    Recipe: Recipe
+    FeedRecetas: FeedRecetas,
+    Login,
+    Register,
+    Prueba,
+        Recipe: Recipe
   },
   {
-    initialRouteName: "Recipe",
+    initialRouteName: "Login",
     defaultNavigationOptions: {
       title: "App"
     }

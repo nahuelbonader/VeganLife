@@ -2,6 +2,7 @@ const { Category, Recipe } = require("../db/models");
 
 const categoriesController = {
   findCategories(req, res, next) {
+    console.log("ESTOY EN FIND ALL CATEG")
     Category.find({ active: true })
       .then((categories) => res.status(200).send(categories))
       .catch((err) => next(err));
