@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const chalk = require("chalk");
+const { MONGO_DB } = require("../config");
 
-mongoose.connect("mongodb+srv://cluster0.9q5tu.mongodb.net/veganlife", {
+mongoose.connect(MONGO_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
