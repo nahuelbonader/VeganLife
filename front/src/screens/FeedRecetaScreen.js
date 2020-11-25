@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { Text, StyleSheet, View } from "react-native";
-import Categories from '../screens/Categories'
-import CarouselFeed from '../screens/CarouselFeed'
+import Categories from '../components/Categories'
+import CarouselFeed from '../components/CarouselFeed'
 import axios from "axios"
+import IP from '../../env'
 
 
 
@@ -11,7 +12,7 @@ const FeedRecetaContainer = () => {
     const [categorias, setCategorias] = useState([]) 
 
     useEffect(()=> {
-        axios.get('http://192.168.0.103:1337/api/categories')
+        axios.get(`http://${IP}:1337/api/categories`)
         .then((res)=> setCategorias(res.data))}, [])
 
   return <>
