@@ -22,7 +22,10 @@ const categoriesController = {
       .catch((err) => next(err));
   },
   updateCategory(req, res, next) {
-    Category.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    Category.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    })
       .then((category) => res.status(200).send(category))
       .catch((err) => next(err));
   },
