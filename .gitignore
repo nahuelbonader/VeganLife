@@ -1,7 +1,8 @@
-//Node
+#Node
 node_modules
 npm-debug.*
 .env
+env.js
 
 //Expo
 .expo/*

@@ -5,23 +5,23 @@ const FavouritesControllers = require("../controllers/favourites-controller");
 
 //Products
 router
-  .route("/products")
+  .route("/:id/products")
   .get(FavouritesControllers.showFavProducts)
   .post(FavouritesControllers.addFavProduct);
-router.delete("/products/:productId", FavouritesControllers.deleteFavProduct);
+router.delete("/:id/products/:productId", FavouritesControllers.deleteFavProduct);
 
 //Recipes
 router
-  .route("/recipes")
+  .route("/:id/recipes")
   .get(FavouritesControllers.showFavRecipes)
   .post(FavouritesControllers.addFavRecipe);
-router.delete("/recipes/:recipeId", FavouritesControllers.deleteFavrecipe);
+router.delete("/:id/recipes/:recipeId", FavouritesControllers.deleteFavrecipe);
 
 //Stores
 router
-  .route("/stores")
+  .route("/:id/stores")
   .get(FavouritesControllers.showFavStores)
   .post(FavouritesControllers.addFavSotre);
-router.delete("/stores/:storeId", FavouritesControllers.deleteFavStore);
+router.delete("/:id/stores/:storeId", FavouritesControllers.deleteFavStore);
 
 module.exports = router;
