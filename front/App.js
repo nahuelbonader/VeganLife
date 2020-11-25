@@ -1,13 +1,21 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from "./src/screens/HomeScreen";
+
+// Components
+import Login from '../front/src/screens/Login'
+import Register from '../front/src/screens/Register'
+import Prueba from '../front/src/screens/Prueba'
+
 
 const navigator = createStackNavigator(
+
   {
-    Home: HomeScreen
+    Login,
+    Register,
+    Prueba
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Login",
     defaultNavigationOptions: {
       title: "App"
     }
