@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const SingleRecipe = ({ image, ingredients, title, instructions, ownerImage, ownerName}) => {
   return (
-    <View>
+    <View style={{backgroundColor:"#F1F4FB"}}>
     <ScrollView>
       <View style= {styles.viewStyle}>
          <Image
@@ -26,11 +26,13 @@ const SingleRecipe = ({ image, ingredients, title, instructions, ownerImage, own
         <Text style={styles.name}>{ownerName}</Text>
         </View>
         <View style={styles.viewThree}>
+          <View style={{marginHorizontal: 20}}>
            <Text style={styles.title}>{title}</Text>
-             <Text style={styles.text}>Ingredientes</Text>
-             <Text style={styles.textTwo}>{ingredients}</Text>
-            <Text style={styles.text}>Paso a Paso</Text>
+              <Text style={styles.text}>Ingredientes</Text>
+               <Text style={styles.textTwo}>{ingredients}</Text>
+             <Text style={styles.text}>Paso a Paso</Text>
             <Text style={styles.textTwo}>{instructions}</Text>
+            </View>
         </View>
       </ScrollView>
     </View>
@@ -65,10 +67,13 @@ const styles = StyleSheet.create({
    fontSize:20
  },
  viewThree:{
-   marginHorizontal: 30
+   borderRadius:25,
+   backgroundColor:"white",
+   paddingBottom:70,
+   marginTop: 15
  },
  title:{
-   marginTop:25,
+   marginTop:10,
    marginBottom:15,
    color: 'green',
    fontSize: 30,
