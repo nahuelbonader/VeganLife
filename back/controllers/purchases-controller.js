@@ -22,7 +22,11 @@ const purchasesController = {
       .catch((err) => next(err));
   },
   updatePurchase(req, res) {
-    Purchase.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
+    Purchase.findByIdAndUpdate(
+      req.params.id,
+      { active: false },
+      { new: true, runValidators: true }
+    )
       .populate({ path: "client", select: ["name", "image"] })
       .populate({ path: "store", select: ["name", "image"] })
       .then((purchase) => res.status(200).send(purchase))

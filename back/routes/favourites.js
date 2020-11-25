@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const FavouritesControllers = require("../controllers/favourites-controller");
 
+// AGREGAR MIDDLEWARE DE USER LOGUEADO AL GET, DELETE Y POST
+
 //Products
 router
   .route("/products")
