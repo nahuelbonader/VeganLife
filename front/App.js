@@ -21,7 +21,6 @@ export default () => {
         <Stack.Screen name="Login" component={Login} />
 
         <Stack.Screen name="Register" component={Register} />
-        
         <Stack.Screen name="Recipe" component={Recipe} />
       </Stack.Navigator>
     </NavigationContainer>
