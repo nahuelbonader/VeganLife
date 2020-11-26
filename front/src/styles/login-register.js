@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "./colors";
+import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
   container: {
@@ -8,7 +9,7 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
   },
   line: {
-    marginTop: 30,
+    marginTop: normalize(30),
   },
   alert: {
     marginHorizontal: 30,

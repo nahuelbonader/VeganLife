@@ -68,7 +68,7 @@ const Register = ({ navigation }) => {
         <Text style={styles.alert}>{errorMessage}</Text>
         <AccessButtons
           onPressBtn={handleSubmit}
-          textBtn="Crear cuenta"
+          textBtn="Registrarse"
           question="¿Ya tienes cuenta?"
           onPressInvitation={() => navigation.navigate("Login")}
           invitation="Inicia Sesión"
