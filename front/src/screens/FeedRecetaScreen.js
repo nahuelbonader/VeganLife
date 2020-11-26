@@ -13,7 +13,7 @@ const FeedRecetaContainer = () => {
   const dispatch = useDispatch();
   const randomRecipe = useSelector((state) => state.randomRecipe.randomRecipe);
 
-console.log(randomRecipe[0]._id)
+
 
 
   useEffect(() => {
