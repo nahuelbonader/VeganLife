@@ -1,6 +1,6 @@
-import 'react-native-gesture-handler';
-import * as React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import "react-native-gesture-handler";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -13,34 +13,15 @@ import SingleCategory from './src/screens/SingleCategoryScreen'
 const Stack = createStackNavigator();
 
 export default () => {
-  return(
+  return (
     <NavigationContainer>
     <Stack.Navigator>
-            <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
         <Stack.Screen name="Login" component={Login} />
-
+        <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="SingleCategory" component={SingleCategory} />
         <Stack.Screen name="Recipe" component={Recipe} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
-}
-
-/*const navigator = createStackNavigator(
-
-  {
-    FeedRecetas,
-    Login,
-    Register,
-    Recipe,
-  },
-  {
-    initialRouteName: "Login",
-    defaultNavigationOptions: {
-      title: "App",
-    },
-  }
-);
-
-export default createAppContainer(navigator);*/
+  );
+};

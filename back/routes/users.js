@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const UserController = require("../controllers/users-controller");
-const passport = require("passport");
 
 router
   .route("/")

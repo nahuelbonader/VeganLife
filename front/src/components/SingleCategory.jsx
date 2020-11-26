@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   listView:{
     flexDirection: "row",
     backgroundColor:"#F1F4FB",
-    marginBottom: "4%",
+    marginBottom: "2%",
     marginHorizontal:"5%",
     borderRadius:normalize(25),
     paddingVertical:normalize(20),
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     width:"22%",
     height:"90%",
     borderRadius:normalize(100),
-    marginHorizontal:"3%"
+    marginHorizontal:"2%"
   },
 
   title:{
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
  description:{
    marginTop:"7%",
    flex:1,
-   color:"#808080"
+   color:"#808080",
+   marginHorizontal:"2%"
  }
 })
 
