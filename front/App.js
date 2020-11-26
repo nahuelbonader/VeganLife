@@ -7,8 +7,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FeedRecetas from './src/screens/FeedRecetaScreen'
 import Login from './src/screens/LoginScreen'
 import Register from './src/screens/RegisterScreen'
-//import Prueba from './src/screens/PruebaScreen'
 import Recipe from "./src/screens/SingleRecipe";
+import SingleCategory from './src/screens/SingleCategoryScreen'
 
 const Stack = createStackNavigator();
 
@@ -16,10 +16,11 @@ export default () => {
   return(
     <NavigationContainer>
     <Stack.Navigator>
+            <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
+
         <Stack.Screen name="Register" component={Register} />
-        
+        <Stack.Screen name="SingleCategory" component={SingleCategory} />
         <Stack.Screen name="Recipe" component={Recipe} />
       </Stack.Navigator>
     </NavigationContainer>

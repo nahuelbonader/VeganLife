@@ -7,19 +7,19 @@ const navigation = useNavigation();
 
   return (
   <View style={styles.container}>
-  <Text style={styles.container}>Categorias</Text>
+  <Text style={styles.text}>Categorias</Text>
   <FlatList
-
+      horizontal={true}
       data={categorias}
       renderItem={({item})=>{
-      return <TouchableOpacity onPress={()=>{console.log("click en category")}}>
+      return <TouchableOpacity onPress={()=>navigation.navigate("SingleCategory",{categoryId:item._id})}>
           <Image style={styles.image} source={{uri: item.image}}></Image>
           <Text style={styles.text} >{item.name}</Text>
       </TouchableOpacity>
       }
       }
       keyExtractor={(categorias)=>categorias._id}
-      numColumns={3}
+
       showsHorizontalScrollIndicator={false}
       >
 
