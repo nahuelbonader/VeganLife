@@ -4,7 +4,7 @@ import SingleRecipe from '../components/SingleRecipe'
 import axios from 'axios'
 import IP from '../../env'
 
-const Recipe = ({recipeId}) => {
+const Recipe = ({navigation, route}) => {
 const [image, setImage] = useState("")
 const [ingredients, setIngredients] = useState("")
 const [title, setTitle] = useState("")
@@ -14,7 +14,7 @@ const [ownerName, setOwnerName] = useState("")
 
 
  useEffect(()=>{
-    axios.get(`http://${IP}:1337/api/recipes/${recipeId}`)
+    axios.get(`http://${IP}:1337/api/recipes/${route.params.recipeId}`)
          .then(res => res.data)
          .then(data=> {
            setImage(data.image)
