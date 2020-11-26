@@ -13,7 +13,7 @@ const navigator = createStackNavigator(
     Login,
     Register,
     Prueba,
-        Recipe: Recipe
+    Recipe: Recipe
   },
   {
     initialRouteName: "Login",
