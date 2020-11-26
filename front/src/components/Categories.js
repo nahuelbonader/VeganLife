@@ -1,15 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image} from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const Categories = ({categorias}) => {
+const navigation = useNavigation();
+
   return (
   <View style={styles.container}>
-  <Text style={styles.container}>Categorias</Text>    
-  <FlatList 
-       
+  <Text style={styles.container}>Categorias</Text>
+  <FlatList
+
       data={categorias}
       renderItem={({item})=>{
-      return <TouchableOpacity onPress={()=>{console.log("Touch en una categoria")}}>
+      return <TouchableOpacity onPress={()=>{console.log("click en category")}}>
           <Image style={styles.image} source={{uri: item.image}}></Image>
           <Text style={styles.text} >{item.name}</Text>
       </TouchableOpacity>
@@ -33,24 +36,24 @@ const styles = StyleSheet.create({
         textAlign: "center",
         backgroundColor: "#E5E1E0",
         borderTopLeftRadius: 20,
-        borderTopRightRadius: 20 
+        borderTopRightRadius: 20
 
-    
+
       },
     text: {
     fontSize: 18,
     marginLeft: 20,
-    textAlign: "center"
+    textAlign: "center",
   },
   image: {
     // justifyContent: "center",
-    // alignItems: "center",  
+    // alignItems: "center",
     // flex: 3,
     width: 100,
-    height:100,
+    height: 100,
     marginLeft: 20,
     marginTop: 30,
-    borderRadius: 100
+    borderRadius: 100,
   },
 });
 
