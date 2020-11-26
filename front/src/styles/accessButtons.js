@@ -1,13 +1,20 @@
 import { StyleSheet } from "react-native";
 import colors from "./colors";
+import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
-  container: { position: "absolute", top: 510 },
+  container: {
+    height: normalize(210),
+    alignItems: "center",
+    justifyContent: "space-between",
+    position: "absolute",
+    top: normalize(460),
+  },
   btn: {
     backgroundColor: colors.button,
-    borderRadius: 25,
-    height: 55,
-    width: 270,
+    borderRadius: normalize(25),
+    height: normalize(50),
+    width: normalize(270),
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
@@ -18,21 +25,22 @@ export default StyleSheet.create({
     elevation: 5, // Android
   },
   btn_text: {
-    fontSize: 20,
+    fontSize: normalize(20),
     color: colors.white,
   },
   text_container: {
-    top: 140,
     flexDirection: "row",
   },
   text: {
-    fontSize: 16,
-    marginHorizontal: 5,
+    fontSize: normalize(17),
+    marginHorizontal: normalize(7),
     color: colors.font,
+    alignSelf: "flex-start",
   },
   invitation: {
-    fontSize: 16,
+    fontSize: normalize(17),
     color: colors.font,
     fontWeight: "bold",
+    alignSelf: "stretch",
   },
 });

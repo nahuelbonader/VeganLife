@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <Logo text="Iniciar Sesion" />
+        <Logo text="Iniciar Sesión" />
         <View style={styles.line} />
         <InputData
           title="Correo"
@@ -58,7 +58,7 @@ const Login = ({ navigation }) => {
         <Text style={styles.alert}>{errorMessage}</Text>
         <AccessButtons
           onPressBtn={handleSubmit}
-          textBtn="Iniciar Sesion"
+          textBtn="Iniciar Sesión"
           question="¿No tienes cuenta?"
           onPressInvitation={() => navigation.navigate("Register")}
           invitation="Registrate"
