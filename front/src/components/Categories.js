@@ -9,14 +9,15 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const Categories = ({ categorias }) => {
-  const navigation = useNavigation();
+
+const Categories = ({categorias}) => {
+const navigation = useNavigation();
 
   return (
   <View style={styles.container}>
-  <Text style={styles.text}>Categorias</Text>
+  <Text style={styles.container}>Categorias</Text>
   <FlatList
-      horizontal={true}
+
       data={categorias}
       renderItem={({item})=>{
       return <TouchableOpacity onPress={()=>navigation.navigate("SingleCategory",{categoryId:item._id})}>
@@ -26,7 +27,7 @@ const Categories = ({ categorias }) => {
       }
       }
       keyExtractor={(categorias)=>categorias._id}
-
+      numColumns={3}
       showsHorizontalScrollIndicator={false}
       >
 
@@ -51,9 +52,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   image: {
-    // justifyContent: "center",
-    // alignItems: "center",
-    // flex: 3,
     width: 100,
     height: 100,
     marginLeft: 20,

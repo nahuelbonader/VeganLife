@@ -4,7 +4,7 @@ const UserController = require("../controllers/users-controller");
 router
   .route("/")
   .get(UserController.findAll)
-  .post( UserController.create);
+  .post(UserController.create);
 router
   .route("/:id")
   .get(UserController.findById)
