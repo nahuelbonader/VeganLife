@@ -19,10 +19,12 @@ const storeSchema = new Schema({
       ref: "user",
     },
   ],
+
   name: {
     type: String,
     required: true,
   },
+
   email: {
     type: String,
     trim: true,
@@ -31,7 +33,9 @@ const storeSchema = new Schema({
     required: "Email address is required",
     validate: [validateEmail, "Please fill a valid email address"],
   },
+
   image: { type: String },
+
   address: {
     type: String,
     required: true,
@@ -45,10 +49,8 @@ const storeSchema = new Schema({
     type: Number,
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  },
+
+  description: { type: String },
 
   productsCategories: [
     {
@@ -65,6 +67,12 @@ const storeSchema = new Schema({
   accepted: {
     type: Boolean,
     required: true,
+    default: false,
+  },
+
+  open: {
+    start: { type: Number },
+    end: { type: Number },
   },
 
   active: {

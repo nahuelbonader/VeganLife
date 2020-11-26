@@ -18,33 +18,17 @@ module.exports = (app) => {
   app.use(passport.session());
 
   // CONECTAR PASSPORT CON LAS SESSIONS CONFIGURADAS EN EXRESS
-  passport.serializeUser((user, done) => done(null, user.id));
-  passport.deserializeUser((id, done) =>
-    User.findById(id)
+  passport.serializeUser((email, done) => done(null, email));
+  passport.deserializeUser((email, done) =>
+    User.findOne(email)
       .then((user) => done(null, user)) // req.user = user
       .catch(done)
   );
 
   // ESTRATEGIA DE AUTENTICACIÓN LOCAL
   passport.use(
-    new LocalStrategy(
-      {
-        usernameField: "email",
-        passwordField: "password",
-      },
-      (email, password, done) => {
-        User.findOne({ email })
-          .then((user) => {
-            if (!user) return done(null, false);
-
-            user.comparePassword(password, (err, isMatch) => {
-              if (err) throw err;
-              if (!isMatch) return done(null, false);
-              return done(null, user);
-            });
-          })
-          .catch(done);
-      }
+    new LocalStrategy({ usernameField: "email" }, (email, done) =>
+      done(null, email)
     )
   );
 };

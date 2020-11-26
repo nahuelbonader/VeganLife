@@ -43,17 +43,17 @@ const styles = StyleSheet.create({
     text: {
     fontSize: 18,
     marginLeft: 20,
-    textAlign: "center"
+    textAlign: "center",
   },
   image: {
     // justifyContent: "center",
     // alignItems: "center",
     // flex: 3,
     width: 100,
-    height:100,
+    height: 100,
     marginLeft: 20,
     marginTop: 30,
-    borderRadius: 100
+    borderRadius: 100,
   },
 });
 

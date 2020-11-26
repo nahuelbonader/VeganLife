@@ -7,12 +7,24 @@ const UserController = {
       .catch((err) => next(err));
   },
   create(req, res, next) {
-    User.create(req.body)
-      .then((user) => res.send(user))
+    User.findOne({ email: req.body.email, active: false })
+      .then((user) => {
+        return user
+          ? User.findByIdAndUpdate(
+              user._id,
+              { ...req.body, active: true },
+              { new: true }
+            )
+          : User.create(req.body);
+      })
+      .then((user) => res.status(201).send(user))
       .catch((err) => next(err));
   },
   update(req, res, next) {
-    User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+      new: true,
+      runValidators: true,
+    })
       .then((updated) => {
         res.status(200).send(updated);
       })

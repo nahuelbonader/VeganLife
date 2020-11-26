@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FeedRecetas from './src/screens/FeedRecetaScreen'
 import Login from './src/screens/LoginScreen'
 import Register from './src/screens/RegisterScreen'
-import Prueba from './src/screens/PruebaScreen'
+//import Prueba from './src/screens/PruebaScreen'
 import Recipe from "./src/screens/SingleRecipe";
 
 const Stack = createStackNavigator();
@@ -19,7 +19,7 @@ export default () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
         <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Prueba" component={Prueba} />
+        
         <Stack.Screen name="Recipe" component={Recipe} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -29,17 +29,16 @@ export default () => {
 /*const navigator = createStackNavigator(
 
   {
-    FeedRecetas: FeedRecetas,
+    FeedRecetas,
     Login,
     Register,
-    Prueba,
-        Recipe: Recipe
+    Recipe,
   },
   {
     initialRouteName: "Login",
     defaultNavigationOptions: {
-      title: "App"
-    }
+      title: "App",
+    },
   }
 );
 
