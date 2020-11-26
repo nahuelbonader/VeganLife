@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
+
 const Categories = ({categorias}) => {
 const navigation = useNavigation();
 
@@ -12,7 +13,7 @@ const navigation = useNavigation();
 
       data={categorias}
       renderItem={({item})=>{
-      return <TouchableOpacity onPress={()=>{console.log("click en category")}}>
+      return <TouchableOpacity onPress={()=>navigation.navigate("SingleCategory",{categoryId:item._id})}>
           <Image style={styles.image} source={{uri: item.image}}></Image>
           <Text style={styles.text} >{item.name}</Text>
       </TouchableOpacity>
@@ -46,9 +47,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   image: {
-    // justifyContent: "center",
-    // alignItems: "center",
-    // flex: 3,
     width: 100,
     height: 100,
     marginLeft: 20,

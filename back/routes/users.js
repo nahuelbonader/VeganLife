@@ -1,11 +1,10 @@
 const router = require("express").Router();
 const UserController = require("../controllers/users-controller");
-const passport = require("passport");
 
 router
   .route("/")
   .get(UserController.findAll)
-  .post(passport.authenticate("local"), UserController.create);
+  .post(UserController.create);
 router
   .route("/:id")
   .get(UserController.findById)
