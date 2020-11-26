@@ -12,7 +12,7 @@ const navigation = useNavigation();
 
       data={categorias}
       renderItem={({item})=>{
-      return <TouchableOpacity onPress={()=>{navigation.navigate('Recipe',{recipeId:item._id})}}>
+      return <TouchableOpacity onPress={()=>{console.log("click en category")}}>
           <Image style={styles.image} source={{uri: item.image}}></Image>
           <Text style={styles.text} >{item.name}</Text>
       </TouchableOpacity>
