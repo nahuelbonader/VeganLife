@@ -1,1 +1,9 @@
+#Node
 node_modules
+.env
+env.js
+
+#Expo
+.expo
+__generated__
+web-build

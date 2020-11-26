@@ -1,7 +1,8 @@
-const { Category } = require("../db/models");
+const { Category, Recipe } = require("../db/models");
 
 const categoriesController = {
   findCategories(req, res, next) {
+    console.log("ESTOY EN FIND ALL CATEG")
     Category.find({ active: true })
       .then((categories) => res.status(200).send(categories))
       .catch((err) => next(err));
@@ -21,19 +22,15 @@ const categoriesController = {
       .catch((err) => next(err));
   },
   updateCategory(req, res, next) {
-    Category.findByIdAndUpdate(req.params.categorieId, req.body, { new: true })
+    Category.findByIdAndUpdate(req.params.id, req.body, { new: true })
       .then((category) => res.status(200).send(category))
       .catch((err) => next(err));
   },
   deleteCategory(req, res) {
-    Category.findByIdAndUpdate(
-      req.params.categorieId,
-      { active: false },
-      { new: true }
-    )
+    Category.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
       .then((category) => res.status(200).send(category))
       .catch((err) => next(err));
-  },
+  }
 };
 
 module.exports = categoriesController;

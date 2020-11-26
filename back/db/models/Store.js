@@ -19,6 +19,10 @@ const storeSchema = new Schema({
       ref: "user",
     },
   ],
+  name: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     trim: true,

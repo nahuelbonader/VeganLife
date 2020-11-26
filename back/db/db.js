@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 const chalk = require("chalk");
+const { MONGO_DB } = require("../config");
 
-mongoose.connect(
-  "mongodb+srv://veganlife:veganlife@cluster0.9q5tu.mongodb.net/veganlife?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(MONGO_DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 
