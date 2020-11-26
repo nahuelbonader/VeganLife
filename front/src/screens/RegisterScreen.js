@@ -23,7 +23,7 @@ const Register = ({ navigation }) => {
 
   const handleSubmit = async () => {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
-    await API.post("/users", { name, email, password })
+    await API.post("/users", { email })
       .then(() => navigation.navigate("Login"))
       .catch(() => {
         console.log("ERROR DE AUTENTICACION");

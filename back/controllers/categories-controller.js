@@ -1,4 +1,4 @@
-const { Category, Recipe } = require("../db/models");
+const { Category } = require("../db/models");
 
 const categoriesController = {
   findCategories(req, res, next) {

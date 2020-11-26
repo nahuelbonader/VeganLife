@@ -11,7 +11,7 @@ import {
 const Categories = ({ categorias }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.container}>Categorias</Text>
+      <Text style={styles.text}>Categorias</Text>
       <FlatList
         data={categorias}
         renderItem={({ item }) => (
