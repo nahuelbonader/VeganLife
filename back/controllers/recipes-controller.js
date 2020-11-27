@@ -4,7 +4,7 @@ const recipeController = {
   findRecipes(req, res, next) {
     Recipe.find({ active: true })
       .populate({ path: "owner", select: ["name", "image"] })
-      .populate({ path: "category", select: "name" })
+      .populate({ path: "category", select:["name", "image"] })
       .then((recipes) => res.status(200).send(recipes))
       .catch((err) => next(err));
   },

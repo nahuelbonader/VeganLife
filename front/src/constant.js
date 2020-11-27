@@ -1,0 +1,2 @@
+
+export const RANDOM_RECIPE = 'RANDOM_RECIPE'

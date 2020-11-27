@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import {ScrollView, Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
 //Firebase
 import firebase from "../utils/Firebase";
 import "firebase/auth";
@@ -40,29 +40,35 @@ const Login = ({ navigation }) => {
   useEffect(() => setError(""), [email, password]);
 
   return (
-    <View style={styles.container}>
-      <Logo text="Iniciar Sesion" />
-      <View style={styles.line} />
-      <InputData
-        title="Correo"
-        handleChange={handleChange("email")}
-        text={email}
-      />
-      <InputData
-        title="Password"
-        handleChange={handleChange("password")}
-        text={password}
-        secureTextEntry={true}
-      />
-      <Text style={styles.alert}>{errorMessage}</Text>
-      <AccessButtons
-        onPressBtn={handleSubmit}
-        textBtn="Iniciar Sesion"
-        question="¿No tienes cuenta?"
-        onPressInvitation={() => navigation.navigate("Register")}
-        invitation="Registrate"
-      />
-    </View>
+
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+
+      <View style={styles.container}>
+        <Logo text="Iniciar Sesión" />
+        <View style={styles.line} />
+        <InputData
+          title="Correo"
+          handleChange={handleChange("email")}
+          text={email}
+        />
+        <InputData
+          title="Password"
+          handleChange={handleChange("password")}
+          text={password}
+          secureTextEntry={true}
+        />
+        <Text style={styles.alert}>{errorMessage}</Text>
+        <AccessButtons
+          onPressBtn={handleSubmit}
+          textBtn="Iniciar Sesión"
+          question="¿No tienes cuenta?"
+          onPressInvitation={() => navigation.navigate("Register")}
+          invitation="Registrate"
+        />
+      </View>
+
+    </TouchableWithoutFeedback>
+
   );
 };
 
