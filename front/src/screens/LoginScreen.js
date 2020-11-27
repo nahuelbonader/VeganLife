@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import {
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  KeyboardAvoidingView,
+} from "react-native";
 //Firebase
 import firebase from "../utils/Firebase";
 import "firebase/auth";

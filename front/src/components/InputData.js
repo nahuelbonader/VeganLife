@@ -5,7 +5,7 @@ import colors from "../styles/colors";
 
 const InputData = ({ handleChange, title, text, secureTextEntry }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         autoCorrect={true}
         style={styles.input}
