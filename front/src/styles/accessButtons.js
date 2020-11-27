@@ -4,7 +4,7 @@ import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
   container: {
-    height: 270,
+    flex: 3.5,
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
