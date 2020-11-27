@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRandomRecipe } from '../actions/recetas'
 import IP from "../../env";
 
+
+
 const FeedRecetaContainer = () => {
   const [categorias, setCategorias] = useState([]);
 

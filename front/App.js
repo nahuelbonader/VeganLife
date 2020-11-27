@@ -7,43 +7,25 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FeedRecetas from './src/screens/FeedRecetaScreen'
 import Login from './src/screens/LoginScreen'
 import Register from './src/screens/RegisterScreen'
-import Recipe from "./src/screens/SingleRecipe";
+import Recipe from "./src/screens/SingleRecipeScreen";
 import SingleCategory from './src/screens/SingleCategoryScreen'
 
 const Stack = createStackNavigator();
 
 export default () => {
-  return(
+  return (
     <Provider store={store}>
-    <NavigationContainer>
-    <Stack.Navigator>
-    <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
-        <Stack.Screen name="Login" component={Login} />
-
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="SingleCategory" component={SingleCategory} />
-        <Stack.Screen name="Recipe" component={Recipe} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
+          <Stack.Screen name="SingleCategory" component={SingleCategory} />
+          <Stack.Screen name="Recipe" component={Recipe} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
-  )
+  );
 }
 
-/*const navigator = createStackNavigator(
 
-  {
-    FeedRecetas,
-    Login,
-    Register,
-    Prueba,
-    Recipe: Recipe
-  },
-  {
-    initialRouteName: "Login",
-    defaultNavigationOptions: {
-      title: "App",
-    },
-  }
-);
-
-export default createAppContainer(navigator);*/

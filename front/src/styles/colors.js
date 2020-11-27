@@ -6,6 +6,7 @@ const colors = {
   details: "#f0efeb",
   lines: "#e5e5e5",
   teaGreen: "#BFDFBFff",
+  containers: "#E5E1E0",
 };
 
 export default colors;
@@ -16,3 +17,6 @@ export default colors;
 // --dartmouth-green: #007F37ff;
 // --black: #000000ff;
 // --orange-soda: #F4633Eff;
+
+
+//aviso: el color container es extraido de trello. puede ser modificado a gusto.
