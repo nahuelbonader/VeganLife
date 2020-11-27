@@ -20,7 +20,10 @@ const recipeController = {
       .catch((err) => next(err));
   },
   updateRecipe(req, res, next) {
-    Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    Recipe.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    })
       .then((recipe) =>
         recipe
           .populate({ path: "owner", select: ["name", "image"] })

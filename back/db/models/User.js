@@ -24,7 +24,7 @@ const userSchema = new Schema({
   image: { type: String },
   role: {
     type: String,
-    enum: ["User", "Store", "SuperAdmin"],
+    enum: ["User", "Store", "SuperAdmin"], // ¿es necesario el Store?
     default: "User",
   },
   address: { type: String },
