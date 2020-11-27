@@ -24,7 +24,7 @@ const SingleRecipe = ({
         <View style={styles.viewStyle}>
           <Image
             style={styles.image}
-            source={{ uri: image !== "" ? image : null }}
+            source={{ uri: image  }}
           />
           <TouchableOpacity
             style={styles.favButton}
@@ -32,7 +32,11 @@ const SingleRecipe = ({
           >
             <View>
               <Icon
-                style={{ alignSelf: "center", top: normalize(11), fontSize: normalize(25) }}
+                style={{
+                  alignSelf: "center",
+                  top: normalize(11),
+                  fontSize: normalize(25),
+                }}
                 name="md-heart"
                 size={30}
                 color="#35b056"
@@ -44,7 +48,10 @@ const SingleRecipe = ({
           <Image
             style={styles.profilePic}
             source={{
-              uri: ownerImage !== "" ? ownerImage : null,
+              uri:
+                ownerImage !== ""
+                  ? ownerImage
+                  : "https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg",
             }}
           />
           <Text style={styles.name}>{ownerName}</Text>

@@ -2,10 +2,12 @@ import React from "react";
 import { Text, StyleSheet, Image, TouchableOpacity, View} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import styles from "../styles/carouselFeed"
+import { useNavigation } from "@react-navigation/native";
 import Carousel from 'react-native-snap-carousel';
 
 
 const CarouselFeed = ({randomRecipe}) => {
+  const navigation = useNavigation();
   return (
     <View>
       <Text style={styles.container}> V-Cook del día </Text>
@@ -18,7 +20,7 @@ const CarouselFeed = ({randomRecipe}) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                console.log("ESTOY EN CAROUSEL");
+               navigation.navigate("Recipe", { recipeId: item._id });
               }}
             >
               <Image style={styles.image} source={{ uri: item.image }}></Image>
