@@ -8,7 +8,7 @@ import Carousel from 'react-native-snap-carousel';
 const CarouselFeed = ({randomRecipe}) => {
   return (
     <View>
-      <Text style={styles.container}> Receta del dia </Text>
+      <Text style={styles.container}> V-Cook del día </Text>
       <Carousel
         style={styles.carousel}
         data={randomRecipe}

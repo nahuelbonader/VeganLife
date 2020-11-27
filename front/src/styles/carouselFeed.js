@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     color: colors.font,
     marginTop: 10,
-    fontSize: 42,
+    fontSize: 35,
     textAlign: "center",
     backgroundColor: "#E5E1E0",
   },
