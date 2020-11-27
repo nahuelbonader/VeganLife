@@ -8,7 +8,10 @@ import {
   StyleSheet,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import normalize from 'react-native-normalize';
+import normalize from "react-native-normalize";
+
+const recipeImg =
+  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fes%2Fpng-yjdnk&psig=AOvVaw2ml9YNEFL3_kZ9ndKhChxB&ust=1606530297851000&source=images&cd=vfe&ved=2ahUKEwiGnojv1aHtAhVNANQKHUZXCmgQjRx6BAgAEAc";
 
 const SingleRecipe = ({
   image,
@@ -24,7 +27,7 @@ const SingleRecipe = ({
         <View style={styles.viewStyle}>
           <Image
             style={styles.image}
-            source={{ uri: image  }}
+            source={{ uri: image !== "" ? image : recipeImg }}
           />
           <TouchableOpacity
             style={styles.favButton}

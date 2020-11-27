@@ -4,18 +4,17 @@ import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
   container: {
-    height: normalize(210),
+    flex: 3.5,
+    width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
-    position: "absolute",
-    top: normalize(460),
+    paddingVertical: 20,
   },
   btn: {
     backgroundColor: colors.button,
     borderRadius: normalize(25),
-    height: normalize(50),
-    width: normalize(270),
-    alignSelf: "center",
+    height: "20%",
+    width: "65%",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "rgba(0,0,0, .4)", // IOS
@@ -35,12 +34,10 @@ export default StyleSheet.create({
     fontSize: normalize(17),
     marginHorizontal: normalize(7),
     color: colors.font,
-    alignSelf: "flex-start",
   },
   invitation: {
     fontSize: normalize(17),
     color: colors.font,
     fontWeight: "bold",
-    alignSelf: "stretch",
   },
 });
