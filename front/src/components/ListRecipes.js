@@ -43,8 +43,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontWeight: "bold",
     marginTop:15,
-    padding: 60 
-
+    padding: 60,
+    textShadowColor: "green",
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
   },
   image: {
     width: 350,
