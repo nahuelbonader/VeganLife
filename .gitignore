@@ -3,6 +3,7 @@ node_modules
 npm-debug.*
 .env
 env.js
+package-lock.json
 
 //Expo
 .expo/*

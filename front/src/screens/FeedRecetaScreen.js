@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, StyleSheet, View, Button, ScrollView } from "react-native";
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
 import axios from "axios";
@@ -10,7 +10,7 @@ import Recipe from '../components/ListRecipes'
 
 
 
-const FeedRecetaContainer = () => {
+const FeedRecetaContainer = ({navigation}) => {
   const [categorias, setCategorias] = useState([]);
 
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const FeedRecetaContainer = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <Button title='profile' onPress={()=>navigation.navigate('Profile')}></Button>
       <CarouselFeed randomRecipe={randomRecipe}/>
       <Categories categorias={categorias} />
       <Recipe recipes={randomRecipe}/>
