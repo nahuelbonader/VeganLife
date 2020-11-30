@@ -21,7 +21,7 @@ const Categories = ({ categorias }) => {
           </TouchableOpacity>
         )}
         keyExtractor={(categorias) => categorias._id}
-        numColumns={3}
+        horizontal
         showsHorizontalScrollIndicator={false}
       />
     </View>

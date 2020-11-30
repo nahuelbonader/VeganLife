@@ -1,0 +1,5 @@
+// RECIPES
+export const SET_RECIPES = "SET_RECIPES";
+
+// CATEGORIES
+export const SET_CATEGORIES = "SET_CATEGORIES";

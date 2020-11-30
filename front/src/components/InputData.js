@@ -1,7 +1,6 @@
 import React from "react";
 import { View, TextInput } from "react-native";
 import styles from "../styles/inputData";
-import colors from "../styles/colors";
 
 const InputData = ({ handleChange, title, text, secureTextEntry }) => {
   return (

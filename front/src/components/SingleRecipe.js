@@ -8,7 +8,6 @@ import {
   FlatList,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
 import normalize from "react-native-normalize";
 import styles from "../styles/singleRecipe";
 import LinearGradient from "expo-linear-gradient";
@@ -21,7 +20,6 @@ const SingleRecipe = ({
   ownerImage,
   ownerName,
 }) => {
-  const navigation = useNavigation();
   const [showAll, setShowAll] = useState(false);
   return (
     <View style={{ backgroundColor: "#F1F4FB" }}>
@@ -64,14 +62,11 @@ const SingleRecipe = ({
           <Text style={styles.text}>Ingredientes</Text>
           <FlatList
             data={ingredients}
-            renderItem={({ item }) => {
-              console.log(item, "INGREDIENTE");
-              return (
-                <Text style={styles.textTwo}>
-                  {item.quantity} {item.ingredient}
-                </Text>
-              );
-            }}
+            renderItem={({ item }) => (
+              <Text style={styles.textTwo}>
+                {item.quantity} {item.ingredient}
+              </Text>
+            )}
           />
           <Text style={styles.text}>Paso a Paso</Text>
           <TouchableOpacity onPress={() => setShowAll(!showAll)}>
