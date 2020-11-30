@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   ScrollView,
   Image,
   TouchableOpacity,
   Text,
-  StyleSheet,
+  FlatList
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import normalize from "react-native-normalize";
+import { useNavigation } from "@react-navigation/native";
+import styles from "../styles/singleRecipe";
+import { LinearGradient } from "expo-linear-gradient";
+
+
+
 
 const recipeImg =
   "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fes%2Fpng-yjdnk&psig=AOvVaw2ml9YNEFL3_kZ9ndKhChxB&ust=1606530297851000&source=images&cd=vfe&ved=2ahUKEwiGnojv1aHtAhVNANQKHUZXCmgQjRx6BAgAEAc";
+
 
 const SingleRecipe = ({
   image,
@@ -20,7 +26,13 @@ const SingleRecipe = ({
   instructions,
   ownerImage,
   ownerName,
+  
 }) => {
+  const navigation = useNavigation();
+
+  const [showAll, setShowAll] = useState(false);
+  const [ingredientsList, setIngredientsList] = useState(false);
+
   return (
     <View style={{ backgroundColor: "#F1F4FB" }}>
       <ScrollView>
@@ -29,17 +41,14 @@ const SingleRecipe = ({
             style={styles.image}
             source={{ uri: image !== "" ? image : recipeImg }}
           />
+
           <TouchableOpacity
             style={styles.favButton}
             onPress={() => console.log("presionado")}
           >
             <View>
               <Icon
-                style={{
-                  alignSelf: "center",
-                  top: normalize(11),
-                  fontSize: normalize(25),
-                }}
+                style={styles.favIcon}
                 name="md-heart"
                 size={30}
                 color="#35b056"
@@ -47,99 +56,91 @@ const SingleRecipe = ({
             </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.viewProfile}>
-          <Image
-            style={styles.profilePic}
-            source={{
-              uri:
-                ownerImage !== ""
-                  ? ownerImage
-                  : "https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg",
-            }}
-          />
-          <Text style={styles.name}>{ownerName}</Text>
-        </View>
+
         <View style={styles.viewThree}>
-          <View style={{ marginHorizontal: 20 }}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.text}>Ingredientes</Text>
-            <Text style={styles.textTwo}>{ingredients}</Text>
-            {/* mapear arreglo con objetos ingredientes [{cantidad: 200g, ingrediente: azucar},{cantidad: 200g, ingrediente: azucar}] */}
-            <Text style={styles.text}>Paso a Paso</Text>
-            <Text style={styles.textTwo}>{instructions}</Text>
-          </View>
+          <Text style={styles.title}>{title}</Text>
+
+          <TouchableOpacity onPress={() => console.log("User Profile")}>
+            <View style={styles.viewProfile}>
+              <Image
+                style={styles.profilePic}
+                source={{
+                  uri:
+                    ownerImage !== ""
+                      ? ownerImage
+                      : "https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg",
+                }}
+              />
+              <Text style={styles.name}>by: {ownerName}</Text>
+            </View>
+          </TouchableOpacity>
+
+          <Text style={styles.text}>Ingredientes</Text>
+
+          <TouchableOpacity
+            onPress={() => setIngredientsList(!ingredientsList)}
+          >
+            {ingredientsList ? (
+              <FlatList
+                data={ingredients}
+                renderItem={({ item }) => {
+                  console.log("recetasssss", item.ingredients);
+                  return (
+                    <Text style={styles.textTwo}>
+                      {ingredients}
+                    </Text>
+                  );
+                }}
+              />
+            ) : (
+              <>
+                <FlatList
+                  data={ingredients}
+                  renderItem={({ item }) => {
+                    console.log("ingredientesssss", ingredients);
+                    return (
+                      <Text style={styles.textTwo}>
+                        {item.quantity}
+                        {item.ingredients}
+                      </Text>
+                    );
+                  }}
+                />
+                <LinearGradient
+                  start={{ x: 0.0, y: 0.0 }}
+                  end={{ x: 0.0, y: 1.0 }}
+                  locations={[0.1, 1.0]}
+                  colors={["#ffffff95", "#fffffff9"]}
+                  useViewFrame={false}
+                  style={styles.gradient}
+                />
+              </>
+            )}
+          </TouchableOpacity>
+
+          {/* mapear arreglo con objetos ingredientes [{cantidad: 200g, ingrediente: azucar},{cantidad: 200g, ingrediente: azucar}] */}
+          <Text style={styles.text}>Paso a Paso</Text>
+          <TouchableOpacity onPress={() => setShowAll(!showAll)}>
+            {showAll ? (
+              <Text style={styles.textTwo}>{instructions}</Text>
+            ) : (
+              <>
+                <Text style={styles.textTwo}>{instructions}</Text>
+                <LinearGradient
+                  start={{ x: 0.0, y: 0.0 }}
+                  end={{ x: 0.0, y: 1.0 }}
+                  locations={[0.1, 1.0]}
+                  colors={["#ffffff70", "#fffffff7"]}
+                  useViewFrame={false}
+                  style={styles.gradient}
+                />
+              </>
+            )}
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    height: normalize(200),
-    flexDirection: "row",
-    marginVertical: normalize(12),
-  },
-  image: {
-    borderRadius: normalize(25),
-    flex: 1,
-  },
-  viewProfile: {
-    flexDirection: "row",
-    marginHorizontal: normalize(30),
-  },
-  profilePic: {
-    width: normalize(65),
-    height: normalize(65),
-    borderRadius: normalize(50),
-  },
-  name: {
-    alignSelf: "stretch",
-    color: "green",
-    top: normalize(20),
-    marginLeft: normalize(10),
-    fontWeight: "bold",
-    fontSize: normalize(20),
-  },
-  viewThree: {
-    borderRadius: normalize(25),
-    backgroundColor: "white",
-    paddingBottom: normalize(70),
-    marginTop: normalize(15),
-  },
-  title: {
-    marginTop: normalize(10),
-    marginBottom: normalize(15),
-    color: "green",
-    fontSize: normalize(30),
-    alignSelf: "center",
-    fontWeight: "bold",
-    textShadowColor: "rgba(0, 0, 0, 0.40)",
-    textShadowOffset: { width: 1, height: 4 },
-    textShadowRadius: normalize(15),
-  },
-  text: {
-    textTransform: "uppercase",
-    color: "green",
-    fontWeight: "bold",
-    fontSize: normalize(20),
-    marginTop: normalize(15),
-    marginBottom: normalize(10),
-  },
-  textTwo: {
-    color: "#808080",
-    fontSize: normalize(17),
-    marginBottom: normalize(5),
-  },
-  favButton: {
-    width: normalize(43),
-    height: normalize(43),
-    backgroundColor: "white",
-    borderRadius: normalize(50),
-    position: "absolute",
-    right: normalize(30),
-    top: normalize(140),
-  },
-});
 
 export default SingleRecipe;

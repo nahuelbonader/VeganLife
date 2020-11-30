@@ -1,10 +1,1 @@
-{
-  "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 21730,
-  "expoServerNgrokUrl": "https://kg-mxn.anonymous.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.kg-mxn.anonymous.front.exp.direct",
-  "ngrokPid": 21842,
-  "webpackServerPort": null
-}
+{}
