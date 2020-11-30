@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, StyleSheet, Image, TouchableOpacity, View} from "react-native";
-import { FlatList } from "react-native-gesture-handler";
 import styles from "../styles/carouselFeed"
 import { useNavigation } from "@react-navigation/native";
 import Carousel from 'react-native-snap-carousel';

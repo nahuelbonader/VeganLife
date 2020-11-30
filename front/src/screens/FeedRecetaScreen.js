@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
 import axios from "axios";
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRandomRecipe } from '../actions/recetas'
 import IP from "../../env";
 import Recipe from '../components/ListRecipes'
-import { ScrollView } from "react-native-gesture-handler";
 
 
 
@@ -27,7 +26,7 @@ const FeedRecetaContainer = () => {
 
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       <CarouselFeed randomRecipe={randomRecipe}/>
       <Categories categorias={categorias} />
       <Recipe recipes={randomRecipe}/>
@@ -36,8 +35,8 @@ const FeedRecetaContainer = () => {
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
+  container: {
+    flex: 1,
   },
 });
 
