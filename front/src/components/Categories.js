@@ -23,7 +23,7 @@ const Categories = ({ categorias }) => {
         keyExtractor={(categorias) => categorias._id}
         numColumns={3}
         showsHorizontalScrollIndicator={false}
-      ></FlatList>
+      />
     </View>
   );
 };

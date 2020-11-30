@@ -42,7 +42,7 @@ const SingleCategory = ({ recipes, categoryImage }) => {
                       source={{ uri: item.image !== "" ? item.image : null }}
                     />
                     <Text style={styles.description}>
-                      {item.ingredients[0].substr(0, 90) + "..."}
+                      {item.ingredients ? item.ingredients[0] + "..." : null}
                     </Text>
                   </View>
                 </View>

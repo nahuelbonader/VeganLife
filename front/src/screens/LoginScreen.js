@@ -26,13 +26,14 @@ const Login = ({ navigation }) => {
       .signInWithEmailAndPassword(email, password)
       .then(() => navigation.navigate("FeedRecetas")) // res = {user}
       .catch((err) => {
-        if (String(err).includes("password is invalid"))
-          setError("La contraseña es invalida.");
-        else if (String(err).includes("no user record"))
-          setError("El usuario es inexistente.");
+        if (
+          String(err).includes("password is invalid") ||
+          String(err).includes("no user record")
+        )
+          setError("Credenciales inválidas.");
         else if (String(err).includes("to many failed login attempts"))
           setError(
-            "Demasiados intentos fallidos. Intente nuevamente en unos minutos."
+            "Demasiados intentos fallidos. Intente nuevamente más tarde."
           );
       });
   };
