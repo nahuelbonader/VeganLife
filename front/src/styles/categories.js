@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     width: "90%",
-    flex: 0.85,
+    //flex: 0.85,
     marginTop: 20,
     marginLeft: 20,
     marginRight: 15,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   textContainer: {
-    fontSize: 30,
+    fontSize: 20,
     color: colors.font,
     textAlign: "center",
     marginTop: 10,
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 60,
+    height: 60,
     marginLeft: 20,
     marginTop: 10,
     borderRadius: 100,

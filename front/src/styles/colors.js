@@ -18,5 +18,4 @@ export default colors;
 // --black: #000000ff;
 // --orange-soda: #F4633Eff;
 
-
 //aviso: el color container es extraido de trello. puede ser modificado a gusto.

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {ScrollView, Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
 //Firebase
 import firebase from "../utils/Firebase";
 import "firebase/auth";
@@ -40,9 +40,7 @@ const Login = ({ navigation }) => {
   useEffect(() => setError(""), [email, password]);
 
   return (
-
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-
       <View style={styles.container}>
         <Logo text="Iniciar Sesión" />
         <View style={styles.line} />
@@ -66,9 +64,7 @@ const Login = ({ navigation }) => {
           invitation="Registrate"
         />
       </View>
-
     </TouchableWithoutFeedback>
-
   );
 };
 

@@ -9,9 +9,14 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import normalize from "react-native-normalize";
 import styles from "../styles/singleRecipe";
 import { LinearGradient } from "expo-linear-gradient";
+
+
+
+
+const recipeImg =
+  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fes%2Fpng-yjdnk&psig=AOvVaw2ml9YNEFL3_kZ9ndKhChxB&ust=1606530297851000&source=images&cd=vfe&ved=2ahUKEwiGnojv1aHtAhVNANQKHUZXCmgQjRx6BAgAEAc";
 
 
 const SingleRecipe = ({
@@ -32,7 +37,11 @@ const SingleRecipe = ({
     <View style={{ backgroundColor: "#F1F4FB" }}>
       <ScrollView>
         <View style={styles.viewStyle}>
-          <Image style={styles.image} source={{ uri: image }} />
+          <Image
+            style={styles.image}
+            source={{ uri: image !== "" ? image : recipeImg }}
+          />
+
           <TouchableOpacity
             style={styles.favButton}
             onPress={() => console.log("presionado")}

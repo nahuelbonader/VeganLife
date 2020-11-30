@@ -16,7 +16,7 @@ const AccessButtons = ({
       </TouchableOpacity>
       <View style={styles.text_container}>
         <Text style={styles.text}>{question}</Text>
-        <TouchableOpacity onPress={onPressInvitation}>
+        <TouchableOpacity onPress={onPressInvitation} style={styles.invitation}>
           <Text style={styles.invitation}>{invitation}</Text>
         </TouchableOpacity>
       </View>
