@@ -6,6 +6,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRandomRecipe } from '../actions/recetas'
 import IP from "../../env";
+import Recipe from '../components/ListRecipes'
+import { ScrollView } from "react-native-gesture-handler";
 
 
 
@@ -19,16 +21,17 @@ const FeedRecetaContainer = () => {
     axios
       .get(`http://${IP}:1337/api/categories`)
       .then((res) => setCategorias(res.data));
-    dispatch(fetchRandomRecipe())
+      dispatch(fetchRandomRecipe())
   }, []);
 
 
 
   return (
-    <>
+    <ScrollView>
       <CarouselFeed randomRecipe={randomRecipe}/>
       <Categories categorias={categorias} />
-    </>
+      <Recipe recipes={randomRecipe}/>
+    </ScrollView>
   );
 };
 

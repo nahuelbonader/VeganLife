@@ -17,9 +17,10 @@ export default () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
+        <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
-          <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
+          
           <Stack.Screen name="SingleCategory" component={SingleCategory} />
           <Stack.Screen name="Recipe" component={Recipe} />
         </Stack.Navigator>
