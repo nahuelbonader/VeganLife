@@ -31,7 +31,7 @@ const UserController = {
       .catch((err) => next(err));
   },
   findById(req, res, next) {
-    User.findById({ _id: req.params.id, active: true })
+    User.findOne({ email: req.params.email, active: true })
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
