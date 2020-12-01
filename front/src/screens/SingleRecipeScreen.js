@@ -15,8 +15,7 @@ const Recipe = ({ route }) => {
 
   useEffect(() => {
     API.get(`/recipes/${route.params.recipeId}`)
-      .then(({ data }) => {
-        console.log(data);
+      .then(({ data }) =>
         setRecipe({
           image: data.image,
           ingredients: data.ingredients,
@@ -24,8 +23,8 @@ const Recipe = ({ route }) => {
           instructions: data.instructions,
           ownerImage: data.owner.image,
           ownerName: data.owner.name,
-        });
-      })
+        })
+      )
       .catch((err) => console.log(err));
   }, []);
 
