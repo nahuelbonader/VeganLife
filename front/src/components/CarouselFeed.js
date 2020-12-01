@@ -14,18 +14,16 @@ const CarouselFeed = ({ randomRecipe }) => {
         data={randomRecipe}
         sliderWidth={410}
         itemWidth={400}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Recipe", { recipeId: item._id });
-              }}
-            >
-              <Image style={styles.image} source={{ uri: item.image }}></Image>
-              <Text style={styles.text}> {item.title} </Text>
-            </TouchableOpacity>
-          );
-        }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Recipe", { recipeId: item._id });
+            }}
+          >
+            <Image style={styles.image} source={{ uri: item.image }}></Image>
+            <Text style={styles.text}> {item.title} </Text>
+          </TouchableOpacity>
+        )}
       ></Carousel>
     </View>
   );
