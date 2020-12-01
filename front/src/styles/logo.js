@@ -4,14 +4,14 @@ import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
   container: {
-    flex: 3.5,
+    flex: 4,
     width: "100%",
-    margin: normalize(25),
+    marginTop: normalize(80),
     alignItems: "center",
   },
   logo: {
-    height: "70%",
-    width: "80%",
+    height: "50%",
+    width: "70%",
   },
   text: {
     fontSize: normalize(25),

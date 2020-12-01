@@ -7,7 +7,8 @@ const InputData = ({ handleChange, title, text, secureTextEntry }) => {
   return (
     <View style={styles.container}>
       <TextInput
-        autoCorrect={true}
+        autoCorrect={false}
+        autoCompleteType="username"
         style={styles.input}
         onChangeText={handleChange}
         value={text}
