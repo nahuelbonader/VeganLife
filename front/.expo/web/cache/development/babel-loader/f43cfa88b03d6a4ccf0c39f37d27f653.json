@@ -1,1 +1,0 @@
-{"ast":null,"code":"var IP = \"192.168.0.103\";\nexport default IP;","map":{"version":3,"sources":["/home/equipo/Escritorio/VeganLife/front/env.js"],"names":["IP"],"mappings":"AAAA,IAAMA,EAAE,GAAG,eAAX;AAEA,eAAeA,EAAf","sourcesContent":["const IP = \"192.168.0.103\"\n\nexport default IP"]},"metadata":{},"sourceType":"module"}

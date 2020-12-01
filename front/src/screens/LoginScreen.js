@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
-import {useDispatch, useSelector} from 'react-redux'
-import {fetchLogin} from '../actions/users'
-import axios from 'axios'
-import API from "../api/api";
+import { useDispatch } from "react-redux";
+import { fetchLogin } from "../store/actions/users";
 
 //Firebase
 import firebase from "../utils/Firebase";
@@ -21,11 +19,10 @@ import AccessButtons from "../components/AccessButtons";
 import styles from "../styles/login-register";
 
 const Login = ({ navigation }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [inputs, handleChange] = useInputs();
   const { email, password } = inputs;
   const [errorMessage, setError] = useState("");
-  
 
   const handleSubmit = () => {
     firebase
@@ -33,19 +30,18 @@ const Login = ({ navigation }) => {
       .signInWithEmailAndPassword(email, password)
       .then(dispatch(fetchLogin(email)))
       .then(() => navigation.navigate("FeedRecetas"))
-        // res = {user}
+      // res = {user}
       .catch((err) => {
-        if (String(err).includes("password is invalid"))
-          setError("La contraseña es invalida.");
-        else if (String(err).includes("no user record"))
-          setError("El usuario es inexistente.");
+        if (
+          String(err).includes("password is invalid") ||
+          String(err).includes("no user record")
+        )
+          setError("Credenciales inválidas.");
         else if (String(err).includes("to many failed login attempts"))
           setError(
-            "Demasiados intentos fallidos. Intente nuevamente en unos minutos."
+            "Demasiados intentos fallidos. Intente nuevamente más tarde."
           );
       });
-      
-      
   };
   useEffect(() => setError(""), [email, password]);
 

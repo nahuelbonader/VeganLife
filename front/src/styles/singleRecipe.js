@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import colors from "./colors";
 import normalize from "react-native-normalize";
 
-
 const styles = StyleSheet.create({
   viewStyle: {
     height: normalize(200),

@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var RANDOM_RECIPE = 'RANDOM_RECIPE';","map":{"version":3,"sources":["/home/equipo/Escritorio/VeganLife/front/src/constant.js"],"names":["RANDOM_RECIPE"],"mappings":"AACA,OAAO,IAAMA,aAAa,GAAG,eAAtB","sourcesContent":["\nexport const RANDOM_RECIPE = 'RANDOM_RECIPE'"]},"metadata":{},"sourceType":"module"}

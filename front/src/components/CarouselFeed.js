@@ -1,11 +1,10 @@
 import React from "react";
-import { Text, StyleSheet, Image, TouchableOpacity, View} from "react-native";
-import styles from "../styles/carouselFeed"
+import { Text, Image, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Carousel from 'react-native-snap-carousel';
+import Carousel from "react-native-snap-carousel";
+import styles from "../styles/carouselFeed";
 
-
-const CarouselFeed = ({randomRecipe}) => {
+const CarouselFeed = ({ randomRecipe }) => {
   const navigation = useNavigation();
   return (
     <View>
@@ -19,7 +18,7 @@ const CarouselFeed = ({randomRecipe}) => {
           return (
             <TouchableOpacity
               onPress={() => {
-               navigation.navigate("Recipe", { recipeId: item._id });
+                navigation.navigate("Recipe", { recipeId: item._id });
               }}
             >
               <Image style={styles.image} source={{ uri: item.image }}></Image>
