@@ -3,7 +3,7 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from "react-redux";
-import store from './src/store'
+import store from './src/store/store'
 import { createStackNavigator } from '@react-navigation/stack';
 
 import DrawerContent from './src/screens/Drawer'

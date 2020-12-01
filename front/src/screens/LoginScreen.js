@@ -29,7 +29,7 @@ const Login = ({ navigation }) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(dispatch(fetchLogin(email)))
-      .then(() => navigation.navigate("FeedRecetas"))
+      .then(() => navigation.navigate("Home"))
       // res = {user}
       .catch((err) => {
         if (
