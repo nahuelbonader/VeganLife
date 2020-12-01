@@ -36,85 +36,83 @@ const SingleRecipe = ({
   ownerImage,
   ownerName,
 }) => {
-  const [showAll, setShowAll] = useState(false);
+  const [showSteps, setShowSteps] = useState(false);
   const [ingredientsList, setIngredientsList] = useState(false);
 
   return (
     <View style={{ backgroundColor: "#F1F4FB" }}>
-      <ScrollView>
-        <View style={styles.viewStyle}>
-          <Image
-            style={styles.image}
-            source={{ uri: image !== "" ? image : recipeImg }}
+      <View style={styles.viewStyle}>
+        <Image
+          style={styles.image}
+          source={{ uri: image !== "" ? image : recipeImg }}
+        />
+        <TouchableOpacity
+          style={styles.favButton}
+          onPress={() => console.log("presionado")}
+        >
+          <Icon
+            style={styles.favIcon}
+            name="md-heart"
+            size={30}
+            color="#35b056"
           />
-          <TouchableOpacity
-            style={styles.favButton}
-            onPress={() => console.log("presionado")}
-          >
-            <Icon
-              style={styles.favIcon}
-              name="md-heart"
-              size={30}
-              color="#35b056"
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.viewThree}>
+        <Text style={styles.title}>{title}</Text>
+
+        <TouchableOpacity
+          style={styles.viewProfile}
+          onPress={() => console.log("User Profile")}
+        >
+          <Image
+            style={styles.profilePic}
+            source={{ uri: ownerImage !== "" ? ownerImage : ownerImg }}
+          />
+          <Text style={styles.name}>by: {ownerName}</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.text}>Ingredientes</Text>
+        <TouchableOpacity onPress={() => setIngredientsList(!ingredientsList)}>
+          {ingredientsList ? (
+            <FlatList
+              keyExtractor={(ingredient) => ingredient.name}
+              data={ingredients}
+              renderItem={({ item }) => (
+                <Text style={styles.textTwo}>
+                  {item.quantity} {item.ingredient}
+                </Text>
+              )}
             />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.viewThree}>
-          <Text style={styles.title}>{title}</Text>
-
-          <TouchableOpacity onPress={() => console.log("User Profile")}>
-            {/* es necesaria esta view?? */}
-            <View style={styles.viewProfile}>
-              <Image
-                style={styles.profilePic}
-                source={{ uri: ownerImage !== "" ? ownerImage : ownerImg }}
-              />
-              <Text style={styles.name}>by: {ownerName}</Text>
-            </View>
-          </TouchableOpacity>
-
-          <Text style={styles.text}>Ingredientes</Text>
-          <TouchableOpacity
-            onPress={() => setIngredientsList(!ingredientsList)}
-          >
-            {ingredientsList ? (
-              <FlatList
-                data={ingredients}
-                renderItem={({ item }) => (
-                  <Text style={styles.textTwo}>
-                    {item.quantity} {item.ingredient}
-                  </Text>
-                )}
-              />
-            ) : (
-              <>
-                <FlatList
-                  data={ingredients}
-                  renderItem={({ item }) => (
-                    <Text style={styles.textTwo}>
-                      {item.quantity} {item.ingredient}
+          ) : (
+            <>
+              {ingredients.map((element, index) => {
+                if (index < 5) {
+                  return (
+                    <Text style={styles.textTwo} key={element.ingredient}>
+                      {element.quantity} {element.ingredient}
                     </Text>
-                  )}
-                />
-                {LG}
-              </>
-            )}
-          </TouchableOpacity>
+                  );
+                }
+              })}
+              {ingredients.length > 4 ? LG : null}
+            </>
+          )}
+        </TouchableOpacity>
 
-          <Text style={styles.text}>Paso a Paso</Text>
-          <TouchableOpacity onPress={() => setShowAll(!showAll)}>
-            {showAll ? (
+        <Text style={styles.text}>Paso a Paso</Text>
+        <TouchableOpacity onPress={() => setShowSteps(!showSteps)}>
+          {showSteps ? (
+            <Text style={styles.textTwo}>{instructions}</Text>
+          ) : (
+            <>
               <Text style={styles.textTwo}>{instructions}</Text>
-            ) : (
-              <>
-                <Text style={styles.textTwo}>{instructions}</Text>
-                {LG}
-              </>
-            )}
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+              {LG}
+            </>
+          )}
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
