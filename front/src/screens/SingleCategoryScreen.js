@@ -9,6 +9,8 @@ const [recipes, setRecipes] = useState([])
 const [category, setCategory] = useState("")
 
 useEffect(() =>{
+  let mounted = true;
+  if(mounted){
   axios.get(`http://${IP}:1337/api/recipes`)
        .then(res => res.data)
        .then(data =>{
@@ -18,6 +20,8 @@ useEffect(() =>{
            })
            })
        .catch(err=> console.log(err))
+       }
+  return () => mounted = false;
 },[])
 
   return (

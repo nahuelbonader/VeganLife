@@ -14,6 +14,8 @@ const [ownerName, setOwnerName] = useState("")
 
 
  useEffect(()=>{
+   let mounted = true;
+   if(mounted){
     axios.get(`http://${IP}:1337/api/recipes/${route.params.recipeId}`)
          .then(res => res.data)
          .then(data=> {
@@ -26,6 +28,8 @@ const [ownerName, setOwnerName] = useState("")
 
          })
          .catch(err=> console.log(err))
+}
+  return () => mounted = false;
   },[])
 
   return (

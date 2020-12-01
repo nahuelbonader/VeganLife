@@ -24,7 +24,7 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => navigation.navigate("FeedRecetas")) // res = {user}
+      .then(() => navigation.navigate("Home")) // res = {user}
       .catch((err) => {
         if (String(err).includes("password is invalid"))
           setError("La contraseña es invalida.");
