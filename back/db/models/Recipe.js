@@ -21,10 +21,12 @@ const recipeSchema = new Schema({
       },
     },
   ],
-  instructions: {
-    type: String,
-    required: true,
-  },
+  instructions: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   category: {
     type: Schema.Types.ObjectId,
     required: true,

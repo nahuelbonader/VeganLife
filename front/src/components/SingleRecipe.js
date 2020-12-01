@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import styles from "../styles/singleRecipe";
 import LinearGradient from "expo-linear-gradient";
 
-const LG = (
+const Gradient = (
   <LinearGradient
     start={{ x: 0.0, y: 0.0 }}
     end={{ x: 0.0, y: 1.0 }}
@@ -20,6 +20,22 @@ const LG = (
     useViewFrame={false}
     style={styles.gradient}
   />
+);
+
+const Ingredient = ({ quantity, ingredient }) => (
+  <Text style={styles.textTwo}>
+    {quantity} {ingredient}
+  </Text>
+);
+
+const renderIngredient = ({ item }) => (
+  <Ingredient quantity={item.quantity} ingredient={item.ingredient} />
+);
+
+const Step = ({ item, index }) => (
+  <Text style={styles.textTwo}>
+    {index + 1}. {item}
+  </Text>
 );
 
 const recipeImg =
@@ -40,7 +56,7 @@ const SingleRecipe = ({
   const [ingredientsList, setIngredientsList] = useState(false);
 
   return (
-    <View style={{ backgroundColor: "#F1F4FB" }}>
+    <ScrollView style={{ backgroundColor: "#F1F4FB" }}>
       <View style={styles.viewStyle}>
         <Image
           style={styles.image}
@@ -70,33 +86,40 @@ const SingleRecipe = ({
             style={styles.profilePic}
             source={{ uri: ownerImage !== "" ? ownerImage : ownerImg }}
           />
-          <Text style={styles.name}>by: {ownerName}</Text>
+          <Text style={styles.name}>by {ownerName}</Text>
         </TouchableOpacity>
 
         <Text style={styles.text}>Ingredientes</Text>
         <TouchableOpacity onPress={() => setIngredientsList(!ingredientsList)}>
           {ingredientsList ? (
-            <FlatList
-              keyExtractor={(ingredient) => ingredient.name}
-              data={ingredients}
-              renderItem={({ item }) => (
-                <Text style={styles.textTwo}>
-                  {item.quantity} {item.ingredient}
-                </Text>
-              )}
-            />
+            // <FlatList
+            //   maxToRenderPerBatch={1}
+            //   initialNumToRender={5}
+            //   keyExtractor={(ingredient) => ingredient.name}
+            //   data={ingredients}
+            //   renderItem={renderIngredient}
+            // />
+            <>
+              {ingredients.map((e, index) => (
+                <Ingredient
+                  quantity={e.quantity}
+                  ingredient={e.ingredient}
+                  key={index}
+                />
+              ))}
+            </>
           ) : (
             <>
-              {ingredients.map((element, index) => {
-                if (index < 5) {
-                  return (
-                    <Text style={styles.textTwo} key={element.ingredient}>
-                      {element.quantity} {element.ingredient}
-                    </Text>
-                  );
-                }
-              })}
-              {ingredients.length > 4 ? LG : null}
+              {ingredients.map((e, index) =>
+                index < 5 ? (
+                  <Ingredient
+                    quantity={e.quantity}
+                    ingredient={e.ingredient}
+                    key={index}
+                  />
+                ) : null
+              )}
+              {ingredients.length > 5 ? Gradient : null}
             </>
           )}
         </TouchableOpacity>
@@ -104,16 +127,31 @@ const SingleRecipe = ({
         <Text style={styles.text}>Paso a Paso</Text>
         <TouchableOpacity onPress={() => setShowSteps(!showSteps)}>
           {showSteps ? (
-            <Text style={styles.textTwo}>{instructions}</Text>
+            // <FlatList
+            //   maxToRenderPerBatch={1}
+            //   initialNumToRender={5}
+            //   keyExtractor={(instruction) => instruction}
+            //   data={instructions}
+            //   renderItem={Step}
+            // />
+            <>
+              {instructions.map((step, index) => (
+                <Step item={step} index={index} key={index} />
+              ))}
+            </>
           ) : (
             <>
-              <Text style={styles.textTwo}>{instructions}</Text>
-              {LG}
+              {instructions.map((step, index) =>
+                index < 5 ? (
+                  <Step item={step} index={index} key={index} />
+                ) : null
+              )}
+              {instructions.length > 5 ? Gradient : null}
             </>
           )}
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

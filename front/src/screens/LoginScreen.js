@@ -28,9 +28,8 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(dispatch(fetchLogin(email)))
-      .then(() => navigation.navigate("FeedRecetas"))
-      // res = {user}
+      .then(() => dispatch(fetchLogin(email)))
+      .then(() => navigation.navigate("Home")) // res = {user}
       .catch((err) => {
         if (
           String(err).includes("password is invalid") ||
