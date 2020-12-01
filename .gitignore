@@ -3,17 +3,18 @@ node_modules
 npm-debug.*
 .env
 env.js
+package-lock.json
 
-//Expo
-.expo/*
+#Expo
+.expo
 __generated__
+web-build
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
 
 # macOS
 .DS_Store

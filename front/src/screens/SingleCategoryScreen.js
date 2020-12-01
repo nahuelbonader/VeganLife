@@ -1,30 +1,22 @@
-import React,{ useState, useEffect} from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import SingleCategory from '../components/SingleCategory'
-import axios from 'axios'
-import IP from '../../env'
+import React from "react";
+import { useSelector } from "react-redux";
+import { View } from "react-native";
+import SingleCategory from "../components/SingleCategory";
 
-const SingleCategoryScreen = ({ navigation, route }) => {
-const [recipes, setRecipes] = useState([])
-const [category, setCategory] = useState("")
-
-useEffect(() =>{
-  axios.get(`http://${IP}:1337/api/recipes`)
-       .then(res => res.data)
-       .then(data =>{
-          setRecipes(data.filter(el=> el.category._id == route.params.categoryId))
-          data.filter(el=>{
-             el.category._id == route.params.categoryId? setCategory([el.category.image]): null
-           })
-           })
-       .catch(err=> console.log(err))
-},[])
+const SingleCategoryScreen = ({ route }) => {
+  const recipes = useSelector((state) => state.recipesReducer.recipes);
+  const categories = useSelector((state) => state.categoriesReducer.categories);
+  const category = categories.filter((c) => c._id == route.params.categoryId);
+  const recipesCategory = recipes.filter(
+    (r) => r.category._id == route.params.categoryId
+  );
 
   return (
-   <View>
-   <SingleCategory recipes={recipes} categoryImage={category}/>
-   </View>
-  )
-}
+    <SingleCategory
+      recipes={recipesCategory}
+      categoryImage={category[0].image}
+    />
+  );
+};
 
-export default SingleCategoryScreen
+export default SingleCategoryScreen;

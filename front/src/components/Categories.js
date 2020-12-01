@@ -13,7 +13,7 @@ const Categories = ({ categorias }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("SingleCategory", { categoryId: item._id })
+              navigation.push("SingleCategory", { categoryId: item._id })
             }
           >
             <Image style={styles.image} source={{ uri: item.image }}></Image>
@@ -23,7 +23,7 @@ const Categories = ({ categorias }) => {
         keyExtractor={(categorias) => categorias._id}
         horizontal
         showsHorizontalScrollIndicator={false}
-      ></FlatList>
+      />
     </View>
   );
 };

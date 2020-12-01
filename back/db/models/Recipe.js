@@ -10,14 +10,23 @@ const recipeSchema = new Schema({
     type: String,
     required: true,
   },
-  ingredients: [{
-    type: String,
-    required: true,
-  }],
-  instructions: {
-    type: String,
-    required: true,
-  },
+  ingredients: [
+    {
+      quantity: {
+        type: String,
+      },
+      ingredient: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  instructions: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   category: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -31,10 +40,9 @@ const recipeSchema = new Schema({
   active: {
     type: Boolean,
     required: true,
-    default: true
+    default: true,
   },
 });
-
 
 const Recipe = mongoose.model("recipe", recipeSchema);
 module.exports = Recipe;

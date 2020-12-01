@@ -8,7 +8,7 @@ export default StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingVertical: 20,
+    paddingVertical: 30,
   },
   btn: {
     backgroundColor: colors.button,
