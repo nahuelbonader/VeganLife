@@ -34,20 +34,16 @@ const [ownerName, setOwnerName] = useState("")
 
   return (
     <View>
-     <SingleRecipe
-       image={image}
-       ingredients={ingredients}
-       title={title}
-       instructions={instructions}
-       ownerImage={ownerImage}
-       ownerName={ownerName}
-     />
+      <SingleRecipe
+        image={image}
+        ingredients={ingredients}
+        title={title}
+        instructions={instructions}
+        ownerImage={ownerImage}
+        ownerName={ownerName}
+      />
     </View>
-  )
+  );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default Recipe;

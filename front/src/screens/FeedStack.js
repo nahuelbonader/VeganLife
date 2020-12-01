@@ -8,6 +8,7 @@ import Recipe from "./SingleRecipeScreen";
 import SingleCategory from './SingleCategoryScreen'
 import Header from './Header'
 import BottomNav from './BottomNav'
+import CookToday from './CookTodayScreen'
 
 const Stack = createStackNavigator()
 
@@ -33,6 +34,10 @@ const FeedStack = () => {
        <Stack.Screen
          name="SingleCategory"
          component={SingleCategory}
+       />
+       <Stack.Screen
+         name="CookToday"
+         component={CookToday}
        />
 
     </Stack.Navigator>
