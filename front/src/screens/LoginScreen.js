@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { useDispatch } from "react-redux";
+import { fetchLogin } from "../store/actions/users";
+
 //Firebase
 import firebase from "../utils/Firebase";
 import "firebase/auth";
@@ -16,6 +19,7 @@ import AccessButtons from "../components/AccessButtons";
 import styles from "../styles/login-register";
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [inputs, handleChange] = useInputs();
   const { email, password } = inputs;
   const [errorMessage, setError] = useState("");
@@ -24,7 +28,9 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => navigation.navigate("FeedRecetas")) // res = {user}
+      .then(dispatch(fetchLogin(email)))
+      .then(() => navigation.navigate("FeedRecetas"))
+      // res = {user}
       .catch((err) => {
         if (
           String(err).includes("password is invalid") ||
@@ -37,7 +43,6 @@ const Login = ({ navigation }) => {
           );
       });
   };
-
   useEffect(() => setError(""), [email, password]);
 
   return (

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
+import { Button, ScrollView, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/actions/recipes";
 import { fetchCategories } from "../store/actions/categories";
-import { ScrollView } from "react-native";
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
-import Recipe from "../components/ListRecipes";
+import Recipes from "../components/ListRecipes";
 
-const FeedRecetaContainer = () => {
+const FeedRecetaContainer = ({ navigation }) => {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipesReducer.recipes);
   const randomRecipes = recipes; // acá va un filter
@@ -19,12 +19,22 @@ const FeedRecetaContainer = () => {
   }, []);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
+      <Button
+        title="profile"
+        onPress={() => navigation.navigate("Profile")}
+      ></Button>
       <CarouselFeed randomRecipe={randomRecipes} />
       <Categories categorias={categories} />
-      <Recipe recipes={recipes} />
+      <Recipes recipes={recipes} />
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default FeedRecetaContainer;

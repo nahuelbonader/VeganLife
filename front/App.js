@@ -9,6 +9,7 @@ import Register from "./src/screens/RegisterScreen";
 import Recipe from "./src/screens/SingleRecipeScreen";
 import SingleCategory from "./src/screens/SingleCategoryScreen";
 import CookToday from "./src/screens/CookTodayScreen";
+import Profile from "./src/screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default () => {
           <Stack.Screen name="FeedRecetas" component={FeedRecetas} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="SingleCategory" component={SingleCategory} />
           <Stack.Screen name="Recipe" component={Recipe} />
           <Stack.Screen name="CookToday" component={CookToday} />
