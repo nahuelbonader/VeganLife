@@ -6,3 +6,6 @@ export const SET_CATEGORIES = "SET_CATEGORIES";
 
 //
 export const LOGIN_USER = 'LOGIN_USER'
+
+//ROUTE BOTTOMNAV POSITION
+export const IM_IN = "IM_IN"
