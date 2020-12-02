@@ -3,25 +3,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
-    //flex: 0.85,
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 15,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
     elevation: 10,
-    backgroundColor: colors.containers,
-    borderTopLeftRadius: 35,
-    borderBottomRightRadius: 35,
-    borderBottomLeftRadius: 35,
-    borderTopRightRadius: 35,
-    shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    shadowOffset: {
-      width: 2,
-      height: 5,
-    },
+    borderRadius: 8,
     borderRadius: 18,
+    textAlign: "center",
   },
   carousel: {
     borderRadius: 5,
@@ -29,22 +17,26 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 20,
     color: colors.font,
-    textAlign: "center",
-    marginTop: 10,
+    marginLeft: 15,
+    fontWeight: "300",
+    marginTop: 5,
+    textTransform: "uppercase",
   },
   text: {
-    fontSize: 18,
+    fontSize: 15,
     color: colors.font,
-    fontSize: 18,
-    marginLeft: 20,
     textAlign: "center",
+    textTransform: "uppercase",
+    fontWeight: "200",
+    marginTop: 5
   },
   image: {
-    width: 60,
-    height: 60,
-    marginLeft: 20,
+    width: 70,
+    height: 70,
+    marginLeft: 10,
+    marginRight: 10,
     marginTop: 10,
-    borderRadius: 100,
+    borderRadius: 130,
   },
 });
 

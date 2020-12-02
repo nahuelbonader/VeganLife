@@ -24,6 +24,7 @@ const Categories = ({ categorias }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
       />
+      
     </View>
   );
 };
