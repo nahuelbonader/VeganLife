@@ -5,32 +5,37 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const ListRecipes = ({ recipes }) => {
+const ListRecipes = ({ recipes, styleContainer }) => {
   const navigation = useNavigation();
 
   return (
-    <FlatList
-      contentContainerStyle={styles.container}
-      data={recipes}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Recipe", { recipeId: item._id })}
-        >
-          <ImageBackground
-            style={styles.image}
-            imageStyle={styles.border}
-            source={{ uri: item.image }}
+    <View>
+      <FlatList
+        contentContainerStyle={styles.container}
+        data={recipes}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Recipe", { recipeId: item._id })
+            }
           >
-            <Text style={styles.text}>{item.title}</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-      )}
-      keyExtractor={(recipes) => recipes._id}
-      showsHorizontalScrollIndicator={false}
-    ></FlatList>
+            <ImageBackground
+              style={styles.image}
+              imageStyle={styles.border}
+              source={{ uri: item.image }}
+            >
+              <Text style={styles.text}>{item.title}</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        )}
+        keyExtractor={(recipes) => recipes._id}
+        showsHorizontalScrollIndicator={false}
+      />
+    </View>
   );
 };
 
