@@ -9,6 +9,7 @@ import SingleCategory from './SingleCategoryScreen'
 import Header from './Header'
 import BottomNav from './BottomNav'
 import CookToday from './CookTodayScreen'
+import Profile from './ProfileScreen'
 
 const Stack = createStackNavigator()
 
@@ -23,10 +24,10 @@ const FeedStack = () => {
         ),
       }}
      >
-     <Stack.Screen
+      <Stack.Screen
        name="Bottom"
        component={BottomNav}
-     />
+      />
        <Stack.Screen
          name="Recipe"
          component={Recipe}
@@ -39,6 +40,10 @@ const FeedStack = () => {
          name="CookToday"
          component={CookToday}
        />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+      />
 
     </Stack.Navigator>
   )

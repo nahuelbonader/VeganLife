@@ -43,7 +43,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Perfil Vegan Cook"
-              onPress={() => {console.log("IR A PERFIL")}}
+              onPress={() => props.navigation.navigate('Profile')}
             />
             <DrawerItem
               icon={({ color, size }) => (

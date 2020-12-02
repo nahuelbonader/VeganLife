@@ -10,8 +10,8 @@ import firebase from "../utils/Firebase";
 import "firebase/auth";
 
 const ProfileScreen = () => {
-  const datos = useSelector((state) => state.loginUser.loginUser);
-  console.log("DATOS", datos);
+  //const datos = useSelector((state) => state.loginUser.loginUser);
+  //console.log("DATOS", datos);
 
   useEffect(() => {
     //axios.get(`http://${IP}:1337/api/users/${route.params.usersId}`)

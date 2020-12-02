@@ -20,10 +20,6 @@ const FeedRecetaContainer = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Button
-        title="profile"
-        onPress={() => navigation.navigate("Profile")}
-      ></Button>
       <CarouselFeed randomRecipe={randomRecipes} />
       <Categories categorias={categories} />
       <Recipes recipes={recipes} />
