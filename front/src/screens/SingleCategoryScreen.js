@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { View } from "react-native";
 import SingleCategory from "../components/SingleCategory";
 
 const SingleCategoryScreen = ({ route }) => {

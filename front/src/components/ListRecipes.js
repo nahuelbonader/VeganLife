@@ -8,15 +8,13 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import styles from "../styles/listRecipes"
+import styles from "../styles/listRecipes";
 
 const ListRecipes = ({ recipes }) => {
   const navigation = useNavigation();
 
-
   return (
     <View>
-      
       <FlatList
         numColumns={2}
         contentContainerStyle={styles.container}
@@ -38,11 +36,9 @@ const ListRecipes = ({ recipes }) => {
         )}
         keyExtractor={(recipes) => recipes._id}
         showsHorizontalScrollIndicator={false}
-      ></FlatList>
+      />
     </View>
   );
 };
-
-
 
 export default ListRecipes;
