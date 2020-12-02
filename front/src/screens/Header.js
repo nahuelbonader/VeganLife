@@ -4,14 +4,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Appbar, Avatar } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { ToggleButton } from 'react-native-paper';
+import setContent from '../store/actions/searchContent'
+import setParam from '../store/actions/searchParam'
+
 import API from '../api/api'
 
 import SearchBar from '../components/SearchBar'
 
 const Header = ({ scene, previous }) => {
+  String.prototype.capitalize = function() {
+    return this.replace(/^\w/, (c) => c.toUpperCase())
+  };
+  const dispatch = useDispatch()
   const navigation = useNavigation()
+  const recipes = useSelector((state) => state.recipesReducer.recipes);
   const currentRoute = useSelector(state=> state.bottomRouteReducer)
   const [term, setTerm] = useState("")
   const [value,setValue] = useState("recipes") //Parametro a buscar
@@ -20,6 +28,11 @@ const Header = ({ scene, previous }) => {
   const [active3, setActive3] = useState(false)
   const [active4, setActive4] = useState(false)
   const [search, setSearch] = useState([])
+
+useEffect(()=>{
+dispatch(setContent(search))
+dispatch(setParam(value))
+},[search])
 
   const handlePress = (fn) => { //Funcion para presionar botones y quitar estilos
     if(fn == setActive1 ){
@@ -46,17 +59,44 @@ const Header = ({ scene, previous }) => {
       if (active2) setActive2(false)
       if (active3) setActive3(false)
     }
-    console.log(value);
+
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = () => {  //handleSubmit busca si existe coincidencias entre la variable Term y el Title o Name de X obj a buscar
+      console.log("value",value);
+      if(term == "") return;
    if(value == "recipes"){
-     API.get("/recipes")
-        .then(res=> res.data)
-        .then((data)=>setSearch(data.filter(e=> e.title.includes(term))))
-        .then(()=> console.log("EMPIEZA ACÁ",search))
-        .catch(err=>console.log(err))
+       let filter = []
+       for (var i = 0; i < recipes.length; i++) {
+         recipes[i].title.includes(term.capitalize())?(
+            filter.push(recipes[i])
+          )
+          :
+          recipes[i].title.includes(term)?(
+            filter.push(recipes[i])
+          )
+          :null
+       }
+     setSearch(filter)
+
    }
+    else if (value == "users") {
+      API.get("/users")
+         .then(res=> res.data)
+         .then(data=>{
+           setSearch(data.filter(e=> e.name.includes(term)?(
+            e.name
+           )
+           : e.name.includes(term.capitalize())?(
+             e.name
+           )
+           :(
+            null
+           )))
+         })
+         .catch(err=>console.log(err))
+    }
+
   }
 
       return (
@@ -107,15 +147,15 @@ const Header = ({ scene, previous }) => {
       {
         currentRoute.route == 3?
         <View style={styles.view}>
-          <TouchableOpacity onPress={()=>{setValue("recipes"),handlePress(setActive1)}}>
+          <TouchableOpacity onPress={()=>{if(!active1)setValue("recipes"),handlePress(setActive1)}}>
             <Text style={active1? styles.touchActive: styles.touch1}>Recetas</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{setValue("users"),handlePress(setActive2)}}  >
+          <TouchableOpacity onPress={()=>{if(!active2)setValue("users"),handlePress(setActive2)}}  >
             <Text style={active2? styles.touchActive:styles.touch1}>Usuarios</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{setValue("stores"),handlePress(setActive3)}}>
-          <Text style={active3? styles.touchActive:styles.touch1}>Comercios</Text></TouchableOpacity>
-          <TouchableOpacity onPress={()=>{setValue("products"),handlePress(setActive4)}}>
+          <TouchableOpacity onPress={()=>{if(!active3)setValue("stores"),handlePress(setActive3)}}>
+            <Text style={active3? styles.touchActive:styles.touch1}>Comercios</Text></TouchableOpacity>
+          <TouchableOpacity onPress={()=>{if(!active4)setValue("products"),handlePress(setActive4)}}>
             <Text style={active4? styles.touchActive:styles.touch1}>Productos</Text>
           </TouchableOpacity>
         </View>

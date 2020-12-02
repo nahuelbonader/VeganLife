@@ -9,3 +9,7 @@ export const LOGIN_USER = 'LOGIN_USER'
 
 //ROUTE BOTTOMNAV POSITION
 export const IM_IN = "IM_IN"
+
+//SEARCH CONTENT
+export const CONTENT = "CONTENT"
+export const PARAM ="PARAM"

@@ -23,9 +23,10 @@ export default () => {
           <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}
           >
+           <Drawer.Screen name="Home" component={FeedStack} />
             <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="Register" component={Register} />
-            <Drawer.Screen name="Home" component={FeedStack} />
+
           </Drawer.Navigator>
         </NavigationContainer>
       </Provider>
