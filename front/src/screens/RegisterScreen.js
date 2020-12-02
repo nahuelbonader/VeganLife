@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import {
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+} from "react-native";
 //Firebase
 import firebase from "../utils/Firebase";
 import "firebase/auth";
@@ -20,6 +26,7 @@ import styles from "../styles/login-register";
 const Register = ({ navigation }) => {
   const [inputs, handleChange] = useInputs();
   const { name, email, password } = inputs;
+  // const [avatar, setAvatar] = usetState(null)
   const [errorMessage, setError] = useState("");
 
   const handleSubmit = async () => {
@@ -49,6 +56,7 @@ const Register = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Logo text="Crear cuenta" />
+        <TouchableOpacity style={styles.avatarPlaceholder}></TouchableOpacity>
         <InputData
           title="Nombre"
           handleChange={handleChange("name")}

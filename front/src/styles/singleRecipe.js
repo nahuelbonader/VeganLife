@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import colors from "./colors";
 import normalize from "react-native-normalize";
 
-
 const styles = StyleSheet.create({
   viewStyle: {
     height: normalize(200),
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
     marginHorizontal: normalize(30),
     textAlign: "center",
     alignSelf: "center",
-    marginRight: normalize(50)
+    marginRight: normalize(50),
   },
   profilePic: {
     width: normalize(30),
@@ -48,13 +47,11 @@ const styles = StyleSheet.create({
     marginTop: normalize(15),
     marginBottom: normalize(15),
     color: "green",
-    fontSize: normalize(25),
+    fontSize: normalize(19),
     textAlign: "center",
     alignSelf: "center",
-    textShadowColor: "rgba(0, 0, 0, 0.20)",
-    textShadowOffset: { width: 1, height: 3 },
-    textShadowRadius: normalize(10),
     fontWeight: "300",
+    textTransform: "uppercase"
   },
   text: {
     textTransform: "uppercase",

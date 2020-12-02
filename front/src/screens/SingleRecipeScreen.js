@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import SingleRecipe from "../components/SingleRecipe";
-import axios from "axios";
-import IP from "../../env";
+import API from "../api/api";
 
-const Recipe = ({ navigation, route }) => {
+const Recipe = ({ route }) => {
   const [recipe, setRecipe] = useState({
     image: "",
     ingredients: [],
@@ -15,11 +14,8 @@ const Recipe = ({ navigation, route }) => {
   });
 
   useEffect(() => {
-    axios
-      .get(`http://${IP}:1337/api/recipes/${route.params.recipeId}`)
-      .then((res) => res.data)
-      .then((data) => {
-        console.log(data);
+    API.get(`/recipes/${route.params.recipeId}`)
+      .then(({ data }) =>
         setRecipe({
           image: data.image,
           ingredients: data.ingredients,
@@ -27,8 +23,8 @@ const Recipe = ({ navigation, route }) => {
           instructions: data.instructions,
           ownerImage: data.owner.image,
           ownerName: data.owner.name,
-        });
-      })
+        })
+      )
       .catch((err) => console.log(err));
   }, []);
 

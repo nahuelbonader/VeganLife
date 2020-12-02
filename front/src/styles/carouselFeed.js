@@ -4,25 +4,29 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     color: colors.font,
-    marginTop: 10,
-    fontSize: 35,
-    textAlign: "center",
-    backgroundColor: "#E5E1E0",
+    fontSize: 20,
+    marginLeft: 15,
+    fontWeight: "300",
+    textTransform: "uppercase",
+    borderRadius: 8,
   },
   text: {
-    fontSize: 20,
+    fontSize: 15,
     color: colors.font,
     textAlign: "center",
+    fontWeight: "300",
+    textTransform: "uppercase",
+    marginTop: 10,
   },
   image: {
-    marginTop: 25,
+    marginTop: 15,
     justifyContent: "center",
     alignItems: "center",
     width: 390,
-    height: 140,
+    height: 180,
     marginLeft: 7,
-    borderRadius: 8,
     shadowColor: "black",
     shadowOpacity: 1,
     shadowOffset: {
