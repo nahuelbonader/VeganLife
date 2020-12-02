@@ -8,7 +8,7 @@ const CarouselFeed = ({ randomRecipe }) => {
   const navigation = useNavigation();
   return (
     <View>
-      <Text style={styles.container}> V-Cook del día </Text>
+      <Text style={styles.container}> V-Cook del Día </Text>
       <Carousel
         style={styles.carousel}
         data={randomRecipe}

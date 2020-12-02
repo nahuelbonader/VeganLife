@@ -6,6 +6,7 @@ import {
   FlatList,
   TouchableOpacity,
   Text,
+  TouchableOpacityComponent,
 } from "react-native";
 import styles from "../styles/cookToday";
 import useInputs from "../hooks/useInputs";
@@ -57,9 +58,10 @@ const CookToday = () => {
     <MaterialChip
       style={styles.ingredient}
       text={text}
-      onDelete={() => deleteIngredient(text)}
       rightIcon={
-        <IconM name="close-circle-outline" size={19} color={colors.font} />
+        <TouchableOpacity onPress={() => deleteIngredient(text)}>
+          <IconM name="close-circle-outline" size={19} color={colors.font} />
+        </TouchableOpacity>
       }
     />
   );

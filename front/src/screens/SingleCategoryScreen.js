@@ -14,6 +14,7 @@ const SingleCategoryScreen = ({ route }) => {
     <SingleCategory
       recipes={recipesCategory}
       categoryImage={category[0].image}
+      categoryName={category[0].name}
     />
   );
 };

@@ -8,13 +8,15 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import styles from "../styles/listRecipes";
 
-const ListRecipes = ({ recipes, styleContainer }) => {
+const ListRecipes = ({ recipes }) => {
   const navigation = useNavigation();
 
   return (
     <View>
       <FlatList
+        numColumns={2}
         contentContainerStyle={styles.container}
         data={recipes}
         renderItem={({ item }) => (
@@ -38,31 +40,5 @@ const ListRecipes = ({ recipes, styleContainer }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 20,
-    color: "white",
-    textAlign: "center",
-    justifyContent: "center",
-    fontWeight: "bold",
-    marginTop: 15,
-    padding: 60,
-    textShadowColor: "green",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
-  },
-  image: {
-    width: 350,
-    height: 220,
-    marginTop: 15,
-  },
-  border: {
-    borderRadius: 10,
-  },
-});
 
 export default ListRecipes;
