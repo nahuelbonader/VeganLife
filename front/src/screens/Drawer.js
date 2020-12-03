@@ -4,11 +4,13 @@ import { createDrawerNavigator, DrawerItem, DrawerContentScrollView } from '@rea
 import { useTheme, Avatar, Title, Caption, Drawer , Paragraph, TouchableRipple, Switch} from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+
 import FeedRecetas from './FeedRecetaScreen'
 import Header from './Header'
 import styles from "../styles/drawer"
 
 const DrawerContent = (props) => {
+
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>

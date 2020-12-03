@@ -17,10 +17,12 @@ const Header = ({ scene, previous }) => {
   String.prototype.capitalize = function() {
     return this.replace(/^\w/, (c) => c.toUpperCase())
   };
+
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const recipes = useSelector((state) => state.recipesReducer.recipes);
   const currentRoute = useSelector(state=> state.bottomRouteReducer)
+
   const [term, setTerm] = useState("")
   const [value,setValue] = useState("recipes") //Parametro a buscar
   const [active1, setActive1] = useState(true)
@@ -124,7 +126,7 @@ dispatch(setParam(value))
       )}
       <View >
       {
-        currentRoute.route == 3?
+        currentRoute.route == 3 ?
         <SearchBar
         term={term}
         onTermChange={setTerm}
