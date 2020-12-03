@@ -4,13 +4,21 @@ import normalize from "react-native-normalize";
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: normalize(10),
-    marginRight: normalize(10),
+    flex: 1,
     alignItems: "center",
-    marginTop: normalize(10),
-    marginBottom: normalize(10),
     backgroundColor: "white",
+    margin: normalize(10),
     borderRadius: normalize(20),
+  },
+  flatlist: {
+    alignItems: "center",
+    flex: 1,
+    margin: normalize(10),
+  },
+  touchable: {
+    margin: normalize(5),
+    width: normalize(170),
+    height: normalize(170),
   },
   text: {
     fontSize: normalize(15),
@@ -18,22 +26,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
     marginTop: normalize(5),
-    paddingTop: normalize(50),
-    paddingBottom: normalize(50),
-    paddingLeft: normalize(35),
-    paddingRight: normalize(35),
+    paddingVertical: normalize(50),
+    paddingHorizontal: normalize(35),
     textShadowColor: "black",
     textShadowOffset: { width: -3, height: 3 },
     textShadowRadius: 2,
     opacity: 50,
   },
   image: {
-    marginLeft: normalize(5),
-    marginRight: normalize(5),
     width: normalize(170),
     height: normalize(170),
-    marginTop: normalize(5),
-    marginBottom: normalize(5),
   },
   border: {
     borderRadius: normalize(20),
@@ -48,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles
+export default styles;
