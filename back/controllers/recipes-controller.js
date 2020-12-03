@@ -4,7 +4,7 @@ const recipeController = {
   findRecipes(req, res, next) {
     Recipe.find({ active: true })
       .populate({ path: "owner", select: ["name", "image"] })
-      .populate({ path: "category", select:["name", "image"] })
+      .populate({ path: "category", select: ["name", "image"] })
       .then((recipes) => res.status(200).send(recipes))
       .catch((err) => next(err));
   },
@@ -39,11 +39,13 @@ const recipeController = {
       .catch((err) => next(err));
   },
   findRecipe(req, res, next) {
-    // esto se podría manejar desde el front sin hacer un fetch
     Recipe.findById(req.params.id)
       .populate({ path: "owner", select: ["name", "image"] })
       .populate({ path: "category", select: "name" })
-      .then((recipe) => res.send(recipe))
+      .then((recipe) => {
+        console.log(recipe);
+        res.send(recipe);
+      })
       .catch((err) => next(err));
   },
 };

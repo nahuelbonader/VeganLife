@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useDispatch } from "react-redux";
-import { fetchLogin } from "../store/actions/users";
-
-//Firebase
+import { fetchUser } from "../store/actions/users";
 import firebase from "../utils/Firebase";
 import "firebase/auth";
-
-//hook
 import useInputs from "../hooks/useInputs";
-
-//Components
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
 import AccessButtons from "../components/AccessButtons";
-
-//Style
+import { errors, alerts } from "../utils/errors-alerts";
 import styles from "../styles/login-register";
 
 const Login = ({ navigation }) => {
@@ -28,18 +21,16 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => dispatch(fetchLogin(email)))
-      .then(() => navigation.navigate("Home")) // res = {user}
+      .then((res) => dispatch(fetchUser(res.user.uid)))
+      .then(() => navigation.navigate("Home"))
       .catch((err) => {
-        if (
-          String(err).includes("password is invalid") ||
-          String(err).includes("no user record")
-        )
-          setError("Credenciales inválidas.");
-        else if (String(err).includes("to many failed login attempts"))
-          setError(
-            "Demasiados intentos fallidos. Intente nuevamente más tarde."
-          );
+        const error = String(err);
+        const errorCredential = errors.credentials.filter((e) =>
+          error.includes(e)
+        );
+        if (errorCredential.length) setError(alerts.credentials);
+        else if (error.includes(errors.attempts)) setError(alerts.attempts);
+        else console.log(err);
       });
   };
   useEffect(() => setError(""), [email, password]);
@@ -74,7 +65,3 @@ const Login = ({ navigation }) => {
 };
 
 export default Login;
-
-// firebase.auth().onAuthStateChanged(user => {
-//     user ? navigation.navigate('Prueba') : console.log('Usuario no Logueado')
-// })

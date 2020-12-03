@@ -1,10 +1,10 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "devToolsPort": 19002,
+  "expoServerNgrokUrl": "https://qi-s7c.serian.front.exp.direct",
+  "packagerNgrokUrl": "https://packager.qi-s7c.serian.front.exp.direct",
+  "ngrokPid": 42180,
   "packagerPort": 19001,
-  "packagerPid": 37120,
-  "webpackServerPort": null
+  "packagerPid": 30496,
+  "webpackServerPort": null,
+  "devToolsPort": 19002
 }
