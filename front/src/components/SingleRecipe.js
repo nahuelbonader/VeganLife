@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  Text,
-  FlatList,
-} from "react-native";
+import { View, ScrollView, Image, TouchableOpacity, Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from "../styles/singleRecipe";
-import LinearGradient from "expo-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Gradient = (
   <LinearGradient

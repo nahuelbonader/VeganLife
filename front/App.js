@@ -33,17 +33,3 @@ export default () => {
     </PaperProvider>
   );
 };
-
-/*
-<Stack.Navigator  headerMode= "screen" screenOptions={{
-       header:({ scene, previous, navigation}) => (
-         <Header scene={scene} previous={previous} navigation={navigation} />
-       )
-     }}>
-  <Stack.Screen name="Drawer" component={Drawer} options={{ headerTitle: 'Home' }} />
-  <Stack.Screen name="Login" component={Login} />
-  <Stack.Screen name="Register" component={Register} />
-  <Stack.Screen name="SingleCategory" component={SingleCategory} />
-  <Stack.Screen name="Recipe" component={Recipe} />
-</Stack.Navigator>
-*/

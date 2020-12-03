@@ -13,3 +13,5 @@ export const IM_IN = "IM_IN"
 //SEARCH CONTENT
 export const CONTENT = "CONTENT"
 export const PARAM ="PARAM"
+
+export const SET_STORES = "SET_STORES"

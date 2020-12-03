@@ -31,105 +31,115 @@ const BottomNav = ({navigation}) => {
     },[currentRoute])
 
   return (
+    <React.Fragment>
+      <Provider>
+        <Tab.Navigator
+          initialRouteName="Feed"
+          activeColor="#fdfffc"
+          barStyle={styles.back}
+        >
+          <Tab.Screen
+            name="Feed"
+            component={FeedRecetas}
+            options={{
+              tabBarLabel: "Home",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="home" color={color} size={26} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Post"
+            component={PostRecipe}
+            options={{
+              tabBarLabel: "Post",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="feather"
+                  color={color}
+                  size={26}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Map"
+            component={Map}
+            options={{
+              tabBarLabel: "Map",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="map-marker-radius"
+                  color={color}
+                  size={26}
+                />
+              ),
+            }}
+          />
 
-   <React.Fragment>
-     {  console.log("CURRENTROUTE",currentRoute)}
-    <Provider>
-     <Tab.Navigator
-      initialRouteName="Feed"
-      activeColor="#fdfffc"
-      barStyle={styles.back}
-     >
-      <Tab.Screen
-        name="Feed"
-        component={FeedRecetas}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Post"
-        component={PostRecipe}
-        options={{
-          tabBarLabel: 'Post',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="feather" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Map"
-        component={Map}
-        options={{
-          tabBarLabel: 'Map',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="map-marker-radius" color={color} size={26} />
-          ),
-        }}
-      />
+          <Tab.Screen
+            name="Search"
+            component={Search}
+            options={{
+              tabBarLabel: "Search",
+              tabBarIcon: ({ color }) => (
+                <FontAwesome name="search" color={color} size={26} />
+              ),
+            }}
+          />
+        </Tab.Navigator>
 
-      <Tab.Screen
-        name="Search"
-        component={Search}
-        options={{
-          tabBarLabel: 'Search',
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="search" color={color} size={26} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-
-    <Portal>
-    <FAB.Group
-    style={{
-         position: 'absolute',
-         bottom: "8%",
-         right: "0%",
-       }}
-       fabStyle={styles.backTwo}
-       open={open}
-       icon={open ? 'calendar-today' : 'plus'}
-       actions={[
-         {
-           icon: 'cookie',
-           label: 'Vegan Cook',
-           onPress: () => console.log('Pressed star'),
-         },
-         {
-           icon: 'store',
-           label: 'Vegan Market',
-           onPress: () => console.log('Pressed email'),
-         },
-         {
-           icon: 'cart',
-           label: 'Cart',
-           onPress: () => console.log('Pressed notifications'),
-         },
-       ]}
-       onStateChange={onStateChange}
-       onPress={() => {
-         if (open) {
-
-         }
-       }}
-     />
-     </Portal>
-    </Provider>
-  </React.Fragment>
-
+        <Portal>
+          <FAB.Group
+            style={{
+              position: "absolute",
+              bottom: "8%",
+              right: "0%",
+            }}
+            fabStyle={styles.backTwo}
+            open={open}
+            icon={open ? "calendar-today" : "plus"}
+            actions={[
+              {
+                icon: "help-circle",
+                label: "¿Qué cocino hoy?",
+                onPress: () => navigation.navigate("CookToday"),
+              },
+              {
+                icon: "cookie",
+                label: "Vegan Cook",
+                onPress: () => console.log("Pressed star"),
+              },
+              {
+                icon: "store",
+                label: "Vegan Market",
+                onPress: () => console.log("Pressed email"),
+              },
+              {
+                icon: "cart",
+                label: "Cart",
+                onPress: () => console.log("Pressed notifications"),
+              },
+            ]}
+            onStateChange={onStateChange}
+            onPress={() => {
+              if (open) {
+                // do something if the speed dial is open
+              }
+            }}
+          />
+        </Portal>
+      </Provider>
+    </React.Fragment>
   );
-}
+};
 const styles = StyleSheet.create({
- back:{
-   backgroundColor:"#006028"
- },
- backTwo:{
-   backgroundColor:"#008538"
- }
-})
+  back: {
+    backgroundColor: "#006028",
+  },
+  backTwo: {
+    backgroundColor: "#008538",
+  },
+});
 
-export default BottomNav
+export default BottomNav;
