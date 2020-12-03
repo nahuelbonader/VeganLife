@@ -50,7 +50,9 @@ const SingleRecipeEdit = ({
   title,
   instructions,
   owner,
-  bool
+  bool,
+  category,
+  handleSubmit
 }) => {
   const [showSteps, setShowSteps] = useState(false);
   const [ingredientsList, setIngredientsList] = useState(false);
@@ -84,12 +86,12 @@ const SingleRecipeEdit = ({
                 >
                   <Image
                     style={styles.profilePic}
-                    source={{ uri: owner !== "" ? owner : ownerImg }}
+                    source={{ uri: owner.image !== "" ? owner.image : ownerImg }}
                   />
-                  <Text style={styles.name}>by {owner}</Text>
+                  <Text style={styles.name}>by {owner.name}</Text>
                 </View>
         
-                {/* <Text style={styles.text}>Ingredientes</Text>
+                <Text style={styles.text}>Ingredientes</Text>
                 <TouchableOpacity onPress={() => setIngredientsList(!ingredientsList)}>
                   {ingredientsList ? (
                     // <FlatList
@@ -149,12 +151,14 @@ const SingleRecipeEdit = ({
                       {instructions.length > 5 ? Gradient : null}
                     </>
                   )}
-                </TouchableOpacity> */}
+                </TouchableOpacity>
 
 
               </View>
 
-              <TouchableOpacity style={{marginTop: 100}}>
+              <TouchableOpacity style={{marginTop: 100}}
+              onPress={()=>handleSubmit({title, image, ingredients, instructions, category, owner })}
+              >
 
                 <Text>CONFIRMAR RECETA</Text>
 

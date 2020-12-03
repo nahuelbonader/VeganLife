@@ -12,7 +12,6 @@ import OneButton from './OneButton'
 
 const InputSelected = ({ textbtn, bool, ph, handleChange, handleBoolean, categories }) => {
 
-    //const [arrayCategories, setArrayCategories] = useState([]);
     let data = []
       { if(bool){
 
