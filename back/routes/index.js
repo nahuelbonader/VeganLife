@@ -8,5 +8,6 @@ router.use("/recipes", require("./recipes"));
 router.use("/stores", require("./stores"));
 router.use("/cart", require("./cart"));
 router.use("/favourites", require("./favourites"));
+router.use("/auth", require("./auth"));
 
 module.exports = router;
