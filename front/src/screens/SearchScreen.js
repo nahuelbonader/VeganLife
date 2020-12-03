@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   generalView:{
     marginHorizontal:"5%",
     marginVertical:"7%",
+    flex:1
   },
   image:{
     width:90,
