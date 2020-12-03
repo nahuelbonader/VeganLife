@@ -34,7 +34,7 @@ console.log("CONTENT",content,"PARAM", param);
        :
        param == "users"?
        <FlatList
-       keyExtractor={(content) => content.name}
+       keyExtractor={(content) => content.email}
         data={content}
         renderItem={({item}) => {
           return (
@@ -62,7 +62,8 @@ console.log("CONTENT",content,"PARAM", param);
 const styles = StyleSheet.create({
   generalView:{
     marginHorizontal:"5%",
-    marginVertical:"7%"
+    marginVertical:"7%",
+    marginBottom:"-50%"
   },
   image:{
     width:90,
