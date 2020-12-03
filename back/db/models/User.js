@@ -11,7 +11,7 @@ const validateEmail = function (email) {
 //Creacion del Schema User
 
 const userSchema = new Schema({
-  _id: { type: String, required: true },
+  fuid: { type: String, required: true },
   name: { type: String, required: true },
   email: {
     type: String,
