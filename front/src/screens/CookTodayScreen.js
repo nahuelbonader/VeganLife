@@ -6,7 +6,6 @@ import {
   FlatList,
   TouchableOpacity,
   Text,
-  TouchableOpacityComponent,
 } from "react-native";
 import styles from "../styles/cookToday";
 import useInputs from "../hooks/useInputs";
@@ -19,17 +18,15 @@ import colors from "../styles/colors";
 const CookToday = () => {
   const [ingredients, setIngredients] = useState([]);
   const [alert, setAlert] = useState(false);
-
   const [{ search }, handleChange] = useInputs();
   const handleSearch = handleChange("search");
   const recipes = useSelector((state) => state.recipesReducer.recipes);
 
   const setIngredient = () => {
-    if (ingredients.includes(search)) setAlert(true);
-    else {
-      setIngredients([search, ...ingredients]);
-      handleSearch("");
-    }
+    if (search == "") return;
+    if (ingredients.includes(search)) return setAlert(true);
+    setIngredients([search, ...ingredients]);
+    handleSearch("");
   };
 
   const deleteIngredient = (ingredient) => {

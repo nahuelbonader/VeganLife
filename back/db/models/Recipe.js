@@ -42,6 +42,10 @@ const recipeSchema = new Schema({
     required: true,
     default: true,
   },
+  date: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 const Recipe = mongoose.model("recipe", recipeSchema);

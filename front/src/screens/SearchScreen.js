@@ -62,7 +62,7 @@ console.log("CONTENT",content,"PARAM", param);
 const styles = StyleSheet.create({
   generalView:{
     marginHorizontal:"5%",
-    marginVertical:"7%",
+    flex:1
   },
   image:{
     width:90,
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
   imgView:{
     flexDirection:"row",
     borderRadius:25,
-  backgroundColor:"#EAEEF5",
-    marginBottom:"4%"
+    backgroundColor:"#EAEEF5",
+    marginTop:"4%"
 },
 title:{
   fontWeight:"bold",

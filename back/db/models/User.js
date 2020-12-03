@@ -11,6 +11,7 @@ const validateEmail = function (email) {
 //Creacion del Schema User
 
 const userSchema = new Schema({
+  fuid: { type: String, required: true },
   name: { type: String, required: true },
   email: {
     type: String,
@@ -27,7 +28,7 @@ const userSchema = new Schema({
     default: "User",
   },
   address: { type: String },
-  favsRecipe: [{ type: Schema.Types.ObjectId, ref: "recipe" }],
+  favsRecipes: [{ type: Schema.Types.ObjectId, ref: "recipe" }],
   favsProducts: [{ type: Schema.Types.ObjectId, ref: "product" }],
   favsStores: [{ type: Schema.Types.ObjectId, ref: "store" }],
   active: { type: Boolean, default: true },
