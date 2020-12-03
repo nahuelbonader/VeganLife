@@ -44,7 +44,7 @@ console.log("CONTENT",content,"PARAM", param);
                 style={styles.image}
                 source={{uri: !item.image? ownerImg : item.image }}/>
                 <View style={styles.textView}>
-                  <Text style={styles.title}>{item.name.length > 30?item.title.substr(0,35)+"...":item.name}</Text>
+                  <Text style={styles.title2}>{item.name.length > 30?item.title.substr(0,35)+"...":item.name}</Text>
                   <Text style={styles.author}>{item.role}</Text>
                 </View>
              </View>
@@ -68,20 +68,20 @@ const styles = StyleSheet.create({
     width:90,
     height:90,
     borderRadius:100,
-    marginVertical:"5%"
+    marginVertical:"5%",
+    marginHorizontal: "2%"
   },
   imgView:{
     flexDirection:"row",
     borderRadius:25,
   backgroundColor:"#EAEEF5",
-    marginBottom:"8%"
+    marginBottom:"4%"
 },
 title:{
   fontWeight:"bold",
   marginVertical:"3%"
 },
 text:{
-
   color:"#8A8A8A"
 },
 textView:{
@@ -91,6 +91,10 @@ author:{
 justifyContent:'flex-end',
 marginTop:"5%",
 color:"green"
+},
+title2:{
+  fontWeight:"bold",
+  marginVertical:"15%"
 }
 })
 
