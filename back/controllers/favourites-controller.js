@@ -5,13 +5,13 @@ const { User } = require("../db/models/index");
 const FavouritesControllers = {
   //--------------------------Products--------------------------------------------
   showFavProducts(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .populate({ path: "favsProducts", select: "title" })
       .then((user) => res.send(user.favsProducts))
       .catch((err) => next(err));
   },
   addFavProduct(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .then((user) => {
         user.favsProducts.push(req.params.productId);
         user.save();
@@ -21,7 +21,7 @@ const FavouritesControllers = {
   },
 
   deleteFavProduct(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .populate({ path: "favsProducts", select: "title" })
       .then((user) => {
         user.favsProducts = user.favsProducts.filter(
@@ -35,14 +35,14 @@ const FavouritesControllers = {
 
   //--------------------------Recipes---------------------------------------------
   showFavRecipes(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .populate({ path: "favsRecipe", select: "title" })
       .then((user) => res.send(user.favsRecipe))
       .catch((err) => next(err));
   },
 
   addFavRecipe(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .then((user) => {
         user.favsRecipe.push(req.params.recipeId);
         user.save();
@@ -52,7 +52,7 @@ const FavouritesControllers = {
   },
 
   deleteFavrecipe(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .populate({ path: "favsRecipe", select: "title" })
       .then((user) => {
         user.favsRecipe = user.favsRecipe.filter(
@@ -66,14 +66,14 @@ const FavouritesControllers = {
 
   //---------------------------Stores---------------------------------------------
   showFavStores(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .populate({ path: "favsStores", select: "name" })
       .then((user) => res.send(user.favsStores))
       .catch((err) => next(err));
   },
 
   addFavSotre(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .then((user) => {
         user.favsStores.push(req.params.storeId);
         user.save();
@@ -82,7 +82,7 @@ const FavouritesControllers = {
       .catch((err) => next(err));
   },
   deleteFavStore(req, res, next) {
-    User.findById(req.user._id)
+    User.findById(req.params.userId)
       .populate({ path: "favsStores", select: "name" })
       .then((user) => {
         user.favsStores = user.favsStores.filter(

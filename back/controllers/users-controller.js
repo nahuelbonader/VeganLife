@@ -21,7 +21,7 @@ const UserController = {
       .catch((err) => next(err));
   },
   update(req, res, next) {
-    User.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+    User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     })
@@ -31,8 +31,15 @@ const UserController = {
       .catch((err) => next(err));
   },
   findById(req, res, next) {
-    User.findOne({ email: req.params.email, active: true })
-      .then((user) => res.send(user))
+    User.findById(req.params.id)
+      .then((user) =>
+        res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        })
+      )
       .catch((err) => next(err));
   },
   delete(req, res, next) {
