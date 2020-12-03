@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Button, ScrollView, StyleSheet } from "react-native";
+import { Button, ScrollView, StyleSheet, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/actions/recipes";
 import { fetchCategories } from "../store/actions/categories";
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
 import Recipes from "../components/ListRecipes";
+import styles from "../styles/feedRecetaScreen"
 
 const FeedRecetaContainer = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -20,21 +21,14 @@ const FeedRecetaContainer = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Button
-        title="profile"
-        onPress={() => navigation.navigate("Profile")}
-      ></Button>
-      <CarouselFeed randomRecipe={randomRecipes} />
       <Categories categorias={categories} />
+      <CarouselFeed randomRecipe={randomRecipes} />
+       <Text style={styles.header}>Más recetas</Text>
       <Recipes recipes={recipes} />
     </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+
 
 export default FeedRecetaContainer;

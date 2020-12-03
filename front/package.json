@@ -15,6 +15,7 @@
     "@react-navigation/stack": "^5.12.8",
     "axios": "^0.21.0",
     "expo": "~36.0.0",
+    "expo-image-picker": "~8.0.1",
     "expo-linear-gradient": "^8.3.1",
     "firebase": "^8.0.2",
     "material-ui-chip-input": "^2.0.0-beta.2",
