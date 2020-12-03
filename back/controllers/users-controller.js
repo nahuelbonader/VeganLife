@@ -30,8 +30,13 @@ const UserController = {
       })
       .catch((err) => next(err));
   },
-  findById(req, res, next) {
-    User.findById(req.params.id)
+  delete(req, res, next) {
+    User.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
+      .then((user) => res.send(user))
+      .catch((err) => next(err));
+  },
+  findUser(req, res, next) {
+    User.findOne({ fuid: req.params.fuid })
       .then((user) =>
         res.send({
           _id: user._id,
@@ -42,8 +47,8 @@ const UserController = {
       )
       .catch((err) => next(err));
   },
-  delete(req, res, next) {
-    User.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
+  findById(req, res, next) {
+    User.findById(req.params.id)
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },

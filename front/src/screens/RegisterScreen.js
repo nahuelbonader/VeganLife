@@ -44,8 +44,8 @@ const Register = ({ navigation }) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        const _id = res.user.uid;
-        return API.post("/users", { name, email, _id });
+        const fuid = res.user.uid;
+        return API.post("/users", { name, email, fuid });
       })
       .then(() => navigation.navigate("Login"))
       .catch((err) => {
