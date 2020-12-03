@@ -1,24 +1,34 @@
-import * as React from "react";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useTheme, Portal, FAB, Provider } from "react-native-paper";
-import { Text, StyleSheet } from "react-native";
+import * as React from 'react';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useTheme, Portal, FAB, Provider } from 'react-native-paper'
+import {Text, StyleSheet} from 'react-native'
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import setRoute from '../store/actions/BottomRoutes'
 
-import FeedRecetas from "./FeedRecetaScreen";
+import FeedRecetas from './FeedRecetaScreen'
+import Search from './SearchScreen'
 
 const Tab = createMaterialBottomTabNavigator();
 
-const Search = () => <Text>Search</Text>;
-const Map = () => <Text>Map</Text>;
-const PostRecipe = () => <Text>PostRecipe</Text>;
+const Map = () => <Text>Map</Text>
+const PostRecipe = () => <Text>PostRecipe</Text>
 
-const BottomNav = ({ navigation }) => {
-  const [state, setState] = React.useState({ open: false });
+const BottomNav = ({navigation}) => {
 
-  const onStateChange = ({ open }) => setState({ open });
+  const dispatch = useDispatch()
+  const { index, routes } = navigation.dangerouslyGetState()
+  const currentRoute = routes[index].state? routes[index].state.index : 0
 
-  const { open } = state;
+    const [state, setState] = React.useState({ open: false });
+    const onStateChange = ({ open }) => setState({ open });
+    const { open } = state;
+
+    React.useEffect(()=>{
+      dispatch(setRoute(currentRoute))
+    },[currentRoute])
 
   return (
     <React.Fragment>
