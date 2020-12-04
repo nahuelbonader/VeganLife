@@ -67,13 +67,16 @@ const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean }) => {
     },
     title:{
       fontSize:20,
-      textAlign: "center"
+      textAlign: "center",
+      fontWeight: "bold"
     },
     input:{
       //backgroundColor: '#000000',
-      borderBottomColor: '#000000',
-      borderBottomWidth: 1,
+      fontSize: 20, 
+      borderBottomColor: "#35b056",
+      borderBottomWidth: 2,
       marginTop: 25,
+      padding: 10 ,
       marginHorizontal: 40
     }
   });

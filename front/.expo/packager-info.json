@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://sx-gav.anonymous.front.exp.direct",
+  "packagerNgrokUrl": "https://packager.sx-gav.anonymous.front.exp.direct",
+  "ngrokPid": 58832,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 58185
+  "packagerPid": 58730
 }
