@@ -7,8 +7,19 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import FeedRecetas from './FeedRecetaScreen'
 import Header from './Header'
 import styles from "../styles/drawer"
+import firebase from 'firebase'
 
 const DrawerContent = (props) => {
+
+  
+  const deslogueo = () =>{
+    firebase.auth().signOut()
+    .then((user)=>console.log('deslogueo',user))
+    .then(()=> alert('Deslogueo exitoso'))
+    .then(()=>props.navigation.navigate('Login'))
+    .catch((err)=>console.log(err))
+}
+  
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
@@ -68,7 +79,7 @@ const DrawerContent = (props) => {
                         />
                     )}
                     label="Log Out"
-                    onPress={() => console.log("presionado")}
+                    onPress={deslogueo}
                 />
             </Drawer.Section>
             </View>
