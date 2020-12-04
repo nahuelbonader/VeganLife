@@ -49,7 +49,17 @@ const UserController = {
   },
   findById(req, res, next) {
     User.findById(req.params.id)
-      .then((user) => res.send(user))
+      .then((user) =>
+        res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+          favsStores: user.favsStores,
+          favsRecipes: user.favsRecipes,
+          favsProducts: user.favsProducts,
+        })
+      )
       .catch((err) => next(err));
   },
 };

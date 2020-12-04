@@ -3,6 +3,8 @@ import { View, ScrollView, Image, TouchableOpacity, Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from "../styles/singleRecipe";
 import { LinearGradient } from "expo-linear-gradient";
+import { recipeImg, ownerImg } from "../utils/constants";
+import { useNavigation } from "@react-navigation/native";
 
 const Gradient = (
   <LinearGradient
@@ -21,21 +23,11 @@ const Ingredient = ({ quantity, ingredient }) => (
   </Text>
 );
 
-const renderIngredient = ({ item }) => (
-  <Ingredient quantity={item.quantity} ingredient={item.ingredient} />
-);
-
 const Step = ({ item, index }) => (
   <Text style={styles.textTwo}>
     {index + 1}. {item}
   </Text>
 );
-
-const recipeImg =
-  "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngegg.com%2Fes%2Fpng-yjdnk&psig=AOvVaw2ml9YNEFL3_kZ9ndKhChxB&ust=1606530297851000&source=images&cd=vfe&ved=2ahUKEwiGnojv1aHtAhVNANQKHUZXCmgQjRx6BAgAEAc";
-
-const ownerImg =
-  "https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg";
 
 const SingleRecipe = ({
   image,
@@ -44,7 +36,9 @@ const SingleRecipe = ({
   instructions,
   ownerImage,
   ownerName,
+  ownerId,
 }) => {
+  const navigation = useNavigation();
   const [showSteps, setShowSteps] = useState(false);
   const [ingredientsList, setIngredientsList] = useState(false);
 
@@ -73,7 +67,7 @@ const SingleRecipe = ({
 
         <TouchableOpacity
           style={styles.viewProfile}
-          onPress={() => console.log("User Profile")}
+          onPress={() => navigation.navigate("Profile", { userId: ownerId })}
         >
           <Image
             style={styles.profilePic}
@@ -85,13 +79,6 @@ const SingleRecipe = ({
         <Text style={styles.text}>Ingredientes</Text>
         <TouchableOpacity onPress={() => setIngredientsList(!ingredientsList)}>
           {ingredientsList ? (
-            // <FlatList
-            //   maxToRenderPerBatch={1}
-            //   initialNumToRender={5}
-            //   keyExtractor={(ingredient) => ingredient.name}
-            //   data={ingredients}
-            //   renderItem={renderIngredient}
-            // />
             <>
               {ingredients.map((e, index) => (
                 <Ingredient
@@ -120,13 +107,6 @@ const SingleRecipe = ({
         <Text style={styles.text}>Paso a Paso</Text>
         <TouchableOpacity onPress={() => setShowSteps(!showSteps)}>
           {showSteps ? (
-            // <FlatList
-            //   maxToRenderPerBatch={1}
-            //   initialNumToRender={5}
-            //   keyExtractor={(instruction) => instruction}
-            //   data={instructions}
-            //   renderItem={Step}
-            // />
             <>
               {instructions.map((step, index) => (
                 <Step item={step} index={index} key={index} />

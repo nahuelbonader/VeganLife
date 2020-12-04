@@ -15,6 +15,7 @@ const Recipe = ({ route }) => {
       instructions={instructions || []}
       ownerImage={owner.image || ""}
       ownerName={owner.name || ""}
+      ownerId={owner._id || ""}
     />
   );
 };
