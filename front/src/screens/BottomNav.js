@@ -114,7 +114,7 @@ const BottomNav = ({navigation}) => {
               {
                 icon: "store",
                 label: "Vegan Market",
-                onPress: () => console.log("Pressed email"),
+                onPress: () => navigation.navigate("StoreFeed"),
               },
               {
                 icon: "cart",
