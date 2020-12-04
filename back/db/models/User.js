@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt"),
-SALT_WORK_FACTOR = 10;
-
+  SALT_WORK_FACTOR = 10;
 
 //Creacion del Schema User
 
@@ -30,26 +29,26 @@ const userSchema = new Schema({
 
 // Hasheo de la contrasena
 
-userSchema.pre("save", function (next) {
-  const user = this;
+// userSchema.pre("save", function (next) {
+//   const user = this;
 
-  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-    if (err) return next(err);
+//   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+//     if (err) return next(err);
 
-    bcrypt.hash(user.fuid, salt, function (err, hash) {
-      if (err) return next(err);
-      user.fuid = hash;
-      next();
-    });
-  });
-});
+//     bcrypt.hash(user.fuid, salt, function (err, hash) {
+//       if (err) return next(err);
+//       user.fuid = hash;
+//       next();
+//     });
+//   });
+// });
 
-userSchema.methods.compareFuid = function (candidateFuid, cb) {
-  bcrypt.compare(candidateFuid, this.fuid, function (err, isMatch) {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
-};
+// userSchema.methods.compareFuid = function (candidateFuid, cb) {
+//   bcrypt.compare(candidateFuid, this.fuid, function (err, isMatch) {
+//     if (err) return cb(err);
+//     cb(null, isMatch);
+//   });
+// };
 
 // Creacion del modelo User
 const User = mongoose.model("user", userSchema);
