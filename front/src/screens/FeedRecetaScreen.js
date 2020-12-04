@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, ScrollView, StyleSheet, Text } from "react-native";
+import {  ScrollView, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/actions/recipes";
 import { fetchCategories } from "../store/actions/categories";
