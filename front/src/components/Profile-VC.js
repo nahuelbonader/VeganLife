@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
-import { ownerImg } from "../utils/constants";
+import { userIcon } from "../utils/constants";
 import Recipe from "./CardRecipe";
 import normalize from "react-native-normalize";
 
@@ -41,7 +41,7 @@ const Profile = ({ name, image, favsRecipes, ownRecipes }) => {
         <View style={styles.subContainer}>
           <Image
             style={styles.avatar}
-            source={{ uri: image ? image : ownerImg }}
+            source={{ uri: image ? image : userIcon }}
           />
         </View>
         <Text style={styles.name}>{name}</Text>

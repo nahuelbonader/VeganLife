@@ -3,7 +3,7 @@ import { View, ScrollView, Image, TouchableOpacity, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "../styles/singleRecipe";
 import { LinearGradient } from "expo-linear-gradient";
-import { recipeImg, ownerImg } from "../utils/constants";
+import { recipeImg, userIcon } from "../utils/constants";
 import { useNavigation } from "@react-navigation/native";
 
 const Gradient = (
@@ -72,7 +72,7 @@ const SingleRecipe = ({
         >
           <Image
             style={styles.profilePic}
-            source={{ uri: ownerImage !== "" ? ownerImage : ownerImg }}
+            source={{ uri: ownerImage !== "" ? ownerImage : userIcon }}
           />
           <Text style={styles.name}>by {ownerName}</Text>
         </TouchableOpacity>

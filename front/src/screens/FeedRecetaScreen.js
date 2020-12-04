@@ -17,14 +17,14 @@ const FeedRecetaContainer = ({ navigation }) => {
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const user = useSelector((state) => state.usersReducer.user);
   const randomRecipes = recipes; // acá va un filter
-
   const checkIfLogged = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        dispatch(fetchUser(user.uid));
-      } else {
-        navigation.navigate("Login");
-      }
+        const { email, uid } = user;
+        dispatch(fetchUser({ email, fuid: uid })).catch((err) =>
+          console.log(err)
+        );
+      } else navigation.navigate("Login");
     });
   };
 

@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((res) => dispatch(fetchUser(res.user.uid)))
+      .then((res) => dispatch(fetchUser({ email, fuid: res.user.uid })))
       .then(() => navigation.navigate("Home"))
       .catch((err) => {
         const error = String(err);
