@@ -1,53 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import React from "react";
 import SingleRecipe from "../components/SingleRecipe";
-import API from "../api/api";
+import { useSelector } from "react-redux";
 
 const Recipe = ({ route }) => {
-  const [recipe, setRecipe] = useState({
-    image: "",
-    ingredients: [],
-    title: "",
-    instructions: [],
-    ownerImage: "",
-    ownerName: "",
-  });
-
-  useEffect(() => {
-    API.get(`/recipes/${route.params.recipeId}`)
-      .then(({ data }) =>
-        setRecipe({
-          image: data.image,
-          ingredients: data.ingredients,
-          title: data.title,
-          instructions: data.instructions,
-          ownerImage: data.owner.image,
-          ownerName: data.owner.name,
-        })
-      )
-      .catch((err) => console.log(err));
-  }, []);
-
-  const {
-    image,
-    ingredients,
-    title,
-    instructions,
-    ownerImage,
-    ownerName,
-  } = recipe;
+  const recipes = useSelector((state) => state.recipesReducer.recipes);
+  [recipeSelected] = recipes.filter((r) => r._id == route.params.recipeId);
+  const { image, ingredients, title, instructions, owner } = recipeSelected;
 
   return (
-    <View>
-      <SingleRecipe
-        image={image}
-        ingredients={ingredients}
-        title={title}
-        instructions={instructions}
-        ownerImage={ownerImage}
-        ownerName={ownerName}
-      />
-    </View>
+    <SingleRecipe
+      image={image || ""}
+      ingredients={ingredients || []}
+      title={title || ""}
+      instructions={instructions || []}
+      ownerImage={owner.image || ""}
+      ownerName={owner.name || ""}
+      ownerId={owner._id || ""}
+    />
   );
 };
 
