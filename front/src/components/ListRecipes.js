@@ -13,16 +13,17 @@ const ListRecipes = ({ recipes }) => {
   const navigation = useNavigation();
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         numColumns={2}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={styles.flatlist}
         data={recipes}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
               navigation.navigate("Recipe", { recipeId: item._id })
             }
+            style={styles.touchable}
           >
             <ImageBackground
               style={styles.image}

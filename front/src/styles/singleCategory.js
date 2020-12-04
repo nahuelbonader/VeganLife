@@ -3,6 +3,7 @@ import normalize from "react-native-normalize";
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignContent: "center",
     marginVertical: normalize(10),
   },

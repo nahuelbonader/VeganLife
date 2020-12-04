@@ -15,8 +15,6 @@ const FeedRecetaContainer = () => {
   const user = useSelector((state) => state.usersReducer.user);
   const randomRecipes = recipes; // acá va un filter
 
-  console.log("USER INGRESADO", user);
-
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchRecipes());
