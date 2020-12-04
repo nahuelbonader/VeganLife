@@ -48,7 +48,7 @@ const GoogleLoginComponent = ({navigation}) => {
           }
         })
 
-        .then(()=>navigation.navigate('Home'))
+        .then(()=>navigation.navigate('Feed'))
     
         .catch(function(error) {
           // Handle Errors here.
