@@ -1,14 +1,40 @@
 import React from "react";
-import { View } from "react-native";
-import { DrawerItem, DrawerContentScrollView } from "@react-navigation/drawer";
-import { Avatar, Title, Caption, Drawer, Paragraph } from "react-native-paper";
+import { Text, View, StyleSheet } from "react-native";
+import {
+  createDrawerNavigator,
+  DrawerItem,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
+import {
+  useTheme,
+  Avatar,
+  Title,
+  Caption,
+  Drawer,
+  Paragraph,
+  TouchableRipple,
+  Switch,
+} from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import styles from "../styles/drawer";
 import { useSelector } from "react-redux";
 import { ownerImg } from "../utils/constants";
+import FeedRecetas from "./FeedRecetaScreen";
+import Header from "./Header";
+import styles from "../styles/drawer";
+import firebase from "firebase";
 
 const DrawerContent = (props) => {
   const user = useSelector((state) => state.usersReducer.user);
+
+  const deslogueo = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then((user) => console.log("deslogueo", user))
+      .then(() => alert("Deslogueo exitoso"))
+      .then(() => props.navigation.navigate("Login"))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <DrawerContentScrollView {...props}>
@@ -61,6 +87,7 @@ const DrawerContent = (props) => {
             onPress={() => console.log("IR A PERFIL")}
           />
         </Drawer.Section>
+
         <View>
           <Drawer.Section style={styles.bottomDrawerSection}>
             <DrawerItem
@@ -72,7 +99,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Log Out"
-              onPress={() => console.log("presionado")}
+              onPress={deslogueo}
             />
           </Drawer.Section>
         </View>

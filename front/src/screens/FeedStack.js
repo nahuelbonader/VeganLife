@@ -10,43 +10,29 @@ import Header from './Header'
 import BottomNav from './BottomNav'
 import CookToday from './CookTodayScreen'
 import Profile from './ProfileScreen'
+import StoreFeed from "./FeedStoresScreen";
 
 const Stack = createStackNavigator()
 
 const FeedStack = () => {
   return (
     <Stack.Navigator
-     initialRouteName= "Feed"
-     headerMode="screen"
+      initialRouteName="Feed"
+      headerMode="screen"
       screenOptions={{
         header: ({ scene, previous, navigation }) => (
           <Header scene={scene} previous={previous} navigation={navigation} />
         ),
       }}
-     >
-      <Stack.Screen
-       name="Bottom"
-       component={BottomNav}
-      />
-       <Stack.Screen
-         name="Recipe"
-         component={Recipe}
-       />
-       <Stack.Screen
-         name="SingleCategory"
-         component={SingleCategory}
-       />
-       <Stack.Screen
-         name="CookToday"
-         component={CookToday}
-       />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-      />
-
+    >
+      <Stack.Screen name="Bottom" component={BottomNav} />
+      <Stack.Screen name="Recipe" component={Recipe} />
+      <Stack.Screen name="SingleCategory" component={SingleCategory} />
+      <Stack.Screen name="CookToday" component={CookToday} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="StoreFeed" component={StoreFeed} />
     </Stack.Navigator>
-  )
+  );
 }
 
 export default FeedStack

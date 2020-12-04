@@ -75,8 +75,8 @@ const storeSchema = new Schema({
       open: Boolean,
       startMorning: { type: Number },
       endMorning: { type: Number },
-      startAfternoon: { type: Number },
-      endAfternoon: { type: Number },
+      startNoon: { type: Number },
+      endNoon: { type: Number },
     },
   ],
 

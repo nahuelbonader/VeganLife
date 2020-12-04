@@ -7,6 +7,7 @@ import "firebase/auth";
 import useInputs from "../hooks/useInputs";
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
+import GoogleLoginComponent from "../components/GoogleLoginComponent";
 import AccessButtons from "../components/AccessButtons";
 import { errors, alerts } from "../utils/errors-alerts";
 import styles from "../styles/login-register";
@@ -51,6 +52,9 @@ const Login = ({ navigation }) => {
           text={password}
           secureTextEntry={true}
         />
+
+        <GoogleLoginComponent />
+
         <Text style={styles.alert}>{errorMessage}</Text>
         <AccessButtons
           onPressBtn={handleSubmit}
