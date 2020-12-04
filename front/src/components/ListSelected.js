@@ -18,7 +18,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
 
         return (
             
-            <View style={{marginTop: 150}}>   
+            <View style={{marginTop: 100}}>   
             <Text style={styles.title}>Ingresa tu propia receta</Text>
           <View style={styles.container}> 
 
@@ -77,7 +77,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
                 onPress={()=>{handleChange(instruc), handleBoolean()}}
                   style={styles.boton}> 
                 
-                  <Text>{textbtn}</Text>
+                  <Text style={styles.title}>{textbtn}</Text>
             </TouchableOpacity>
     
             </View>
@@ -109,7 +109,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
       fontSize: 20, 
       borderBottomColor: "#35b056",
       borderBottomWidth: 2,
-      marginTop: 25,
+      //marginTop: 25,
       padding: 10 ,
       marginHorizontal: 10
     },

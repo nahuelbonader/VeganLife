@@ -55,7 +55,14 @@ const AddRecipeScreen = ({}) => {
         }))
         dispatch(fetchRecipes())
         
-        navigation.navigate("Home")
+        navigation.navigate("Feed")
+
+        setBool1(true)
+        setBool2(false)
+        setBool3(false)
+        setBool4(false)
+        setBool5(false)
+        setBool6(false)
         
         }
 
