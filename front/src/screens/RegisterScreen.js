@@ -18,6 +18,7 @@ import InputData from "../components/InputData";
 import AccessButtons from "../components/AccessButtons";
 import { errors, alerts } from "../utils/errors-alerts";
 import styles from "../styles/login-register";
+import { userIcon } from "../utils/constants";
 
 const Register = ({ navigation }) => {
   const [inputs, handleChange] = useInputs();
@@ -45,6 +46,7 @@ const Register = ({ navigation }) => {
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         const fuid = res.user.uid;
+        console.log("FUID", fuid);
         return API.post("/users", { name, email, fuid });
       })
       .then(() => navigation.navigate("Login"))
@@ -70,12 +72,7 @@ const Register = ({ navigation }) => {
             {img !== null ? (
               <Image
                 style={estilo.avatar}
-                source={{
-                  uri:
-                    img.localUri !== null
-                      ? img.localUri
-                      : "https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg",
-                }}
+                source={{ uri: img.localUri ? img.localUri : userIcon }}
               />
             ) : (
               <Text>+</Text>
