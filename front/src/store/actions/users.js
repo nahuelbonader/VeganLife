@@ -3,5 +3,5 @@ import API from "../../api/api";
 
 const setUser = (data) => ({ type: LOGIN_USER, payload: data });
 
-export const fetchUser = (id) => (dispatch) =>
-  API.get(`/auth/me/${id}`).then(({ data }) => dispatch(setUser(data)));
+export const fetchUser = (user) => (dispatch) =>
+  API.post(`/auth/me/`, user).then(({ data }) => dispatch(setUser(data)));

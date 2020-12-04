@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ToggleButton } from "react-native-paper";
 import setContent from "../store/actions/searchContent";
 import setParam from "../store/actions/searchParam";
-import { ownerImg } from "../utils/constants";
+import { userIcon } from "../utils/constants";
 
 import API from "../api/api";
 
@@ -111,7 +111,7 @@ const Header = ({ scene, previous }) => {
           <Avatar.Image
             size={40}
             style={styles.img}
-            source={{ uri: user.image ? user.image : ownerImg }}
+            source={{ uri: user.image ? user.image : userIcon }}
           />
         </TouchableOpacity>
       )}

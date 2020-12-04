@@ -9,7 +9,7 @@ import {
   StyleSheet
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { ownerImg, recipeImg } from "../utils/constants";
+import { userIcon, recipeImg } from "../utils/constants";
 import styles from "../styles/singleRecipe";
 
 const Ingredient = ({ quantity, ingredient }) => (
@@ -66,7 +66,7 @@ const SingleRecipeEdit = ({
             <View style={styles.viewProfile}>
               <Image
                 style={styles.profilePic}
-                source={{ uri: owner.image !== "" ? owner.image : ownerImg }}
+                source={{ uri: owner.image !== "" ? owner.image : userIcon }}
               />
               <Text style={styles.name}>by {owner.name}</Text>
             </View>
