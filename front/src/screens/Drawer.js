@@ -17,9 +17,7 @@ import {
 } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
-import { ownerImg } from "../utils/constants";
-import FeedRecetas from "./FeedRecetaScreen";
-import Header from "./Header";
+import { userIcon } from "../utils/constants";
 import styles from "../styles/drawer";
 import firebase from "firebase";
 
@@ -30,9 +28,6 @@ const DrawerContent = (props) => {
     firebase
       .auth()
       .signOut()
-      .then((user) => console.log("deslogueo", user))
-      .then(() => alert("Deslogueo exitoso"))
-      .then(() => props.navigation.navigate("Login"))
       .catch((err) => console.log(err));
   };
 
@@ -41,7 +36,7 @@ const DrawerContent = (props) => {
       <View style={styles.drawerContent}>
         <View style={styles.userInfoSection}>
           <Avatar.Image
-            source={{ uri: user.image ? user.image : ownerImg }}
+            source={{ uri: user.image ? user.image : userIcon }}
             size={50}
           />
           <Title style={styles.name}>{user.name}</Title>
@@ -99,7 +94,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Log Out"
-              onPress={deslogueo}
+              onPress={user._id ? deslogueo : null}
             />
           </Drawer.Section>
         </View>
