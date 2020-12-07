@@ -57,6 +57,26 @@ const styles = StyleSheet.create({
     flex: 8,
     width: "100%",
   },
+  recipeText: {
+    fontSize: 20,
+    color: "white",
+    textAlign: "center",
+    justifyContent: "center",
+    fontWeight: "bold",
+    marginTop: 15,
+    padding: 60,
+    textShadowColor: "green",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
+  },
+  recipeImage: {
+    width: 350,
+    height: 200,
+    marginTop: 15,
+  },
+  recipeBorder: {
+    borderRadius: 10,
+  },
 });
 
 export default styles;

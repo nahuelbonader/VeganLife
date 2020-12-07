@@ -1,9 +1,9 @@
 {
-  "scheme": null,
   "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": "qi-s7c",
-  "https": false
+  "urlRandomness": "4b-xpn",
+  "https": false,
+  "scheme": null
 }

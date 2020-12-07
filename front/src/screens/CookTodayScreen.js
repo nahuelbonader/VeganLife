@@ -108,7 +108,15 @@ const CookToday = () => {
           <FlatList
             showsVerticalScrollIndicator={false}
             data={filteredRecipes}
-            renderItem={({ item }) => <CardRecipe item={item} />}
+            renderItem={({ item }) => (
+              <CardRecipe
+                item={item}
+                styleTouchable={styles.recipeTouchable}
+                styleImage={styles.recipeImage}
+                styleText={styles.recipeText}
+                styleBorder={styles.recipeBorder}
+              />
+            )}
             keyExtractor={(recipes) => recipes._id}
           />
         ) : null}

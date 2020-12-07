@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import setRoute from '../store/actions/BottomRoutes'
 
+import AddRecipeScreen from './AddRecipeScreen'
 import FeedRecetas from './FeedRecetaScreen'
 import Search from './SearchScreen'
 
@@ -50,7 +51,7 @@ const BottomNav = ({navigation}) => {
           />
           <Tab.Screen
             name="Post"
-            component={PostRecipe}
+            component={AddRecipeScreen}
             options={{
               tabBarLabel: "Post",
               tabBarIcon: ({ color }) => (
@@ -113,7 +114,7 @@ const BottomNav = ({navigation}) => {
               {
                 icon: "store",
                 label: "Vegan Market",
-                onPress: () => console.log("Pressed email"),
+                onPress: () => navigation.navigate("StoreFeed"),
               },
               {
                 icon: "cart",

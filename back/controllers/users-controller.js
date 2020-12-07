@@ -35,30 +35,36 @@ const UserController = {
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
-  findUser(req, res, next) {
-    User.findOne({ fuid: req.params.fuid })
-      .then((user) =>
-        res.send({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-        })
-      )
+  loginUser(req, res, next) {
+    User.findOne({ email: req.body.email })
+      .then((user) => {
+        if (!user) return res.sendStatus(404);
+        user.compareFuid(req.body.fuid).then((isMatch) => {
+          if (!isMatch) return res.sendStatus(401);
+          return res.send({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          });
+        });
+      })
       .catch((err) => next(err));
   },
   findById(req, res, next) {
     User.findById(req.params.id)
       .then((user) =>
-        res.send({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          image: user.image,
-          favsStores: user.favsStores,
-          favsRecipes: user.favsRecipes,
-          favsProducts: user.favsProducts,
-        })
+        user
+          ? res.send({
+              _id: user._id,
+              name: user.name,
+              email: user.email,
+              image: user.image,
+              favsStores: user.favsStores,
+              favsRecipes: user.favsRecipes,
+              favsProducts: user.favsProducts,
+            })
+          : res.send(500).end()
       )
       .catch((err) => next(err));
   },
