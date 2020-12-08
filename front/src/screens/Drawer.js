@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, {useEffect, useState} from "react";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import {
   createDrawerNavigator,
   DrawerItem,
@@ -18,25 +18,42 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { userIcon } from "../utils/constants";
+import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/drawer";
 import firebase from "firebase";
+import API from "../api/api";
 
 const DrawerContent = (props) => {
   const user = useSelector((state) => state.usersReducer.user);
+  const [userDb, setUserDb] = useState({
+    name: "",
+    image: "",
+    favsRecipes: [],
+  });
+
+
+
+  console.log('USER', user)
+  const userId = user._id
+  //const navigation = useNavigation();
 
   const deslogueo = () => {
-    firebase
-      .auth()
-      .signOut()
-      .catch((err) => console.log(err));
+    firebase.auth().signOut()
+    .then(()=>Alert.alert('Deslogueo Exitoso'))
+    .then(()=> props.navigation.navigate('Login'))
+    .catch((err) => console.log(err));
   };
+
+    useEffect(() => {
+    API.get(`/users/${userId}`).then(({ data }) => setUserDb(data));
+  }, []);
 
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
         <View style={styles.userInfoSection}>
           <Avatar.Image
-            source={{ uri: user.image ? user.image : userIcon }}
+            source={{ uri: userDb.image ? userDb.image : userIcon }}
             size={50}
           />
           <Title style={styles.name}>{user.name}</Title>
@@ -68,7 +85,7 @@ const DrawerContent = (props) => {
               />
             )}
             label="Perfil Vegan Cook"
-            onPress={() => console.log("IR A PERFIL")}
+            onPress={() => props.navigation.navigate("Profile", { userId })}
           />
           <DrawerItem
             icon={({ color, size }) => (

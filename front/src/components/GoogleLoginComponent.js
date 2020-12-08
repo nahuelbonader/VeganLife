@@ -4,8 +4,13 @@ import firebase from "firebase";
 import * as Google from "expo-google-app-auth";
 import API from "../api/api";
 import { SocialIcon } from "react-native-elements";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../store/actions/users";
+import { useNavigation } from "@react-navigation/native";
 
-const GoogleLoginComponent = ({ navigation }) => {
+const GoogleLoginComponent = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const isUserEqual = (googleUser, firebaseUser) => {
     if (firebaseUser) {
       var providerData = firebaseUser.providerData;
@@ -33,6 +38,7 @@ const GoogleLoginComponent = ({ navigation }) => {
         // Check if we are already signed-in Firebase with the correct user.
         if (!isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
+          console.log('logueo')
           var credential = firebase.auth.GoogleAuthProvider.credential(
             googleUser.idToken,
             googleUser.accessToken
@@ -41,21 +47,26 @@ const GoogleLoginComponent = ({ navigation }) => {
           firebase
             .auth()
             .signInWithCredential(credential)
-            .then(({ user }) => {
-              if (res.additionalUserInfo.isNewUser) {
-                const { uid, displayName, photoURL, email } = user;
-                return API.post("/users", {
+            .then((res) => {
+              console.log(res.additionalUserInfo.isNewUser, 'res.additionalUserInfo')
+              if (res.additionalUserInfo.isNewUser===true) {
+                const { uid, displayName, photoURL, email } = res.user;
+                API.post("/users", {
                   email,
                   name: displayName,
                   fuid: uid,
                   image: photoURL,
-                });
+                })
+                .then(({data}) => dispatch(fetchUser({email: data.email, fuid: data.fuid})))
+                .then(() => navigation.navigate("Home"))
+
+              }else{
+                console.log('ES FALSE')
+                navigation.navigate("Home")
               }
             })
-
-            .then(() => navigation.navigate("Home"))
-
             .catch(function (error) {
+              console.log(error)
               // Handle Errors here.
               var errorCode = error.code;
               var errorMessage = error.message;

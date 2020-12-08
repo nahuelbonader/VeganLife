@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Alert,
   Text,
   View,
   TouchableWithoutFeedback,
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 import firebase from "../utils/Firebase";
 import "firebase/auth";
+import 'firebase/storage'
 import API from "../api/api";
 import useInputs from "../hooks/useInputs";
 import * as ImagePicker from "expo-image-picker";
@@ -26,15 +28,54 @@ const Register = ({ navigation }) => {
   // const [avatar, setAvatar] = usetState(null)
   const [errorMessage, setError] = useState("");
   const [img, setImg] = useState(null);
+  const [url, setUrl] = useState(null)
+  const [contImg, setContImg] = useState(1)
 
   let handleOpenImage = async () => {
     let permission = await ImagePicker.requestCameraRollPermissionsAsync();
     let picker = await ImagePicker.launchImageLibraryAsync();
     if (!permission.granted) return console.log("NO TENES PERMISOS");
     if (picker.cancelled) return console.log("Pickeo cancelado");
+    uploadImage(picker.uri, picker.uri)
     setImg({ localUri: picker.uri });
+    Alert.alert('EXCELENTE')
+    setContImg(contImg+1)
+    console.log('CONTADOR',contImg)
     console.log(picker);
-  };
+  }
+
+  uploadImage = async (uri,imageName) =>{
+    const response = await fetch(uri)
+    const blob = await response.blob()
+
+    const ref = firebase.storage().ref().child('images/' + imageName) 
+    await ref.put(blob)
+    await ref.getDownloadURL()
+    .then((downloadUrl)=>{
+      setUrl(downloadUrl)
+      console.log('url en el estado', url)
+    })
+    .catch((err)=>{
+      console.log('ERROR', err)
+    })
+  }
+
+
+    /*const message = picker;
+    const storageRef = firebase.storage().ref();
+    const task = storageRef.child('images/imagen');
+    await task.put(message);
+    await task.getDownloadURL()
+    .then((downloadUrl) => {
+      console.log(downloadUrl, "cambios realizados con éxito");
+    }).catch((err) => console.log(err));*/
+  
+
+
+
+
+
+
 
   const handleSubmit = async () => {
     if (!name.length) return setError(alerts.name);
@@ -46,8 +87,9 @@ const Register = ({ navigation }) => {
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         const fuid = res.user.uid;
+        const image = url
         console.log("FUID", fuid);
-        return API.post("/users", { name, email, fuid });
+        return API.post("/users", { name, email, fuid, image });
       })
       .then(() => navigation.navigate("Login"))
       .catch((err) => {
