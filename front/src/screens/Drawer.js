@@ -15,6 +15,7 @@ import {
   TouchableRipple,
   Switch,
 } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { userIcon } from "../utils/constants";
@@ -23,7 +24,6 @@ import firebase from "firebase";
 
 const DrawerContent = (props) => {
   const user = useSelector((state) => state.usersReducer.user);
-
   const deslogueo = () => {
     firebase
       .auth()
@@ -80,6 +80,17 @@ const DrawerContent = (props) => {
             )}
             label="Perfil Vegan Market"
             onPress={() => console.log("IR A PERFIL")}
+          />
+          <DrawerItem
+            icon={({ color, size }) => (
+              <MaterialCommunityIcons
+                name="store"
+                color={color}
+                size={size}
+              />
+            )}
+            label="Ver mis comercios"
+            onPress={() => props.navigation.navigate("MyCommerce")}
           />
         </Drawer.Section>
 

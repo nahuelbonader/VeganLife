@@ -66,7 +66,7 @@ const storeSchema = new Schema({
 
   accepted: {
     type: Boolean,
-    required: true,
+    required: false,
     default: false,
   },
 
