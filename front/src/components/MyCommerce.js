@@ -9,8 +9,8 @@ const MyCommerce = ({ myImage, myName }) => {
   const [email, setEmail] = useState("")
   const [image,setImage] = useState("")
   const [address, setAddress] = useState("")
-  const [phone,setPhone] = useState(0)
-  const [CUIL, setCuil] = useState(0)
+  const [phone,setPhone] = useState("")
+  const [CUIL, setCuil] = useState("")
   const [description, setDescription] = useState("")
   const [productsCategories, setCategories] = useState("")
   const [delivery, setDelivery] = useState(false)
@@ -116,6 +116,11 @@ const [checked, setChecked] = React.useState('first');
                  onPress={() =>{ setChecked('second'),setDelivery(true)}}
                />
              </View>
+             <TouchableOpacity
+              style={styles.submit}
+             >
+               <Text style={styles.textSubmit}>Crear nuevo comercio</Text>
+             </TouchableOpacity>
          </View>
        :
        null
@@ -192,6 +197,17 @@ const styles = StyleSheet.create({
     fontSize:17,
     color:'#0c7502',
     fontWeight:'bold'
+  },
+  submit:{
+    alignSelf:'center',
+    backgroundColor:'#007F37ff',
+    padding:"3%",
+    borderRadius:20
+  },
+  textSubmit:{
+    color:'white',
+    fontWeight:'bold',
+    textTransform:'uppercase'
   }
 })
 
