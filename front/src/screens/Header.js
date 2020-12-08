@@ -30,11 +30,22 @@ const Header = ({ scene, previous }) => {
   const [active3, setActive3] = useState(false);
   const [active4, setActive4] = useState(false);
   const [search, setSearch] = useState([]);
+  const [userDb, setUserDb] = useState({
+    name: "",
+    image: "",
+    favsRecipes: [],
+  });
 
+
+  const userId = user._id
   useEffect(() => {
     dispatch(setContent(search));
     dispatch(setParam(value));
   }, [search]);
+
+  useEffect(() => {
+    API.get(`/users/${userId}`).then(({ data }) => setUserDb(data));
+  }, []);
 
   const handlePress = (fn) => {
     //Funcion para presionar botones y quitar estilos
@@ -111,7 +122,7 @@ const Header = ({ scene, previous }) => {
           <Avatar.Image
             size={40}
             style={styles.img}
-            source={{ uri: user.image ? user.image : userIcon }}
+            source={{ uri: userDb.image ? userDb.image : userIcon }}
           />
         </TouchableOpacity>
       )}
