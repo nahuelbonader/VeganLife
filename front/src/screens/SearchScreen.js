@@ -18,7 +18,7 @@ const Search = ({ navigation }) => {
     <View style={styles.generalView}>
       {param == "recipes" ? (
         <FlatList
-          keyExtractor={(content) => content.title}
+          keyExtractor={(content) => content._id}
           data={content}
           renderItem={({ item }) => {
             return (
