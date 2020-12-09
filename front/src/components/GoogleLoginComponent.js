@@ -1,19 +1,25 @@
 import React from "react";
-import { View } from "react-native";
-import firebase from "firebase";
+import { useDispatch } from "react-redux";
 import * as Google from "expo-google-app-auth";
-import API from "../api/api";
+import firebase from "firebase";
+import { useNavigation } from "@react-navigation/native";
+import { fetchUser } from "../store/actions/users";
+import { registerUser } from "../store/actions/users";
+import { View } from "react-native";
 import { SocialIcon } from "react-native-elements";
 
-const GoogleLoginComponent = ({ navigation }) => {
+const GoogleLoginComponent = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const isUserEqual = (googleUser, firebaseUser) => {
     if (firebaseUser) {
-      var providerData = firebaseUser.providerData;
-      for (var i = 0; i < providerData.length; i++) {
+      const providerData = firebaseUser.providerData;
+      for (let i = 0; i < providerData.length; i++) {
         if (
           providerData[i].providerId ===
             firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-          providerData[i].uid === googleUser.getBasicProfile().getId()
+          providerData[i].uid === googleUser.user.id
         ) {
           // We don't need to reauth the Firebase connection.
           return true;
@@ -24,16 +30,15 @@ const GoogleLoginComponent = ({ navigation }) => {
   };
 
   const onSignIn = (googleUser) => {
-    //console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
-    var unsubscribe = firebase
+    const unsubscribe = firebase
       .auth()
       .onAuthStateChanged(function (firebaseUser) {
         unsubscribe();
         // Check if we are already signed-in Firebase with the correct user.
         if (!isUserEqual(googleUser, firebaseUser)) {
           // Build Firebase credential with the Google ID token.
-          var credential = firebase.auth.GoogleAuthProvider.credential(
+          const credential = firebase.auth.GoogleAuthProvider.credential(
             googleUser.idToken,
             googleUser.accessToken
           );
@@ -41,32 +46,34 @@ const GoogleLoginComponent = ({ navigation }) => {
           firebase
             .auth()
             .signInWithCredential(credential)
-            .then(({ user }) => {
-              if (res.additionalUserInfo.isNewUser) {
-                const { uid, displayName, photoURL, email } = user;
-                return API.post("/users", {
+            .then((res) => {
+              if (res.additionalUserInfo.isNewUser === true) {
+                const {
+                  uid,
+                  displayName,
+                  photoURL,
+                  email,
+                } = res.user.providerData;
+                registerUser({
                   email,
                   name: displayName,
                   fuid: uid,
                   image: photoURL,
-                });
+                })
+                  .then(() => dispatch(fetchUser({ email, fuid: uid })))
+                  .then(() => navigation.navigate("Home"));
+              } else {
+                const { email, id } = googleUser.user;
+                dispatch(fetchUser({ email, fuid: id })).then(() =>
+                  navigation.navigate("Home")
+                );
               }
             })
-
-            .then(() => navigation.navigate("Home"))
-
-            .catch(function (error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              // The email of the user's account used.
-              var email = error.email;
-              // The firebase.auth.AuthCredential type that was used.
-              var credential = error.credential;
-              // ...
-            });
+            .catch((error) => console.log(error));
         } else {
-          console.log("User already signed-in Firebase.");
+          dispatch(
+            fetchUser({ email: googleUser.email, fuid: googleUser.id })
+          ).then(() => navigation.navigate("Home"));
         }
       });
   };

@@ -19,14 +19,14 @@ const CookToday = () => {
   const [ingredients, setIngredients] = useState([]);
   const [alert, setAlert] = useState(false);
   const [{ ingredient }, handleChange] = useInputs();
-  const handleIngredient = handleChange("ingredient");
+  const setIngredient = handleChange("ingredient");
   const recipes = useSelector((state) => state.recipesReducer.recipes);
 
-  const setIngredient = () => {
+  const addIngredient = () => {
     if (ingredient == "") return;
     if (ingredients.includes(ingredient)) return setAlert(true);
     setIngredients([ingredient, ...ingredients]);
-    handleIngredient("");
+    setIngredient("");
   };
 
   const deleteIngredient = (ingredient) => {
@@ -55,7 +55,7 @@ const CookToday = () => {
     <MaterialChip
       style={styles.ingredient}
       text={text}
-      onDelete={() => deleteIngredient(text)}
+      onPress={() => deleteIngredient(text)}
       rightIcon={
         <IconM name="close-circle-outline" size={19} color={colors.font} />
       }
@@ -71,14 +71,14 @@ const CookToday = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          onChangeText={handleIngredient}
+          onChangeText={setIngredient}
           value={ingredient}
           textAlign={"center"}
           placeholder="¿Qué ingredientes tenés?"
           blurOnSubmit={false}
-          onSubmitEditing={setIngredient}
+          onSubmitEditing={addIngredient}
         />
-        <TouchableOpacity style={styles.enterIcon} onPress={setIngredient}>
+        <TouchableOpacity style={styles.enterIcon} onPress={addIngredient}>
           <Icon
             name="md-checkmark-circle"
             size={35}

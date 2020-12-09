@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -19,9 +19,9 @@ const Search = () => {
     p: "Productos",
   };
 
-  const search = useSelector((state) => state.searchReducer.search);
-  const recipes = useSelector((state) => state.recipesReducer.recipes);
-  const users = useSelector((state) => state.usersReducer.users);
+  const { search } = useSelector((state) => state.searchReducer);
+  const { recipes } = useSelector((state) => state.recipesReducer);
+  const { users } = useSelector((state) => state.usersReducer);
   const [tabSelected, setTabSelected] = useState(tabs["r"]);
 
   const filteredRecipes = recipes.filter((r) =>
@@ -54,10 +54,10 @@ const Search = () => {
         return <Recipe recipe={item} />;
       case tabs["u"]:
         return <User user={item} />;
-      // case tabs["s"]:
-      // return <User item={item} />;
       // case tabs["p"]:
-      // return <User item={item} />;
+      // return <Product item={item} />;
+      // case tabs["s"]:
+      // return <Store item={item} />;
     }
   };
 
@@ -66,8 +66,8 @@ const Search = () => {
       <View style={styles.tabsContainer}>
         <Tab tab={tabs["r"]} />
         <Tab tab={tabs["u"]} />
-        <Tab tab={tabs["s"]} />
         <Tab tab={tabs["p"]} />
+        <Tab tab={tabs["s"]} />
       </View>
       <SafeAreaView style={styles.results}>
         <FlatList

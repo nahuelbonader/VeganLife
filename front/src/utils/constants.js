@@ -5,3 +5,5 @@ export const userIcon =
   "https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg";
 
 export const VLICon = require("../../assets/VGL-White.png");
+
+export const portada = require("../../assets/fondo.png");

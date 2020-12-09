@@ -10,3 +10,8 @@ export const fetchUser = (user) => (dispatch) =>
 
 export const fetchUsers = () => (dispatch) =>
   API.get(`/users/`).then(({ data }) => dispatch(setUsers(data)));
+
+export const registerUser = (user) =>
+  API.post("/users", user).then(({ data }) => data);
+
+export const logoutUser = () => (dispatch) => dispatch(setUser({}));

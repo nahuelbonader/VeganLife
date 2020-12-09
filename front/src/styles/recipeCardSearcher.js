@@ -5,7 +5,7 @@ import normalize from "react-native-normalize";
 export default StyleSheet.create({
   touchableContainer: {
     height: normalize(100),
-    width: "97%",
+    width: "95%",
     alignSelf: "center",
     justifyContent: "center",
     flexDirection: "row",

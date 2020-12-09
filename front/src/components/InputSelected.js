@@ -26,7 +26,8 @@ const InputSelected = ({ textbtn, bool, ph, handleChange, handleBoolean, categor
           <Text style={styles.title}>Ingresa tu propia receta</Text>
           <Dropdown
           onChangeText={(value)=>handleChange(value) }
-          label={"elegi tu categoria"}
+          label={"Elegi tu categoria"}
+          containerStyle={styles.input}
           data={data}
           />
 
@@ -49,15 +50,18 @@ const InputSelected = ({ textbtn, bool, ph, handleChange, handleBoolean, categor
     },
     title:{
       fontSize:20,
-      textAlign: "center"
+      textAlign: "center",
+      fontWeight: "bold"
     },
     input:{
       //backgroundColor: '#000000',
-      borderBottomColor: '#000000',
-      borderBottomWidth: 1,
+      fontSize: 20, 
+      borderBottomColor: "#35b056",
+      //borderBottomWidth: 2,
       marginTop: 25,
-      marginHorizontal: 40
-    }
+      padding: 10 ,
+      marginHorizontal: 40,
+    },
   });
   
   export default InputSelected;

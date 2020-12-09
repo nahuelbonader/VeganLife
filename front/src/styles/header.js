@@ -12,10 +12,12 @@ export default StyleSheet.create({
   logoContiner: {
     width: "80%",
     justifyContent: "center",
+    alignContent: "center",
   },
   logo: {
     width: "35%",
     height: "90%",
     alignSelf: "center",
+    marginRight: "10%",
   },
 });

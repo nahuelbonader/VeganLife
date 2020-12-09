@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
   FlatList,
+  StyleSheet
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { userIcon, recipeImg } from "../utils/constants";
@@ -136,7 +137,7 @@ const SingleRecipeEdit = ({
           </View>
 
           <TouchableOpacity
-            style={{ marginTop: 100 }}
+            style={localStyles.boton}
             onPress={() =>
               handleSubmit({
                 title,
@@ -148,7 +149,7 @@ const SingleRecipeEdit = ({
               })
             }
           >
-            <Text>CONFIRMAR RECETA</Text>
+            <Text style={localStyles.title}>CONFIRMAR RECETA</Text>
           </TouchableOpacity>
         </ScrollView>
       );
@@ -157,5 +158,34 @@ const SingleRecipeEdit = ({
     }
   }
 };
+
+const localStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 100
+  },
+  title:{
+    fontSize:20,
+    textAlign: "center",
+    fontWeight: "bold"
+  },
+  input:{
+    fontSize: 20, 
+    borderBottomColor: "#35b056",
+    borderBottomWidth: 2,
+    marginTop: 25,
+    padding: 10 ,
+    marginHorizontal: 40
+  },
+  boton: {
+    marginTop: 75,
+    alignItems: "center",
+    backgroundColor: "#35b056",
+    padding: 20,
+    borderRadius: 20,
+    marginHorizontal: 75
+  }
+});
+
 
 export default SingleRecipeEdit;
