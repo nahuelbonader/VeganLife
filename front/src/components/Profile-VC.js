@@ -43,13 +43,13 @@ const Profile = ({ name, image, favsRecipes, ownRecipes }) => {
   return (
     <View style={styles.container}>
       <ImageBackground style={styles.portada} source={portada}>
-        <View style={styles.subContainer}>
+        <View style={styles.profileContainer}>
           <Image
             style={styles.avatar}
             source={{ uri: image ? image : userIcon }}
           />
+          <Text style={styles.name}>{name}</Text>
         </View>
-        <Text style={styles.name}>{name}</Text>
       </ImageBackground>
       <View style={styles.statsContainer}>
         <Data amount={ownRecipes.length} title="Recetas" />

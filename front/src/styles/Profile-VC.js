@@ -12,10 +12,11 @@ export default StyleSheet.create({
     flex: 1.3,
     marginBottom: normalize(30),
   },
-  subContainer: {
+  profileContainer: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: normalize(85),
+    marginTop: "20%",
+    alignItems: "center",
   },
   avatar: {
     height: 100,
@@ -25,9 +26,6 @@ export default StyleSheet.create({
     borderColor: colors.niceGray,
   },
   name: {
-    position: "absolute",
-    marginTop: normalize(135),
-    marginLeft: normalize(10),
     fontSize: normalize(18),
     fontWeight: "bold",
   },
@@ -40,6 +38,7 @@ export default StyleSheet.create({
     borderBottomColor: colors.darkGray,
     borderBottomWidth: 1,
     borderRadius: 20,
+    paddingTop: "5%",
   },
   stats: {
     alignItems: "center",
