@@ -13,16 +13,16 @@ import styles from "../styles/searchScreen";
 
 const Search = () => {
   const tabs = {
-    r: "Recetas",
-    u: "Usuarios",
-    s: "Comercios",
-    p: "Productos",
+    recipes: "Recetas",
+    users: "Usuarios",
+    stores: "Comercios",
+    products: "Productos",
   };
 
   const { search } = useSelector((state) => state.searchReducer);
   const { recipes } = useSelector((state) => state.recipesReducer);
   const { users } = useSelector((state) => state.usersReducer);
-  const [tabSelected, setTabSelected] = useState(tabs["r"]);
+  const [tabSelected, setTabSelected] = useState(tabs.recipes);
 
   const filteredRecipes = recipes.filter((r) =>
     r.title.toLowerCase().includes(search.toLowerCase())
@@ -32,8 +32,8 @@ const Search = () => {
   );
 
   const data = {
-    [tabs["r"]]: filteredRecipes,
-    [tabs["u"]]: filteredUsers,
+    [tabs.recipes]: filteredRecipes,
+    [tabs.users]: filteredUsers,
     // [tabs["s"]]: filteredStores,
     // [tabs["p"]]: filteredProducts,
   };
@@ -50,9 +50,9 @@ const Search = () => {
 
   const renderItem = (item) => {
     switch (tabSelected) {
-      case tabs["r"]:
+      case tabs.recipes:
         return <Recipe recipe={item} />;
-      case tabs["u"]:
+      case tabs.users:
         return <User user={item} />;
       // case tabs["p"]:
       // return <Product item={item} />;
@@ -64,10 +64,10 @@ const Search = () => {
   return (
     <View style={styles.view}>
       <View style={styles.tabsContainer}>
-        <Tab tab={tabs["r"]} />
-        <Tab tab={tabs["u"]} />
-        <Tab tab={tabs["p"]} />
-        <Tab tab={tabs["s"]} />
+        <Tab tab={tabs.recipes} />
+        <Tab tab={tabs.users} />
+        <Tab tab={tabs.products} />
+        <Tab tab={tabs.stores} />
       </View>
       <SafeAreaView style={styles.results}>
         <FlatList
