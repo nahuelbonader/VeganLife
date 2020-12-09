@@ -21,12 +21,29 @@ const MyCommerce = ({ myImage, myName, userId }) => {
   const [delivery, setDelivery] = useState(false)
   const [message, setMessage] = useState("")
   const [checked, setChecked] = React.useState('first');
+
+  const [checked2, setChecked2] = useState('first')
+  const [checked3, setChecked3] = useState('first')
+  const [checked4, setChecked4] = useState('first')
+  const [checked5, setChecked5] = useState('first')
+  const [checked6, setChecked6] = useState('first')
+  const [checked7, setChecked7] = useState('first')
+  const [checked8, setChecked8] = useState('first')
+
   const [active1, setActive1] = useState(true);
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
   const [value, setValue] = useState("my_own");
   const [first, setFirst] = useState(true)
   const [second, setSecond] = useState(false)
+
+  const [open1,setOpen1] = useState(false)
+  const [open2,setOpen2] = useState(false)
+  const [open3,setOpen3] = useState(false)
+  const [open4,setOpen4] = useState(false)
+  const [open5,setOpen5] = useState(false)
+  const [open6,setOpen6] = useState(false)
+  const [open7,setOpen7] = useState(false)
 
   const [inputs, handleChange] = useInputs()
   const {
@@ -95,13 +112,13 @@ const MyCommerce = ({ myImage, myName, userId }) => {
 console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${miercolesAm1c}:${miercolesAm2c}` );
   const handleSubmit= () => {
   const daysOpen = [
-    {open:false,startMorning: `${domingoAm1}:${domingoAm2}`,endMorning:`${domingoAm1c}:${domingoAm2c}`,startNoon: `${domingoPm1}:${domingoPm2}`,endNoon: `${domingoPm1c}:${domingoPm2c}`},
-    {open:true,startMorning: `${lunesAm1}:${lunesAm2}`,endMorning:`${lunesAm1c}:${lunesAm2c}` ,startNoon:`${lunesPm1}:${lunesPm2}` ,endNoon:`${lunesPm1c}:${lunesPm2c}` },
-    {open:true,startMorning: `${martesAm1}:${martesAm2}`,endMorning: `${martesAm1c}:${martesAm2c}`,startNoon:`${martesPm1}:${martesPm2}` ,endNoon: `${martesPm1c}:${martesPm2c}`},
-    {open:true,startMorning:`${miercolesAm1}:${miercolesAm2}` ,endMorning: `${miercolesAm1c}:${miercolesAm2c}`,startNoon:`${miercolesPm1}:${miercolesPm2}` ,endNoon: `${miercolesPm1c}:${miercolesPm2c}`},
-    {open:true,startMorning: `${juevesAm1}:${juevesAm2}`,endMorning: `${juevesAm1c}:${juevesAm2c}`,startNoon: `${juevesPm1}:${juevesPm2}`,endNoon:`${juevesPm1c}:${juevesPm2c}`},
-    {open:true,startMorning:`${viernesAm1}:${viernesAm2}` ,endMorning:`${viernesAm1c}:${viernesAm2c}`,startNoon:`${viernesPm1}:${viernesPm2}` ,endNoon: `${viernesPm1c}:${viernesPm2c}`},
-    {open:true,startMorning: `${sabadoAm1}:${sabadoAm2}`,endMorning: `${sabadoAm1c}:${sabadoAm2c}`,startNoon: `${sabadoPm1}:${sabadoPm2}`,endNoon:`${sabadoPm1c}:${sabadoPm2c}`}
+    {open:open1,startMorning: `${domingoAm1}:${domingoAm2}`,endMorning:`${domingoAm1c}:${domingoAm2c}`,startNoon: `${domingoPm1}:${domingoPm2}`,endNoon: `${domingoPm1c}:${domingoPm2c}`},
+    {open:open2,startMorning: `${lunesAm1}:${lunesAm2}`,endMorning:`${lunesAm1c}:${lunesAm2c}` ,startNoon:`${lunesPm1}:${lunesPm2}` ,endNoon:`${lunesPm1c}:${lunesPm2c}` },
+    {open:open3,startMorning: `${martesAm1}:${martesAm2}`,endMorning: `${martesAm1c}:${martesAm2c}`,startNoon:`${martesPm1}:${martesPm2}` ,endNoon: `${martesPm1c}:${martesPm2c}`},
+    {open:open4,startMorning:`${miercolesAm1}:${miercolesAm2}` ,endMorning: `${miercolesAm1c}:${miercolesAm2c}`,startNoon:`${miercolesPm1}:${miercolesPm2}` ,endNoon: `${miercolesPm1c}:${miercolesPm2c}`},
+    {open:open5,startMorning: `${juevesAm1}:${juevesAm2}`,endMorning: `${juevesAm1c}:${juevesAm2c}`,startNoon: `${juevesPm1}:${juevesPm2}`,endNoon:`${juevesPm1c}:${juevesPm2c}`},
+    {open:open6,startMorning:`${viernesAm1}:${viernesAm2}` ,endMorning:`${viernesAm1c}:${viernesAm2c}`,startNoon:`${viernesPm1}:${viernesPm2}` ,endNoon: `${viernesPm1c}:${viernesPm2c}`},
+    {open:open7,startMorning: `${sabadoAm1}:${sabadoAm2}`,endMorning: `${sabadoAm1c}:${sabadoAm2c}`,startNoon: `${sabadoPm1}:${sabadoPm2}`,endNoon:`${sabadoPm1c}:${sabadoPm2c}`}
   ]
 
       API.post("/stores",{
@@ -118,7 +135,7 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
         open: daysOpen
       })
         .then((res)=> res.data)
-        .then((data)=> setMessage("Creado Satisfactoriamente"))
+        .then((data)=> setMessage("Creado Satisfactoriamente :)"))
         .catch(err=> setMessage("Lo sentimos, hubo un problema :("))
 
         setTimeout(function(){ setMessage("") }, 6000)
@@ -130,7 +147,7 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
        <View style={styles.viewUser}>
           <Image style={styles.img} source={{uri:myImage }}/>
           {message.length != 0 ?
-          <Text style={message.length == 25 ? styles.text: styles.errorMessage }>{message}</Text>
+          <Text style={message.length == 28 ? styles.text: styles.errorMessage }>{message}</Text>
             :
           <Text style={styles.text}> {myName} </Text>
           }
@@ -250,6 +267,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
           <ScrollView>
           <Text style={styles.text}>¿Que días abris?</Text>
             <Input
+            open={open1}
+            checked={checked2}
+            setChecked={setChecked2}
+            setOpen={setOpen1}
             dia={"Domingo"}
             text1={domingoAm1}
             text2={domingoAm2}
@@ -270,6 +291,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             />
 
             <Input
+            open={open2}
+            checked={checked3}
+            setChecked={setChecked3}
+            setOpen={setOpen2}
             dia={"Lunes"}
             text1={lunesAm1}
             text2={lunesAm2}
@@ -290,6 +315,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             />
 
             <Input
+            open={open3}
+            checked={checked4}
+            setChecked={setChecked4}
+            setOpen={setOpen3}
             dia={"Martes"}
             text1={martesAm1}
             text2={martesAm2}
@@ -310,6 +339,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             />
 
             <Input
+            open={open4}
+            checked={checked5}
+            setChecked={setChecked5}
+            setOpen={setOpen4}
             dia={"Miercoles"}
             text1={miercolesAm1}
             text2={miercolesAm2}
@@ -332,6 +365,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             />
 
             <Input
+            open={open5}
+            checked={checked6}
+            setChecked={setChecked6}
+            setOpen={setOpen5}
             dia={"Jueves"}
             text1={juevesAm1}
             text2={juevesAm2}
@@ -354,6 +391,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             />
 
             <Input
+            open={open6}
+            checked={checked7}
+            setChecked={setChecked7}
+            setOpen={setOpen6}
             dia={"Viernes"}
             text1={viernesAm1}
             text2={viernesAm2}
@@ -375,6 +416,10 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             handleChange4c={handleChange("viernesPm2c")}
             />
             <Input
+            open={open7}
+            checked={checked8}
+            setChecked={setChecked8}
+            setOpen={setOpen7}
             dia={"Sabado"}
             text1={sabadoAm1}
             text2={sabadoAm2}
