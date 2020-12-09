@@ -6,18 +6,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import OneButton from './OneButton'
 
-const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
+const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handleBackBoolean, textbtn2}) => {
  
     const [quantity, setQuantity] = useState(''); 
     const [ingredient, setIngredient] = useState('');    
     const [data, setData] = useState([]);
 
     {if(bool){
-        
-
         return (
             
-            <View style={{marginTop: 100}}>   
+        <View style={{marginTop: 100}}>   
             <Text style={styles.title}>Ingresa tu propia receta</Text>
           <View style={styles.container}>
 
@@ -55,8 +53,9 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
             
             <MaterialChip
              text={item.quantity + " de " + item.ingredient}
-             onPress={() => console.log('press')}
-             onDelete={() => console.log('delete')}
+             onPress={() => console.log('item', item)}
+             onDelete={() => {console.log('item', item)
+            }}
              style={{borderStartColor: "green", borderTopColor: "green", borderBottomColor: "green", borderEndColor: "green"}}
              //style={{borderColor:"green"}}
              rightIcon={
@@ -64,7 +63,7 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
                    style={{
                        height: MaterialChip.CHIP_RIGHT_ICON_SIZE,
                        width: MaterialChip.CHIP_RIGHT_ICON_SIZE,
-                    borderRadius: MaterialChip.CHIP_RIGHT_ICON_RADIUS,
+                       borderRadius: MaterialChip.CHIP_RIGHT_ICON_RADIUS,
                       //backgroundColor: 'black',
                        borderWidth: 0,
                       default: true
@@ -80,7 +79,13 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
         
         />
 
-           
+            <TouchableOpacity 
+                onPress={()=>{handleBackBoolean()}}
+                style={styles.boton}> 
+                
+              <Text style={styles.title}>{textbtn2}</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity 
                 onPress={()=>{handleChange(data), handleBoolean()}}
                   style={styles.boton}> 
@@ -88,6 +93,9 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
                   <Text style={styles.title}>{textbtn}</Text>
             </TouchableOpacity>
     
+
+
+
             </View>
  
     
