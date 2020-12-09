@@ -1,15 +1,14 @@
 import { IM_IN } from "../constant";
-import { ROUTE_PARAM } from '../constant'
 
 const initialState = {
-  route: 0
-}
+  route: 0,
+};
 
-export default (state = initialState, { type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case IM_IN:
-      return{ ...state, route: payload}
+      return { ...state, route: payload };
     default:
-      return state
+      return state;
   }
-}
+};

@@ -37,11 +37,12 @@ const SingleRecipe = ({
   ownerImage,
   ownerName,
   ownerId,
+  isFav,
+  handleFav,
 }) => {
   const navigation = useNavigation();
   const [showSteps, setShowSteps] = useState(false);
-  const [ingredientsList, setIngredientsList] = useState(false);
-  const [isFav, setIsFav] = useState(false);
+  const [showIngredients, setShowIngredients] = useState(false);
 
   return (
     <ScrollView style={{ backgroundColor: "#F1F4FB" }}>
@@ -50,10 +51,7 @@ const SingleRecipe = ({
           style={styles.image}
           source={{ uri: image !== "" ? image : recipeImg }}
         />
-        <TouchableOpacity
-          style={styles.favButton}
-          onPress={() => setIsFav(!isFav)}
-        >
+        <TouchableOpacity style={styles.favButton} onPress={() => handleFav()}>
           <Icon
             style={styles.favIcon}
             name={isFav ? "cards-heart" : "heart-outline"}
@@ -78,8 +76,8 @@ const SingleRecipe = ({
         </TouchableOpacity>
 
         <Text style={styles.text}>Ingredientes</Text>
-        <TouchableOpacity onPress={() => setIngredientsList(!ingredientsList)}>
-          {ingredientsList ? (
+        <TouchableOpacity onPress={() => setShowIngredients(!showIngredients)}>
+          {showIngredients ? (
             <>
               {ingredients.map((e, index) => (
                 <Ingredient
