@@ -12,6 +12,10 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
     const [ingredient, setIngredient] = useState('');    
     const [data, setData] = useState([]);
 
+    const deleteData = (input) => {
+      setData(data.filter((e) => e !== input));
+    };
+
     {if(bool){
         return (
             
@@ -54,8 +58,7 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
             <MaterialChip
              text={item.quantity + " de " + item.ingredient}
              onPress={() => console.log('item', item)}
-             onDelete={() => {console.log('item', item)
-            }}
+             onDelete={() => deleteData(item)}
              style={{borderStartColor: "green", borderTopColor: "green", borderBottomColor: "green", borderEndColor: "green"}}
              //style={{borderColor:"green"}}
              rightIcon={

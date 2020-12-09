@@ -13,6 +13,10 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
     const [instruc, setInstruc] = useState([]);    
     const [data, setData] = useState('');
 
+    const deleteInstruc = (input) => {
+      setInstruc(instruc.filter((e) => e !== input));
+    };
+
     {if(bool){
         
 
@@ -50,7 +54,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
             <MaterialChip
              text={index+1  + ". " + item}
              onPress={() => console.log('press')}
-             onDelete={() => console.log('delete')}
+             onDelete={() => deleteInstruc(item)}
              style={styles.chip}
              rightIcon={
                <View

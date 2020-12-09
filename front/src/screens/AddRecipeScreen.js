@@ -17,9 +17,6 @@ import AddIngredientes from '../components/AddIngredientes'
 import {postRecipe, fetchRecipes} from '../store/actions/recipes'
 
 
-const usuario = {"_id":{"$oid":"5fbff02945ba1f57318a8346"},"role":"User","favsRecipe":[],"favsProducts":[],"favsStores":[],"active":true,"name":"Maxi","email":"maxi@maxi.com","password":"$2b$10$Q8vyA/7fzWhDPwl9Ieu50.rW5cCU09J5WTLDh5D4/ypWkaNJ/lwIi","__v":{"$numberInt":"0"},"image":"https://es.toluna.com/dpolls_images/2014/09/04/be776fe2-c6da-48f8-b907-db8fdfa81ca7_x365.jpg"}
-
-
 const AddRecipeScreen = ({}) => {
 
     const navigation = useNavigation();
