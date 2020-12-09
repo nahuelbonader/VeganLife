@@ -48,12 +48,7 @@ const GoogleLoginComponent = () => {
             .signInWithCredential(credential)
             .then((res) => {
               if (res.additionalUserInfo.isNewUser === true) {
-                const {
-                  uid,
-                  displayName,
-                  photoURL,
-                  email,
-                } = res.user.providerData;
+                const { email, uid, displayName, photoURL } = res.user;
                 registerUser({
                   email,
                   name: displayName,
