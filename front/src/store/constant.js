@@ -17,3 +17,4 @@ export const IM_IN = "IM_IN";
 //SEARCH
 export const SEARCH = "SEARCH";
 export const PRESSED = "PRESSED";
+export const SHOW_IT = "SHOW_IT"
