@@ -17,8 +17,11 @@ export const IM_IN = "IM_IN";
 //SEARCH
 export const SEARCH = "SEARCH";
 export const PRESSED = "PRESSED";
+export const SHOW_IT = "SHOW_IT"
+
 
 //FAVOURITES
 export const SET_FAVS_RECIPES = "SET_FAVS_RECIPES";
 export const SET_FAVS_PRODUCTS = "SET_FAVS_PRODUCTS";
 export const SET_FAVS_STORES = "SET_FAVS_STORES";
+
