@@ -5,6 +5,8 @@ import usersReducer from "./usersReducer";
 import bottomRouteReducer from "./bottomRouteReducer";
 import storesReducer from "./storesReducer";
 import searchReducer from "./searchReducer";
+import favouritesReducer from "./favouritesReducer";
+
 export default combineReducers({
   recipesReducer,
   categoriesReducer,
@@ -12,4 +14,5 @@ export default combineReducers({
   bottomRouteReducer,
   storesReducer,
   searchReducer,
+  favouritesReducer,
 });

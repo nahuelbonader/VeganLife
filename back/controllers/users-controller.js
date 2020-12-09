@@ -46,7 +46,7 @@ const UserController = {
             name: user.name,
             email: user.email,
             role: user.role,
-            image: user.image
+            image: user.image,
           });
         });
       })
@@ -54,6 +54,7 @@ const UserController = {
   },
   findById(req, res, next) {
     User.findById(req.params.id)
+      .populate({ path: "favsRecipes", select: ["image"] })
       .then((user) =>
         user
           ? res.send({
