@@ -7,7 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import OneButton from './OneButton'
 
-const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
+const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2, handleBackBoolean}) => {
  
 
     const [instruc, setInstruc] = useState([]);    
@@ -21,46 +21,48 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
             <View style={{marginTop: 100}}>   
             <Text style={styles.title}>Ingresa tu propia receta</Text>
           <View style={styles.container}> 
+            <View style={styles.container}> 
+            <TextInput 
+              style={styles.input}
+              placeholder={ph}
+              onChangeText={setData}
+              value={data}
+              multiline
+              
+            />
 
-          <TextInput 
-            style={styles.input}
-            placeholder={ph}
-            onChangeText={setData}
-            value={data}
-            
-          />
-
-            <TouchableOpacity 
-                onPress={()=>{setInstruc([...instruc, data]), setData("")}}
-                style={styles.icon}> 
-                
-                <MaterialIcons name="add" size={25} />
-            </TouchableOpacity>
+              <TouchableOpacity 
+                  onPress={()=>{setInstruc([...instruc, data]), setData("")}}
+                  style={styles.icon}> 
+                  
+                  <MaterialIcons name="add" size={25} />
+              </TouchableOpacity>
+              </View>
             </View>
             <FlatList
         
         data={instruc}
         renderItem={({ item, index }) => (
             
-          <View>  
-            {/* <Text >{index+1}. {item}</Text> */}
-
-
+          <View
+          style={{flex:1}}
+          >  
             <MaterialChip
              text={index+1  + ". " + item}
              onPress={() => console.log('press')}
              onDelete={() => console.log('delete')}
-             style={{borderStartColor: "green", borderTopColor: "green", borderBottomColor: "green", borderEndColor: "green"}}
-             //style={{borderColor:"green"}}
+             style={styles.chip}
              rightIcon={
                <View
                    style={{
                        height: MaterialChip.CHIP_RIGHT_ICON_SIZE,
                        width: MaterialChip.CHIP_RIGHT_ICON_SIZE,
-                    borderRadius: MaterialChip.CHIP_RIGHT_ICON_RADIUS,
-                      //backgroundColor: 'black',
+                       borderRadius: MaterialChip.CHIP_RIGHT_ICON_RADIUS,
                        borderWidth: 0,
-                      default: true
+                      default: true,
+                      marginHorizontal: 5,
+                      maxWidth: 100
+                      
                  }}
                   ><MaterialCommunityIcons name="close-circle-outline" size={20} /></View>}
             />
@@ -72,6 +74,12 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
         
         />
 
+            <TouchableOpacity 
+                onPress={()=>{handleBackBoolean()}}
+                  style={styles.boton}> 
+                
+                  <Text style={styles.title}>{textbtn2}</Text>
+            </TouchableOpacity>
            
             <TouchableOpacity 
                 onPress={()=>{handleChange(instruc), handleBoolean()}}
@@ -97,6 +105,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
       marginTop: 100,
       flexDirection: "row",
       marginBottom: 20,
+      marginHorizontal:10
 
     },
     title:{
@@ -126,6 +135,14 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean}) => {
       marginTop: 25
 
     },
+    chip: {
+      flex: 1,
+      borderStartColor: "green", 
+      borderTopColor: "green", 
+      borderBottomColor: "green", 
+      borderEndColor: "green",
+
+    }
   }
     
     )

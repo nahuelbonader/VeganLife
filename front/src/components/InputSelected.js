@@ -10,7 +10,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 
 import OneButton from './OneButton'
 
-const InputSelected = ({ textbtn, bool, ph, handleChange, handleBoolean, categories }) => {
+const InputSelected = ({ textbtn, bool, ph, handleChange, handleBoolean, categories, handleBackBoolean, textbtn2 }) => {
 
     let data = []
       { if(bool){
@@ -31,10 +31,15 @@ const InputSelected = ({ textbtn, bool, ph, handleChange, handleBoolean, categor
           data={data}
           />
 
-          <OneButton 
-            handleBoolean={handleBoolean}
-            textbtn={textbtn}
-            />
+        {ph=="Titulo de la receta"?  
+          <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
+          :
+          <View> 
+          <OneButton handleBoolean={handleBackBoolean} textbtn={textbtn2} />
+          <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
+          </View>
+          }
+
           </View>
 )
       }else{
