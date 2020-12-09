@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
-import {ScrollView, Text, View, Keyboard, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../store/actions/categories";
-import MaterialChip from "react-native-material-chip"
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useNavigation } from "@react-navigation/native";
 
 import AddRecipeStep1 from '../components/AddRecipeStep1'
 import InputSelected from '../components/InputSelected'
 import ListSelected from '../components/ListSelected'
-import ChipSelected from '../components/ChipSelected'
 import SingleRecipeEdit from '../components/SingleRecipeEdit'
 import AddIngredientes from '../components/AddIngredientes'
 
-import {postRecipe, fetchRecipes} from '../store/actions/recipes'
-
-
-const usuario = {"_id":{"$oid":"5fbff02945ba1f57318a8346"},"role":"User","favsRecipe":[],"favsProducts":[],"favsStores":[],"active":true,"name":"Maxi","email":"maxi@maxi.com","password":"$2b$10$Q8vyA/7fzWhDPwl9Ieu50.rW5cCU09J5WTLDh5D4/ypWkaNJ/lwIi","__v":{"$numberInt":"0"},"image":"https://es.toluna.com/dpolls_images/2014/09/04/be776fe2-c6da-48f8-b907-db8fdfa81ca7_x365.jpg"}
+import {postRecipe} from '../store/actions/recipes'
 
 
 const AddRecipeScreen = ({}) => {
@@ -37,8 +30,7 @@ const AddRecipeScreen = ({}) => {
     const [bool5, setBool5] = useState(false);
     const [bool6, setBool6] = useState(false);
     const dispatch = useDispatch();
-
-    
+    const user = useSelector((state) => state.usersReducer.user);
 
     const categories = useSelector((state) => state.categoriesReducer.categories);
 
@@ -51,10 +43,8 @@ const AddRecipeScreen = ({}) => {
             ingredients: recipe.ingredients,
             instructions: recipe.instructions,
             category: catId, 
-            owner: usuario._id.$oid
+            owner: user._id
         }))
-        dispatch(fetchRecipes())
-        
         navigation.navigate("Feed")
 
         setBool1(true)
@@ -66,10 +56,6 @@ const AddRecipeScreen = ({}) => {
         
         }
 
-
-    useEffect(() => {
-        dispatch(fetchCategories());
-      }, []);
 
     return (
         <ScrollView>
@@ -129,8 +115,9 @@ const AddRecipeScreen = ({}) => {
             ingredients={ingredients}
             instructions={instructions}
             category={category}
-            owner={usuario}
+            owner={user}
             handleSubmit={handleSubmit}
+            handleBackBoolean={()=>{setBool6(!bool6), setBool5(!bool5)}} 
             />
         </ScrollView>
       );

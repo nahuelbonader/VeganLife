@@ -66,9 +66,10 @@ const GoogleLoginComponent = () => {
             })
             .catch((error) => console.log(error));
         } else {
-          dispatch(
-            fetchUser({ email: googleUser.email, fuid: googleUser.id })
-          ).then(() => navigation.navigate("Home"));
+          const { email, id } = googleUser.user;
+          dispatch(fetchUser({ email, fuid: id })).then(() =>
+            navigation.navigate("Home")
+          );
         }
       });
   };

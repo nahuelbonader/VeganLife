@@ -36,30 +36,30 @@ const FavouritesControllers = {
   //--------------------------Recipes---------------------------------------------
   showFavRecipes(req, res, next) {
     User.findById(req.params.userId)
-      .populate({ path: "favsRecipe", select: "title" })
-      .then((user) => res.send(user.favsRecipe))
+      .populate({ path: "favsRecipes", select: "title" })
+      .then((user) => res.send(user.favsRecipes))
       .catch((err) => next(err));
   },
 
   addFavRecipe(req, res, next) {
     User.findById(req.params.userId)
+      .populate({ path: "favsRecipes", select: "title" })
       .then((user) => {
-        user.favsRecipe.push(req.params.recipeId);
+        user.favsRecipes.unshift(req.body);
         user.save();
-        res.status(201).send(user.favsRecipe);
+        res.status(201).send(user.favsRecipes);
       })
       .catch((err) => next(err));
   },
 
-  deleteFavrecipe(req, res, next) {
-    User.findById(req.params.userId)
-      .populate({ path: "favsRecipe", select: "title" })
+  deleteFavRecipe(req, res, next) {
+    const { userId, recipeId } = req.params;
+    User.findById(userId)
+      .populate({ path: "favsRecipes", select: "title" })
       .then((user) => {
-        user.favsRecipe = user.favsRecipe.filter(
-          (e) => e._id != req.params.recipeId
-        );
+        user.favsRecipes = user.favsRecipes.filter((e) => e._id != recipeId);
         user.save();
-        res.send(user.favsRecipe);
+        res.send(user.favsRecipes);
       })
       .catch((err) => next(err));
   },

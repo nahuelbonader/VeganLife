@@ -7,13 +7,15 @@ const initialState = {
   showSearchBar: true
 }
 
-export default (state = initialState, { type, payload}) => {
+
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case IM_IN:
       return{ ...state, route: payload}
     case SHOW_IT:
       return{ ...state, showSearchBar: payload}
+
     default:
-      return state
+      return state;
   }
-}
+};

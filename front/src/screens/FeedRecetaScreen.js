@@ -5,6 +5,7 @@ import { fetchRecipes } from "../store/actions/recipes";
 import { fetchCategories } from "../store/actions/categories";
 import { fetchUser, fetchUsers } from "../store/actions/users";
 import { fetchStores } from '../store/actions/stores'
+import { fetchFavsRecipes } from "../store/actions/favourites";
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
 import Recipes from "../components/ListRecipes";
@@ -34,6 +35,7 @@ const FeedRecetaScreen = ({ navigation }) => {
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchRecipes());
+    dispatch(fetchFavsRecipes(user._id));
     dispatch(fetchUsers());
     dispatch(fetchStores())
     if (!user._id) checkIfLogged();
