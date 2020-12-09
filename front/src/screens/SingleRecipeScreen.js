@@ -3,7 +3,9 @@ import SingleRecipe from "../components/SingleRecipe";
 import { useSelector } from "react-redux";
 
 const Recipe = ({ route }) => {
-  const recipes = useSelector((state) => state.recipesReducer.recipes);
+  const { recipes } = useSelector((state) => state.recipesReducer);
+  const { user } = useSelector((state) => state.usersReducer);
+
   [recipeSelected] = recipes.filter((r) => r._id == route.params.recipeId);
   const { image, ingredients, title, instructions, owner } = recipeSelected;
 
