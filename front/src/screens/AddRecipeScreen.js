@@ -37,8 +37,7 @@ const AddRecipeScreen = ({}) => {
     const [bool5, setBool5] = useState(false);
     const [bool6, setBool6] = useState(false);
     const dispatch = useDispatch();
-
-    
+    const user = useSelector((state) => state.usersReducer.user);
 
     const categories = useSelector((state) => state.categoriesReducer.categories);
 
@@ -51,9 +50,8 @@ const AddRecipeScreen = ({}) => {
             ingredients: recipe.ingredients,
             instructions: recipe.instructions,
             category: catId, 
-            owner: usuario._id.$oid
+            owner: user._id
         }))
-        dispatch(fetchRecipes())
         
         navigation.navigate("Feed")
 
@@ -66,10 +64,6 @@ const AddRecipeScreen = ({}) => {
         
         }
 
-
-    useEffect(() => {
-        dispatch(fetchCategories());
-      }, []);
 
     return (
         <ScrollView>
@@ -129,8 +123,9 @@ const AddRecipeScreen = ({}) => {
             ingredients={ingredients}
             instructions={instructions}
             category={category}
-            owner={usuario}
+            owner={user}
             handleSubmit={handleSubmit}
+            handleBackBoolean={()=>{setBool6(!bool6), setBool5(!bool5)}} 
             />
         </ScrollView>
       );
