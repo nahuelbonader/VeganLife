@@ -1,45 +1,45 @@
 import React from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 
-import MaterialChip from "react-native-material-chip"
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialChip from "react-native-material-chip";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import OneButton from './OneButton'
+import OneButton from "./OneButton";
 
-const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean }) => {
-
- 
-      { if(bool){
-
-        return (
-
-        <View style={{marginTop: 100}}>
-
+const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean, textbtn2, handleBackBoolean, value }) => {
+  {
+    if (bool) {
+      return (
+        <View style={{ marginTop: 100 }}>
           <Text style={styles.title}>Ingresa tu propia receta</Text>
-          <TextInput 
+          <TextInput
             style={styles.input}
             placeholder={ph}
-            onChangeText={(evt)=>handleChange(evt)}
-            
+            onChangeText={(evt) => handleChange(evt)}
+            value={value}
           />
-          <OneButton 
-            handleBoolean={handleBoolean}
-            textbtn={textbtn}
-            />
-          </View>
-)
-
-      }else{
-        return null
-      }
-    
-    
-    }
         
-        /* <InputDataRecipe  title={"Ingredientes"}/>
+          {ph=="Titulo de la receta"?  
+          <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
+          :
+          <View> 
+          <OneButton handleBoolean={handleBackBoolean} textbtn={textbtn2} />
+          <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
+          </View>
+          }  
+          
+        
+        </View>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  /* <InputDataRecipe  title={"Ingredientes"}/>
         <InputDataRecipe  title={"Paso a paso"}/>
         <InputDataRecipe  title={"Categoria (solo 1?)"}/> */
-        /* <MaterialChip
+  /* <MaterialChip
         text="Example"
         onPress={() => console.log('press')}
         onDelete={() => console.log('delete')}
@@ -57,31 +57,27 @@ const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean }) => {
               }}
               ><MaterialCommunityIcons name="close-circle-outline" size={20} /></View>}
         /> */
-            
-  };
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: 100
-    },
-    title:{
-      fontSize:20,
-      textAlign: "center",
-      fontWeight: "bold"
-    },
-    input:{
-      //backgroundColor: '#000000',
-      fontSize: 20, 
-      borderBottomColor: "#35b056",
-      borderBottomWidth: 2,
-      marginTop: 25,
-      padding: 10 ,
-      marginHorizontal: 40
-    }
-  });
-  
-  export default AddRecipeStep1;
-  
+};
 
-  
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 100,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  input: {
+    //backgroundColor: '#000000',
+    fontSize: 20,
+    borderBottomColor: "#35b056",
+    borderBottomWidth: 2,
+    marginTop: 25,
+    padding: 10,
+    marginHorizontal: 40,
+  },
+});
+
+export default AddRecipeStep1;

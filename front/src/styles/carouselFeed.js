@@ -1,16 +1,22 @@
-import colors from "./colors";
 import { StyleSheet } from "react-native";
-
+import normalize from "react-native-normalize";
+import colors from "./colors";
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
-    color: colors.font,
+    borderRadius: 15,
+    borderBottomColor: colors.darkGray,
+    borderBottomWidth: 1,
+    paddingBottom: normalize(15),
+    marginBottom: normalize(15),
+  },
+  title: {
+    marginLeft: normalize(15),
+    marginBottom: normalize(10),
     fontSize: 20,
-    marginLeft: 15,
-    fontWeight: "300",
+    color: colors.font,
+    fontWeight: "500",
     textTransform: "uppercase",
-    borderRadius: 8,
   },
   text: {
     fontSize: 15,
@@ -21,12 +27,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   image: {
-    marginTop: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    width: 390,
+    alignSelf: "center",
+    width: "95%",
     height: 180,
-    marginLeft: 7,
     shadowColor: "black",
     shadowOpacity: 1,
     shadowOffset: {
@@ -35,9 +38,6 @@ const styles = StyleSheet.create({
     },
     borderRadius: 18,
   },
-  carousel: {
-    borderRadius: 5,
-  },
 });
 
-export default styles
+export default styles;

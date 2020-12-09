@@ -7,11 +7,10 @@ import "firebase/auth";
 import useInputs from "../hooks/useInputs";
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
-import GoogleLoginComponent from '../components/GoogleLoginComponent'
+import GoogleLoginComponent from "../components/GoogleLoginComponent";
 import AccessButtons from "../components/AccessButtons";
 import { errors, alerts } from "../utils/errors-alerts";
 import styles from "../styles/login-register";
-
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -19,31 +18,11 @@ const Login = ({ navigation }) => {
   const { email, password } = inputs;
   const [errorMessage, setError] = useState("");
 
-  const checkIfLogged = () =>{
-
-    firebase.auth().onAuthStateChanged(user=>{
-        if(user){
-            //console.log('USUARIO LOGUEADO',user)
-            navigation.navigate("Home")
-        }else{
-            console.log('usuario no logueado')
-        }
-    })
-
-}
-
-    useEffect (()=>{
-      checkIfLogged()
-    }, [])
-
-
-
-
   const handleSubmit = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((res) => dispatch(fetchUser(res.user.uid)))
+      .then((res) => dispatch(fetchUser({ email, fuid: res.user.uid })))
       .then(() => navigation.navigate("Home"))
       .catch((err) => {
         const error = String(err);
@@ -74,8 +53,8 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
         />
 
-        <GoogleLoginComponent/>
-        
+        <GoogleLoginComponent />
+
         <Text style={styles.alert}>{errorMessage}</Text>
         <AccessButtons
           onPressBtn={handleSubmit}
@@ -84,9 +63,6 @@ const Login = ({ navigation }) => {
           onPressInvitation={() => navigation.navigate("Register")}
           invitation="Registrate"
         />
-        
-        
-
       </View>
     </TouchableWithoutFeedback>
   );

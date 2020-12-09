@@ -7,8 +7,9 @@ const Categories = ({ categorias }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text style={styles.textContainer}>Categorias</Text>
+      <Text style={styles.title}>Categorias</Text>
       <FlatList
+        contentContainerStyle={styles.carousel}
         data={categorias}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -24,7 +25,6 @@ const Categories = ({ categorias }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
       />
-      
     </View>
   );
 };

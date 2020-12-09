@@ -7,18 +7,17 @@ import styles from "../styles/carouselFeed";
 const CarouselFeed = ({ randomRecipe }) => {
   const navigation = useNavigation();
   return (
-    <View>
-      <Text style={styles.container}> V-Cook del Día </Text>
+    <View style={styles.container}>
+      <Text style={styles.title}> V-Cook del Día </Text>
       <Carousel
-        style={styles.carousel}
         data={randomRecipe}
         sliderWidth={410}
         itemWidth={400}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Recipe", { recipeId: item._id });
-            }}
+            onPress={() =>
+              navigation.navigate("Recipe", { recipeId: item._id })
+            }
           >
             <Image style={styles.image} source={{ uri: item.image }}></Image>
             <Text style={styles.text}> {item.title} </Text>

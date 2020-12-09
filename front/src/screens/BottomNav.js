@@ -1,35 +1,32 @@
-import * as React from 'react';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useTheme, Portal, FAB, Provider } from 'react-native-paper'
-import {Text, StyleSheet} from 'react-native'
-import { useNavigation } from "@react-navigation/native";
+import * as React from "react";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Portal, FAB, Provider } from "react-native-paper";
+import { Text, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
-import setRoute from '../store/actions/BottomRoutes'
-
-import AddRecipeScreen from './AddRecipeScreen'
-import FeedRecetas from './FeedRecetaScreen'
-import Search from './SearchScreen'
+import setRoute from "../store/actions/bottomRoutes";
+import AddRecipeScreen from "./AddRecipeScreen";
+import FeedRecetas from "./FeedRecetaScreen";
+import Search from "./SearchScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
-const Map = () => <Text>Map</Text>
-const PostRecipe = () => <Text>PostRecipe</Text>
+const Map = () => <Text>Map</Text>;
+const PostRecipe = () => <Text>PostRecipe</Text>;
 
-const BottomNav = ({navigation}) => {
+const BottomNav = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const { index, routes } = navigation.dangerouslyGetState();
+  const currentRoute = routes[index].state ? routes[index].state.index : 0;
 
-  const dispatch = useDispatch()
-  const { index, routes } = navigation.dangerouslyGetState()
-  const currentRoute = routes[index].state? routes[index].state.index : 0
+  const [state, setState] = React.useState({ open: false });
+  const onStateChange = ({ open }) => setState({ open });
+  const { open } = state;
 
-    const [state, setState] = React.useState({ open: false });
-    const onStateChange = ({ open }) => setState({ open });
-    const { open } = state;
-
-    React.useEffect(()=>{
-      dispatch(setRoute(currentRoute))
-    },[currentRoute])
+  React.useEffect(() => {
+    dispatch(setRoute(currentRoute));
+  }, [currentRoute]);
 
   return (
     <React.Fragment>
