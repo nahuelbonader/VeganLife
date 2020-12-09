@@ -5,11 +5,8 @@ import MaterialChip from "react-native-material-chip"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import OneButton from './OneButton'
-
 const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2, handleBackBoolean}) => {
  
-
     const [instruc, setInstruc] = useState([]);    
     const [data, setData] = useState('');
 
@@ -53,7 +50,6 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
           >  
             <MaterialChip
              text={index+1  + ". " + item}
-             //onPress={() => console.log('press')}
              onDelete={() => deleteInstruc(item)}
              style={styles.chip}
              rightIcon={

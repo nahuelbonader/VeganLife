@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
-import {ScrollView, Text, View, Keyboard, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../store/actions/categories";
-import MaterialChip from "react-native-material-chip"
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { useNavigation } from "@react-navigation/native";
 
 import AddRecipeStep1 from '../components/AddRecipeStep1'
 import InputSelected from '../components/InputSelected'
 import ListSelected from '../components/ListSelected'
-import ChipSelected from '../components/ChipSelected'
 import SingleRecipeEdit from '../components/SingleRecipeEdit'
 import AddIngredientes from '../components/AddIngredientes'
 
-import {postRecipe, fetchRecipes} from '../store/actions/recipes'
+import {postRecipe} from '../store/actions/recipes'
 
 
 const AddRecipeScreen = ({}) => {
@@ -49,7 +45,6 @@ const AddRecipeScreen = ({}) => {
             category: catId, 
             owner: user._id
         }))
-        
         navigation.navigate("Feed")
 
         setBool1(true)
