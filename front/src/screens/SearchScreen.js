@@ -1,115 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   FlatList,
-  Image,
-  StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { useSelector } from "react-redux";
-import { userIcon } from "../utils/constants";
+import User from "../components/UserCardSearcher";
+import Recipe from "../components/RecipeCardSearcher";
+import styles from "../styles/searchScreen";
 
-const Search = ({ navigation }) => {
-  const content = useSelector((state) => state.searchContentReducer.content);
-  const param = useSelector((state) => state.searchContentReducer.param);
+const Search = () => {
+  const tabs = {
+    r: "Recetas",
+    u: "Usuarios",
+    s: "Comercios",
+    p: "Productos",
+  };
+
+  const { search } = useSelector((state) => state.searchReducer);
+  const { recipes } = useSelector((state) => state.recipesReducer);
+  const { users } = useSelector((state) => state.usersReducer);
+  const [tabSelected, setTabSelected] = useState(tabs["r"]);
+
+  const filteredRecipes = recipes.filter((r) =>
+    r.title.toLowerCase().includes(search.toLowerCase())
+  );
+  const filteredUsers = users.filter((u) =>
+    u.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const data = {
+    [tabs["r"]]: filteredRecipes,
+    [tabs["u"]]: filteredUsers,
+    // [tabs["s"]]: filteredStores,
+    // [tabs["p"]]: filteredProducts,
+  };
+
+  const Tab = ({ tab }) => (
+    <TouchableOpacity onPress={() => setTabSelected(tab)}>
+      <Text
+        style={tabSelected == tab ? styles.touchActive : styles.touchInactive}
+      >
+        {tab}
+      </Text>
+    </TouchableOpacity>
+  );
+
+  const renderItem = (item) => {
+    switch (tabSelected) {
+      case tabs["r"]:
+        return <Recipe recipe={item} />;
+      case tabs["u"]:
+        return <User user={item} />;
+      // case tabs["p"]:
+      // return <Product item={item} />;
+      // case tabs["s"]:
+      // return <Store item={item} />;
+    }
+  };
 
   return (
-    <View style={styles.generalView}>
-      {param == "recipes" ? (
+    <View style={styles.view}>
+      <View style={styles.tabsContainer}>
+        <Tab tab={tabs["r"]} />
+        <Tab tab={tabs["u"]} />
+        <Tab tab={tabs["p"]} />
+        <Tab tab={tabs["s"]} />
+      </View>
+      <SafeAreaView style={styles.results}>
         <FlatList
+          style={styles.list}
           keyExtractor={(content) => content._id}
-          data={content}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("Recipe", { recipeId: item._id })
-                }
-              >
-                <View style={styles.imgView}>
-                  <Image style={styles.image} source={{ uri: item.image }} />
-                  <View style={styles.textView}>
-                    <Text style={styles.title}>
-                      {item.title.length > 30
-                        ? item.title.substr(0, 35) + "..."
-                        : item.title}
-                    </Text>
-                    <Text style={styles.text}>{item.instructions[0]}</Text>
-                    <Text style={styles.author}> By: {item.owner.name}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
+          data={data[tabSelected]}
+          renderItem={({ item }) => renderItem(item)}
         />
-      ) : param == "users" ? (
-        <FlatList
-          keyExtractor={(content) => content.email}
-          data={content}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity>
-                <View style={styles.imgView}>
-                  <Image
-                    style={styles.image}
-                    source={{ uri: item.image ? item.image : userIcon }}
-                  />
-                  <View style={styles.textView}>
-                    <Text style={styles.title2}>
-                      {item.name.length > 30
-                        ? item.title.substr(0, 35) + "..."
-                        : item.name}
-                    </Text>
-                    <Text style={styles.author}>{item.role}</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
-      ) : null}
+      </SafeAreaView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  generalView: {
-    marginHorizontal: "5%",
-    flex: 1,
-  },
-  image: {
-    width: 90,
-    height: 90,
-    borderRadius: 100,
-    marginVertical: "5%",
-    marginHorizontal: "2%",
-  },
-  imgView: {
-    flexDirection: "row",
-    borderRadius: 25,
-    backgroundColor: "#EAEEF5",
-    marginTop: "4%",
-  },
-  title: {
-    fontWeight: "bold",
-    marginVertical: "3%",
-  },
-  text: {
-    color: "#8A8A8A",
-  },
-  textView: {
-    flexDirection: "column",
-  },
-  author: {
-    justifyContent: "flex-end",
-    marginTop: "5%",
-    color: "green",
-  },
-  title2: {
-    fontWeight: "bold",
-    marginVertical: "15%",
-  },
-});
 
 export default Search;

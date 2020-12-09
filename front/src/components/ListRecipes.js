@@ -4,7 +4,7 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
-  View,
+  SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/listRecipes";
@@ -13,7 +13,7 @@ const ListRecipes = ({ recipes }) => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         numColumns={2}
         contentContainerStyle={styles.flatlist}
@@ -35,9 +35,9 @@ const ListRecipes = ({ recipes }) => {
           </TouchableOpacity>
         )}
         keyExtractor={(recipes) => recipes._id}
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

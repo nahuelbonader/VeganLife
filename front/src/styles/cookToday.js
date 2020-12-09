@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontSize: normalize(20),
     borderColor: colors.font,
     borderWidth: 1,
-    borderRadius: normalize(25),
+    borderRadius: normalize(50),
     marginVertical: normalize(10),
     width: "85%",
   },
