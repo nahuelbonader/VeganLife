@@ -65,7 +65,7 @@ const BottomNav = ({navigation}) => {
           />
           <Tab.Screen
             name="Map"
-            component={Map}
+            component={{ onPress: () => navigation.navigate("Map")}}
             options={{
               tabBarLabel: "Map",
               tabBarIcon: ({ color }) => (

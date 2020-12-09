@@ -11,6 +11,7 @@ import BottomNav from './BottomNav'
 import CookToday from './CookTodayScreen'
 import Profile from './ProfileScreen'
 import StoreFeed from "./FeedStoresScreen";
+import Map from "../components/Map"
 
 const Stack = createStackNavigator()
 
@@ -31,6 +32,7 @@ const FeedStack = () => {
       <Stack.Screen name="CookToday" component={CookToday} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="StoreFeed" component={StoreFeed} />
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 }
