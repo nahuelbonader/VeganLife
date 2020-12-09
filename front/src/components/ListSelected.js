@@ -53,7 +53,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
           >  
             <MaterialChip
              text={index+1  + ". " + item}
-             onPress={() => console.log('press')}
+             //onPress={() => console.log('press')}
              onDelete={() => deleteInstruc(item)}
              style={styles.chip}
              rightIcon={

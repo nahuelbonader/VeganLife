@@ -57,7 +57,7 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
             
             <MaterialChip
              text={item.quantity + " de " + item.ingredient}
-             onPress={() => console.log('item', item)}
+             //onPress={() => console.log('item', item)}
              onDelete={() => deleteData(item)}
              style={{borderStartColor: "green", borderTopColor: "green", borderBottomColor: "green", borderEndColor: "green"}}
              //style={{borderColor:"green"}}
