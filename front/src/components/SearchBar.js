@@ -1,44 +1,50 @@
-import React from 'react'
-import { View, TextInput, StyleSheet} from 'react-native'
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setPressed } from "../store/actions/search";
+import { View, TextInput, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import styles from "../styles/searchBar";
 
-const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
+const SearchBar = ({ search, setSearch }) => {
+  const { pressed } = useSelector((state) => state.searchReducer);
+  const dispatch = useDispatch();
 
   return (
-    <View style={styles.backgroundStyle}>
-         <Ionicons style={styles.IconStyle} name="md-search" size={24} color="black" />
-        <TextInput
-         style={styles.searchStyle}
-         autoCapitalize="none"
-         autoCorrect={false}
-         placeholder= "Search"
-         value={term}
-         onChangeText= {newTerm => onTermChange(newTerm)}
-         onEndEditing={onTermSubmit}
-         />
-
+    <View style={styles.container}>
+      {!pressed ? (
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => dispatch(setPressed(true))}
+        >
+          <Ionicons
+            style={styles.searchIcon}
+            name="md-search"
+            size={24}
+            color="black"
+          />
+        </TouchableOpacity>
+      ) : (
+        <>
+          <TextInput
+            autoFocus={true}
+            style={styles.input}
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={search}
+            onChangeText={setSearch}
+            placeholder="Search"
+          />
+          <Ionicons
+            style={styles.deleteIcon}
+            name="ios-close"
+            size={24}
+            color="black"
+            onPress={() => setSearch("")}
+          />
+        </>
+      )}
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
-
-backgroundStyle:{
-  flex:2,
-  marginTop:"1%",
-  backgroundColor: "#dbdbdb",
-  borderRadius: 8,
-  flexDirection: "row",
-},
-searchStyle:{
-flex:1,
-fontSize: 20,
-
-},
-IconStyle:{
-  margin: 8
-},
-
-})
-
-export default SearchBar
+export default SearchBar;

@@ -46,7 +46,11 @@ const UserController = {
             name: user.name,
             email: user.email,
             role: user.role,
+<<<<<<< HEAD
             image: user.image
+=======
+            image: user.image,
+>>>>>>> baf1a573914da582b2979e920b36ff7bd29548c1
           });
         });
       })

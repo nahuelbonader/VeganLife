@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
-import { userIcon } from "../utils/constants";
+import { FlatList } from "react-native-gesture-handler";
+import { userIcon, portada } from "../utils/constants";
 import Recipe from "./CardRecipe";
 import normalize from "react-native-normalize";
 
@@ -32,12 +32,11 @@ const Data = ({ amount, title }) => (
     <Text style={styles.statTitle}> {title} </Text>
   </View>
 );
-const img =
-  "https://s1.eestatic.com/2020/08/17/curiosidades/naturaleza-planeta-tierra/Oceanos-Curiosidades-Ciencias_naturales-Naturaleza_y_planeta_Tierra_513709574_157873471_1706x960.jpg";
+
 const Profile = ({ name, image, favsRecipes, ownRecipes }) => {
   return (
     <View style={styles.container}>
-      <ImageBackground style={styles.portada} source={{ uri: img }}>
+      <ImageBackground style={styles.portada} source={portada}>
         <View style={styles.subContainer}>
           <Image
             style={styles.avatar}
@@ -49,7 +48,7 @@ const Profile = ({ name, image, favsRecipes, ownRecipes }) => {
       <View style={styles.statsContainer}>
         <Data amount={ownRecipes.length} title="Recetas" />
         <Data amount={favsRecipes.length} title="Favoritos" />
-        <Data amount={45} title="Seguidores" />
+        <Data amount={0} title="Seguidores" />
       </View>
       <ListRecipes recipes={ownRecipes} title="Publicadas" />
       <ListRecipes recipes={favsRecipes} title="Favoritas" />

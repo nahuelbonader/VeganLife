@@ -18,15 +18,15 @@ import colors from "../styles/colors";
 const CookToday = () => {
   const [ingredients, setIngredients] = useState([]);
   const [alert, setAlert] = useState(false);
-  const [{ search }, handleChange] = useInputs();
-  const handleSearch = handleChange("search");
+  const [{ ingredient }, handleChange] = useInputs();
+  const setIngredient = handleChange("ingredient");
   const recipes = useSelector((state) => state.recipesReducer.recipes);
 
-  const setIngredient = () => {
-    if (search == "") return;
-    if (ingredients.includes(search)) return setAlert(true);
-    setIngredients([search, ...ingredients]);
-    handleSearch("");
+  const addIngredient = () => {
+    if (ingredient == "") return;
+    if (ingredients.includes(ingredient)) return setAlert(true);
+    setIngredients([ingredient, ...ingredients]);
+    setIngredient("");
   };
 
   const deleteIngredient = (ingredient) => {
@@ -55,29 +55,30 @@ const CookToday = () => {
     <MaterialChip
       style={styles.ingredient}
       text={text}
+      onPress={() => deleteIngredient(text)}
       rightIcon={
-        <TouchableOpacity onPress={() => deleteIngredient(text)}>
-          <IconM name="close-circle-outline" size={19} color={colors.font} />
-        </TouchableOpacity>
+        <IconM name="close-circle-outline" size={19} color={colors.font} />
       }
     />
   );
 
-  useEffect(() => setAlert(false), [search]);
+  useEffect(() => {
+    setAlert(false);
+  }, [ingredient]);
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          onChangeText={handleSearch}
-          value={search}
+          onChangeText={setIngredient}
+          value={ingredient}
           textAlign={"center"}
           placeholder="¿Qué ingredientes tenés?"
           blurOnSubmit={false}
-          onSubmitEditing={setIngredient}
+          onSubmitEditing={addIngredient}
         />
-        <TouchableOpacity style={styles.enterIcon} onPress={setIngredient}>
+        <TouchableOpacity style={styles.enterIcon} onPress={addIngredient}>
           <Icon
             name="md-checkmark-circle"
             size={35}
@@ -87,7 +88,7 @@ const CookToday = () => {
       </View>
       {alert ? (
         <Text style={styles.alert}>
-          El ingrediente {search} ya está en la lista
+          El ingrediente {ingredient} ya está en la lista
         </Text>
       ) : null}
 

@@ -1,33 +1,23 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
-import {
-  createDrawerNavigator,
-  DrawerItem,
-  DrawerContentScrollView,
-} from "@react-navigation/drawer";
-import {
-  useTheme,
-  Avatar,
-  Title,
-  Caption,
-  Drawer,
-  Paragraph,
-  TouchableRipple,
-  Switch,
-} from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../store/actions/users";
+import { View } from "react-native";
+import { DrawerItem, DrawerContentScrollView } from "@react-navigation/drawer";
+import { Avatar, Title, Caption, Drawer, Paragraph } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
 import { userIcon } from "../utils/constants";
-import styles from "../styles/drawer";
 import firebase from "firebase";
+import styles from "../styles/drawer";
 
 const DrawerContent = (props) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.user);
   const deslogueo = () => {
     firebase
       .auth()
       .signOut()
+      .then(() => dispatch(logoutUser()))
+      .then(() => props.navigation.navigate("Login"))
       .catch((err) => console.log(err));
   };
 
@@ -68,7 +58,9 @@ const DrawerContent = (props) => {
               />
             )}
             label="Perfil Vegan Cook"
-            onPress={() => console.log("IR A PERFIL")}
+            onPress={() =>
+              props.navigation.navigate("Profile", { userId: user._id })
+            }
           />
           <DrawerItem
             icon={({ color, size }) => (
