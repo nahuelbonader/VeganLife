@@ -5,7 +5,7 @@ import SingleCategory from "../components/SingleCategory";
 const SingleCategoryScreen = ({ route }) => {
   const recipes = useSelector((state) => state.recipesReducer.recipes);
   const categories = useSelector((state) => state.categoriesReducer.categories);
-  const category = categories.filter((c) => c._id == route.params.categoryId);
+  const [category] = categories.filter((c) => c._id == route.params.categoryId);
   const recipesCategory = recipes.filter(
     (r) => r.category._id == route.params.categoryId
   );
@@ -13,8 +13,8 @@ const SingleCategoryScreen = ({ route }) => {
   return (
     <SingleCategory
       recipes={recipesCategory}
-      categoryImage={category[0].image}
-      categoryName={category[0].name}
+      categoryImage={category.image}
+      categoryName={category.name}
     />
   );
 };

@@ -11,12 +11,11 @@ const styles = StyleSheet.create({
     borderRadius: normalize(20),
   },
   flatlist: {
-    alignItems: "center",
-    flex: 1,
-    margin: normalize(10),
+    marginVertical: normalize(10),
   },
   touchable: {
-    margin: normalize(5),
+    marginHorizontal: normalize(5),
+    marginBottom: normalize(10),
     width: normalize(170),
     height: normalize(170),
   },
