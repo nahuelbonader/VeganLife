@@ -5,7 +5,7 @@ import normalize from "react-native-normalize";
 export default StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     flex: 1,
   },
   line: {

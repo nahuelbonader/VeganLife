@@ -46,7 +46,6 @@ const Register = ({ navigation }) => {
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         const fuid = res.user.uid;
-        console.log("FUID", fuid);
         return API.post("/users", { name, email, fuid });
       })
       .then(() => navigation.navigate("Login"))
