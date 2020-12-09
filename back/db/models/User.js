@@ -12,7 +12,7 @@ const userSchema = new Schema({
     lowercase: true,
     unique: true,
   },
-  image: { type: String },
+  image: { type: String, required: true },
   role: {
     type: String,
     enum: ["User", "Store", "SuperAdmin"], // ¿es necesario el Store?
