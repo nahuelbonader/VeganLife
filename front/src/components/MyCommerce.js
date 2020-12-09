@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, StyleSheet} from 'react-native'
 import { toggleButton } from './customFunctions/funciones'
 import { RadioButton } from 'react-native-paper';
+import { MaterialIcons } from '@expo/vector-icons';
+import useInputs from '../hooks/useInputs2'
+import API from '../api/api'
 
-const MyCommerce = ({ myImage, myName }) => {
+import Input from './InputHorario'
+
+const MyCommerce = ({ myImage, myName, userId }) => {
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -14,18 +19,121 @@ const MyCommerce = ({ myImage, myName }) => {
   const [description, setDescription] = useState("")
   const [productsCategories, setCategories] = useState("")
   const [delivery, setDelivery] = useState(false)
-
-const [checked, setChecked] = React.useState('first');
+  const [message, setMessage] = useState("")
+  const [checked, setChecked] = React.useState('first');
   const [active1, setActive1] = useState(true);
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
   const [value, setValue] = useState("my_own");
+  const [first, setFirst] = useState(true)
+  const [second, setSecond] = useState(false)
+
+  const [inputs, handleChange] = useInputs()
+  const {
+    domingoAm1,
+    domingoAm2,
+    domingoPm1,
+    domingoPm2,
+    domingoAm1c,
+    domingoAm2c,
+    domingoPm1c,
+    domingoPm2c,
+    lunesAm1,
+    lunesAm2,
+    lunesPm1,
+    lunesPm2,
+    lunesAm1c,
+    lunesAm2c,
+    lunesPm1c,
+    lunesPm2c,
+    martesAm1,
+    martesAm2,
+    martesPm1,
+    martesPm2,
+    martesAm1c,
+    martesAm2c,
+    martesPm1c,
+    martesPm2c,
+    miercolesAm1,
+    miercolesAm2,
+    miercolesPm1,
+    miercolesPm2,
+    miercolesAm1c,
+    miercolesAm2c,
+    miercolesPm1c,
+    miercolesPm2c,
+    juevesAm1,
+    juevesAm2,
+    juevesPm1,
+    juevesPm2,
+    juevesAm1c,
+    juevesAm2c,
+    juevesPm1c,
+    juevesPm2c,
+    viernesAm1,
+    viernesAm2,
+    viernesPm1,
+    viernesPm2,
+    viernesAm1c,
+    viernesAm2c,
+    viernesPm1c,
+    viernesPm2c,
+    sabadoAm1,
+    sabadoAm2,
+    sabadoPm1,
+    sabadoPm2,
+    sabadoAm1c,
+    sabadoAm2c,
+    sabadoPm1c,
+    sabadoPm2c,
+  } = inputs
+
+  const goNext = () => {
+    setFirst(!first)
+    setSecond(!second)
+  }
+console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${miercolesAm1c}:${miercolesAm2c}` );
+  const handleSubmit= () => {
+  const daysOpen = [
+    {open:false,startMorning: `${domingoAm1}:${domingoAm2}`,endMorning:`${domingoAm1c}:${domingoAm2c}`,startNoon: `${domingoPm1}:${domingoPm2}`,endNoon: `${domingoPm1c}:${domingoPm2c}`},
+    {open:true,startMorning: `${lunesAm1}:${lunesAm2}`,endMorning:`${lunesAm1c}:${lunesAm2c}` ,startNoon:`${lunesPm1}:${lunesPm2}` ,endNoon:`${lunesPm1c}:${lunesPm2c}` },
+    {open:true,startMorning: `${martesAm1}:${martesAm2}`,endMorning: `${martesAm1c}:${martesAm2c}`,startNoon:`${martesPm1}:${martesPm2}` ,endNoon: `${martesPm1c}:${martesPm2c}`},
+    {open:true,startMorning:`${miercolesAm1}:${miercolesAm2}` ,endMorning: `${miercolesAm1c}:${miercolesAm2c}`,startNoon:`${miercolesPm1}:${miercolesPm2}` ,endNoon: `${miercolesPm1c}:${miercolesPm2c}`},
+    {open:true,startMorning: `${juevesAm1}:${juevesAm2}`,endMorning: `${juevesAm1c}:${juevesAm2c}`,startNoon: `${juevesPm1}:${juevesPm2}`,endNoon:`${juevesPm1c}:${juevesPm2c}`},
+    {open:true,startMorning:`${viernesAm1}:${viernesAm2}` ,endMorning:`${viernesAm1c}:${viernesAm2c}`,startNoon:`${viernesPm1}:${viernesPm2}` ,endNoon: `${viernesPm1c}:${viernesPm2c}`},
+    {open:true,startMorning: `${sabadoAm1}:${sabadoAm2}`,endMorning: `${sabadoAm1c}:${sabadoAm2c}`,startNoon: `${sabadoPm1}:${sabadoPm2}`,endNoon:`${sabadoPm1c}:${sabadoPm2c}`}
+  ]
+
+      API.post("/stores",{
+        superAdmin: userId,
+        name,
+        email,
+        image,
+        address,
+        phone,
+        CUIL,
+        description,
+        productsCategories,
+        delivery,
+        open: daysOpen
+      })
+        .then((res)=> res.data)
+        .then((data)=> setMessage("Creado Satisfactoriamente"))
+        .catch(err=> setMessage("Lo sentimos, hubo un problema :("))
+
+        setTimeout(function(){ setMessage("") }, 6000)
+    }
+
 
   return (
     <View style={{flex:1, flexDirection: 'column', alignItems:'stretch', backgroundColor:"white"}}>
        <View style={styles.viewUser}>
           <Image style={styles.img} source={{uri:myImage }}/>
+          {message.length != 0 ?
+          <Text style={message.length == 25 ? styles.text: styles.errorMessage }>{message}</Text>
+            :
           <Text style={styles.text}> {myName} </Text>
+          }
        </View>
 
        <View style={styles.viewOptions}>
@@ -47,8 +155,9 @@ const [checked, setChecked] = React.useState('first');
        value == "im_admin"?
        null
        :
-       value == "create"?
+       value == "create" && first?
        <View>
+
          <View style={styles.row}>
            <TextInput
            style={styles.input}
@@ -101,7 +210,7 @@ const [checked, setChecked] = React.useState('first');
               onChangeText={(text)=> setCategories(text)}
               value={productsCategories}
             />
-             <Text style={styles.midText}>Tenes Delivery?</Text>
+             <Text style={styles.midText}>¿Tenes Delivery?</Text>
              <View style={styles.row}>
              <Text>No</Text>
                <RadioButton
@@ -118,10 +227,178 @@ const [checked, setChecked] = React.useState('first');
              </View>
              <TouchableOpacity
               style={styles.submit}
+              onPress={goNext}
              >
-               <Text style={styles.textSubmit}>Crear nuevo comercio</Text>
+               <Text style={styles.textSubmit}>Siguiente</Text>
              </TouchableOpacity>
          </View>
+       :
+       second?
+       <View>
+          <View style={{flexDirection:'row',marginVertical:"1%"}}>
+            <TouchableOpacity
+             style={styles.goBack}
+             onPress={goNext}
+            >
+              <MaterialIcons style={styles.IconStyle} name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity
+             style={styles.submit}
+             onPress={handleSubmit}
+            ><Text style={styles.textSubmit}>CREAR</Text></TouchableOpacity>
+          </View>
+          <ScrollView>
+          <Text style={styles.text}>¿Que días abris?</Text>
+            <Input
+            dia={"Domingo"}
+            text1={domingoAm1}
+            text2={domingoAm2}
+            text3={domingoPm1}
+            text4={domingoPm2}
+            text1c={domingoAm1c}
+            text2c={domingoAm2c}
+            text3c={domingoPm1c}
+            text4c={domingoPm2c}
+            handleChange1={handleChange("domingoAm1")}
+            handleChange2={handleChange("domingoAm2")}
+            handleChange3={handleChange("domingoPm1")}
+            handleChange4={handleChange("domingoPm2")}
+            handleChange1c={handleChange("domingoAm1c")}
+            handleChange2c={handleChange("domingoAm2c")}
+            handleChange3c={handleChange("domingoPm1c")}
+            handleChange4c={handleChange("domingoPm2c")}
+            />
+
+            <Input
+            dia={"Lunes"}
+            text1={lunesAm1}
+            text2={lunesAm2}
+            text3={lunesPm1}
+            text4={lunesPm2}
+            text1c={lunesAm1c}
+            text2c={lunesAm2c}
+            text3c={lunesPm1c}
+            text4c={lunesPm2c}
+            handleChange1={handleChange("lunesAm1")}
+            handleChange2={handleChange("lunesAm2")}
+            handleChange3={handleChange("lunesPm1")}
+            handleChange4={handleChange("lunesPm2")}
+            handleChange1c={handleChange("lunesAm1c")}
+            handleChange2c={handleChange("lunesAm2c")}
+            handleChange3c={handleChange("lunesPm1c")}
+            handleChange4c={handleChange("lunesPm2c")}
+            />
+
+            <Input
+            dia={"Martes"}
+            text1={martesAm1}
+            text2={martesAm2}
+            text3={martesPm1}
+            text4={martesPm2}
+            text1c={martesAm1c}
+            text2c={martesAm2c}
+            text3c={martesPm1c}
+            text4c={martesPm2c}
+            handleChange1={handleChange("martesAm1")}
+            handleChange2={handleChange("martesAm2")}
+            handleChange3={handleChange("martesPm1")}
+            handleChange4={handleChange("martesPm2")}
+            handleChange1c={handleChange("martesAm1c")}
+            handleChange2c={handleChange("martesAm2c")}
+            handleChange3c={handleChange("martesPm1c")}
+            handleChange4c={handleChange("martesPm2c")}
+            />
+
+            <Input
+            dia={"Miercoles"}
+            text1={miercolesAm1}
+            text2={miercolesAm2}
+            text3={miercolesPm1}
+            text4={miercolesPm2}
+
+            text1c={miercolesAm1c}
+            text2c={miercolesAm2c}
+            text3c={miercolesPm1c}
+            text4c={miercolesPm2c}
+            handleChange1={handleChange("miercolesAm1")}
+            handleChange2={handleChange("miercolesAm2")}
+            handleChange3={handleChange("miercolesPm1")}
+            handleChange4={handleChange("miercolesPm2")}
+
+            handleChange1c={handleChange("miercolesAm1c")}
+            handleChange2c={handleChange("miercolesAm2c")}
+            handleChange3c={handleChange("miercolesPm1c")}
+            handleChange4c={handleChange("miercolesPm2c")}
+            />
+
+            <Input
+            dia={"Jueves"}
+            text1={juevesAm1}
+            text2={juevesAm2}
+            text3={juevesPm1}
+            text4={juevesPm2}
+
+            text1c={juevesAm1c}
+            text2c={juevesAm2c}
+            text3c={juevesPm1c}
+            text4c={juevesPm2c}
+            handleChange1={handleChange("juevesAm1")}
+            handleChange2={handleChange("juevesAm2")}
+            handleChange3={handleChange("juevesPm1")}
+            handleChange4={handleChange("juevesPm2")}
+
+            handleChange1c={handleChange("juevesAm1c")}
+            handleChange2c={handleChange("juevesAm2c")}
+            handleChange3c={handleChange("juevesPm1c")}
+            handleChange4c={handleChange("juevesPm2c")}
+            />
+
+            <Input
+            dia={"Viernes"}
+            text1={viernesAm1}
+            text2={viernesAm2}
+            text3={viernesPm1}
+            text4={viernesPm2}
+
+            text1c={viernesAm1c}
+            text2c={viernesAm2c}
+            text3c={viernesPm1c}
+            text4c={viernesPm2c}
+            handleChange1={handleChange("viernesAm1")}
+            handleChange2={handleChange("viernesAm2")}
+            handleChange3={handleChange("viernesPm1")}
+            handleChange4={handleChange("viernesPm2")}
+
+            handleChange1c={handleChange("viernesAm1c")}
+            handleChange2c={handleChange("viernesAm2c")}
+            handleChange3c={handleChange("viernesPm1c")}
+            handleChange4c={handleChange("viernesPm2c")}
+            />
+            <Input
+            dia={"Sabado"}
+            text1={sabadoAm1}
+            text2={sabadoAm2}
+            text3={sabadoPm1}
+            text4={sabadoPm2}
+
+            text1c={sabadoAm1c}
+            text2c={sabadoAm2c}
+            text3c={sabadoPm1c}
+            text4c={sabadoPm2c}
+            handleChange1={handleChange("sabadoAm1")}
+            handleChange2={handleChange("sabadoAm2")}
+            handleChange3={handleChange("sabadoPm1")}
+            handleChange4={handleChange("sabadoPm2")}
+
+            handleChange1c={handleChange("sabadoAm1c")}
+            handleChange2c={handleChange("sabadoAm2c")}
+            handleChange3c={handleChange("sabadoPm1c")}
+            handleChange4c={handleChange("sabadoPm2c")}
+            />
+            </ScrollView>
+
+          </View>
+
        :
        null
        }
@@ -208,6 +485,27 @@ const styles = StyleSheet.create({
     color:'white',
     fontWeight:'bold',
     textTransform:'uppercase'
+  },
+  message:{
+
+  },
+  errorMessage:{
+    color:"red",
+    fontWeight:'bold',
+    fontSize:17,
+    alignSelf:'center'
+  },
+  goBack:{
+    flexDirection:'row',
+    alignSelf:'flex-start',
+    backgroundColor:'#007F37ff',
+    padding:"1%",
+    borderRadius:20,
+    marginRight:"70%"
+  },
+  IconStyle:{
+    margin:5,
+    color:'white',
   }
 })
 

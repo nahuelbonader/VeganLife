@@ -73,10 +73,10 @@ const storeSchema = new Schema({
   open: [
     {
       open: Boolean,
-      startMorning: { type: Number },
-      endMorning: { type: Number },
-      startNoon: { type: Number },
-      endNoon: { type: Number },
+      startMorning: { type: String },
+      endMorning: { type: String },
+      startNoon: { type: String },
+      endNoon: { type: String },
     },
   ],
 
