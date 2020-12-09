@@ -1,4 +1,5 @@
 import { IM_IN } from "../constant";
+import { ROUTE_PARAM } from '../constant'
 
 const initialState = {
   route: 0

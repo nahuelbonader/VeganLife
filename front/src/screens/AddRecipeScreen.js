@@ -79,35 +79,48 @@ const AddRecipeScreen = ({}) => {
              handleChange={(e)=>{setTitle(e)}}
              ph={"Titulo de la receta"}
              handleBoolean={()=>{setBool1(!bool1), setBool2(!bool2)}}
+             value={title}
              />
              <AddRecipeStep1
              textbtn={"Siguiente"}
+             textbtn2={"Volver al paso anterior"}
              bool={bool2}
              handleChange={(e)=>{setImage(e)}}
              ph={"Imagen de la receta"}
              handleBoolean={()=>{setBool2(!bool2), setBool3(!bool3)}}
+             handleBackBoolean={()=>{setBool1(!bool1), setBool2(!bool2)}}
+             value={image}
              />
              <AddIngredientes
              textbtn={"Siguiente"}
+             textbtn2={"Volver al paso anterior"}
              bool={bool3}
              handleChange={(e)=>{setIngredients(e)}}
              ph={"Ingredientes"}
              handleBoolean={()=>{setBool3(!bool3), setBool4(!bool4)}}
+             handleBackBoolean={()=>{setBool2(!bool2), setBool3(!bool3)}}
+             value={ingredients}
              />
              <ListSelected
              textbtn={"Siguiente"}
+             textbtn2={"Volver al paso anterior"}
              bool={bool4}
              handleChange={(e)=>{setInstructions(e)}}
              ph={"Instrucciones"}
              handleBoolean={()=>{setBool4(!bool4), setBool5(!bool5)}}
+             handleBackBoolean={()=>{setBool4(!bool4), setBool3(!bool3)}}
+             value={instructions}
              />
              <InputSelected
-             textbtn={"Categoria"}
+             textbtn={"Previsualizar receta"}
+             textbtn2={"Volver al paso anterior"}
              bool={bool5}
              handleChange={(e)=>{setCategory(e)}}
              ph={"Categoria"}
-             handleBoolean={()=>{setBool5(!bool5), setBool6(!bool6)}}             
+             handleBoolean={()=>{setBool5(!bool5), setBool6(!bool6)}}
+             handleBackBoolean={()=>{setBool4(!bool4), setBool5(!bool5)}}             
              categories={categories}
+             value={category}
              />
             <SingleRecipeEdit 
             bool={bool6}

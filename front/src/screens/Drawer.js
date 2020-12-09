@@ -12,7 +12,6 @@ import styles from "../styles/drawer";
 const DrawerContent = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.usersReducer.user);
-
   const deslogueo = () => {
     firebase
       .auth()
@@ -73,6 +72,17 @@ const DrawerContent = (props) => {
             )}
             label="Perfil Vegan Market"
             onPress={() => console.log("IR A PERFIL")}
+          />
+          <DrawerItem
+            icon={({ color, size }) => (
+              <MaterialCommunityIcons
+                name="store"
+                color={color}
+                size={size}
+              />
+            )}
+            label="Ver mis comercios"
+            onPress={() => props.navigation.navigate("MyCommerce")}
           />
         </Drawer.Section>
 

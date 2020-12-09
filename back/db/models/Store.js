@@ -66,17 +66,17 @@ const storeSchema = new Schema({
 
   accepted: {
     type: Boolean,
-    required: true,
+    required: false,
     default: false,
   },
 
   open: [
     {
       open: Boolean,
-      startMorning: { type: Number },
-      endMorning: { type: Number },
-      startNoon: { type: Number },
-      endNoon: { type: Number },
+      startMorning: { type: String },
+      endMorning: { type: String },
+      startNoon: { type: String },
+      endNoon: { type: String },
     },
   ],
 

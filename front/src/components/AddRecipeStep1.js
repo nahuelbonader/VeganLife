@@ -6,7 +6,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import OneButton from "./OneButton";
 
-const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean }) => {
+const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean, textbtn2, handleBackBoolean, value }) => {
   {
     if (bool) {
       return (
@@ -16,8 +16,19 @@ const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean }) => {
             style={styles.input}
             placeholder={ph}
             onChangeText={(evt) => handleChange(evt)}
+            value={value}
           />
+        
+          {ph=="Titulo de la receta"?  
           <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
+          :
+          <View> 
+          <OneButton handleBoolean={handleBackBoolean} textbtn={textbtn2} />
+          <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
+          </View>
+          }  
+          
+        
         </View>
       );
     } else {
