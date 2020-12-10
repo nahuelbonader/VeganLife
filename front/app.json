@@ -3,7 +3,7 @@
     "name": "VeganLife",
     "slug": "VeganLife",
     "privacy": "public",
-    "sdkVersion": "37.0.0",
+    "sdkVersion": "40.0.0",
     "platforms": [
       "ios",
       "android",

@@ -16,7 +16,6 @@ const Header = ({ previous }) => {
   const currentRoute = useSelector((state) => state.bottomRouteReducer);
   const [{ search }, handleChange] = useInputs();
   const setSearch = handleChange("search");
- console.log(currentRoute);
   return (
     <Appbar.Header style={styles.back}>
       {previous ? (
