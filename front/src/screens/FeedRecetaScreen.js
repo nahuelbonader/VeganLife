@@ -36,10 +36,10 @@ const FeedRecetaScreen = ({ navigation }) => {
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchRecipes());
-    dispatch(fetchFavsRecipes(user._id));
     dispatch(fetchUsers());
     dispatch(fetchStores())
     if (!user._id) checkIfLogged();
+    if(user._id) dispatch(fetchFavsRecipes(user._id));
   }, [user]);
 
 

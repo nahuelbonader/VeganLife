@@ -15,7 +15,7 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
   },
   container: {
-    height: "85%",
+    height: "100%",
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
