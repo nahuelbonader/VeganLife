@@ -67,9 +67,9 @@ const GoogleLoginComponent = () => {
             .catch((error) => console.log(error));
         } else {
           const { email, id } = googleUser.user;
-                dispatch(fetchUser({ email, fuid: id })).then(() =>
-                  navigation.navigate("Home")
-                );
+          dispatch(fetchUser({ email, fuid: id })).then(() =>
+            navigation.navigate("Home")
+          );
         }
       });
   };

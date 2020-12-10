@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, StyleSheet} from 'react-native'
 import { toggleButton } from './customFunctions/funciones'
 import { RadioButton } from 'react-native-paper';
+import { useDispatch, useSelector } from "react-redux";
 import { MaterialIcons } from '@expo/vector-icons';
+import { fetchStores } from '../store/actions/stores'
 import useInputs from '../hooks/useInputs2'
 import API from '../api/api'
+import { userIcon } from "../utils/constants";
+import colors from "../styles/colors"
 
 import Input from './InputHorario'
+import List from './CommerceList'
 
-const MyCommerce = ({ myImage, myName, userId }) => {
-
+const MyCommerce = ({ myImage, myName, userId, stores, imAdminIn }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [image,setImage] = useState("")
@@ -109,7 +114,7 @@ const MyCommerce = ({ myImage, myName, userId }) => {
     setFirst(!first)
     setSecond(!second)
   }
-console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${miercolesAm1c}:${miercolesAm2c}` );
+
   const handleSubmit= () => {
   const daysOpen = [
     {open:open1,startMorning: `${domingoAm1}:${domingoAm2}`,endMorning:`${domingoAm1c}:${domingoAm2c}`,startNoon: `${domingoPm1}:${domingoPm2}`,endNoon: `${domingoPm1c}:${domingoPm2c}`},
@@ -136,16 +141,22 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
       })
         .then((res)=> res.data)
         .then((data)=> setMessage("Creado Satisfactoriamente :)"))
+        .then(()=> {
+          goNext()
+          setValue("my_own")
+          toggleButton(setActive1,setActive1,setActive2,setActive3,active1,active2,active3)
+          dispatch(fetchStores())
+        })
         .catch(err=> setMessage("Lo sentimos, hubo un problema :("))
 
-        setTimeout(function(){ setMessage("") }, 6000)
+        setTimeout(function(){ setMessage("") }, 8000)
     }
 
 
   return (
     <View style={{flex:1, flexDirection: 'column', alignItems:'stretch', backgroundColor:"white"}}>
        <View style={styles.viewUser}>
-          <Image style={styles.img} source={{uri:myImage }}/>
+          <Image style={styles.img} source={{uri:myImage? myImage : userIcon }}/>
           {message.length != 0 ?
           <Text style={message.length == 28 ? styles.text: styles.errorMessage }>{message}</Text>
             :
@@ -167,10 +178,11 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
 
        <View style={styles.viewMarkets}>
        {value == "my_own"?
-       null
+
+       <List data={stores}/>
        :
        value == "im_admin"?
-       null
+       <List data={imAdminIn}/>
        :
        value == "create" && first?
        <View>
@@ -227,7 +239,7 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
               onChangeText={(text)=> setCategories(text)}
               value={productsCategories}
             />
-             <Text style={styles.midText}>¿Tenes Delivery?</Text>
+             <Text style={styles.midText}>¿Tenés Delivery?</Text>
              <View style={styles.row}>
              <Text>No</Text>
                <RadioButton
@@ -265,7 +277,8 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             ><Text style={styles.textSubmit}>CREAR</Text></TouchableOpacity>
           </View>
           <ScrollView>
-          <Text style={styles.text}>¿Que días abris?</Text>
+          <View style={{marginBottom:'20%'}}>
+          <Text style={styles.text}>¿Qué días abrís?</Text>
             <Input
             open={open1}
             checked={checked2}
@@ -440,6 +453,7 @@ console.log("MIERCOLES, DESDE:",`${miercolesAm1}:${miercolesAm2}`,"HASTA:",`${mi
             handleChange3c={handleChange("sabadoPm1c")}
             handleChange4c={handleChange("sabadoPm2c")}
             />
+            </View>
             </ScrollView>
 
           </View>
@@ -456,7 +470,7 @@ const styles = StyleSheet.create({
   viewUser:{
    flex:1.5,
    marginHorizontal:"5%",
-   backgroundColor:"#F1F4FB",
+   backgroundColor: colors.containers,
    flexDirection:'row',
    borderRadius:35,
    marginTop:"4%"
@@ -490,7 +504,7 @@ const styles = StyleSheet.create({
     fontSize:16
   },
   touchActive:{
-    color:"#0c7502",
+    color: colors.darkGreen,
     fontWeight:'bold',
     borderBottomWidth:3,
     borderBottomColor:'green',
@@ -498,7 +512,7 @@ const styles = StyleSheet.create({
   },
   input:{
     borderBottomWidth:1,
-    borderBottomColor:"#007F37ff",
+    borderBottomColor: colors.dartmouthGreen,
     width:"45%",
     marginRight:"5%",
     marginTop:"4%"
@@ -509,7 +523,7 @@ const styles = StyleSheet.create({
   },
   inputTwo:{
     borderBottomWidth:1,
-    borderBottomColor:"#007F37ff",
+    borderBottomColor: colors.dartmouthGreen,
     marginTop:"5%"
   },
   midText:{
@@ -522,7 +536,7 @@ const styles = StyleSheet.create({
   },
   submit:{
     alignSelf:'center',
-    backgroundColor:'#007F37ff',
+    backgroundColor: colors.dartmouthGreen,
     padding:"3%",
     borderRadius:20
   },
@@ -543,7 +557,7 @@ const styles = StyleSheet.create({
   goBack:{
     flexDirection:'row',
     alignSelf:'flex-start',
-    backgroundColor:'#007F37ff',
+    backgroundColor: colors.dartmouthGreen,
     padding:"1%",
     borderRadius:20,
     marginRight:"70%"
