@@ -10,7 +10,7 @@ import ListSelected from '../components/ListSelected'
 import SingleRecipeEdit from '../components/SingleRecipeEdit'
 import AddIngredientes from '../components/AddIngredientes'
 
-import {postRecipe} from '../store/actions/recipes'
+import {postRecipe, fetchRecipes} from '../store/actions/recipes'
 
 
 const AddRecipeScreen = ({}) => {
@@ -22,7 +22,7 @@ const AddRecipeScreen = ({}) => {
     const [ingredients, setIngredients] = useState([]);
     const [instructions, setInstructions] = useState([]);
     const [category, setCategory] = useState("");
-    const [owner, setOwner] = useState("5fbff02945ba1f57318a8346");
+    const [owner, setOwner] = useState("");
     const [bool1, setBool1] = useState(true);
     const [bool2, setBool2] = useState(false);
     const [bool3, setBool3] = useState(false);
@@ -44,7 +44,8 @@ const AddRecipeScreen = ({}) => {
             instructions: recipe.instructions,
             category: catId, 
             owner: user._id
-        }))
+        })).then(dispatch(fetchRecipes()))
+
         navigation.navigate("Feed")
 
         setBool1(true)
