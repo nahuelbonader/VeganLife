@@ -21,6 +21,7 @@ const FeedRecetaScreen = ({ navigation }) => {
   const stores = useSelector((state)=> state.storesReducer.stores);
   const randomRecipes = recipes; // acá va un filter
   const storeLength = stores.length
+
   const checkIfLogged = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -39,7 +40,7 @@ const FeedRecetaScreen = ({ navigation }) => {
     dispatch(fetchUsers());
     dispatch(fetchStores())
     if (!user._id) checkIfLogged();
-  }, []);
+  }, [user]);
 
 
   return (
