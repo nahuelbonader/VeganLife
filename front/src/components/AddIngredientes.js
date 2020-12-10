@@ -109,12 +109,14 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
       borderBottomColor: "#35b056",
       borderBottomWidth: 2,
       padding: 10 ,
-      marginHorizontal: 10
+      marginHorizontal: 10,
+      flex: 3,
     },
     icon:{
       alignItems: "flex-end",
       marginTop: 25,
-      paddingTop: 10
+      paddingTop: 10,
+      flex: 2,
     },
     boton: {
       marginTop: 75,
