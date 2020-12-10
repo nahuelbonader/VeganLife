@@ -10,7 +10,19 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { userIcon, recipeImg } from "../utils/constants";
+import { LinearGradient } from "expo-linear-gradient";
 import styles from "../styles/singleRecipe";
+
+const Gradient = (
+  <LinearGradient
+    start={{ x: 0.0, y: 0.0 }}
+    end={{ x: 0.0, y: 1.0 }}
+    locations={[0.1, 1.0]}
+    colors={["#ffffff70", "#fffffff7"]}
+    useViewFrame={false}
+    style={styles.gradient}
+  />
+);
 
 const Ingredient = ({ quantity, ingredient }) => (
   <Text style={styles.textTwo}>

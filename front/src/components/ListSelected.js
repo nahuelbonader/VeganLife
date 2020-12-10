@@ -120,7 +120,8 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
       borderBottomWidth: 2,
       //marginTop: 25,
       padding: 10 ,
-      marginHorizontal: 10
+      marginHorizontal: 10,
+      flex: 6
     },
     boton: {
       marginTop: 75,
@@ -132,7 +133,8 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
     },
     icon:{
       alignItems: "flex-end",
-      marginTop: 25
+      marginTop: 25,
+      flex: 2
 
     },
     chip: {
