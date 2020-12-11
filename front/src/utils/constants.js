@@ -7,3 +7,5 @@ export const userIcon =
 export const VLICon = require("../../assets/VGL-White.png");
 
 export const portada = require("../../assets/fondo.png");
+
+export const storeImg = require("../../assets/store.png");

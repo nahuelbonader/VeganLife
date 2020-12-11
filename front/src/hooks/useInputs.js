@@ -11,6 +11,14 @@ const useInputs = () => {
     ingredient: "",
     step: "",
     search: "",
+    hoursOpenMorning: 0,
+    minutesOpenMorning: 0,
+    hoursCloseMorning: 0,
+    minutesCloseMorning: 0,
+    hoursOpenAftenoon: 0,
+    minutesOpenAfternoon: 0,
+    hoursCloseAftenoon: 0,
+    minutesCloseAfternoon: 0,
   });
   const changeInput = (key, value) => setInputs({ ...inputs, [key]: value });
   const handleChange = (type) => (text) => changeInput(type, text);

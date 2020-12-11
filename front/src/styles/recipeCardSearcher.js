@@ -10,7 +10,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     borderRadius: 20,
-    marginVertical: "1.5%",
+    marginTop: "2%",
     backgroundColor: colors.darkGray,
   },
   container: {
