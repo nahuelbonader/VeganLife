@@ -13,6 +13,7 @@ import Profile from "./ProfileScreen";
 import StoreFeed from "./FeedStoresScreen";
 import MyStores from "./MyCommercesScreen";
 import CommercePanel from "./CommercePanelScreen";
+import SingleProduct from "./SingleProductScreen";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ const FeedStack = () => {
       <Stack.Screen name="StoreFeed" component={StoreFeed} />
       <Stack.Screen name="MyCommerces" component={MyStores} />
       <Stack.Screen name="CommercePanel" component={CommercePanel} />
+      <Stack.Screen name="SingleProduct" component={SingleProduct} />
     </Stack.Navigator>
   );
 };
