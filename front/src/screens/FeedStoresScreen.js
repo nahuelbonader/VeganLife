@@ -5,7 +5,7 @@ import { fetchStores } from "../store/actions/stores";
 import StoreCard from "../components/StoreCard"
 
 
-const StoreFeed = ({   }) => {
+const StoreFeed = ({  }) => {
     const dispatch = useDispatch();
     const stores = useSelector((state) => state.storesReducer.stores);
 
