@@ -12,8 +12,11 @@ import CookToday from './CookTodayScreen'
 import Profile from './ProfileScreen'
 import StoreFeed from "./FeedStoresScreen";
 import MyCommerce from './MyCommerceScreen'
+import Map from '../components/Map'
+import Splash from '../components/Splash'
 
 const Stack = createStackNavigator()
+
 
 const FeedStack = () => {
   return (
@@ -33,6 +36,7 @@ const FeedStack = () => {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="StoreFeed" component={StoreFeed} />
       <Stack.Screen name="MyCommerce" component={MyCommerce} />
+      <Stack.Screen name="Map" component={Map} />
     </Stack.Navigator>
   );
 }
