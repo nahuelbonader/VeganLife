@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import Panel from '../components/CommercePanel'
+import Panel from "../components/CommercePanel";
 
-const CommercePanel = ({ navigation, route}) => {
-
-const products = useSelector((state)=> state.productsReducer.products.data)
-const info = route.params.CommerceInfo
-const myProducts = products.filter(el => el.store == info._id)
-/*const myProducts = [
+const CommercePanel = ({ navigation, route }) => {
+  const { products } = useSelector((state) => state.productsReducer);
+  const info = route.params.CommerceInfo;
+  const myProducts = products.filter((el) => el.store._id == info._id);
+  /*const myProducts = [
   {
         "available": true,
         "active": true,
@@ -127,9 +126,7 @@ const myProducts = products.filter(el => el.store == info._id)
     },
 
 ]*/
-  return(
-    <Panel info={info} products={myProducts}/>
-  )
-}
+  return <Panel info={info} products={myProducts} />;
+};
 
-export default CommercePanel
+export default CommercePanel;
