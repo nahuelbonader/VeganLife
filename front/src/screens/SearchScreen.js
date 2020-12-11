@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import User from "../components/UserCardSearcher";
 import Recipe from "../components/RecipeCardSearcher";
 import Store from "../components/StoreCardSearcher";
+import Product from "../components/ProductCardSearch";
 import Tabs from "../components/Tabs";
 import styles from "../styles/searchScreen";
 
@@ -19,6 +20,7 @@ const Search = () => {
   const { recipes } = useSelector((state) => state.recipesReducer);
   const { users } = useSelector((state) => state.usersReducer);
   const { stores } = useSelector((state) => state.storesReducer);
+  const { products } = useSelector((state) => state.productsReducer);
 
   const [tabSelected, setTabSelected] = useState(tabs.recipes);
 
@@ -28,6 +30,9 @@ const Search = () => {
   const filteredUsers = users.filter((u) =>
     u.name.toLowerCase().includes(search.toLowerCase())
   );
+  const filteredProducts = products.filter((p) =>
+    p.title.toLowerCase().includes(search.toLowerCase())
+  );
   const filteredStores = stores.filter((s) =>
     s.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -35,7 +40,7 @@ const Search = () => {
   const data = {
     [tabs.recipes]: filteredRecipes,
     [tabs.users]: filteredUsers,
-    // [tabs["p"]]: filteredProducts,
+    [tabs.products]: filteredProducts,
     [tabs.stores]: filteredStores,
   };
 
@@ -47,8 +52,8 @@ const Search = () => {
         return <User user={item} />;
       case tabs.stores:
         return <Store item={item} />;
-      // case tabs["p"]:
-      // return <Product item={item} />;
+      case tabs.products:
+        return <Product item={item} />;
     }
   };
 
