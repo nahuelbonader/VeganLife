@@ -3,6 +3,7 @@
     "name": "VeganLife",
     "slug": "VeganLife",
     "privacy": "public",
+    "sdkVersion": "40.0.0",
     "platforms": [
       "ios",
       "android",
@@ -25,8 +26,8 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "softwareKeyboardLayoutMode": "pan"
-    }
+    "android":{
+       "softwareKeyboardLayoutMode": "pan"
+     }
   }
 }

@@ -55,7 +55,6 @@ const storeSchema = new Schema({
   productsCategories: [
     {
       type: String,
-      required: true,
     },
   ],
 
@@ -73,10 +72,10 @@ const storeSchema = new Schema({
   open: [
     {
       open: Boolean,
-      startMorning: { type: String },
-      endMorning: { type: String },
-      startNoon: { type: String },
-      endNoon: { type: String },
+      startMorning: { type: Number },
+      endMorning: { type: Number },
+      startNoon: { type: Number },
+      endNoon: { type: Number },
     },
   ],
 
