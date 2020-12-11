@@ -4,9 +4,10 @@ import MyCommerce from "../components/MyCommerces";
 import { useSelector } from "react-redux";
 
 const MyCommerceScreen = () => {
-  const user = useSelector((state) => state.usersReducer.user);
-  const stores = useSelector((state) => state.storesReducer.stores);
-  const myStore = stores.filter((el) => el.superAdmin === user._id);
+  const { user } = useSelector((state) => state.usersReducer.user);
+  const { stores } = useSelector((state) => state.storesReducer);
+  const myStores = stores.filter((el) => el.superAdmin === user._id);
+
   const imAdminIn = () => {
     let filter = [];
     for (let i = 0; i < stores.length; i++) {
@@ -24,7 +25,7 @@ const MyCommerceScreen = () => {
       myImage={user.image}
       myName={user.name}
       userId={user._id}
-      stores={myStore}
+      stores={myStores}
       imAdminIn={imAdminIn()}
     />
   );

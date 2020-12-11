@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { View, FlatList, SafeAreaView } from "react-native";
 import { useSelector } from "react-redux";
 import User from "../components/UserCardSearcher";
 import Recipe from "../components/RecipeCardSearcher";
+import Store from "../components/StoreCardSearcher";
+import Tabs from "../components/Tabs";
 import styles from "../styles/searchScreen";
 
 const Search = () => {
   const tabs = {
     recipes: "Recetas",
     users: "Usuarios",
-    stores: "Comercios",
     products: "Productos",
+    stores: "Comercios",
   };
 
   const { search } = useSelector((state) => state.searchReducer);
   const { recipes } = useSelector((state) => state.recipesReducer);
   const { users } = useSelector((state) => state.usersReducer);
+  const { stores } = useSelector((state) => state.storesReducer);
+
   const [tabSelected, setTabSelected] = useState(tabs.recipes);
 
   const filteredRecipes = recipes.filter((r) =>
@@ -30,23 +28,16 @@ const Search = () => {
   const filteredUsers = users.filter((u) =>
     u.name.toLowerCase().includes(search.toLowerCase())
   );
+  const filteredStores = stores.filter((s) =>
+    s.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   const data = {
     [tabs.recipes]: filteredRecipes,
     [tabs.users]: filteredUsers,
-    // [tabs["s"]]: filteredStores,
     // [tabs["p"]]: filteredProducts,
+    [tabs.stores]: filteredStores,
   };
-
-  const Tab = ({ tab }) => (
-    <TouchableOpacity onPress={() => setTabSelected(tab)}>
-      <Text
-        style={tabSelected == tab ? styles.touchActive : styles.touchInactive}
-      >
-        {tab}
-      </Text>
-    </TouchableOpacity>
-  );
 
   const renderItem = (item) => {
     switch (tabSelected) {
@@ -54,21 +45,20 @@ const Search = () => {
         return <Recipe recipe={item} />;
       case tabs.users:
         return <User user={item} />;
+      case tabs.stores:
+        return <Store item={item} />;
       // case tabs["p"]:
       // return <Product item={item} />;
-      // case tabs["s"]:
-      // return <Store item={item} />;
     }
   };
 
   return (
     <View style={styles.view}>
-      <View style={styles.tabsContainer}>
-        <Tab tab={tabs.recipes} />
-        <Tab tab={tabs.users} />
-        <Tab tab={tabs.products} />
-        <Tab tab={tabs.stores} />
-      </View>
+      <Tabs
+        tabs={Object.values(tabs)}
+        tabSelected={tabSelected}
+        setTabSelected={setTabSelected}
+      />
       <SafeAreaView style={styles.results}>
         <FlatList
           style={styles.list}
