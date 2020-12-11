@@ -6,6 +6,7 @@ import { fetchCategories } from "../store/actions/categories";
 import { fetchUser, fetchUsers } from "../store/actions/users";
 import { fetchStores } from '../store/actions/stores'
 import { fetchFavsRecipes } from "../store/actions/favourites";
+import { fetchProducts } from '../store/actions/products'
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
 import Recipes from "../components/ListRecipes";
@@ -20,7 +21,6 @@ const FeedRecetaScreen = ({ navigation }) => {
   const user = useSelector((state) => state.usersReducer.user);
   const stores = useSelector((state)=> state.storesReducer.stores);
   const randomRecipes = recipes; // acá va un filter
-  const storeLength = stores.length
   const checkIfLogged = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -38,6 +38,7 @@ const FeedRecetaScreen = ({ navigation }) => {
     dispatch(fetchFavsRecipes(user._id));
     dispatch(fetchUsers());
     dispatch(fetchStores())
+    dispatch(fetchProducts())
     if (!user._id) checkIfLogged();
   }, []);
 

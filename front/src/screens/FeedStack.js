@@ -12,6 +12,7 @@ import CookToday from './CookTodayScreen'
 import Profile from './ProfileScreen'
 import StoreFeed from "./FeedStoresScreen";
 import MyCommerce from './MyCommerceScreen'
+import CommercePanel from './CommercePanelScreen'
 
 const Stack = createStackNavigator()
 
@@ -33,6 +34,7 @@ const FeedStack = () => {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="StoreFeed" component={StoreFeed} />
       <Stack.Screen name="MyCommerce" component={MyCommerce} />
+      <Stack.Screen name="CommercePanel" component={CommercePanel} />
     </Stack.Navigator>
   );
 }

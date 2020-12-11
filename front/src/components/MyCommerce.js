@@ -500,8 +500,9 @@ const styles = StyleSheet.create({
     alignSelf:'center'
   },
   touch1:{
-    color:"green",
-    fontSize:16
+    color:"#85D4A6",
+    fontSize:16,
+    fontWeight:'bold'
   },
   touchActive:{
     color: colors.darkGreen,
