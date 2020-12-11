@@ -14,7 +14,7 @@ export default StyleSheet.create({
     backgroundColor: colors.darkGray,
   },
   container: {
-    height: "95%",
+    height: "100%",
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
