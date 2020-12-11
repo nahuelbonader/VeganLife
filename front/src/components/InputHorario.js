@@ -10,7 +10,7 @@ const Time = ({ text, handleChange, time }) => (
     keyboardType="number-pad"
     style={styles.input}
     autoCorrect={false}
-    value={text}
+    value={text ? text : null}
     onChangeText={handleChange}
     placeholder={time}
     maxLength={2}

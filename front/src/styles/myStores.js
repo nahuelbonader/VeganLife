@@ -12,6 +12,7 @@ export default StyleSheet.create({
   alertContainer: {
     flex: 1,
     justifyContent: "center",
+    alignSelf: "center",
   },
   createdMessage: {
     color: "green",
