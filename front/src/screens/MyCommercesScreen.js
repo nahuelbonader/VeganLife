@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
 import MyCommerce from "../components/MyCommerces";
 import { useSelector } from "react-redux";
 
 const MyCommerceScreen = () => {
-  const { user } = useSelector((state) => state.usersReducer.user);
+  const { user } = useSelector((state) => state.usersReducer);
   const { stores } = useSelector((state) => state.storesReducer);
   const myStores = stores.filter((el) => el.superAdmin === user._id);
 
@@ -30,7 +29,5 @@ const MyCommerceScreen = () => {
     />
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default MyCommerceScreen;

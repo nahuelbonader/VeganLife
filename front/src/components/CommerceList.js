@@ -24,7 +24,9 @@ const List = ({ data }) => {
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => console.log("ir a comercio")}
+              onPress={() =>
+                navigation.navigate("CommercePanel", { CommerceInfo: item })
+              }
               style={styles.touchableContainer}
             >
               <View style={styles.container}>

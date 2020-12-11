@@ -75,14 +75,10 @@ const DrawerContent = (props) => {
           />
           <DrawerItem
             icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="store"
-                color={color}
-                size={size}
-              />
+              <MaterialCommunityIcons name="store" color={color} size={size} />
             )}
             label="Ver mis comercios"
-            onPress={() => props.navigation.navigate("MyCommerce")}
+            onPress={() => props.navigation.navigate("MyCommerces")}
           />
         </Drawer.Section>
 
