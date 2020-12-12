@@ -3,6 +3,7 @@ const { Product } = require("../db/models/index");
 const ProductController = {
   findAll(req, res, next) {
     Product.find({ active: true })
+      .populate({ path: "store", select: "name" })
       .then((products) => res.send(products))
       .catch((err) => next(err));
   },

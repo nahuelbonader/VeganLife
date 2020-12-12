@@ -42,7 +42,6 @@ const FacebookLoginComponent = () => {
           firebase.auth().signInWithCredential(credential)
           .then((res) => {
             if (res.additionalUserInfo.isNewUser === true) {
-              console.log('USUARIO NUEVO', res)
               const { email, uid, displayName } = res.user;
               registerUser({
                 email,
@@ -53,7 +52,7 @@ const FacebookLoginComponent = () => {
                 .then(() => navigation.navigate("Home"));
             }else {
               console.log('VIEJO USUARIO')
-              const { email, id } = facebookUser.user;
+              const { email, id } = res.user;
               dispatch(fetchUser({ email, fuid: id })).then(() =>
                 navigation.navigate("Home")
               );
@@ -62,7 +61,7 @@ const FacebookLoginComponent = () => {
           .catch((error) => console.log(error));
         } else {
           // User is already signed-in Firebase with the correct user.
-            const { email, id } = googleUser.user;
+            const { email, id } = facebookUser.user;
             dispatch(fetchUser({ email, fuid: id }))
             .then(() =>navigation.navigate("Home"));
           }
@@ -92,26 +91,12 @@ const FacebookLoginComponent = () => {
     }
   }
 
-  const facebookLogOut = async () => {
-    await Facebook.logOutAsync()
-    .then((user)=>console.log('DESLOGUEADO', user))
-  }
 
   return (
     <View>
       <SocialIcon
-        title="Sign In With Facebook"
-        button
         type="facebook"
-        light
         onPress={facebookLogIn}
-      />
-        <SocialIcon
-        title="DESLOGUEO FB"
-        button
-        type="linkedin"
-        light
-        onPress={facebookLogOut}
       />
     </View>
   );

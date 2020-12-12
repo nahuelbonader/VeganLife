@@ -97,10 +97,7 @@ const GoogleLoginComponent = () => {
   return (
     <View>
       <SocialIcon
-        title="Sign In With Google"
-        button
         type="google"
-        light
         onPress={signInWithGoogleAsync}
       />
     </View>

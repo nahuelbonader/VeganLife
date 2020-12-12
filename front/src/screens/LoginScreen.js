@@ -54,7 +54,7 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
         />
 
-        <GoogleLoginComponent />
+<GoogleLoginComponent />
         <FacebookLoginComponent/>
 
         <Text style={styles.alert}>{errorMessage}</Text>
