@@ -34,9 +34,8 @@ const FeedStack = () => {
       <Stack.Screen name="CookToday" component={CookToday} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="StoreFeed" component={StoreFeed} />
-      {/* <Stack.Screen name="Map" component={Map} /> */}
+      <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="MyCommerce" component={MyCommerce} />
-
     </Stack.Navigator>
   );
 }
