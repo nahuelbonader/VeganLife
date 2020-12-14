@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, TextInput } from "react-native";
-
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
+import { userIcon } from "../utils/constants";
 import MaterialChip from "react-native-material-chip";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import OneButton from "./OneButton";
 
-const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean, textbtn2, handleBackBoolean, value }) => {
+const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean, textbtn2, handleBackBoolean, value, openImage, image }) => {
   {
     if (bool) {
       return (
@@ -18,6 +18,14 @@ const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean, textbt
             onChangeText={(evt) => handleChange(evt)}
             value={value}
           />
+          <TouchableOpacity onPress={openImage} style={styles.avatarPlaceholder}>
+            <View style={styles.avatarContainer}>
+              <Image
+                style={styles.avatar}
+                source={{ uri: image ? image : userIcon }}
+              />
+            </View>
+          </TouchableOpacity>
         
           {ph=="Titulo de la receta"?  
           <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
@@ -77,6 +85,24 @@ const styles = StyleSheet.create({
     marginTop: 25,
     padding: 10,
     marginHorizontal: 40,
+  },
+  avatarContainer: {
+    shadowColor: "#151734",
+    shadowRadius: 30,
+    shadowOpacity: 0.4,
+  },
+  avatarPlaceholder: {
+    width: 136,
+    height: 136,
+    backgroundColor: "#E1E2E6",
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  avatar: {
+    width: 136,
+    height: 136,
+    borderRadius: 68,
   },
 });
 
