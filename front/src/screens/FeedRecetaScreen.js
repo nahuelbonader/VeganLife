@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, Text, SafeAreaView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/actions/recipes";
 import { fetchCategories } from "../store/actions/categories";
 import { fetchUser, fetchUsers } from "../store/actions/users";
+import { fetchStores } from '../store/actions/stores'
+import { fetchFavsRecipes } from "../store/actions/favourites";
+import { fetchProducts } from '../store/actions/products'
 import Categories from "../components/Categories";
 import CarouselFeed from "../components/CarouselFeed";
 import Recipes from "../components/ListRecipes";
@@ -16,6 +19,7 @@ const FeedRecetaScreen = ({ navigation }) => {
   const recipes = useSelector((state) => state.recipesReducer.recipes);
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const user = useSelector((state) => state.usersReducer.user);
+  const stores = useSelector((state)=> state.storesReducer.stores);
   const randomRecipes = recipes; // acá va un filter
 
   const checkIfLogged = () => {
@@ -33,8 +37,12 @@ const FeedRecetaScreen = ({ navigation }) => {
     dispatch(fetchCategories());
     dispatch(fetchRecipes());
     dispatch(fetchUsers());
+    dispatch(fetchStores())
+    dispatch(fetchProducts())
     if (!user._id) checkIfLogged();
-  }, []);
+    if(user._id) dispatch(fetchFavsRecipes(user._id));
+  }, [user]);
+
 
   return (
     <SafeAreaView style={styles.container}>

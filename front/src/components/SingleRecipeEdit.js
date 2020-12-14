@@ -10,7 +10,19 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { userIcon, recipeImg } from "../utils/constants";
+import { LinearGradient } from "expo-linear-gradient";
 import styles from "../styles/singleRecipe";
+
+const Gradient = (
+  <LinearGradient
+    start={{ x: 0.0, y: 0.0 }}
+    end={{ x: 0.0, y: 1.0 }}
+    locations={[0.1, 1.0]}
+    colors={["#ffffff70", "#fffffff7"]}
+    useViewFrame={false}
+    style={styles.gradient}
+  />
+);
 
 const Ingredient = ({ quantity, ingredient }) => (
   <Text style={styles.textTwo}>
@@ -37,6 +49,7 @@ const SingleRecipeEdit = ({
   bool,
   category,
   handleSubmit,
+  handleBackBoolean
 }) => {
   const [showSteps, setShowSteps] = useState(false);
   const [ingredientsList, setIngredientsList] = useState(false);
@@ -76,13 +89,7 @@ const SingleRecipeEdit = ({
               onPress={() => setIngredientsList(!ingredientsList)}
             >
               {ingredientsList ? (
-                // <FlatList
-                //   maxToRenderPerBatch={1}
-                //   initialNumToRender={5}
-                //   keyExtractor={(ingredient) => ingredient.name}
-                //   data={ingredients}
-                //   renderItem={renderIngredient}
-                // />
+           
                 <>
                   {ingredients.map((e, index) => (
                     <Ingredient
@@ -111,13 +118,7 @@ const SingleRecipeEdit = ({
             <Text style={styles.text}>Paso a Paso</Text>
             <TouchableOpacity onPress={() => setShowSteps(!showSteps)}>
               {showSteps ? (
-                // <FlatList
-                //   maxToRenderPerBatch={1}
-                //   initialNumToRender={5}
-                //   keyExtractor={(instruction) => instruction}
-                //   data={instructions}
-                //   renderItem={Step}
-                // />
+                
                 <>
                   {instructions.map((step, index) => (
                     <Step item={step} index={index} key={index} />
@@ -135,6 +136,15 @@ const SingleRecipeEdit = ({
               )}
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity
+            style={localStyles.boton}
+            onPress={() =>
+              handleBackBoolean()
+            }
+          >
+            <Text style={localStyles.title}>VOLVER</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={localStyles.boton}

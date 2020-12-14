@@ -5,13 +5,14 @@ import MaterialChip from "react-native-material-chip"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import OneButton from './OneButton'
-
 const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2, handleBackBoolean}) => {
  
-
     const [instruc, setInstruc] = useState([]);    
     const [data, setData] = useState('');
+
+    const deleteInstruc = (input) => {
+      setInstruc(instruc.filter((e) => e !== input));
+    };
 
     {if(bool){
         
@@ -49,8 +50,7 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
           >  
             <MaterialChip
              text={index+1  + ". " + item}
-             onPress={() => console.log('press')}
-             onDelete={() => console.log('delete')}
+             onDelete={() => deleteInstruc(item)}
              style={styles.chip}
              rightIcon={
                <View
@@ -120,7 +120,8 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
       borderBottomWidth: 2,
       //marginTop: 25,
       padding: 10 ,
-      marginHorizontal: 10
+      marginHorizontal: 10,
+      flex: 6
     },
     boton: {
       marginTop: 75,
@@ -132,7 +133,8 @@ const ListSelected = ({textbtn, bool, handleChange, ph, handleBoolean, textbtn2,
     },
     icon:{
       alignItems: "flex-end",
-      marginTop: 25
+      marginTop: 25,
+      flex: 2
 
     },
     chip: {

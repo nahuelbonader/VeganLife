@@ -1,133 +1,153 @@
-import React from 'react'
-import { View, Text, TextInput, StyleSheet} from 'react-native'
-import colors from "../styles/colors"
-import { RadioButton } from 'react-native-paper';
+import React, { useEffect, useState } from "react";
+import { View, Text, TextInput } from "react-native";
+import colors from "../styles/colors";
+import { RadioButton } from "react-native-paper";
+import useInputs from "../hooks/useInputs";
+import styles from "../styles/inputHorario";
 
-const Input = ({ open,checked,setChecked, setOpen, text1,text2,text3,text4,text1c,text2c,text3c,text4c, handleChange1,handleChange2,handleChange3,handleChange4,handleChange1c,handleChange2c,handleChange3c,handleChange4c, dia }) => {
-  return(
-    <View style={{paddingBottom:"12%"}}>
-      <Text style={styles.text}>{dia}</Text>
-      <View style={{flexDirection:'row', justifyContent:'center'}}>
-         <Text>No</Text>
-         <RadioButton
-         value="first"
-         status={ checked === 'first' ? 'checked' : 'unchecked' }
-         onPress={() => {setChecked('first'),setOpen(false)}}
-         />
-         <Text>Si</Text>
-         <RadioButton
-          value="second"
-          status={ checked === 'second' ? 'checked' : 'unchecked' }
-          onPress={() => {setChecked('second'),setOpen(true)}}
-         />
-      </View>
-    {!open?
-      null
-      :
-      <View>
-      <View style={styles.view}>
-      {console.log("OPEN",open)}
-           <TextInput
-           style={styles.input}
-            autoCorrect={false}
-            value={text1}
-            onChangeText={handleChange1}
-            placeholder="HH"
-           />
-           <Text style={styles.descriptionText}>:</Text>
-           <TextInput
-           style={styles.input}
-           value={text2}
-           autoCorrect={false}
-           onChangeText={handleChange2}
-           placeholder="mm"
-           />
-           <Text style={styles.descriptionText}>Am</Text>
-           <Text style={styles.hasta}>Hasta</Text>
-           <TextInput
-           style={styles.input}
-            autoCorrect={false}
-            value={text1c}
-            onChangeText={handleChange1c}
-            placeholder="HH"
-           />
-           <Text style={styles.descriptionText}>:</Text>
-           <TextInput
-           style={styles.input}
-           value={text2c}
-           autoCorrect={false}
-           onChangeText={handleChange2c}
-           placeholder="mm"
-           />
-      </View>
-      <View style={styles.view}>
-        <TextInput
-        style={styles.input}
-         autoCorrect={false}
-         value={text3}
-         onChangeText={handleChange3}
-         placeholder="HH"
-        />
-        <Text style={styles.descriptionText}>:</Text>
-        <TextInput
-        style={styles.input}
-        value={text4}
-        onChangeText={handleChange4}
-        autoCorrect={false}
-        placeholder="mm"
-        />
-         <Text style={styles.descriptionText}>Pm</Text>
+const Time = ({ text, handleChange, time }) => (
+  <TextInput
+    keyboardType="number-pad"
+    style={styles.input}
+    autoCorrect={false}
+    value={text ? text : null}
+    onChangeText={handleChange}
+    placeholder={time}
+    maxLength={2}
+  />
+);
 
-         <Text style={styles.hasta}>Hasta</Text>
-           <TextInput
-           style={styles.input}
-            autoCorrect={false}
-            value={text3c}
-            onChangeText={handleChange3c}
-            placeholder="HH"
-           />
-           <Text style={styles.descriptionText}>:</Text>
-           <TextInput
-           style={styles.input}
-           value={text4c}
-           onChangeText={handleChange4c}
-           autoCorrect={false}
-           placeholder="mm"
-           />
+const Input = ({ dayName, setDay }) => {
+  const [open, setOpen] = useState(false);
+  const [inputs, handleChange] = useInputs();
+  const {
+    hoursOpenMorning,
+    minutesOpenMorning,
+    hoursCloseMorning,
+    minutesCloseMorning,
+    hoursOpenAftenoon,
+    minutesOpenAfternoon,
+    hoursCloseAftenoon,
+    minutesCloseAfternoon,
+  } = inputs;
+
+  const changeToMinutes = (hours, minutes) => hours * 60 + minutes;
+
+  useEffect(() => {
+    const startMorning = changeToMinutes(hoursOpenMorning, minutesOpenMorning);
+    const endMorning = changeToMinutes(hoursCloseMorning, minutesCloseMorning);
+    const startNoon = changeToMinutes(hoursOpenAftenoon, minutesOpenAfternoon);
+    const endNoon = changeToMinutes(hoursCloseAftenoon, minutesCloseAfternoon);
+    setDay({
+      open,
+      startMorning,
+      endMorning,
+      startNoon,
+      endNoon,
+    });
+  }, [
+    hoursOpenMorning,
+    minutesOpenMorning,
+    hoursCloseMorning,
+    minutesCloseMorning,
+    hoursOpenAftenoon,
+    minutesOpenAfternoon,
+    hoursCloseAftenoon,
+    minutesCloseAfternoon,
+  ]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{dayName}</Text>
+
+      <View style={styles.optionsContainer}>
+        <Text style={styles.optionText}>No</Text>
+        <RadioButton
+          status={!open ? "checked" : "unchecked"}
+          onPress={() => setOpen(false)}
+          color={colors.carrot}
+          uncheckedColor={colors.greenligth}
+        />
+        <Text style={styles.optionText}>Si</Text>
+        <RadioButton
+          status={open ? "checked" : "unchecked"}
+          onPress={() => setOpen(true)}
+          color={colors.carrot}
+          uncheckedColor={colors.greenligth}
+        />
       </View>
-      </View>
-    }
+
+      {!open ? null : (
+        <View style={styles.openContainer}>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Desde</Text>
+            <Text style={styles.text}>Hasta</Text>
+          </View>
+
+          <View style={styles.hoursContainer}>
+            <Text style={styles.descriptionText}>Mañana</Text>
+            <View style={styles.timeContainer}>
+              <Time
+                text={hoursOpenMorning}
+                handleChange={handleChange("hoursOpenMorning")}
+                time={"hh"}
+              />
+              <Text style={styles.descriptionText}>:</Text>
+              <Time
+                text={minutesOpenMorning}
+                handleChange={handleChange("minutesOpenMorning")}
+                time={"mm"}
+              />
+            </View>
+            <View style={styles.timeContainer}>
+              <Time
+                text={hoursCloseMorning}
+                handleChange={handleChange("hoursCloseMorning")}
+                time={"hh"}
+              />
+              <Text style={styles.descriptionText}>:</Text>
+              <Time
+                text={minutesCloseMorning}
+                handleChange={handleChange("minutesCloseMorning")}
+                time={"mm"}
+              />
+            </View>
+          </View>
+
+          <View style={styles.hoursContainer}>
+            <Text style={styles.descriptionText}>Tarde</Text>
+
+            <View style={styles.timeContainer}>
+              <Time
+                text={hoursOpenAftenoon}
+                handleChange={handleChange("hoursOpenAftenoon")}
+                time={"hh"}
+              />
+              <Text style={styles.descriptionText}>:</Text>
+              <Time
+                text={minutesOpenAfternoon}
+                handleChange={handleChange("minutesOpenAfternoon")}
+                time={"mm"}
+              />
+            </View>
+            <View style={styles.timeContainer}>
+              <Time
+                text={hoursCloseAftenoon}
+                handleChange={handleChange("hoursCloseAftenoon")}
+                time={"hh"}
+              />
+              <Text style={styles.descriptionText}>:</Text>
+              <Time
+                text={minutesCloseAfternoon}
+                handleChange={handleChange("minutesCloseAfternoon")}
+                time={"mm"}
+              />
+            </View>
+          </View>
+        </View>
+      )}
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
-  view:{
-    flexDirection:'row'
-  },
-  text:{
-    color: colors.carrot,
-    fontWeight:'bold',
-    fontSize:17,
-    alignSelf:'center'
-  },
-  descriptionText:{
-    right:"21%",
-    top:"5%",
-    color:colors.font
-  },
-  input:{
-    borderBottomWidth:1,
-    borderBottomColor: colors.font,
-    width:"10%",
-    marginRight:"5%",
-    marginTop:"4%"
-  },
-  hasta:{
-    top:"5%",
-    fontWeight:'bold',
-    marginRight:"5%"
-  }
-})
-
-export default Input
+export default Input;

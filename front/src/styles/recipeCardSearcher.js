@@ -10,11 +10,11 @@ export default StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     borderRadius: 20,
-    marginVertical: "1.5%",
+    marginTop: "2%",
     backgroundColor: colors.darkGray,
   },
   container: {
-    height: "95%",
+    height: "100%",
     width: "100%",
     flexDirection: "row",
     alignItems: "center",

@@ -4,7 +4,6 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity, FlatList } from "r
 import MaterialChip from "react-native-material-chip"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import OneButton from './OneButton'
 
 const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handleBackBoolean, textbtn2}) => {
  
@@ -12,14 +11,16 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
     const [ingredient, setIngredient] = useState('');    
     const [data, setData] = useState([]);
 
+    const deleteData = (input) => {
+      setData(data.filter((e) => e !== input));
+    };
+
     {if(bool){
         return (
             
         <View style={{marginTop: 100}}>   
             <Text style={styles.title}>Ingresa tu propia receta</Text>
           <View style={styles.container}>
-
-
           <TextInput 
             style={styles.input}
             placeholder={"Cantidad"}
@@ -34,8 +35,6 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
             value={ingredient}
             
           />
-
-
             <TouchableOpacity 
                 onPress={()=>{setData([...data, {quantity, ingredient}]), setQuantity(""), setIngredient("")}}
                 style={styles.icon}> 
@@ -48,31 +47,22 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
         data={data}
         renderItem={({ item, index }) => (
             
-          <View >  
-            {/* <Text style={styles.chip}> {item.quantity} de {item.ingredient}</Text> */}
-            
+          <View >              
             <MaterialChip
              text={item.quantity + " de " + item.ingredient}
-             onPress={() => console.log('item', item)}
-             onDelete={() => {console.log('item', item)
-            }}
+             onDelete={() => deleteData(item)}
              style={{borderStartColor: "green", borderTopColor: "green", borderBottomColor: "green", borderEndColor: "green"}}
-             //style={{borderColor:"green"}}
              rightIcon={
                <View
                    style={{
                        height: MaterialChip.CHIP_RIGHT_ICON_SIZE,
                        width: MaterialChip.CHIP_RIGHT_ICON_SIZE,
                        borderRadius: MaterialChip.CHIP_RIGHT_ICON_RADIUS,
-                      //backgroundColor: 'black',
                        borderWidth: 0,
                       default: true
                  }}
                   ><MaterialCommunityIcons name="close-circle-outline" size={20} /></View>}
             /> 
-
-
-
           </View>
         )}
         keyExtractor={(index) => index}
@@ -92,13 +82,7 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
                 
                   <Text style={styles.title}>{textbtn}</Text>
             </TouchableOpacity>
-    
-
-
-
             </View>
- 
-    
              );
 
     }else{
@@ -121,18 +105,18 @@ const AddIngredientes = ({textbtn, bool, handleChange, ph, handleBoolean, handle
       fontWeight: "bold"
     },
     input:{
-      //backgroundColor: '#000000',
       fontSize: 20, 
       borderBottomColor: "#35b056",
       borderBottomWidth: 2,
-      //marginTop: 25,
       padding: 10 ,
-      marginHorizontal: 10
+      marginHorizontal: 10,
+      flex: 3,
     },
     icon:{
       alignItems: "flex-end",
       marginTop: 25,
-      paddingTop: 10
+      paddingTop: 10,
+      flex: 2,
     },
     boton: {
       marginTop: 75,

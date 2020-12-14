@@ -20,7 +20,7 @@ router
   .post(FavouritesControllers.addFavRecipe);
 router.delete(
   "/:userId/recipes/:recipeId",
-  FavouritesControllers.deleteFavrecipe
+  FavouritesControllers.deleteFavRecipe
 );
 
 //Stores

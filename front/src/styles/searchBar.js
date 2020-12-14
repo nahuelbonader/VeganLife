@@ -26,8 +26,8 @@ export default StyleSheet.create({
     paddingLeft: 12,
   },
   deleteIcon: {
-    flex: 0.5,
+    flex: 0.8,
     marginVertical: 8,
-    marginHorizontal: 12,
+    marginHorizontal: "4%",
   },
 });
