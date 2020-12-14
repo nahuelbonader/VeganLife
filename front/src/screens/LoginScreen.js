@@ -8,6 +8,7 @@ import useInputs from "../hooks/useInputs";
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
 import GoogleLoginComponent from "../components/GoogleLoginComponent";
+import FacebookLoginComponent from '../components/FacebookLoginComponent'
 import AccessButtons from "../components/AccessButtons";
 import { errors, alerts } from "../utils/errors-alerts";
 import styles from "../styles/login-register";
@@ -52,8 +53,14 @@ const Login = ({ navigation }) => {
           text={password}
           secureTextEntry={true}
         />
+        <AccessButtons
+          onPressBtn={handleSubmit}
+          invitation="¿Olvidaste tu contraseña?"
+          onPressInvitation={() => navigation.navigate("ForgotPassword")}
+        />
 
         <GoogleLoginComponent />
+        <FacebookLoginComponent/>
 
         <Text style={styles.alert}>{errorMessage}</Text>
         <AccessButtons
