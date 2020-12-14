@@ -4,14 +4,19 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/recipeCardSearcher";
 import colors from "../styles/colors";
+import { useSelector, useDispatch } from "react-redux";
+import setSearchBar from '../store/actions/showSearchBar'
+
 
 export default ({ item }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
-      onPress={() =>
+      onPress={() =>{
+        dispatch(setSearchBar(false))
         navigation.navigate("SingleProduct", { productId: item._id })
-      }
+      }}
       style={styles.touchableContainer}
     >
       <View style={styles.container}>
