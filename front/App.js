@@ -9,6 +9,7 @@ import FeedStack from "./src/screens/FeedStack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Login from "./src/screens/LoginScreen";
 import Register from "./src/screens/RegisterScreen";
+import ForgotPassword from './src/components/ForgotPassword'
 import AddRecipeScreen from "./src/screens/AddRecipeScreen";
 import Splash from './src/components/Splash'
 
@@ -24,6 +25,7 @@ export default () => {
             <Drawer.Screen name="Home" component={FeedStack} />
             <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="Register" component={Register} />
+            <Drawer.Screen name="ForgotPassword" component={ForgotPassword} />
           </Drawer.Navigator>
         </NavigationContainer>
       </Provider>

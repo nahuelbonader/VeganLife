@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import * as ImagePicker from "expo-image-picker";
+
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,6 +13,8 @@ import SingleRecipeEdit from '../components/SingleRecipeEdit'
 import AddIngredientes from '../components/AddIngredientes'
 
 import {postRecipe, fetchRecipes} from '../store/actions/recipes'
+
+
 
 
 const AddRecipeScreen = ({}) => {
@@ -57,6 +61,28 @@ const AddRecipeScreen = ({}) => {
         
         }
 
+        const handleOpenImage = async () => {
+            const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            const picker = await ImagePicker.launchImageLibraryAsync();
+            if (!permission.granted) return console.log("NO TENES PERMISOS");
+            if (picker.cancelled) return console.log("Pickeo cancelado");
+            setImage(picker.uri);
+            uploadImage(picker.uri);
+          };
+        
+        const uploadImage = async (uri) => {
+            const response = await fetch(uri);
+            const blob = await response.blob();
+            const ref = firebase
+              .storage()
+              .ref()
+              .child("images/" + uri);
+            await ref.put(blob);
+            return await ref
+              .getDownloadURL()
+              .then((downloadUrl) => setImage(downloadUrl))
+              .catch((err) => console.log(err));
+          };
 
     return (
         <ScrollView>
@@ -77,6 +103,8 @@ const AddRecipeScreen = ({}) => {
              handleBoolean={()=>{setBool2(!bool2), setBool3(!bool3)}}
              handleBackBoolean={()=>{setBool1(!bool1), setBool2(!bool2)}}
              value={image}
+             openImage={handleOpenImage}
+             image={image}
              />
              <AddIngredientes
              textbtn={"Siguiente"}

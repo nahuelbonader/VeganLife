@@ -53,8 +53,13 @@ const Login = ({ navigation }) => {
           text={password}
           secureTextEntry={true}
         />
+        <AccessButtons
+          onPressBtn={handleSubmit}
+          invitation="¿Olvidaste tu contraseña?"
+          onPressInvitation={() => navigation.navigate("ForgotPassword")}
+        />
 
-<GoogleLoginComponent />
+        <GoogleLoginComponent />
         <FacebookLoginComponent/>
 
         <Text style={styles.alert}>{errorMessage}</Text>
