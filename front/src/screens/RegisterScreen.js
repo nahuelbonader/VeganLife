@@ -25,16 +25,16 @@ const Register = ({ navigation }) => {
   const [errorMessage, setError] = useState("");
   const [image, setImage] = useState("");
 
-  let handleOpenImage = async () => {
-    let permission = await ImagePicker.requestCameraRollPermissionsAsync();
-    let picker = await ImagePicker.launchImageLibraryAsync();
+  const handleOpenImage = async () => {
+    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const picker = await ImagePicker.launchImageLibraryAsync();
     if (!permission.granted) return console.log("NO TENES PERMISOS");
     if (picker.cancelled) return console.log("Pickeo cancelado");
     setImage(picker.uri);
     uploadImage(picker.uri);
   };
 
-  uploadImage = async (uri) => {
+  const uploadImage = async (uri) => {
     const response = await fetch(uri);
     const blob = await response.blob();
     const ref = firebase

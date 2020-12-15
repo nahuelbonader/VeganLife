@@ -1,9 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
-import FeedRecetas from "./FeedRecetaScreen";
-import Login from "./LoginScreen";
-import Register from "./RegisterScreen";
 import Recipe from "./SingleRecipeScreen";
 import SingleCategory from "./SingleCategoryScreen";
 import Header from "./Header";
@@ -11,11 +7,15 @@ import BottomNav from "./BottomNav";
 import CookToday from "./CookTodayScreen";
 import Profile from "./ProfileScreen";
 import StoreFeed from "./FeedStoresScreen";
+import Map from '../components/Map'
+import Splash from '../components/Splash'
 import MyStores from "./MyCommercesScreen";
 import CommercePanel from "./CommercePanelScreen";
 import SingleProduct from "./SingleProductScreen";
+import SuperAdminCommerce from './SuperAdminCommerceScreen'
 
 const Stack = createStackNavigator();
+
 
 const FeedStack = () => {
   return (
@@ -34,9 +34,11 @@ const FeedStack = () => {
       <Stack.Screen name="CookToday" component={CookToday} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="StoreFeed" component={StoreFeed} />
+      <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="MyCommerces" component={MyStores} />
       <Stack.Screen name="CommercePanel" component={CommercePanel} />
       <Stack.Screen name="SingleProduct" component={SingleProduct} />
+      <Stack.Screen name="SuperAdminCommerce" component={SuperAdminCommerce} />
     </Stack.Navigator>
   );
 };

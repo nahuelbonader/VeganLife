@@ -54,6 +54,37 @@ const storeController = {
       })
       .catch((err) => next(err));
   },
+  addNewAdmin(req, res, next){
+    const {storeId, adminId} = req.params
+    Store.findById(storeId)
+         .populate({ path: "admins", select:'name'})
+         .then((store)=>{
+           let bool = true
+           store.admins.map((el)=>{
+             if (el._id == adminId) bool = false
+           })
+          if(bool){
+            store.admins.push(adminId)
+            store.save()
+            res.status(201).send(store.admins)
+         }
+          else {
+          res.sendStatus(208)
+          }
+         })
+         .catch((err) => next(err))
+  },
+  deleteAnAdmin(req, res, next){
+    const { storeId, adminId } = req.params
+    Store.findById(storeId)
+         .populate({ path: "admins", select:'name'})
+         .then((store)=>{
+           store.admins = store.admins.filter((el)=> el._id != adminId)
+           store.save()
+           res.status(store.admins)
+         })
+         .catch((err) => next(err))
+  }
 };
 
 module.exports = storeController;

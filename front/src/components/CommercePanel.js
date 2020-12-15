@@ -3,13 +3,19 @@ import { View, Text, FlatList, TouchableOpacity, Image, ScrollView, StyleSheet} 
 import { userIcon } from "../utils/constants";
 import colors from "../styles/colors"
 import { toggleButton } from './customFunctions/funciones'
+import { useSelector } from 'react-redux'
+import { Octicons } from '@expo/vector-icons';
+import normalize from "react-native-normalize";
+import { useNavigation } from "@react-navigation/native";
+
 
 import ProductsList from './ProductsList'
 
 
 const Panel = ({ info, products }) => {
 
-
+  const navigation = useNavigation();
+  const user = useSelector((state) => state.usersReducer.user);
   const [active1, setActive1] = useState(true);
   const [active2, setActive2] = useState(false);
   const [active3, setActive3] = useState(false);
@@ -21,6 +27,16 @@ const Panel = ({ info, products }) => {
       <View style={styles.viewUser}>
          <Image style={styles.img} source={{uri: info.image? info.image : userIcon }}/>
          <Text style={styles.name}> {info.name} </Text>
+         {info.superAdmin === user._id?
+             <TouchableOpacity
+             onPress={()=> navigation.navigate("SuperAdminCommerce", {storeId: info._id, admins: info.admins})}
+             style={styles.button2}
+             >
+               <Octicons name="gear" size={24} color="#bfe3bf" />
+             </TouchableOpacity>
+           :
+           null
+         }
       </View>
 
       <View style={styles.viewOptions}>
@@ -122,6 +138,15 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:"bold",
     color:"#86D3A6"
+  },
+  button2:{
+    backgroundColor:colors.greenligth,
+    position:'absolute',
+    right:'8.5%',
+    top:'36%',
+    paddingHorizontal:normalize(20),
+    paddingVertical:normalize(7),
+    borderRadius:30
   }
 })
 

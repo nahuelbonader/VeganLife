@@ -9,10 +9,10 @@ import setRoute from "../store/actions/bottomRoutes";
 import AddRecipeScreen from "./AddRecipeScreen";
 import FeedRecetas from "./FeedRecetaScreen";
 import Search from "./SearchScreen";
+import Map from '../components/Map'
 
 const Tab = createMaterialBottomTabNavigator();
 
-const Map = () => <Text>Map</Text>;
 const PostRecipe = () => <Text>PostRecipe</Text>;
 
 const BottomNav = ({ navigation }) => {
@@ -63,6 +63,7 @@ const BottomNav = ({ navigation }) => {
           <Tab.Screen
             name="Map"
             component={Map}
+            onPress={()=>navigation.navigate("Map")}
             options={{
               tabBarLabel: "Map",
               tabBarIcon: ({ color }) => (

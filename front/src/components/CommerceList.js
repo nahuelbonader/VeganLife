@@ -14,7 +14,7 @@ import colors from "../styles/colors";
 
 const List = ({ data }) => {
   const navigation = useNavigation();
-
+console.log(data);
   return (
     <View>
       <FlatList
@@ -23,12 +23,14 @@ const List = ({ data }) => {
         data={data}
         renderItem={({ item }) => {
           return (
+
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("CommercePanel", { CommerceInfo: item })
               }
               style={styles.touchableContainer}
             >
+            {console.log("QUE PASA ACÁ",item)}
               <View style={styles.container}>
                 <Image
                   style={styles.image}
