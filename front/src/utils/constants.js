@@ -9,3 +9,5 @@ export const VLICon = require("../../assets/VGL-White.png");
 export const portada = require("../../assets/fondo.png");
 
 export const storeImg = require("../../assets/store.png");
+
+export const newRecipeImg = "https://img.pngio.com/la-alimentacion-saludable-previene-el-cancer-gastronomiacom-espaa-alimento-saludable-png-595_300.png"
