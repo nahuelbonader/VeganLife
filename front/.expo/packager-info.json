@@ -1,9 +1,10 @@
 {
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19003,
-  "packagerPid": 12547,
-  "expoServerNgrokUrl": "https://q7-di2.anonymous.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.q7-di2.anonymous.front.exp.direct",
-  "ngrokPid": 12616
+  "packagerPort": null,
+  "packagerPid": null,
+  "webpackServerPort": null
 }
