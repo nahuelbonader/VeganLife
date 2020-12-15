@@ -12,7 +12,7 @@ import Splash from '../components/Splash'
 import MyStores from "./MyCommercesScreen";
 import CommercePanel from "./CommercePanelScreen";
 import SingleProduct from "./SingleProductScreen";
-
+import SingleMarket from "../components/SingleMarket"
 
 const Stack = createStackNavigator();
 
@@ -38,6 +38,7 @@ const FeedStack = () => {
       <Stack.Screen name="MyCommerces" component={MyStores} />
       <Stack.Screen name="CommercePanel" component={CommercePanel} />
       <Stack.Screen name="SingleProduct" component={SingleProduct} />
+      <Stack.Screen name="SingleMarket" component={SingleMarket} />
     </Stack.Navigator>
   );
 };
