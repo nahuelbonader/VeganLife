@@ -25,7 +25,7 @@ const List = ({ data }) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("CommercePanel", { CommerceInfo: item })
+                navigation.navigate("CommercePanel", { storeId: item._id })
               }
               style={styles.touchableContainer}
             >
