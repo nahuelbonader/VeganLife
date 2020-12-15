@@ -3,11 +3,11 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native
 import colors from "../styles/colors"
 import List from './AdminsList'
 
-const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins }) => {
+const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete, errMessage }) => {
   return(
      <View style={{flex:1}}>
         <View style={{ flex:4}}>
-          <Text style={styles.text}>¿Queres agregar un Admin a tu comercio?</Text>
+          <Text style={styles.text}>¿Querés agregar un Admin a tu comercio?</Text>
           <Text style={styles.txt}>Ingresa el correo de la persona</Text>
           <TextInput
           autoCapitalize="none"
@@ -21,12 +21,14 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins }) => {
           style={styles.button}
           >
             <Text style={styles.buttonText}> Crear admin </Text>
+
           </TouchableOpacity>
+          <Text style={styles.err}>{errMessage}</Text>
         </View>
-        <View style={{ flex:6}}>
+        <View style={{ flex:6, marginBottom:'10%'}}>
            <Text style={styles.txt2}>Lista de admins</Text>
              <View style={{backgroundColor:colors.background}}>
-               <List data={admins}/>
+               <List data={admins} handleDelete={handleDelete}/>
              </View>
         </View>
      </View>
@@ -39,7 +41,7 @@ text:{
   fontWeight:'bold',
   fontSize:20,
   color:colors.font,
-  marginVertical:'10%'
+  marginVertical:'6%'
 },
 txt:{
   alignSelf:'center',
@@ -74,6 +76,12 @@ fontSize:18,
 color:colors.font,
 fontWeight:'bold',
 marginVertical:'3%'
+},
+err:{
+  fontWeight:'bold',
+  color:'red',
+  alignSelf:'center',
+  fontSize:20
 }
 })
 

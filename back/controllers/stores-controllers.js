@@ -49,6 +49,7 @@ const storeController = {
 
   findOneStore(req, res, next) {
     Store.findById(req.params.id)
+      .populate({ path: "admins", select:['name','image']})
       .then((store) => {
         res.status(200).send(store);
       })
@@ -57,7 +58,7 @@ const storeController = {
   addNewAdmin(req, res, next){
     const {storeId, adminId} = req.params
     Store.findById(storeId)
-         .populate({ path: "admins", select:'name'})
+         .populate({ path: "admins", select:['name','image']})
          .then((store)=>{
            let bool = true
            store.admins.map((el)=>{
@@ -81,7 +82,7 @@ const storeController = {
          .then((store)=>{
            store.admins = store.admins.filter((el)=> el._id != adminId)
            store.save()
-           res.status(store.admins)
+           res.send(store.admins)
          })
          .catch((err) => next(err))
   }

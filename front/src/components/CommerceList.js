@@ -30,7 +30,6 @@ console.log(data);
               }
               style={styles.touchableContainer}
             >
-            {console.log("QUE PASA ACÁ",item)}
               <View style={styles.container}>
                 <Image
                   style={styles.image}

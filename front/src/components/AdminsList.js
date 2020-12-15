@@ -5,7 +5,7 @@ import { userIcon } from "../utils/constants";
 import normalize from "react-native-normalize";
 import { Entypo } from '@expo/vector-icons';
 
-const AdminList = ({ data }) => {
+const AdminList = ({ data, handleDelete }) => {
 
   return (
     <View>
@@ -20,7 +20,10 @@ const AdminList = ({ data }) => {
             source={{ uri: item.image? item.image : userIcon}}
             />
            <Text style={styles.name}>{item.name}</Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+            onPress={()=>handleDelete(item._id)}
+            style={styles.button}
+            >
               <Entypo name="squared-cross" size={30} color="black" />
             </TouchableOpacity>
           </View>
