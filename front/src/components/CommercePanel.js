@@ -71,6 +71,7 @@ const Panel = ({ commerce, products }) => {
           <Categories
             categories={commerce.productsCategories}
             addCategorie={addCategorie}
+            deleteCategorie={deleteCategorie}
           />
         ) : null}
       </View>

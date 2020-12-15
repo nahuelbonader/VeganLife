@@ -33,6 +33,7 @@ export default StyleSheet.create({
     color: colors.dartmouthGreen,
     fontWeight: "bold",
     borderBottomWidth: 2,
+    borderBottomColor: colors.dartmouthGreen,
   },
   touchInactiveLight: {
     color: colors.teaGreen,

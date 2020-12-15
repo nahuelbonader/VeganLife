@@ -4,30 +4,36 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  StyleSheet,
   TextInput,
   Modal,
   TouchableWithoutFeedback,
-  Keyboard,
-  KeyboardAvoidingView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import normalize from "react-native-normalize";
+import styles from "../styles/categoriesStore";
 import colors from "../styles/colors";
 
-// const Categorie = () =>
-
-export default ({ categories, addCategorie }) => {
+export default ({ categories, addCategorie, deleteCategorie }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [categorie, setCategorie] = useState("");
+  const [alert, setAlert] = useState(false);
+  const [alertText, setAlertText] = useState("");
 
   const createCategorie = () => {
-    setModalVisible(false);
-    addCategorie(categorie);
+    const value = categorie.trim();
+    if (value.length == 0) {
+      setAlertText("Ingrese un nombre para la categoría");
+      setAlert(true);
+    } else if (categories.includes(value)) {
+      setAlertText("La categoría que intenta ingresar ya existe");
+      setAlert(true);
+    } else {
+      setModalVisible(false);
+      addCategorie(value);
+    }
   };
 
   useEffect(() => setCategorie(""), [categories]);
+  useEffect(() => setAlert(false), [categorie]);
 
   return (
     <View style={styles.container}>
@@ -40,9 +46,9 @@ export default ({ categories, addCategorie }) => {
             <Text style={styles.textCategorie}>{item}</Text>
             <MaterialCommunityIcons
               name="close-circle-outline"
-              size={20}
-              color="black"
-              onPress={() => console.log("delete categorie")}
+              size={22}
+              color={colors.carrot}
+              onPress={() => deleteCategorie(item)}
             />
           </View>
         )}
@@ -68,81 +74,20 @@ export default ({ categories, addCategorie }) => {
                 style={styles.input}
                 placeholder="Descripción"
                 onChangeText={setCategorie}
+                autoFocus
               />
-              <TouchableOpacity onPress={createCategorie}>
-                <Text>Confirmar</Text>
+
+              <TouchableOpacity
+                onPress={createCategorie}
+                style={styles.btnSubmit}
+              >
+                <Text style={styles.textSubmit}>Confirmar</Text>
               </TouchableOpacity>
             </View>
+            {alert ? <Text style={styles.textAlert}>{alertText}</Text> : null}
           </View>
         </TouchableWithoutFeedback>
       </Modal>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-  },
-  containerCategorie: {
-    alignSelf: "center",
-    width: "95%",
-    height: normalize(30),
-    borderBottomWidth: 1,
-    borderBottomColor: colors.darkGray,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    paddingHorizontal: "3%",
-  },
-  textCategorie: {
-    width: "100%",
-    fontSize: 17,
-  },
-  buttonContainer: {
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: "6%",
-    backgroundColor: colors.darkGreen,
-    paddingHorizontal: "15%",
-    paddingVertical: "1%",
-    borderRadius: 30,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: colors.background,
-  },
-  // Modal
-  centeredView: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.transparent,
-  },
-  modalView: {
-    width: "80%",
-    height: normalize(110),
-    backgroundColor: colors.darkGray,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 7,
-  },
-  input: {
-    width: "90%",
-    borderBottomColor: colors.button,
-    borderBottomWidth: 1,
-    marginBottom: "5%",
-    paddingLeft: "1.5%",
-  },
-});
