@@ -8,8 +8,8 @@ const SuperAdminCommerce = ({ navigation, route }) => {
 
   const users = useSelector((state) => state.usersReducer.users);
   const [input, setInput] = useState("")
- const storeId = route.params.storeId
- const admins = () => {
+  const storeId = route.params.storeId
+  const admins = () => {
    let filtered = []
    for (let i = 0; i < route.params.admins.length; i++) {
      for (let j = 0; j < users.length; j++) {

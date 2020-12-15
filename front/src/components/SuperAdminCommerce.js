@@ -25,9 +25,9 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins }) => {
         </View>
         <View style={{ flex:6}}>
            <Text style={styles.txt2}>Lista de admins</Text>
-            <View style={{backgroundColor:colors.background}}>
-              <List data={admins}/>
-            </View>
+             <View style={{backgroundColor:colors.background}}>
+               <List data={admins}/>
+             </View>
         </View>
      </View>
   )
