@@ -15,6 +15,9 @@ const ProductController = {
   },
   create(req, res, next) {
     Product.create(req.body)
+      .then((product) =>
+        product.populate({ path: "store", select: "name" }).execPopulate()
+      )
       .then((product) => res.send(product))
       .catch((err) => next(err));
   },
