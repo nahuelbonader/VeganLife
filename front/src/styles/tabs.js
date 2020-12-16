@@ -20,4 +20,24 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.background,
   },
+
+  // Light
+  tabsContainerLight: {
+    flex: 0.5,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: colors.background,
+  },
+  touchActiveLight: {
+    color: colors.dartmouthGreen,
+    fontWeight: "bold",
+    borderBottomWidth: 2,
+    borderBottomColor: colors.dartmouthGreen,
+  },
+  touchInactiveLight: {
+    color: colors.teaGreen,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.background,
+  },
 });

@@ -6,13 +6,14 @@ const colors = {
   lines: "#e5e5e5",
   containers: "#E5E1E0",
   background: "#FFFFFF",
-  teaGreen: "#BFDFBFff",
+  teaGreen: "#94C7A9",
   greenligth: "#35b056",
   dartmouthGreen: "#007F37ff",
   darkGreen: "#006028",
   ligthGray: "#ECECEC",
   darkGray: "#dbdbdb",
   niceGray: "#C3C5CD",
+  transparent: "rgba(52, 52, 52, 0.8)",
 };
 
 export default colors;

@@ -23,6 +23,7 @@ const FeedRecetaScreen = ({ navigation }) => {
   const randomRecipes = recipes; // acá va un filter
 
   const checkIfLogged = () => {
+    console.log(user)
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const { email, uid } = user;
