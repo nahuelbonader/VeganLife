@@ -24,7 +24,7 @@ const AdminList = ({ data, handleDelete }) => {
             onPress={()=>handleDelete(item._id)}
             style={styles.button}
             >
-              <Entypo name="squared-cross" size={30} color="black" />
+              <Entypo style={styles.entypo} name="squared-cross" />
             </TouchableOpacity>
           </View>
         )
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: "100%",
    backgroundColor:colors.background,
    borderBottomColor: colors.darkGray,
-   marginBottom:"1%",
+   marginBottom:"2.5%",
    borderBottomWidth:1,
    flexDirection: "row",
    alignItems:'center'
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   image: {
     width: "15%",
     height: "85%",
-    borderRadius: 100,
+    borderRadius: normalize(100),
     borderColor: colors.darkGreen,
     borderWidth: 2,
     marginHorizontal:"3%"
@@ -62,7 +62,11 @@ const styles = StyleSheet.create({
    position:'absolute',
    right:'8%',
 
-  }
+ },
+ entypo:{
+   fontSize:normalize(30),
+   color: colors.carrot
+ }
 })
 
 export default AdminList

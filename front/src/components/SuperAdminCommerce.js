@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native'
 import colors from "../styles/colors"
 import List from './AdminsList'
+import normalize from "react-native-normalize";
 
 const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete, errMessage }) => {
   return(
@@ -26,9 +27,15 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
           <Text style={styles.err}>{errMessage}</Text>
         </View>
         <View style={styles.secondView}>
-           <Text style={styles.txt2}>Lista de admins</Text>
+           <Text style={admins.length > 0 ? styles.txt2 : styles.txt2Carrot}>Lista de admins</Text>
+           <View style={styles.line}></View>
              <View style={{backgroundColor:colors.container}}>
-               <List data={admins} handleDelete={handleDelete}/>
+             { admins.length > 0?
+                 <List data={admins} handleDelete={handleDelete}/>
+               :
+               <Text style={styles.defaultMessage}>Todavía no agregaste ningun administrador</Text>
+             }
+
              </View>
         </View>
      </View>
@@ -37,19 +44,23 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
 
 const styles = StyleSheet.create({
   firstView:{
-    flex:4
+    flex:4.1
   },
   secondView:{
-    flex:6,
+    flex:5.9,
     paddingBottom:'10%',
     backgroundColor:colors.background,
     borderTopLeftRadius:30,
     borderTopRightRadius:30
   },
+  line:{
+    backgroundColor: colors.darkGray,
+    height:2
+  },
 text:{
   alignSelf:'center',
   fontWeight:'bold',
-  fontSize:20,
+  fontSize:normalize(20),
   color:colors.font,
   marginVertical:'6%'
 },
@@ -81,18 +92,33 @@ buttonText:{
   fontSize:18,
   textTransform:'uppercase'
 },
+
 txt2:{
-fontSize:18,
+fontSize:normalize(20),
 color:colors.font,
 fontWeight:'bold',
 marginVertical:'3%',
 marginLeft:'5%'
 },
+txt2Carrot:{
+fontSize:normalize(20),
+color:colors.carrot,
+fontWeight:'bold',
+marginVertical:'3%',
+marginLeft:'5%'
+},
+
 err:{
   fontWeight:'bold',
   color:'red',
   alignSelf:'center',
-  fontSize:20
+  fontSize:20,
+},
+defaultMessage:{
+  alignSelf:'center',
+  color:"#bfbfbf",
+  fontSize:20,
+  marginTop:'35%'
 }
 })
 
