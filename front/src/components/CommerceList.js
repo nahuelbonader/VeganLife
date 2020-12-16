@@ -14,7 +14,7 @@ import colors from "../styles/colors";
 
 const List = ({ data }) => {
   const navigation = useNavigation();
-
+console.log(data);
   return (
     <View>
       <FlatList
@@ -23,9 +23,10 @@ const List = ({ data }) => {
         data={data}
         renderItem={({ item }) => {
           return (
+
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("CommercePanel", { CommerceInfo: item })
+                navigation.navigate("CommercePanel", { storeId: item._id })
               }
               style={styles.touchableContainer}
             >

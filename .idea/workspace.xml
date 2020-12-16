@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf1d0e27-99cd-48f8-8a18-96d0b4864747" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/components/MyCommerces.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/hooks/useInputsHours.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/styles/myStores.js" afterDir="false" />
+    <list default="true" id="5c919c79-6408-4720-b01a-9374769dd655" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/front/assets/store.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/CreateStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/StoreCardSearcher.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/components/Tabs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/styles/createStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/styles/inputHorario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/styles/tabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/db/models/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/db/models/Store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/.expo/packager-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/.expo/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/.expo/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/AddIngredientes.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/AddIngredientes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/ListSelected.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/ListSelected.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/MyCommerce.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/MyCommerce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/SingleRecipeEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/SingleRecipeEdit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/hooks/useInputs2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/screens/AddRecipeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/AddRecipeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/screens/FeedRecetaScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/FeedRecetaScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/screens/MyCommerceScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/MyCommerceScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/CommerceList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/CommerceList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/InputHorario.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/InputHorario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/MyCommerce.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/MyCommerces.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/MyCommerces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/hooks/useInputs.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/hooks/useInputs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/hooks/useInputsHours.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/screens/Drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/Drawer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/screens/FeedStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/FeedStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/screens/MyCommerceScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/MyCommercesScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/screens/SearchScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/screens/SearchScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/actions/stores.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/actions/stores.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/constant.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/constant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/reducers/storesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/reducers/storesReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/myStores.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/myStores.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/styles/recipeCardSearcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/recipeCardSearcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/searchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/searchBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/styles/searchScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/searchScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/styles/userCardSearcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/styles/userCardSearcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/utils/constants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1lUbLf3xuubeHvt3FhYzeFSbNa6" />
+  <component name="ProjectId" id="1lUttREaSTyDRVrx02Kr1sVMzbS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -37,29 +53,26 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cf1d0e27-99cd-48f8-8a18-96d0b4864747" name="Default Changelist" comment="" />
-      <created>1607654562625</created>
+      <changelist id="5c919c79-6408-4720-b01a-9374769dd655" name="Default Changelist" comment="" />
+      <created>1607663716400</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1607654562625</updated>
+      <updated>1607663716400</updated>
     </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="100" y="153" width="1160" height="502" key="AVDManager" timestamp="1607654624892">
-      <screen x="0" y="0" width="1360" height="768" />
+    <state x="-5" y="568" width="1160" height="502" key="AVDManager" timestamp="1607700597855">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="100" y="153" width="1160" height="502" key="AVDManager/0.0.1360.768@0.0.1360.768" timestamp="1607654624892" />
-    <state x="450" y="239" key="run.anything.popup" timestamp="1607654567588">
-      <screen x="0" y="0" width="1360" height="768" />
-    </state>
-    <state x="450" y="239" key="run.anything.popup/0.0.1360.768@0.0.1360.768" timestamp="1607654567588" />
+    <state x="264" y="155" width="1160" height="502" key="AVDManager/0.0.1360.768@0.0.1360.768" timestamp="1607664108882" />
+    <state x="50" y="521" width="1160" height="502" key="AVDManager/0.0.1920.1080/1920.0.1360.768@0.0.1920.1080" timestamp="1607697623005" />
+    <state x="-5" y="568" width="1160" height="502" key="AVDManager/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1607700597855" />
   </component>
 </project>

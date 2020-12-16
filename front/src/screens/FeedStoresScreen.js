@@ -1,23 +1,42 @@
 import React, {useEffect} from "react";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStores } from "../store/actions/stores";
 import StoreCard from "../components/StoreCard"
+import { useNavigation } from "@react-navigation/native";
 
-
-const StoreFeed = ({   }) => {
+const StoreFeed = () => {
+    const navigation = useNavigation();
     const dispatch = useDispatch();
     const stores = useSelector((state) => state.storesReducer.stores);
+    const allProducts = useSelector((state) => state.productsReducer.products);
 
 useEffect(() => {
-dispatch(fetchStores());
-    
+dispatch(fetchStores())
 }, []);
 
 return (
 <ScrollView>
-<StoreCard stores={stores} />
+<FlatList
+        contentContainerStyle={{}}
+        data={stores}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={()=> navigation.navigate("SingleMarket", { storeId: item._id })}
+          >
+            <StoreCard 
+            stores={item}
+            allProducts={allProducts} 
+             />
+          </TouchableOpacity>
+        )}
+        keyExtractor={(stores) => stores._id}
+
+      />
 </ScrollView>
 )}
 
 export default StoreFeed;
+
+
+// ESTE COMPONENETE RENDERIZA EN UNA FLATLIST EL STORECARD Y LE PASA LA DATA POR PROPS
