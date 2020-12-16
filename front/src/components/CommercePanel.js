@@ -1,138 +1,159 @@
-import React, { useState, useEffect} from 'react'
-import { View, Text, FlatList, TouchableOpacity, Image, ScrollView, StyleSheet} from "react-native";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { userIcon } from "../utils/constants";
-import colors from "../styles/colors"
 import { toggleButton } from './customFunctions/funciones'
 import { useSelector } from 'react-redux'
 import { Octicons } from '@expo/vector-icons';
 import normalize from "react-native-normalize";
 import { useNavigation } from "@react-navigation/native";
+import Tabs from "./Tabs";
+import ProductsList from "./ProductsList";
+import Categories from "./CategoriesStore";
+import { editStore } from "../store/actions/stores";
 
+import colors from "../styles/colors";
 
-import ProductsList from './ProductsList'
+const Panel = ({ commerce, products }) => {
 
-
-const Panel = ({ info, products }) => {
-
-  const navigation = useNavigation();
   const user = useSelector((state) => state.usersReducer.user);
-  const [active1, setActive1] = useState(true);
-  const [active2, setActive2] = useState(false);
-  const [active3, setActive3] = useState(false);
-  const [value, setValue] = useState("products");
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const tabs = {
+    products: "Mis productos",
+    sales: "Mis ventas",
+    categories: "Mis categorías",
+  };
 
+  const [tabSelected, setTabSelected] = useState(tabs.products);
+
+  const addCategorie = (categorie) => {
+    dispatch(
+      editStore({
+        ...commerce,
+        productsCategories: [...commerce.productsCategories, categorie],
+      })
+    );
+  };
+
+  const deleteCategorie = (categorie) => {
+    const productsCategories = commerce.productsCategories.filter(
+      (c) => c !== categorie
+    );
+    dispatch(
+      editStore({
+        ...commerce,
+        productsCategories,
+      })
+    );
+  };
 
   return (
-    <View style={{flex: 1, backgroundColor:colors.background}}>
+    <View style={styles.container}>
       <View style={styles.viewUser}>
-         <Image style={styles.img} source={{uri: info.image? info.image : userIcon }}/>
-         <Text style={styles.name}> {info.name} </Text>
-         {info.superAdmin === user._id?
-             <TouchableOpacity
-             onPress={()=> navigation.navigate("SuperAdminCommerce", {storeId: info._id, admins: info.admins})}
-             style={styles.button2}
-             >
-               <Octicons name="gear" size={24} color="#bfe3bf" />
-             </TouchableOpacity>
-           :
-           null
-         }
+        <Image
+          style={styles.img}
+          source={{ uri: commerce.image ? commerce.image : userIcon }}
+        />
+        <Text style={styles.name}> {commerce.name} </Text>
+        {commerce.superAdmin === user._id?
+            <TouchableOpacity
+            onPress={()=> navigation.navigate("SuperAdminCommerce", {storeId: commerce._id, admins: commerce.admins})}
+            style={styles.button2}
+            >
+              <Octicons name="gear" size={24} color="#bfe3bf" />
+            </TouchableOpacity>
+          :
+          null
+        }
       </View>
 
-      <View style={styles.viewOptions}>
-         <TouchableOpacity onPress={()=>{ if(!active1) setValue("products"),toggleButton(setActive1,setActive1,setActive2,setActive3,active1,active2,active3) }}>
-           <Text style={active1? styles.touchActive : styles.touch1} >Mis Productos</Text>
-         </TouchableOpacity>
-         <TouchableOpacity onPress={()=>{ if(!active2) setValue("sales"),toggleButton(setActive2,setActive1,setActive2,setActive3,active1,active2,active3) }}>
-           <Text style={active2? styles.touchActive : styles.touch1} >Mis Ventas</Text>
-         </TouchableOpacity>
-         <TouchableOpacity onPress={()=>{ if(!active3) setValue("categories"),toggleButton(setActive3,setActive1,setActive2,setActive3,active1,active2,active3) }}>
-           <Text style={active3? styles.touchActive : styles.touch1} >Categorias</Text>
-         </TouchableOpacity>
-      </View>
+      <Tabs
+        tabs={Object.values(tabs)}
+        tabSelected={tabSelected}
+        setTabSelected={setTabSelected}
+        light={true}
+      />
 
       <View style={styles.viewContent}>
-      {value == 'products'?
-      <View>
-        <ProductsList
-        data={products}
-        />
-
+        {tabSelected == tabs.products ? (
+          <>
+            <ProductsList data={products} />
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.text}>Añadir nuevo producto</Text>
+            </TouchableOpacity>
+          </>
+        ) : tabSelected == tabs.sales ? null : tabSelected ==
+          tabs.categories ? (
+          <Categories
+            categories={commerce.productsCategories}
+            addCategorie={addCategorie}
+            deleteCategorie={deleteCategorie}
+          />
+        ) : null}
       </View>
-      :
-      value == 'sales'?
-      null
-      :
-      value == 'categories'?
-      null
-      :
-      null
-      }
-      </View>
-      {value == 'products'?
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text}>Añadir nuevo producto</Text>
-      </TouchableOpacity>
-        :
-        null
-      }
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  viewUser:{
-    flex:1.5,
-    marginHorizontal:"5%",
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    width: "100%",
+  },
+  viewUser: {
+    flex: 1.5,
+    marginHorizontal: "5%",
     backgroundColor: colors.containers,
-    flexDirection:'row',
-    borderRadius:35,
-    marginTop:"4%"
+    flexDirection: "row",
+    borderRadius: 35,
+    marginTop: "4%",
   },
-  img:{
-    alignSelf:'center',
-    marginHorizontal:"6%",
-    width:"15%",
-    height:"55%",
-    borderRadius:100
+  img: {
+    alignSelf: "center",
+    marginHorizontal: "6%",
+    width: "15%",
+    height: "55%",
+    borderRadius: 100,
   },
-  name:{
-    color:"green",
-    fontWeight:'bold',
-    fontSize:20,
-    alignSelf:'center'
+  name: {
+    color: "green",
+    fontWeight: "bold",
+    fontSize: 20,
+    alignSelf: "center",
   },
-  viewOptions:{
-    flex:0.5,
-    marginHorizontal:"5%",
-    flexDirection:'row',
-    justifyContent:'space-around',
-    marginTop:"1.5%"
+  viewOptions: {
+    flex: 0.5,
+    marginHorizontal: "5%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: "1.5%",
   },
-  viewContent:{
-    flex:7,
-    marginHorizontal:"3%",
+  viewContent: {
+    flex: 7,
+    width: "100%",
   },
-  touch1:{
-    color:"#85D4A6",
-    fontSize:16,
-    fontWeight:'bold'
+  touch1: {
+    color: "#85D4A6",
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  touchActive:{
+  touchActive: {
     color: colors.darkGreen,
-    fontWeight:'bold',
-    borderBottomWidth:3,
-    borderBottomColor:'green',
-    fontSize:17,
+    fontWeight: "bold",
+    borderBottomWidth: 3,
+    borderBottomColor: "green",
+    fontSize: 17,
   },
-  button:{
-    position:'absolute',
-    alignSelf:'center',
-    bottom:"6%",
+  button: {
+    position: "absolute",
+    alignSelf: "center",
+    bottom: "6%",
     backgroundColor: colors.darkGreen,
-    paddingHorizontal:"15%",
-    paddingVertical:"1%",
-    borderRadius:30
+    paddingHorizontal: "15%",
+    paddingVertical: "1%",
+    borderRadius: 30,
   },
   text:{
     fontSize:20,
@@ -151,4 +172,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Panel
+export default Panel;

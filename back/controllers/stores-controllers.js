@@ -41,6 +41,7 @@ const storeController = {
 
   findAllStores(req, res, next) {
     Store.find({ active: true })
+      .populate("open")
       .then((store) => {
         res.status(200).send(store);
       })

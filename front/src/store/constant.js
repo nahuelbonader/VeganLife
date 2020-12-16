@@ -11,9 +11,7 @@ export const SET_USERS = "SET_USERS";
 // STORES
 export const SET_STORES = "SET_STORES";
 export const ADD_STORE = "ADD_STORE";
-export const SET_STORE_ADMINS = "SET_STORE_ADMINS"
-export const ADD_STORE_ADMIN = "ADD_STORE_ADMIN"
-export const EDIT_STORE_ADMIN = "EDIT_STORE_ADMIN"
+export const EDIT_STORE = "EDIT_STORE";
 
 //ROUTE BOTTOMNAV POSITION
 export const IM_IN = "IM_IN";
