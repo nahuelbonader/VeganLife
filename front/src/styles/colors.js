@@ -11,8 +11,9 @@ const colors = {
   dartmouthGreen: "#007F37ff",
   darkGreen: "#006028",
   ligthGray: "#ECECEC",
-  darkGray: "#dbdbdb",
+  mediumGray: "#dbdbdb",
   niceGray: "#C3C5CD",
+  darkGray: "#737373",
   transparent: "rgba(52, 52, 52, 0.8)",
 };
 

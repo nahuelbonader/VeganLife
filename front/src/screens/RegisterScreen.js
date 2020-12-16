@@ -12,42 +12,19 @@ import "firebase/auth";
 import "firebase/storage";
 import { registerUser } from "../store/actions/users";
 import useInputs from "../hooks/useInputs";
-import * as ImagePicker from "expo-image-picker";
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
 import AccessButtons from "../components/AccessButtons";
-import LoginButtons from '../components/LoginButtons'
+import LoginButtons from "../components/LoginButtons";
 import { errors, alerts } from "../utils/errors-alerts";
 import { userIcon } from "../utils/constants";
+import { handleOpenImage } from "../customFunctions/picker";
 import styles from "../styles/login-register";
 
 const Register = ({ navigation }) => {
   const [{ name, email, password }, handleChange] = useInputs();
   const [errorMessage, setError] = useState("");
   const [image, setImage] = useState("");
-
-  const handleOpenImage = async () => {
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    const picker = await ImagePicker.launchImageLibraryAsync();
-    if (!permission.granted) return console.log("NO TENES PERMISOS");
-    if (picker.cancelled) return console.log("Pickeo cancelado");
-    setImage(picker.uri);
-    uploadImage(picker.uri);
-  };
-
-  const uploadImage = async (uri) => {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    const ref = firebase
-      .storage()
-      .ref()
-      .child("images/" + uri);
-    await ref.put(blob);
-    return await ref
-      .getDownloadURL()
-      .then((downloadUrl) => setImage(downloadUrl))
-      .catch((err) => console.log(err));
-  };
 
   const handleSubmit = async () => {
     if (!name.length) return setError(alerts.name);
@@ -77,7 +54,7 @@ const Register = ({ navigation }) => {
         <Logo text="Crear cuenta" />
         <TouchableOpacity
           style={styles.avatarPlaceholder}
-          onPress={() => handleOpenImage()}
+          onPress={() => handleOpenImage(setImage)}
         >
           <View style={styles.avatarContainer}>
             <Image
@@ -103,16 +80,12 @@ const Register = ({ navigation }) => {
           secureTextEntry={true}
         />
         <Text style={styles.alert}>{errorMessage}</Text>
-        <AccessButtons
-          onPressBtn={handleSubmit}
-          textBtn="Registrarse"
-        />
+        <AccessButtons onPressBtn={handleSubmit} textBtn="Registrarse" />
         <LoginButtons
           question="¿Ya tienes cuenta?"
           invitation="Inicia Sesión"
           onPressInvitation={() => navigation.navigate("Login")}
         />
-
       </View>
     </TouchableWithoutFeedback>
   );

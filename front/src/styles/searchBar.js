@@ -5,7 +5,7 @@ import normalize from "react-native-normalize";
 export default StyleSheet.create({
   container: {
     marginTop: "1%",
-    backgroundColor: colors.darkGray,
+    backgroundColor: colors.mediumGray,
     borderRadius: 8,
     height: "70%",
     width: "100%",
