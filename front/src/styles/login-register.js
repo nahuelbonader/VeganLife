@@ -34,4 +34,8 @@ export default StyleSheet.create({
     height: 136,
     borderRadius: 68,
   },
+  gmailfbcontainer: {
+    flexDirection: 'row'
+  }
+  
 });

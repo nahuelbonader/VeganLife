@@ -31,7 +31,7 @@ const Input = ({ dayName, setDay }) => {
     minutesCloseAfternoon,
   } = inputs;
 
-  const changeToMinutes = (hours, minutes) => hours * 60 + minutes;
+  const changeToMinutes = (hours, minutes) => hours * 60 + minutes * 1;
 
   useEffect(() => {
     const startMorning = changeToMinutes(hoursOpenMorning, minutesOpenMorning);

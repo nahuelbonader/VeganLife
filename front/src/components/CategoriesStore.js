@@ -72,7 +72,7 @@ export default ({ categories, addCategorie, deleteCategorie }) => {
               <TextInput
                 value={categorie}
                 style={styles.input}
-                placeholder="Descripción"
+                placeholder="Categoría"
                 onChangeText={setCategorie}
                 autoFocus
               />

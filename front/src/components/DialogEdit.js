@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { Dialog, Portal, Text } from "react-native-paper";
-import { Button, RadioButton } from "react-native-paper";
+import { Dialog, Portal, Text, Button, RadioButton } from "react-native-paper";
 import colors from "../styles/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import API from "../api/api";
@@ -23,8 +22,9 @@ const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
   const [available, setAvailable] = useState("");
-  const [checked, setChecked] = React.useState("first");
+  const [checked, setChecked] = useState("first");
 
+  // ESTO NO VA, DISPARA PEDIDOS EN CADA RENDERIZACIÓN
   useEffect(() => {
     API.get(`/products/${productId}`)
       .then((res) => res.data)
@@ -41,6 +41,7 @@ const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
       .catch((err) => console.log(err));
   }, [productId]);
 
+  // esto hay que manejarlo directamente en las actions del store
   const handleSubmit = () => {
     API.put(`/products/${productId}`, {
       title,
