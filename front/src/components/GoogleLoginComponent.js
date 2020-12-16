@@ -79,7 +79,7 @@ const GoogleLoginComponent = () => {
   const signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync({
-        behavior: "web",
+        //behavior: "web",
         androidClientId:
           "1027453246815-di3mmbc5id3crrum0vapj7055u0tpqpj.apps.googleusercontent.com",
         iosClientId:
