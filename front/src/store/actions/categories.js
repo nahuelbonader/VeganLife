@@ -4,4 +4,5 @@ import API from "../../api/api";
 const setCategories = (data) => ({ type: SET_CATEGORIES, payload: data });
 
 export const fetchCategories = () => (dispatch) =>
-  API.get(`/categories`).then(({ data }) => dispatch(setCategories(data)));
+  API.get(`/categories`)
+  .then(({ data }) => dispatch(setCategories(data)))

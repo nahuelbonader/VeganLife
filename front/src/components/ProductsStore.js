@@ -26,8 +26,6 @@ export default ({ products, categories, addProduct }) => {
   const { title, image, categoryStore, description, price, stock } = inputs;
   const categoriesDropDown = categories.map((c) => ({ value: c }));
 
-  console.log("PRODUCTOS EN STORE", products);
-
   const createProduct = () => {
     addProduct({
       title,

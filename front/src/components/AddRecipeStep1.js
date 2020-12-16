@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
-import { userIcon } from "../utils/constants";
+import { newRecipeImg } from "../utils/constants";
 import MaterialChip from "react-native-material-chip";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -12,20 +12,27 @@ const AddRecipeStep1 = ({ textbtn, bool, ph, handleChange, handleBoolean, textbt
       return (
         <View style={{ marginTop: 100 }}>
           <Text style={styles.title}>Ingresa tu propia receta</Text>
+          
+          {ph == "Imagen de la receta"?
+          <TouchableOpacity onPress={openImage} >
+          <View style={styles.avatarContainer}>
+            <Image
+              style={styles.avatar}
+              source={{ uri: image ? image : newRecipeImg }}
+            />
+            <Text>Selecciona una imagen de tu galeria</Text>
+          </View>
+        </TouchableOpacity>
+        :
           <TextInput
             style={styles.input}
             placeholder={ph}
             onChangeText={(evt) => handleChange(evt)}
             value={value}
           />
-          <TouchableOpacity onPress={openImage} style={styles.avatarPlaceholder}>
-            <View style={styles.avatarContainer}>
-              <Image
-                style={styles.avatar}
-                source={{ uri: image ? image : userIcon }}
-              />
-            </View>
-          </TouchableOpacity>
+
+          }
+
         
           {ph=="Titulo de la receta"?  
           <OneButton handleBoolean={handleBoolean} textbtn={textbtn} />
@@ -90,19 +97,20 @@ const styles = StyleSheet.create({
     shadowColor: "#151734",
     shadowRadius: 30,
     shadowOpacity: 0.4,
+    alignItems: "center",
+    marginTop: "3%"
   },
   avatarPlaceholder: {
     width: 136,
     height: 136,
     backgroundColor: "#E1E2E6",
     borderRadius: 100,
-    justifyContent: "center",
-    alignItems: "center",
   },
   avatar: {
-    width: 136,
-    height: 136,
-    borderRadius: 68,
+    width: 250,
+    height: 150,
+    borderRadius: 15,
+
   },
 });
 
