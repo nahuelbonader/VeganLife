@@ -7,15 +7,16 @@ import BottomNav from "./BottomNav";
 import CookToday from "./CookTodayScreen";
 import Profile from "./ProfileScreen";
 import StoreFeed from "./FeedStoresScreen";
-import Map from '../components/Map'
-import Splash from '../components/Splash'
+import Map from "../components/Map";
+import Splash from "../components/Splash";
 import MyStores from "./MyCommercesScreen";
 import CommercePanel from "./CommercePanelScreen";
 import SingleProduct from "./SingleProductScreen";
-import SuperAdminCommerce from './SuperAdminCommerceScreen'
-import SingleMarket from "../components/SingleMarket"
+import SuperAdminCommerce from "./SuperAdminCommerceScreen";
+import SingleMarket from "../components/SingleMarket";
 
 const Stack = createStackNavigator();
+
 const FeedStack = () => {
   return (
     <Stack.Navigator

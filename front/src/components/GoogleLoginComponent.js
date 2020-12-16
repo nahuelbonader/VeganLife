@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import * as Google from "expo-google-app-auth";
+// import * as Google from "expo-google-sign-in";
+
 import firebase from "firebase";
 import { useNavigation } from "@react-navigation/native";
 import { fetchUser } from "../store/actions/users";
@@ -67,8 +69,9 @@ const GoogleLoginComponent = () => {
             .catch((error) => console.log(error));
         } else {
           const { email, id } = googleUser.user;
-          dispatch(fetchUser({ email, fuid: id }))
-          .then(() =>navigation.navigate("Home"));
+          dispatch(fetchUser({ email, fuid: id })).then(() =>
+            navigation.navigate("Home")
+          );
         }
       });
   };
@@ -76,7 +79,7 @@ const GoogleLoginComponent = () => {
   const signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync({
-        behavior: "web",
+        //behavior: "web",
         androidClientId:
           "1027453246815-di3mmbc5id3crrum0vapj7055u0tpqpj.apps.googleusercontent.com",
         iosClientId:
@@ -96,10 +99,7 @@ const GoogleLoginComponent = () => {
   };
   return (
     <View>
-      <SocialIcon
-        type="google"
-        onPress={signInWithGoogleAsync}
-      />
+      <SocialIcon type="google" onPress={signInWithGoogleAsync} />
     </View>
   );
 };

@@ -4,10 +4,10 @@ import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
   container: {
-    flex: 3.5,
+    flex: 1,
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     paddingVertical: 5,
   },
   btn: {
