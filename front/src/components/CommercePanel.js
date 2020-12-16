@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { userIcon } from "../utils/constants";
+import { toggleButton } from './customFunctions/funciones'
+import { useSelector } from 'react-redux'
+import { Octicons } from '@expo/vector-icons';
+import normalize from "react-native-normalize";
+import { useNavigation } from "@react-navigation/native";
 import Tabs from "./Tabs";
 import ProductsList from "./ProductsList";
 import Categories from "./CategoriesStore";
@@ -10,8 +15,10 @@ import { editStore } from "../store/actions/stores";
 import colors from "../styles/colors";
 
 const Panel = ({ commerce, products }) => {
-  const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.usersReducer.user);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const tabs = {
     products: "Mis productos",
     sales: "Mis ventas",
@@ -49,6 +56,16 @@ const Panel = ({ commerce, products }) => {
           source={{ uri: commerce.image ? commerce.image : userIcon }}
         />
         <Text style={styles.name}> {commerce.name} </Text>
+        {commerce.superAdmin === user._id?
+            <TouchableOpacity
+            onPress={()=> navigation.navigate("SuperAdminCommerce", {storeId: commerce._id, admins: commerce.admins})}
+            style={styles.button2}
+            >
+              <Octicons name="gear" size={24} color="#bfe3bf" />
+            </TouchableOpacity>
+          :
+          null
+        }
       </View>
 
       <Tabs
@@ -138,11 +155,21 @@ const styles = StyleSheet.create({
     paddingVertical: "1%",
     borderRadius: 30,
   },
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#86D3A6",
+  text:{
+    fontSize:20,
+    fontWeight:"bold",
+    color:"#86D3A6"
   },
-});
+  button2:{
+    backgroundColor:colors.greenligth,
+    position:'absolute',
+    right:'8.5%',
+    top:'36%',
+    paddingHorizontal:normalize(20),
+    paddingVertical:normalize(7),
+    borderRadius:30
+  }
+})
+
 
 export default Panel;
