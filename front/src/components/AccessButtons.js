@@ -14,12 +14,6 @@ const AccessButtons = ({
       <TouchableOpacity onPress={onPressBtn} style={styles.btn}>
         <Text style={styles.btn_text}>{textBtn}</Text>
       </TouchableOpacity>
-      <View style={styles.text_container}>
-        <Text style={styles.text}>{question}</Text>
-        <TouchableOpacity onPress={onPressInvitation} style={styles.invitation}>
-          <Text style={styles.invitation}>{invitation}</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };

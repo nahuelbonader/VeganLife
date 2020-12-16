@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../store/actions/users";
 import firebase from "../utils/Firebase";
@@ -10,6 +10,7 @@ import InputData from "../components/InputData";
 import GoogleLoginComponent from "../components/GoogleLoginComponent";
 import FacebookLoginComponent from '../components/FacebookLoginComponent'
 import AccessButtons from "../components/AccessButtons";
+import LoginButtons from "../components/LoginButtons";
 import { errors, alerts } from "../utils/errors-alerts";
 import styles from "../styles/login-register";
 
@@ -53,26 +54,41 @@ const Login = ({ navigation }) => {
           text={password}
           secureTextEntry={true}
         />
+        
         <AccessButtons
           onPressBtn={handleSubmit}
+          textBtn="Iniciar Sesión"
+        />
+
+        <LoginButtons
           invitation="¿Olvidaste tu contraseña?"
           onPressInvitation={() => navigation.navigate("ForgotPassword")}
         />
 
-        <GoogleLoginComponent />
-        <FacebookLoginComponent/>
+        <View style={styles.gmailfbcontainer} >
+          <GoogleLoginComponent />
+          <FacebookLoginComponent/>
+        </View>
 
         <Text style={styles.alert}>{errorMessage}</Text>
-        <AccessButtons
-          onPressBtn={handleSubmit}
-          textBtn="Iniciar Sesión"
+         <LoginButtons
           question="¿No tienes cuenta?"
           onPressInvitation={() => navigation.navigate("Register")}
           invitation="Registrate"
         />
+        
+        
       </View>
     </TouchableWithoutFeedback>
   );
 };
 
 export default Login;
+
+
+{/* <LoginButtons style={styles.btn}
+title='Iniciar Sesión'
+onPressBtn={handleSubmit}
+invitation="¿Olvidaste tu contraseña?"
+onPressInvitation={() => navigation.navigate("ForgotPassword")}
+/> */}
