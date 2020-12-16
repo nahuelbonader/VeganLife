@@ -1,9 +1,10 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://ww-q6a.anonymous.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.ww-q6a.anonymous.front.exp.direct",
-  "ngrokPid": 19244,
+  "expoServerNgrokUrl": "https://qy-tz3.anonymous.front.exp.direct",
+  "packagerNgrokUrl": "https://packager.qy-tz3.anonymous.front.exp.direct",
+  "ngrokPid": 33253,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 19217
+  "packagerPid": 33184,
+  "webpackServerPort": null
 }
