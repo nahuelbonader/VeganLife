@@ -9,7 +9,4 @@ export const fetchRecipes = () => (dispatch) =>
   API.get(`/recipes`).then(({ data }) => dispatch(setRecipes(data)));
 
 export const postRecipe = (recipe) => (dispatch) =>
-  API.post(`/recipes`, recipe).then(({ data }) => {
-    dispatch(addRecipe(data));
-    console.log(data);
-  });
+  API.post(`/recipes`, recipe).then(({ data }) => dispatch(addRecipe(data)));
