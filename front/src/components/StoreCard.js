@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 import styles from "../styles/storeCard";
 import { useNavigation } from "@react-navigation/native";
 
@@ -10,13 +10,6 @@ const StoreCard = ({ stores, allProducts }) => {
   const deliveryNull =
     "https://img.pngio.com/stop-png-images-vector-and-psd-files-free-download-on-pngtree-stop-png-360_360.png";
 
-  //  let today = new Date();
-  //  let actualTime =
-  //    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  // let weekday = today.getDate();
-  //     const Opening = () => {
-  //       (open && startMorning>actualTime && endMorning < actualTime || startNoon > actualTime && endNoon) ?  "Abierto" : "Cerrado"
-  //      }
 
   const myProducts = allProducts.filter((p) => p.store._id === stores._id);
   const navigation = useNavigation();

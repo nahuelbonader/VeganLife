@@ -2,6 +2,7 @@ import React from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet, FlatList } from "react-native";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import styles from "../styles/productsByStore";
 
 
 const ProductsByStore = ({category}) => {
@@ -12,14 +13,14 @@ const ProductsByStore = ({category}) => {
 
     return (<View>
         
-        <FlatList
+        <FlatList 
             contentContainerStyle={{}}
             data={product}
             renderItem={({ item, index }) => (
             <TouchableOpacity
             onPress={()=>navigation.navigate('SingleProduct', { productId: item._id })}
             >
-                <Image style={{width:100, height: 100}} source={{uri: item.image}} />
+                <Image style={styles.products} source={{uri: item.image}} />
 
             </TouchableOpacity>
             )}
