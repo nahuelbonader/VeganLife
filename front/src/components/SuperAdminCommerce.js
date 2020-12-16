@@ -5,8 +5,8 @@ import List from './AdminsList'
 
 const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete, errMessage }) => {
   return(
-     <View style={{flex:1}}>
-        <View style={{ flex:4}}>
+     <View style={{flex:1,}}>
+        <View style={styles.firstView}>
           <Text style={styles.text}>¿Querés agregar un Admin a tu comercio?</Text>
           <Text style={styles.txt}>Ingresa el correo de la persona</Text>
           <TextInput
@@ -25,9 +25,9 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
           </TouchableOpacity>
           <Text style={styles.err}>{errMessage}</Text>
         </View>
-        <View style={{ flex:6, marginBottom:'10%'}}>
+        <View style={styles.secondView}>
            <Text style={styles.txt2}>Lista de admins</Text>
-             <View style={{backgroundColor:colors.background}}>
+             <View style={{backgroundColor:colors.container}}>
                <List data={admins} handleDelete={handleDelete}/>
              </View>
         </View>
@@ -36,6 +36,16 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
 }
 
 const styles = StyleSheet.create({
+  firstView:{
+    flex:4
+  },
+  secondView:{
+    flex:6,
+    paddingBottom:'10%',
+    backgroundColor:colors.background,
+    borderTopLeftRadius:30,
+    borderTopRightRadius:30
+  },
 text:{
   alignSelf:'center',
   fontWeight:'bold',
@@ -75,7 +85,8 @@ txt2:{
 fontSize:18,
 color:colors.font,
 fontWeight:'bold',
-marginVertical:'3%'
+marginVertical:'3%',
+marginLeft:'5%'
 },
 err:{
   fontWeight:'bold',

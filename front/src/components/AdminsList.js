@@ -8,7 +8,7 @@ import { Entypo } from '@expo/vector-icons';
 const AdminList = ({ data, handleDelete }) => {
 
   return (
-    <View>
+    <View style={{backgroundColor:colors.background}}>
     <FlatList
       keyExtractor={(content) => content._id}
       data={data}
@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
   container:{
     height: normalize(65),
     width: "100%",
-    borderRadius: 20,
    backgroundColor:colors.background,
-   marginVertical:'2%',
    borderBottomColor: colors.darkGray,
+   marginBottom:"1%",
    borderBottomWidth:1,
    flexDirection: "row",
    alignItems:'center'
