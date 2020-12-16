@@ -5,7 +5,7 @@ import normalize from "react-native-normalize";
 export default StyleSheet.create({
   container: {
     flex: 4,
-    width: "100%",
+    width: "80%",
     marginTop: normalize(80),
     alignItems: "center",
   },
