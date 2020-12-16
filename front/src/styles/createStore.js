@@ -95,14 +95,12 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   goBack: {
-    flex: 1,
+    height: normalize(30),
+    width: normalize(30),
     backgroundColor: colors.dartmouthGreen,
-    padding: "1%",
     borderRadius: 20,
-  },
-  IconStyle: {
-    margin: 5,
-    color: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
   titleText: {
     flex: 7,
