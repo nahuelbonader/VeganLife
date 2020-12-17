@@ -19,8 +19,10 @@ const FeedRecetaScreen = ({ navigation }) => {
   const recipes = useSelector((state) => state.recipesReducer.recipes);
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const user = useSelector((state) => state.usersReducer.user);
-  const stores = useSelector((state) => state.storesReducer.stores);
-  const randomRecipes = recipes; // acá va un filter
+
+  const recipesOrdered = recipes.map((r) => r);
+  recipesOrdered.sort((a, b) => a.date < b.date);
+  const lastRecipes = recipesOrdered.filter((r, i) => i < 5);
 
   const checkIfLogged = () => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -46,9 +48,8 @@ const FeedRecetaScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
-        
         <Categories categorias={categories} />
-        <CarouselFeed randomRecipe={randomRecipes} />
+        <CarouselFeed randomRecipe={lastRecipes} />
         <Text style={styles.recipesTitle}>Más recetas</Text>
         <Recipes recipes={recipes} />
       </ScrollView>

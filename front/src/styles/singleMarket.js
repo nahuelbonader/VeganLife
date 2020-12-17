@@ -54,13 +54,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 20,
   },
-  categoryName: {
-    marginLeft: 20,
-    marginRight: 20,
-    fontSize: 15,
-    textTransform: "uppercase",
-    fontWeight: "200",
-  },
   location: {
     height: 10,
     width: 10,

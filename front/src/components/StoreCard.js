@@ -22,7 +22,6 @@ const StoreCard = ({ store, allProducts }) => {
           <Text style={styles.address}>{store.address}</Text>
         </View>
       </View>
-      {/* <View style={styles.linea}></View> */}
 
       <View style={styles.listContainer}>
         {myProducts.length ? (
@@ -48,7 +47,6 @@ const StoreCard = ({ store, allProducts }) => {
         )}
       </View>
 
-      {/* <View style={styles.linea}></View> */}
       <View style={styles.info}>
         <View style={styles.icon}>
           <Icon style={{}} name="bicycle" size={30} color="#35b056" />

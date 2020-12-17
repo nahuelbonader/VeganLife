@@ -33,6 +33,7 @@ export default () => {
 
   const handleSubmit = () => {
     const [category] = categories.filter((c) => c.name == categoryName);
+    const date = new Date();
     const recipe = {
       title,
       image,
@@ -40,6 +41,7 @@ export default () => {
       instructions,
       category,
       owner: user._id,
+      date,
     };
     dispatch(postRecipe(recipe)).then(() => {
       navigation.navigate("Feed");
@@ -63,6 +65,7 @@ export default () => {
             image={image}
             handleCategorie={setCategory}
             categories={categoriesDropdown}
+            value={categoryName}
           />
         );
       case 1:

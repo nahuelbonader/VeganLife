@@ -49,15 +49,13 @@ const styles = StyleSheet.create({
   },
   image: {
     flexDirection: "row",
-    // marginLeft: 35,
-    // marginTop: 20,
     height: 75,
     width: 75,
     borderRadius: 50,
   },
   productContainer: {
     height: "95%",
-    width: "50%",
+    width: normalize(90),
     marginLeft: "4%",
     borderRadius: 10,
   },

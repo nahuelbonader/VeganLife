@@ -62,7 +62,7 @@ const DrawerContent = (props) => {
               props.navigation.navigate("Profile", { userId: user._id })
             }
           />
-          <DrawerItem
+          {/* <DrawerItem
             icon={({ color, size }) => (
               <MaterialCommunityIcons
                 name="account-outline"
@@ -72,7 +72,7 @@ const DrawerContent = (props) => {
             )}
             label="Perfil Vegan Market"
             onPress={() => console.log("IR A PERFIL")}
-          />
+          /> */}
           <DrawerItem
             icon={({ color, size }) => (
               <MaterialCommunityIcons name="store" color={color} size={size} />
