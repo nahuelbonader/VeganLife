@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: "row",
-    justifyContent: "space-around",  
+    justifyContent: "space-between",  
   },
   address: {
     color: "green",

@@ -3,7 +3,7 @@ import { View, Image, Text, TouchableOpacity, StyleSheet, FlatList, ImageBackgro
 import { useSelector } from "react-redux";
 import ProductsByStore from './ProductsByStore'
 import styles from "../styles/singleMarket"
-
+import { banner, location } from "../utils/constants"
 
 
 
@@ -13,41 +13,46 @@ const SingleMarket = ({ route }) => {
 const storeId = route.params.storeId
 const stores = useSelector((state) => state.storesReducer.stores);
 const allProducts = useSelector((state) => state.productsReducer.products);
-const banner = "https://data.whicdn.com/images/328889501/original.png"
-const location = "https://www.flaticon.com/svg/static/icons/svg/927/927667.svg";
 const [myMarket] = stores.filter((s)=>s._id === storeId)
-
+ console.log(myMarket, "merca2");
 return (
-  <View style={styles.container}>
-    <View>
-      <ImageBackground
-        style={styles.banner}
-        source={{
-          uri: banner,
-        }}
-      ></ImageBackground>
-    </View>
-    <Image style={styles.image} source={{ uri: myMarket.image }} />
+  <View>
+    <ImageBackground
+      style={styles.banner}
+      source={{
+        uri: banner,
+      }}
+    ></ImageBackground>
+    <View style={styles.container}>
+      <Image style={styles.image} source={{ uri: myMarket.image }} />
+      <View style={styles.info}>
+        <Text
+          style={styles.delivery}
+          source={{ uri: myMarket.delivery ? "Yes" : "No" }}
+        ></Text>
+        <Text style={styles.address}>delivery</Text>
+        <Text style={styles.address}>Abierto</Text>
+      </View>
 
-    <Text style={styles.title}>{myMarket.name}</Text>
-    <View style={styles.info}>
-      <Image style={styles.location} source={{ uri: location }} />
+      <Text style={styles.title}>{myMarket.name}</Text>
+
+      {/* <Text style={styles.delivery}>{myMarket.delivery}</Text> */}
       <Text style={styles.address}>{myMarket.address}</Text>
-      <Text style={styles.address}>Abierto</Text>
-    </View>
-    <Text style={styles.delivery}>{myMarket.delivery}</Text>
+      <Text style={styles.hour}>Días: Lunes a Viernes</Text>
+      <Text style={styles.hour}>Horario: 9-21 hrs</Text>
 
-    <FlatList
-      contentContainerStyle={{}}
-      data={myMarket.productsCategories}
-      renderItem={({ item, index }) => (
-        <View>
-          <Text style={styles.productName}>{item}</Text>
-          <ProductsByStore category={item} />
-        </View>
-      )}
-      keyExtractor={(index) => index}
-    />
+      <FlatList
+        contentContainerStyle={{}}
+        data={myMarket.productsCategories}
+        renderItem={({ item, index }) => (
+          <View>
+            <Text style={styles.productName}>{item}</Text>
+            <ProductsByStore category={item} />
+          </View>
+        )}
+        keyExtractor={(index) => index}
+      />
+    </View>
   </View>
 );
 }

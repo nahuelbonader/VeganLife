@@ -4,25 +4,27 @@ import normalize from "react-native-normalize";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "lightgrey",
     borderRadius: 20,
-    marginTop: 100,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 10,
     marginLeft: 20,
     marginRight: 20,
-    borderRadius: 20,
+    borderRadius: 30,
   },
   banner: {
+    height: 100,
     width: "100%",
+    height: 200,
     flex: 1.3,
     marginBottom: normalize(30),
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "200",
-    marginTop: 25,
+    marginTop: 20,
     textAlign: "center",
+    textTransform: "uppercase",
   },
   address: {
     fontSize: 15,
@@ -32,28 +34,33 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   image: {
-    height: 100,
-    width: 100,
+    height: 110,
+    width: 110,
     borderRadius: 50,
-    marginTop: 5,
+    marginTop: 20,
     alignSelf: "center",
   },
   info: {
     flexDirection: "row",
-    justifyContent: "center"
-
-
+    justifyContent: "center",
   },
   productName: {
     marginLeft: 20,
     marginRight: 20,
     fontSize: 15,
     textTransform: "uppercase",
-    fontWeight: "300",
+    fontWeight: "200",
   },
   location: {
-    height: 20,
-    width: 20,
+    height: 10,
+    width: 10,
+  },
+  hour: {
+    fontSize: 15,
+    fontWeight: "200",
+    marginLeft: 20,
+    marginTop: 5,
+    marginBottom: 5,
   },
 });
 
