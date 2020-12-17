@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: normalize(65),
     width: "100%",
    backgroundColor:colors.background,
-   borderBottomColor: colors.darkGray,
+   borderBottomColor: colors.lightGrey,
    marginBottom:"2.5%",
    borderBottomWidth:1,
    flexDirection: "row",
