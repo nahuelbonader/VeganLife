@@ -1,68 +1,82 @@
 import { StyleSheet } from "react-native";
 import colors from "./colors";
-import normalize from "react-native-normalize";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: 250,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#D7DBDD",
     alignContent: "center",
-    marginTop: 20,
-    marginBottom: 20,
-    marginLeft: 10,
-    marginRight: 10,
+    marginTop: "5%",
+    marginHorizontal: "2%",
     borderRadius: 20,
   },
-  upper: {
+  subcontainer1:{
+    flex: 4,
     flexDirection: "row",
-    marginBottom: 20,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginLeft: "7%"
+  },
+  upper: {
+    flex: 4,
+    flexDirection: "row", 
+    alignItems: "center",
+    marginLeft: "2%"
   },
   title: {
-    marginLeft: 20,
+    marginLeft: "10%",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "300",
-    marginTop: 40,
-     color: "green",
+    color: colors.font,
     textTransform: "uppercase",
+    fontWeight: "bold"
   },
   image: {
     flexDirection: "row",
-    marginLeft: 35,
-    marginTop: 20,
-    height: 65,
-    width: 65,
+    // marginLeft: 35,
+    // marginTop: 20,
+    height: 75,
+    width: 75,
     borderRadius: 50,
-  },
-  delivery: {
-    height: 20,
-    width: 20,
   },
   products: {
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 5,
-    height: 85,
-    width: 85,
-    borderRadius: 50,
+    marginLeft: "4%",
+    height: 90,
+    width: 80,
+    borderRadius: 10,
   },
   info: {
+    flex: 2,
     flexDirection: "row",
-    justifyContent: "space-around",  
+    justifyContent: "space-around",
+    alignItems: "center",
+
   },
   address: {
-    color: "green",
+    color: colors.font,
     fontSize: 13,
     fontWeight: "300",
     textTransform: "uppercase",
+    marginLeft: "10%"
   },
   open: {
-    color: "green",
-    fontSize: 13,
-    fontWeight: "300",
-    textTransform: "uppercase",
+    justifyContent: "center", 
+    alignItems: "center", 
+    fontSize: 16, 
+    color: colors.font
   },
+  icon: {
+    alignItems: "center", 
+    flexDirection: "row"
+  },
+  linea: {
+    height: 1,
+    width: "90%",
+    backgroundColor: "#95A5A6",
+    marginHorizontal: "5%"
+  }
  
 });
 
