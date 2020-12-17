@@ -10,11 +10,14 @@ import { RadioButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createStore } from "../store/actions/stores";
+import GooglePlacesInput from '../components/GooglePlacesInput';
 import InputTime from "./InputHorario";
 import styles from "../styles/createStore";
 import colors from "../styles/colors";
 
 export default ({ setMessage, restoreTab }) => {
+  
+
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
 
@@ -22,6 +25,7 @@ export default ({ setMessage, restoreTab }) => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
   const [address, setAddress] = useState("");
+  const [location, setLocation] = useState({lat: 0, lng: 0})
   const [phone, setPhone] = useState("");
   const [CUIL, setCuil] = useState("");
   const [description, setDescription] = useState("");
@@ -68,8 +72,11 @@ export default ({ setMessage, restoreTab }) => {
         description,
         delivery,
         open,
+        location
       })
     )
+
+
       .then((res) => {
         res instanceof Error
           ? setMessage("Lo sentimos, hubo un problema :(")
@@ -84,6 +91,12 @@ export default ({ setMessage, restoreTab }) => {
       setMessage("");
     }, 5000);
   };
+
+  const handleAdress = (address, location) =>{
+    setAddress(address)
+    setLocation(location)
+    console.log('ADDRESS', address, 'location', location)
+  }
 
   return firstPage ? (
     <View style={styles.container}>
@@ -108,13 +121,11 @@ export default ({ setMessage, restoreTab }) => {
           placeholder="Imagen Url"
           onChangeText={setImage}
           value={image}
-        />
-        <TextInput
-          style={styles.inputLarge}
-          placeholder="Dirección"
-          onChangeText={setAddress}
-          value={address}
-        />
+        /> 
+       
+        <GooglePlacesInput style={styles.inputLarge} handleAdress={handleAdress}/>
+      
+
         <View style={styles.containerInputsShorts}>
           <TextInput
             keyboardType="number-pad"
@@ -141,6 +152,8 @@ export default ({ setMessage, restoreTab }) => {
           numberOfLines={3}
         />
       </View>
+
+      
 
       <View style={styles.separetorSpace}></View>
 

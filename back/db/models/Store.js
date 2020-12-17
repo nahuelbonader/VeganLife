@@ -84,6 +84,17 @@ const storeSchema = new Schema({
     required: true,
     default: true,
   },
+
+  location: {
+    lat: {
+      type: Number,
+      required: true
+    },
+    lng: {
+      type: Number,
+      required: true
+    }
+  }
 });
 
 const Store = mongoose.model("store", storeSchema);
