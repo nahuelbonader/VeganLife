@@ -3,6 +3,7 @@ import { View, Text, Stylesheet} from 'react-native'
 import Configs from '../components/SuperAdminCommerce'
 import { useSelector, useDispatch } from "react-redux";
 import API from '../api/api'
+import { editStore } from '../store/actions/stores'
 
 
 const SuperAdminCommerce = ({ navigation, route }) => {
@@ -12,54 +13,56 @@ const SuperAdminCommerce = ({ navigation, route }) => {
 
   const [input, setInput] = useState("")
   const storeId = route.params.storeId
+
+  const { stores } = useSelector((state) => state.storesReducer);
+  const [store] = stores.filter((s) => s._id == route.params.storeId);
+
   const [admins, setAdmins] = useState([])
   const [errMessage, setMessage] = useState("")
 
 useEffect(()=>{
- API.get(`/stores/${storeId}`)
-    .then(res => res.data)
-    .then(data => {
-      setAdmins(data.admins)
-    })
-},[])
+
+ setAdmins(store.admins)
+
+},[store.admins])
+
 
   const handleSubmit = () => {
+    let bool = true
     let newAdmin = users.filter(el => {
     return input == el.email? el._id : null
    })
-   if(newAdmin[0]){
-    API.post(`/stores/${storeId}/${newAdmin[0]._id}`)
-       .then(res => res.data)
-       .then((data)=>{
-         API.get(`/users/${data[data.length-1]._id}`)
-            .then(res=> res.data)
-            .then(data=> setAdmins([...admins, data]))
-            .catch(err=> console.log(err))
-       })
-       .then(()=>setInput(""))
-       .catch(err=> {
-         console.log(err)
-         setMessage("Lo sentimos, hubo un problema :(")
-
-         setTimeout(function () {
-           setMessage("");
-         }, 5000);
-       })
-     }
-      else{
-        setMessage("El correo ingresado no existe")
+    if(!newAdmin[0]) {
+      setMessage("El correo ingresado no existe")
+      setTimeout(function () {
+        setMessage("");
+      }, 5000);
+      return;
+    }
+   admins.map(el=>{
+     if(el._id === newAdmin[0]._id){
+        bool = false
+        setMessage("El usuarios ya es admin")
         setTimeout(function () {
           setMessage("");
         }, 5000);
       }
+   })
+
+   if(bool) {
+     dispatch(editStore({...store, admins: [...store.admins, newAdmin[0]._id]}))
+     setInput("")
+   }
   }
 
-  const handleDelete = (adminId) => {
-    setAdmins(admins.filter(el => el._id !== adminId))
-   API.delete(`/stores/${storeId}/${adminId}`)
-      .then(res => res.data)
-      .catch(err=> console.log(err))
-  }
+
+
+
+const handleDelete = (adminId) => {
+  dispatch(editStore({ ...store, admins: admins.filter(el=> el._id !== adminId) }))
+}
+
+
 
 
   return (

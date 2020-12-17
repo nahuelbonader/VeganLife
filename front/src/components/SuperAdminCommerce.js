@@ -8,7 +8,7 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
   return(
      <View style={{flex:1,}}>
         <View style={styles.firstView}>
-          <Text style={styles.text}>¿Querés agregar un Admin a tu comercio?</Text>
+          <Text style={styles.text}>¿Querés agregar un Admin?</Text>
           <Text style={styles.txt}>Ingresa el correo de la persona</Text>
           <TextInput
           autoCapitalize="none"
@@ -33,7 +33,7 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
              { admins.length > 0?
                  <List data={admins} handleDelete={handleDelete}/>
                :
-               <Text style={styles.defaultMessage}>Todavía no agregaste ningun administrador</Text>
+               <Text style={styles.defaultMessage}>No agregaste administradores</Text>
              }
 
              </View>
@@ -44,18 +44,18 @@ const SuperAdminConfigs = ({ input, setInput, handleSubmit, admins, handleDelete
 
 const styles = StyleSheet.create({
   firstView:{
-    flex:4.1
+    flex:4.5
   },
   secondView:{
-    flex:5.9,
+    flex:5.5,
     paddingBottom:'10%',
     backgroundColor:colors.background,
     borderTopLeftRadius:30,
     borderTopRightRadius:30
   },
   line:{
-    backgroundColor: colors.darkGray,
-    height:2
+    backgroundColor: colors.lightGrey,
+    height:1
   },
 text:{
   alignSelf:'center',
