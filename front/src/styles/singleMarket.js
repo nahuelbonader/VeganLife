@@ -1,16 +1,17 @@
 import { StyleSheet } from "react-native";
 import normalize from "react-native-normalize";
-
+import colors from "./colors";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightgrey",
+    backgroundColor: "#D7DBDD",
     borderRadius: 20,
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 30,
+   
   },
   banner: {
     height: 100,
@@ -20,9 +21,10 @@ const styles = StyleSheet.create({
     marginBottom: normalize(30),
   },
   title: {
+      
     fontSize: 25,
-    fontWeight: "200",
-    marginTop: 20,
+    fontWeight: "300",
+    marginTop: 10,
     textAlign: "center",
     textTransform: "uppercase",
   },
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
   },
-    open: {
+  open: {
     fontSize: 15,
     fontWeight: "200",
     marginLeft: 5,
@@ -54,15 +56,14 @@ const styles = StyleSheet.create({
   infoDos: {
     flexDirection: "row",
     marginLeft: 20,
-    
-  
   },
   productName: {
+      marginTop: 10,
     marginLeft: 20,
     marginRight: 20,
     fontSize: 15,
     textTransform: "uppercase",
-    fontWeight: "200",
+    fontWeight: "300",
   },
   location: {
     height: 10,

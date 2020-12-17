@@ -5,33 +5,36 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../styles/productsByStore";
 
 
+
 const ProductsByStore = ({category}) => {
- 
+   
     const allProducts = useSelector((state) => state.productsReducer.products);
     const product = allProducts.filter((p)=>p.categoryStore === category) 
     const navigation = useNavigation(); 
 
-    return (<View>
-        
-        <FlatList 
-            contentContainerStyle={{}}
-            data={product}
-            renderItem={({ item, index }) => (
+    return (
+      <View>
+        <FlatList
+          contentContainerStyle={{}}
+          data={product }
+          renderItem={({ item, index }) => (
             <TouchableOpacity
-            onPress={()=>navigation.navigate('SingleProduct', { productId: item._id })}
+              onPress={() =>
+                navigation.navigate("SingleProduct", { productId: item._id })
+              }
             >
-                <Image style={styles.products} source={{uri: item.image}} />
-
+              <Image
+                style={styles.products}
+                source={{ uri: item.image  }}
+              />
             </TouchableOpacity>
-            )}
-            keyExtractor={(index) => index}
-            horizontal
-            showsHorizontalScrollIndicator={false}    
-          />
-        
-    
-        </View>
-      );
+          )}
+          keyExtractor={(index) => index}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    );
     }
     
       
