@@ -5,12 +5,15 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Image
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createStore } from "../store/actions/stores";
 import GooglePlacesInput from '../components/GooglePlacesInput';
+import { handleOpenImage } from "../customFunctions/picker";
+import { userIcon } from "../utils/constants";
 import InputTime from "./InputHorario";
 import styles from "../styles/createStore";
 import colors from "../styles/colors";
@@ -99,6 +102,7 @@ export default ({ setMessage, restoreTab }) => {
   }
 
   return firstPage ? (
+    
     <View style={styles.container}>
       <View style={styles.containerInputs}>
         <View style={styles.containerInputsShorts}>
@@ -116,15 +120,10 @@ export default ({ setMessage, restoreTab }) => {
             value={email}
           />
         </View>
-        <TextInput
-          style={styles.inputLarge}
-          placeholder="Imagen Url"
-          onChangeText={setImage}
-          value={image}
-        /> 
-       
-        <GooglePlacesInput style={styles.inputLarge} handleAdress={handleAdress}/>
-      
+
+        {/* <View style={styles.inputGoogleContainer}> */}
+          
+        {/* </View> */}
 
         <View style={styles.containerInputsShorts}>
           <TextInput
@@ -134,6 +133,7 @@ export default ({ setMessage, restoreTab }) => {
             onChangeText={setPhone}
             value={phone}
           />
+
           <TextInput
             keyboardType="number-pad"
             style={styles.inputShort}
@@ -142,6 +142,7 @@ export default ({ setMessage, restoreTab }) => {
             value={CUIL}
           />
         </View>
+
         <TextInput
           style={styles.inputDescription}
           multiline
@@ -151,12 +152,24 @@ export default ({ setMessage, restoreTab }) => {
           maxLength={100}
           numberOfLines={3}
         />
-      </View>
 
+      </View>
       
 
-      <View style={styles.separetorSpace}></View>
+        <View style={styles.avatarContainer}>
+          <TouchableOpacity
+          style={styles.avatarPlaceholder}
+          onPress={() => handleOpenImage(setImage)}
+        >
+            <Image
+              style={styles.avatar}
+              source={{ uri: image ? image : userIcon }}
+            />
+          </TouchableOpacity>
+        </View>
 
+        <GooglePlacesInput handleAdress={handleAdress}/>
+        
       <View style={styles.deliveryContainer}>
         <Text style={styles.questionText}>¿Hacen Delivery?</Text>
         <View style={styles.deliveryOptions}>
