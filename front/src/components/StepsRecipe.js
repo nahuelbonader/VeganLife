@@ -30,6 +30,7 @@ export default ({ setInstructions, instructions }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Paso a Paso</Text>
+
       <View style={styles.inputsContainer}>
         <TextInput
           style={styles.input}
@@ -46,6 +47,7 @@ export default ({ setInstructions, instructions }) => {
           color={colors.darkGreen}
         />
       </View>
+
       <View style={styles.listContainer}>
         <FlatList
           style={{ width: "100%" }}
