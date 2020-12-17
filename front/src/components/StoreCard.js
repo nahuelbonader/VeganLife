@@ -1,97 +1,67 @@
 import React from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
-import styles from "../styles/storeCard"
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import styles from "../styles/storeCard";
 import Icon from "react-native-vector-icons/Ionicons";
-                                                                              import { useNavigation } from "@react-navigation/native";
+import { storeImg } from "../utils/constants";
+import { useNavigation } from "@react-navigation/native";
 
-const StoreCard = ({stores, allProducts}) => {  
+const StoreCard = ({ store, allProducts }) => {
+  const myProducts = allProducts.filter((p) => p.store._id === store._id);
+  const navigation = useNavigation();
 
-  const deliveryYes = "https://seeklogo.com/images/M/man-silhouette-delivery-logo-0DBA9FBE43-seeklogo.com.png"
+  return (
+    <View style={styles.container}>
+      <View style={styles.subcontainer1}>
+        <Image
+          style={styles.image}
+          source={store.image ? { uri: store.image } : storeImg}
+        />
 
-  const deliveryNull = "https://img.pngio.com/stop-png-images-vector-and-psd-files-free-download-on-pngtree-stop-png-360_360.png";
-  
-//  let today = new Date();
-//  let actualTime =
-//    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-// let weekday = today.getDate();
-//     const Opening = () => {
-//       (open && startMorning>actualTime && endMorning < actualTime || startNoon > actualTime && endNoon) ?  "Abierto" : "Cerrado"
-//      }
+        <View style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <Text style={styles.title}>{store.name}</Text>
+          <Text style={styles.address}>{store.address}</Text>
+        </View>
+      </View>
+      {/* <View style={styles.linea}></View> */}
 
-console.log("STORES", stores)
-
-const myProducts = allProducts.filter((p) => p.store._id === stores._id);
-const navigation = useNavigation(); 
-  
-    return (
-      <View>
-        <View
-          style={styles.container}
-        >
-          <View style={styles.subcontainer1}>
-            <Image style={styles.image} source={{ uri: stores.image }} />
-            
-            <View style={{flexDirection: "column", alignItems: "flex-start"}}>
-            <Text style={styles.title}>{stores.name}</Text>
-            <Text style={styles.address}>{stores.address}</Text>
-            </View>
-          </View>
-          <View style={styles.linea}></View>
+      <View style={styles.listContainer}>
+        {myProducts.length ? (
           <FlatList
-              contentContainerStyle={styles.upper}
-              data={myProducts}
-              renderItem={({ item }) => (
+            contentContainerStyle={styles.upper}
+            data={myProducts}
+            renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={()=>navigation.navigate('SingleProduct', { productId: item._id })}
+                onPress={() =>
+                  navigation.navigate("SingleProduct", { productId: item._id })
+                }
+                style={styles.productContainer}
               >
                 <Image style={styles.products} source={{ uri: item.image }} />
               </TouchableOpacity>
-            )
-          }
-        keyExtractor={(allProducts) => allProducts._id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-
-      />
-
-<View style={styles.linea}></View>
-          <View style={styles.info}>
-            <View style={styles.icon}>
-            <Icon
-                style={{}}
-                name="bicycle"
-                size={30}
-                color="#35b056"
-              />
-              {stores.delivery ? <Icon
-                style={{}}
-                name="checkmark"
-                size={30}
-                color="#35b056"
-              />
-            :
-              <Icon
-                style={{}}
-                name="close"
-                size={30}
-                color="red"
-              />
-            }
-              
-              </View>
-              <Text style={styles.open}>ABIERTO</Text>
-
-          </View>
-        </View>
+            )}
+            keyExtractor={(product) => product._id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        ) : (
+          <Text>Este comercio aún no ha cargado sus productos</Text>
+        )}
       </View>
-    );}
 
+      {/* <View style={styles.linea}></View> */}
+      <View style={styles.info}>
+        <View style={styles.icon}>
+          <Icon style={{}} name="bicycle" size={30} color="#35b056" />
+          {store.delivery ? (
+            <Icon style={{}} name="checkmark" size={30} color="#35b056" />
+          ) : (
+            <Icon style={{}} name="close" size={30} color="red" />
+          )}
+        </View>
+        <Text style={styles.open}>ABIERTO</Text>
+      </View>
+    </View>
+  );
+};
 
-export default StoreCard
+export default StoreCard;
