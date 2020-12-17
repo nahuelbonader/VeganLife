@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import normalize from "react-native-normalize";
-import colors from "./colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -57,8 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 20,
   },
-  productName: {
-      marginTop: 10,
+  categoryName: {
     marginLeft: 20,
     marginRight: 20,
     fontSize: 15,

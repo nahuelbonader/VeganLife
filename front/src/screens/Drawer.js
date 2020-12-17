@@ -34,14 +34,14 @@ const DrawerContent = (props) => {
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
                 {" "}
-                ???{" "}
+                --{" "}
               </Paragraph>
               <Caption style={styles.caption}>Siguiendo</Caption>
             </View>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
                 {" "}
-                ???{" "}
+                --{" "}
               </Paragraph>
               <Caption style={styles.caption}>Seguidores</Caption>
             </View>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text, SafeAreaView } from "react-native";
+import { ScrollView, Text, SafeAreaView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/actions/recipes";
 import { fetchCategories } from "../store/actions/categories";
@@ -46,6 +46,7 @@ const FeedRecetaScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
+        
         <Categories categorias={categories} />
         <CarouselFeed randomRecipe={randomRecipes} />
         <Text style={styles.recipesTitle}>Más recetas</Text>
