@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 
 
 const Map = () => {
+
   const navigation = useNavigation();
      return (
       <View style={styles.container}>

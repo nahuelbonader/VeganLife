@@ -11,19 +11,13 @@ import styles from "../styles/storeCard"
 import Icon from "react-native-vector-icons/Ionicons";
                                                                               import { useNavigation } from "@react-navigation/native";
 
-const StoreCard = ({stores, allProducts}) => {  
+const StoreCard = ({ stores, allProducts }) => {
+  const deliveryYes =
+    "https://seeklogo.com/images/M/man-silhouette-delivery-logo-0DBA9FBE43-seeklogo.com.png";
 
-  const deliveryYes = "https://seeklogo.com/images/M/man-silhouette-delivery-logo-0DBA9FBE43-seeklogo.com.png"
+  const deliveryNull =
+    "https://img.pngio.com/stop-png-images-vector-and-psd-files-free-download-on-pngtree-stop-png-360_360.png";
 
-  const deliveryNull = "https://img.pngio.com/stop-png-images-vector-and-psd-files-free-download-on-pngtree-stop-png-360_360.png";
-  
-//  let today = new Date();
-//  let actualTime =
-//    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-// let weekday = today.getDate();
-//     const Opening = () => {
-//       (open && startMorning>actualTime && endMorning < actualTime || startNoon > actualTime && endNoon) ?  "Abierto" : "Cerrado"
-//      }
 
 console.log("STORES", stores)
 
@@ -91,7 +85,7 @@ const navigation = useNavigation();
           </View>
         </View>
       </View>
-    );}
+  );
+};
 
-
-export default StoreCard
+export default StoreCard;

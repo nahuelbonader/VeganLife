@@ -3,7 +3,7 @@ import normalize from "react-native-normalize";
 import colors from "./colors";
 
 const styles = StyleSheet.create({
-  container: {
+  container: {flex:1,
     borderRadius: 15,
     borderBottomColor: colors.darkGray,
     borderBottomWidth: 1,
