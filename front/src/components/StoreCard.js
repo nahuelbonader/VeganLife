@@ -1,7 +1,15 @@
 import React from "react";
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
-import styles from "../styles/storeCard";
-import { useNavigation } from "@react-navigation/native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from "react-native";
+import styles from "../styles/storeCard"
+import Icon from "react-native-vector-icons/Ionicons";
+                                                                              import { useNavigation } from "@react-navigation/native";
 
 const StoreCard = ({ stores, allProducts }) => {
   const deliveryYes =
@@ -11,45 +19,72 @@ const StoreCard = ({ stores, allProducts }) => {
     "https://img.pngio.com/stop-png-images-vector-and-psd-files-free-download-on-pngtree-stop-png-360_360.png";
 
 
-  const myProducts = allProducts.filter((p) => p.store._id === stores._id);
-  const navigation = useNavigation();
+console.log("STORES", stores)
 
-  return (
-    <View>
-      <View style={styles.container}>
-        <View style={styles.upper}>
-          <Image style={styles.image} source={{ uri: stores.image }} />
+const myProducts = allProducts.filter((p) => p.store._id === stores._id);
+const navigation = useNavigation(); 
+  
+    return (
+      <View>
+        <View
+          style={styles.container}
+        >
+          <View style={styles.subcontainer1}>
+            <Image style={styles.image} source={{ uri: stores.image }} />
+            
+            <View style={{flexDirection: "column", alignItems: "flex-start"}}>
+            <Text style={styles.title}>{stores.name}</Text>
+            <Text style={styles.address}>{stores.address}</Text>
+            </View>
+          </View>
+          <View style={styles.linea}></View>
+          <FlatList
+              contentContainerStyle={styles.upper}
+              data={myProducts}
+              renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={()=>navigation.navigate('SingleProduct', { productId: item._id })}
+              >
+                <Image style={styles.products} source={{ uri: item.image }} />
+              </TouchableOpacity>
+            )
+          }
+        keyExtractor={(allProducts) => allProducts._id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
 
-          <Text style={styles.title}>{stores.name}</Text>
-        </View>
+      />
 
-        <FlatList
-          contentContainerStyle={styles.upper}
-          data={myProducts}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("SingleProduct", { productId: item._id })
-              }
-            >
-              <Image style={styles.products} source={{ uri: item.image }} />
-            </TouchableOpacity>
-          )}
-          keyExtractor={(allProducts) => allProducts._id}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
+<View style={styles.linea}></View>
+          <View style={styles.info}>
+            <View style={styles.icon}>
+            <Icon
+                style={{}}
+                name="bicycle"
+                size={30}
+                color="#35b056"
+              />
+              {stores.delivery ? <Icon
+                style={{}}
+                name="checkmark"
+                size={30}
+                color="#35b056"
+              />
+            :
+              <Icon
+                style={{}}
+                name="close"
+                size={30}
+                color="red"
+              />
+            }
+              
+              </View>
+              <Text style={styles.open}>ABIERTO</Text>
 
-        <View style={styles.info}>
-          <Text style={styles.address}>{stores.address}</Text>
-          <Image
-            style={styles.delivery}
-            source={{ uri: stores.delivery ? deliveryYes : deliveryNull }}
-          />
-          {/* <Text style={styles.open}>{stores.open}</Text> */}
+          </View>
         </View>
       </View>
-    </View>
   );
 };
 

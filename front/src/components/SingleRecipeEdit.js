@@ -68,7 +68,7 @@ const SingleRecipeEdit = ({
                 style={styles.favIcon}
                 name="md-heart"
                 size={30}
-                color="#35b056"
+                color = {colors.font}
               />
             </View>
           </View>

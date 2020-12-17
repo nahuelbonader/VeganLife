@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../store/actions/users";
 import firebase from "../utils/Firebase";
@@ -8,7 +14,7 @@ import useInputs from "../hooks/useInputs";
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
 import GoogleLoginComponent from "../components/GoogleLoginComponent";
-import FacebookLoginComponent from '../components/FacebookLoginComponent'
+import FacebookLoginComponent from "../components/FacebookLoginComponent";
 import AccessButtons from "../components/AccessButtons";
 import LoginButtons from "../components/LoginButtons";
 import { errors, alerts } from "../utils/errors-alerts";
@@ -54,30 +60,26 @@ const Login = ({ navigation }) => {
           text={password}
           secureTextEntry={true}
         />
-        
-        <AccessButtons
-          onPressBtn={handleSubmit}
-          textBtn="Iniciar Sesión"
-        />
+
+        <Text style={styles.alert}>{errorMessage}</Text>
+
+        <AccessButtons onPressBtn={handleSubmit} textBtn="Iniciar Sesión" />
 
         <LoginButtons
           invitation="¿Olvidaste tu contraseña?"
           onPressInvitation={() => navigation.navigate("ForgotPassword")}
         />
 
-        <View style={styles.gmailfbcontainer} >
+        <View style={styles.gmailfbcontainer}>
           <GoogleLoginComponent />
-          <FacebookLoginComponent/>
+          <FacebookLoginComponent />
         </View>
 
-        <Text style={styles.alert}>{errorMessage}</Text>
-         <LoginButtons
+        <LoginButtons
           question="¿No tienes cuenta?"
           onPressInvitation={() => navigation.navigate("Register")}
           invitation="Registrate"
         />
-        
-        
       </View>
     </TouchableWithoutFeedback>
   );
@@ -85,10 +87,11 @@ const Login = ({ navigation }) => {
 
 export default Login;
 
-
-{/* <LoginButtons style={styles.btn}
+{
+  /* <LoginButtons style={styles.btn}
 title='Iniciar Sesión'
 onPressBtn={handleSubmit}
 invitation="¿Olvidaste tu contraseña?"
 onPressInvitation={() => navigation.navigate("ForgotPassword")}
-/> */}
+/> */
+}

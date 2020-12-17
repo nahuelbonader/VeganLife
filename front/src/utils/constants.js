@@ -15,3 +15,4 @@ export const newRecipeImg = "https://img.pngio.com/la-alimentacion-saludable-pre
 export const banner = "https://data.whicdn.com/images/328889501/original.png";
 
 export const location = "https://www.flaticon.com/svg/static/icons/svg/927/927667.svg";
+

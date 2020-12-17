@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProductsByStore from './ProductsByStore'
 import styles from "../styles/singleMarket"
 import { banner, location } from "../utils/constants"
+import Icon from "react-native-vector-icons/Ionicons";
 
 
 
@@ -15,6 +16,15 @@ const stores = useSelector((state) => state.storesReducer.stores);
 const allProducts = useSelector((state) => state.productsReducer.products);
 const [myMarket] = stores.filter((s)=>s._id === storeId)
  console.log(myMarket, "merca2");
+
+const deliveryYes =
+  "https://seeklogo.com/images/M/man-silhouette-delivery-logo-0DBA9FBE43-seeklogo.com.png";
+
+const deliveryNull =
+  "https://img.pngio.com/stop-png-images-vector-and-psd-files-free-download-on-pngtree-stop-png-360_360.png";
+
+
+
 return (
   <View>
     <ImageBackground
@@ -26,18 +36,23 @@ return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: myMarket.image }} />
       <View style={styles.info}>
-        <Text
-          style={styles.delivery}
-          source={{ uri: myMarket.delivery ? "Yes" : "No" }}
-        ></Text>
-        <Text style={styles.address}>delivery</Text>
-        <Text style={styles.address}>Abierto</Text>
+        <View style={styles.delivery}>
+          <Icon style={{}} name="bicycle" size={30} />
+          {stores.delivery ? (
+            <Icon style={{}} name="checkmark" size={30} color="#35b056" />
+          ) : (
+            <Icon style={{}} name="close" size={30} color="red" />
+          )}
+        </View>
+
+        <Text style={styles.open}>ABIERTO</Text>
       </View>
 
       <Text style={styles.title}>{myMarket.name}</Text>
-
-      {/* <Text style={styles.delivery}>{myMarket.delivery}</Text> */}
-      <Text style={styles.address}>{myMarket.address}</Text>
+      <View style={styles.infoDos}>
+        <Icon style={{}} name="location-outline" size={30} />
+        <Text style={styles.address}>{myMarket.address}</Text>
+      </View>
       <Text style={styles.hour}>Días: Lunes a Viernes</Text>
       <Text style={styles.hour}>Horario: 9-21 hrs</Text>
 

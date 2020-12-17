@@ -32,7 +32,7 @@ export default StyleSheet.create({
   modalView: {
     width: "80%",
     height: normalize(450),
-    backgroundColor: colors.darkGray,
+    backgroundColor: colors.mediumGray,
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",

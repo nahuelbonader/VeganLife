@@ -29,7 +29,13 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 15,
     fontWeight: "200",
-    marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 5,
+  },
+    open: {
+    fontSize: 15,
+    fontWeight: "200",
+    marginLeft: 5,
     marginTop: 20,
     marginBottom: 5,
   },
@@ -42,7 +48,14 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    marginHorizontal: 30,
+  },
+  infoDos: {
+    flexDirection: "row",
+    marginLeft: 20,
+    
+  
   },
   productName: {
     marginLeft: 20,
@@ -61,6 +74,10 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 5,
     marginBottom: 5,
+  },
+  delivery: {
+    flexDirection: "row",
+    marginTop: 10,
   },
 });
 
