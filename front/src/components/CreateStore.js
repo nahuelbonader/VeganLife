@@ -185,12 +185,7 @@ export default ({ setMessage, restoreTab }) => {
     <View style={styles.container}>
       <View style={styles.containerButtons}>
         <TouchableOpacity style={styles.goBack} onPress={goNext}>
-          <MaterialIcons
-            style={styles.IconStyle}
-            name="arrow-back"
-            size={24}
-            color="black"
-          />
+          <MaterialIcons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.titleText}>¿Qué días abren?</Text>
       </View>
