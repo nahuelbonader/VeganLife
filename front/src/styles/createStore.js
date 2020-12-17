@@ -44,10 +44,9 @@ export default StyleSheet.create({
     flex: 0.5,
   },
   deliveryContainer: {
-    flex: 2,
+    flex: 2.3,
     width: "100%",
-    marginTop: "20%",
-
+    marginTop: "10%",
     alignItems: "center",
   },
   questionText: {
@@ -86,6 +85,29 @@ export default StyleSheet.create({
     fontWeight: "bold",
     textTransform: "uppercase",
   },
+  avatarContainer: {
+    marginTop: '10%',
+    flex: 1,
+    shadowColor: "#151734",
+    shadowRadius: 30,
+    shadowOpacity: 0.4,
+    alignItems: 'center',
+  },
+  avatarPlaceholder: {
+    width: '20%',
+    height: '100%',
+    backgroundColor: "#E1E2E6",
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  avatar: {
+    alignSelf:'center',
+    width: '100%',
+    height: '100%',
+    borderRadius: 68,
+  },
+
 
   // Second Page
   containerButtons: {
@@ -129,4 +151,7 @@ export default StyleSheet.create({
     backgroundColor: colors.dartmouthGreen,
     borderRadius: 25,
   },
+
+
+  
 });

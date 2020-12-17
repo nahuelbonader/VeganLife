@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   upper: {
     flex: 1,
-    width: "100%",
+    //width: "100%",
     flexDirection: "row",
     alignItems: "center",
   },
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
   },
   productContainer: {
     height: "95%",
-    width: "50%",
+    width: normalize(90),
+
     marginLeft: "4%",
     borderRadius: 10,
   },
