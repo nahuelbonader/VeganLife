@@ -8,7 +8,7 @@ env.js
 package-lock.json
 
 #Expo
-.expo
+*.expo
 __generated__
 web-build
 *.jks

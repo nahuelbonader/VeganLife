@@ -1,28 +1,42 @@
 import { StyleSheet } from "react-native";
+import normalize from "react-native-normalize";
 import colors from "./colors";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: 250,
-    backgroundColor: "#D7DBDD",
+    backgroundColor: colors.mediumGray,
     alignContent: "center",
+    justifyContent: "center",
     marginTop: "5%",
     marginHorizontal: "2%",
     borderRadius: 20,
   },
-  subcontainer1:{
-    flex: 4,
+  subcontainer1: {
+    flex: 2,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    marginLeft: "7%"
+    paddingLeft: "7%",
+  },
+  listContainer: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingLeft: "7%",
+    borderTopColor: colors.darkGray,
+    borderTopWidth: 1,
+    borderBottomColor: colors.darkGray,
+    borderBottomWidth: 1,
+    borderRadius: 20,
   },
   upper: {
-    flex: 4,
-    flexDirection: "row", 
+    flex: 1,
+    width: "100%",
+    flexDirection: "row",
     alignItems: "center",
-    marginLeft: "2%"
   },
   title: {
     marginLeft: "10%",
@@ -31,7 +45,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     color: colors.font,
     textTransform: "uppercase",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   image: {
     flexDirection: "row",
@@ -41,44 +55,46 @@ const styles = StyleSheet.create({
     width: 75,
     borderRadius: 50,
   },
-  products: {
+  productContainer: {
+    height: "95%",
+    width: "50%",
     marginLeft: "4%",
-    height: 90,
-    width: 80,
+    borderRadius: 10,
+  },
+  products: {
+    height: "100%",
+    width: "100%",
     borderRadius: 10,
   },
   info: {
-    flex: 2,
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-
   },
   address: {
     color: colors.font,
     fontSize: 13,
     fontWeight: "300",
     textTransform: "uppercase",
-    marginLeft: "10%"
+    marginLeft: "10%",
   },
   open: {
-    justifyContent: "center", 
-    alignItems: "center", 
-    fontSize: 16, 
-    color: colors.font
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 16,
+    color: colors.font,
   },
   icon: {
-    alignItems: "center", 
-    flexDirection: "row"
+    alignItems: "center",
+    flexDirection: "row",
   },
-  linea: {
-    height: 1,
-    width: "90%",
-    backgroundColor: "#95A5A6",
-    marginHorizontal: "5%"
-  }
- 
+  // linea: {
+  //   height: 1,
+  //   width: "90%",
+  //   backgroundColor: "#95A5A6",
+  //   marginHorizontal: "5%",
+  // },
 });
 
-
-export default styles
+export default styles;

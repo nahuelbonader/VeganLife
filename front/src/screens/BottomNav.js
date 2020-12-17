@@ -8,8 +8,9 @@ import { useDispatch } from "react-redux";
 import setRoute from "../store/actions/bottomRoutes";
 import AddRecipeScreen from "./AddRecipeScreen";
 import FeedRecetas from "./FeedRecetaScreen";
+import FeedMarket from "./FeedStoresScreen";
 import Search from "./SearchScreen";
-import Map from '../components/Map'
+import Map from "../components/Map";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -19,7 +20,7 @@ const BottomNav = ({ navigation }) => {
   const dispatch = useDispatch();
   const { index, routes } = navigation.dangerouslyGetState();
   const currentRoute = routes[index].state ? routes[index].state.index : 0;
-
+  const [homeRecipe, setHomeRecipe] = React.useState(true);
   const [state, setState] = React.useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
@@ -38,7 +39,7 @@ const BottomNav = ({ navigation }) => {
         >
           <Tab.Screen
             name="Feed"
-            component={FeedRecetas}
+            component={homeRecipe ? FeedRecetas : FeedMarket}
             options={{
               tabBarLabel: "Home",
               tabBarIcon: ({ color }) => (
@@ -63,7 +64,7 @@ const BottomNav = ({ navigation }) => {
           <Tab.Screen
             name="Map"
             component={Map}
-            onPress={()=>navigation.navigate("Map")}
+            onPress={() => navigation.navigate("Map")}
             options={{
               tabBarLabel: "Map",
               tabBarIcon: ({ color }) => (
@@ -105,20 +106,15 @@ const BottomNav = ({ navigation }) => {
                 onPress: () => navigation.navigate("CookToday"),
               },
               {
-                icon: "cookie",
-                label: "Vegan Cook",
-                onPress: () => console.log("Pressed star"),
+                icon: homeRecipe ? "store" : "cookie",
+                label: homeRecipe ? "Vegan Market" : "Vegan Cook",
+                onPress: () => setHomeRecipe(!homeRecipe),
               },
-              {
-                icon: "store",
-                label: "Vegan Market",
-                onPress: () => navigation.navigate("StoreFeed"),
-              },
-              {
-                icon: "cart",
-                label: "Cart",
-                onPress: () => console.log("Pressed notifications"),
-              },
+              // {
+              //   icon: "cart",
+              //   label: "Cart",
+              //   onPress: () => console.log("Pressed notifications"),
+              // },
             ]}
             onStateChange={onStateChange}
             onPress={() => {
