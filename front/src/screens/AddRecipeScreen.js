@@ -1,158 +1,179 @@
 import React, { useState } from "react";
-import {ScrollView } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import * as ImagePicker from "expo-image-picker";
-
-
 import { useNavigation } from "@react-navigation/native";
+import FirstStep from "../components/FirstStepRecipe";
+import Ingredients from "../components/IngredientsRecipe";
+import Steps from "../components/StepsRecipe";
+import GoBackButton from "../components/GoBackButton";
 
-import AddRecipeStep1 from '../components/AddRecipeStep1'
-import InputSelected from '../components/InputSelected'
-import ListSelected from '../components/ListSelected'
-import SingleRecipeEdit from '../components/SingleRecipeEdit'
-import AddIngredientes from '../components/AddIngredientes'
+import PreviewRecipe from "../components/PreviewRecipe";
 
-import {postRecipe, fetchRecipes} from '../store/actions/recipes'
+import { postRecipe, fetchRecipes } from "../store/actions/recipes";
+import { handleOpenImage } from "../customFunctions/picker";
 
+import colors from "../styles/colors";
+import normalize from "react-native-normalize";
 
+export default () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
+  const { user } = useSelector((state) => state.usersReducer);
+  const { categories } = useSelector((state) => state.categoriesReducer);
+  const categoriesDropdown = categories.map((c) => ({ value: c.name }));
 
-const AddRecipeScreen = ({}) => {
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [categoryName, setCategory] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [instructions, setInstructions] = useState([]);
 
-    const navigation = useNavigation();
+  const [page, setPage] = useState(0);
 
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
-    const [ingredients, setIngredients] = useState([]);
-    const [instructions, setInstructions] = useState([]);
-    const [category, setCategory] = useState("");
-    const [owner, setOwner] = useState("");
-    const [bool1, setBool1] = useState(true);
-    const [bool2, setBool2] = useState(false);
-    const [bool3, setBool3] = useState(false);
-    const [bool4, setBool4] = useState(false);
-    const [bool5, setBool5] = useState(false);
-    const [bool6, setBool6] = useState(false);
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.usersReducer.user);
+  const handleSubmit = () => {
+    const [category] = categories.filter((c) => c.name == categoryName);
+    const recipe = {
+      title,
+      image,
+      ingredients,
+      instructions,
+      category,
+      owner: user._id,
+    };
+    dispatch(postRecipe(recipe)).then(() => {
+      navigation.navigate("Feed");
+      setPage(0);
+      setTitle("");
+      setCategory("");
+      setImage("");
+      setIngredients([]);
+      setInstructions([]);
+    });
+  };
 
-    const categories = useSelector((state) => state.categoriesReducer.categories);
+  const handlePage = (page) => {
+    switch (page) {
+      case 0:
+        return (
+          <FirstStep
+            handleInput={setTitle}
+            title={title}
+            openImage={() => handleOpenImage(setImage)}
+            image={image}
+            handleCategorie={setCategory}
+            categories={categoriesDropdown}
+          />
+        );
+      case 1:
+        return (
+          <Ingredients
+            setIngredients={setIngredients}
+            ingredients={ingredients}
+          />
+        );
+      case 2:
+        return (
+          <Steps
+            setInstructions={setInstructions}
+            instructions={instructions}
+          />
+        );
 
-    const handleSubmit = (recipe)=>{
-        let catId = {}        
-        categories.filter((c)=>{if(c.name==recipe.category){catId =  c._id}})
-        dispatch(postRecipe({
-            title: recipe.title, 
-            image: recipe.image,
-            ingredients: recipe.ingredients,
-            instructions: recipe.instructions,
-            category: catId, 
-            owner: user._id
-        })).then(dispatch(fetchRecipes()))
-
-        navigation.navigate("Feed")
-
-        setBool1(true)
-        setBool2(false)
-        setBool3(false)
-        setBool4(false)
-        setBool5(false)
-        setBool6(false)
-        
-        }
-
-        const handleOpenImage = async () => {
-            const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            const picker = await ImagePicker.launchImageLibraryAsync();
-            if (!permission.granted) return console.log("NO TENES PERMISOS");
-            if (picker.cancelled) return console.log("Pickeo cancelado");
-            setImage(picker.uri);
-            uploadImage(picker.uri);
-          };
-        
-        const uploadImage = async (uri) => {
-            const response = await fetch(uri);
-            const blob = await response.blob();
-            const ref = firebase
-              .storage()
-              .ref()
-              .child("images/" + uri);
-            await ref.put(blob);
-            return await ref
-              .getDownloadURL()
-              .then((downloadUrl) => setImage(downloadUrl))
-              .catch((err) => console.log(err));
-          };
-
-    return (
-        <ScrollView>
-            <AddRecipeStep1
-             textbtn={"Siguiente"}
-             bool={bool1}
-             handleChange={(e)=>{setTitle(e)}}
-             ph={"Titulo de la receta"}
-             handleBoolean={()=>{setBool1(!bool1), setBool2(!bool2)}}
-             value={title}
-             />
-             <AddRecipeStep1
-             textbtn={"Siguiente"}
-             textbtn2={"Volver al paso anterior"}
-             bool={bool2}
-             handleChange={(e)=>{setImage(e)}}
-             ph={"Imagen de la receta"}
-             handleBoolean={()=>{setBool2(!bool2), setBool3(!bool3)}}
-             handleBackBoolean={()=>{setBool1(!bool1), setBool2(!bool2)}}
-             value={image}
-             openImage={handleOpenImage}
-             image={image}
-             />
-             <AddIngredientes
-             textbtn={"Siguiente"}
-             textbtn2={"Volver al paso anterior"}
-             bool={bool3}
-             handleChange={(e)=>{setIngredients(e)}}
-             ph={"Ingredientes"}
-             handleBoolean={()=>{setBool3(!bool3), setBool4(!bool4)}}
-             handleBackBoolean={()=>{setBool2(!bool2), setBool3(!bool3)}}
-             value={ingredients}
-             />
-             <ListSelected
-             textbtn={"Siguiente"}
-             textbtn2={"Volver al paso anterior"}
-             bool={bool4}
-             handleChange={(e)=>{setInstructions(e)}}
-             ph={"Instrucciones"}
-             handleBoolean={()=>{setBool4(!bool4), setBool5(!bool5)}}
-             handleBackBoolean={()=>{setBool4(!bool4), setBool3(!bool3)}}
-             value={instructions}
-             />
-             <InputSelected
-             textbtn={"Previsualizar receta"}
-             textbtn2={"Volver al paso anterior"}
-             bool={bool5}
-             handleChange={(e)=>{setCategory(e)}}
-             ph={"Categoria"}
-             handleBoolean={()=>{setBool5(!bool5), setBool6(!bool6)}}
-             handleBackBoolean={()=>{setBool4(!bool4), setBool5(!bool5)}}             
-             categories={categories}
-             value={category}
-             />
-            <SingleRecipeEdit 
-            bool={bool6}
+      case 3:
+        return (
+          <PreviewRecipe
             title={title}
             image={image}
+            category={categoryName}
             ingredients={ingredients}
             instructions={instructions}
-            category={category}
-            owner={user}
-            handleSubmit={handleSubmit}
-            handleBackBoolean={()=>{setBool6(!bool6), setBool5(!bool5)}} 
-            />
-        </ScrollView>
-      );
-    };
-    
+          />
+        );
+    }
+  };
 
-    
-    export default AddRecipeScreen;
-    
+  return (
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        {page ? (
+          <View style={styles.goBackButton}>
+            <GoBackButton onPress={() => setPage(page - 1)} />
+          </View>
+        ) : null}
+        <Text style={styles.title}>Crea tu propia receta</Text>
+      </View>
+
+      <View style={styles.contentContainer}>{handlePage(page)}</View>
+
+      <View style={styles.buttonContainer}>
+        {page < 3 ? (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => setPage(page + 1)}
+          >
+            <Text style={styles.textBtn}>Siguiente</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            <Text style={styles.textBtn}>Confirmar</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  // CONTAINERS
+  container: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: colors.background,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  headerContainer: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  contentContainer: {
+    flex: 8,
+    width: "100%",
+  },
+  buttonContainer: {
+    flex: 1.3,
+    width: "100%",
+    justifyContent: "center",
+  },
+
+  // TEXTS
+  title: {
+    alignSelf: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  textBtn: {
+    color: colors.background,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  },
+
+  // BUTTONS
+  goBackButton: {
+    position: "absolute",
+    alignSelf: "flex-start",
+    marginLeft: "5%",
+  },
+  button: {
+    height: "60%",
+    width: "50%",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.dartmouthGreen,
+    borderRadius: normalize(30),
+  },
+});

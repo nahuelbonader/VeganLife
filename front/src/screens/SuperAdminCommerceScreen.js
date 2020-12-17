@@ -20,7 +20,6 @@ useEffect(()=>{
     .then(res => res.data)
     .then(data => {
       setAdmins(data.admins)
-
     })
 },[])
 
