@@ -16,6 +16,7 @@ import * as ImagePicker from "expo-image-picker";
 import Logo from "../components/Logo";
 import InputData from "../components/InputData";
 import AccessButtons from "../components/AccessButtons";
+import LoginButtons from '../components/LoginButtons'
 import { errors, alerts } from "../utils/errors-alerts";
 import { userIcon } from "../utils/constants";
 import styles from "../styles/login-register";
@@ -105,10 +106,13 @@ const Register = ({ navigation }) => {
         <AccessButtons
           onPressBtn={handleSubmit}
           textBtn="Registrarse"
-          question="¿Ya tienes cuenta?"
-          onPressInvitation={() => navigation.navigate("Login")}
-          invitation="Inicia Sesión"
         />
+        <LoginButtons
+          question="¿Ya tienes cuenta?"
+          invitation="Inicia Sesión"
+          onPressInvitation={() => navigation.navigate("Login")}
+        />
+
       </View>
     </TouchableWithoutFeedback>
   );
