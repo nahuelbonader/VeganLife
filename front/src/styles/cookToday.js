@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: normalize(50),
     marginVertical: normalize(10),
-    width: "85%",
+    width: "92%",
   },
   enterIcon: {
     alignSelf: "flex-end",
@@ -65,17 +65,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 15,
     padding: 60,
-    textShadowColor: "green",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
+    shadowColor: "black",
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   recipeImage: {
-    width: 350,
+    width: 375,
     height: 200,
     marginTop: 15,
   },
   recipeBorder: {
-    borderRadius: 10,
+    borderRadius: 15,
   },
 });
 

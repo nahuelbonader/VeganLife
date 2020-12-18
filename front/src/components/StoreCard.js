@@ -43,13 +43,13 @@ const StoreCard = ({ store, allProducts }) => {
             showsHorizontalScrollIndicator={false}
           />
         ) : (
-          <Text>Este comercio aún no ha cargado sus productos</Text>
+          <Text style={styles.noProducts}>Este comercio aún no ha cargado sus productos</Text>
         )}
       </View>
 
       <View style={styles.info}>
         <View style={styles.icon}>
-          <Icon style={{}} name="bicycle" size={30} color="#35b056" />
+          <Icon style={{}} name="bicycle" size={30} color="black" />
           {store.delivery ? (
             <Icon style={{}} name="checkmark" size={30} color="#35b056" />
           ) : (

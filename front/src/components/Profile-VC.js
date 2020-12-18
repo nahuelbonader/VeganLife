@@ -25,7 +25,7 @@ const ListRecipes = ({ recipes, title }) => (
         showsHorizontalScrollIndicator={false}
       />
     ) : (
-      <ImageBackground style={styles.recipesCover} source={portada}>
+      <ImageBackground style={styles.recipesCover}>
         <Text style={styles.recipesCoverTitle}>Aún no hay recetas</Text>
       </ImageBackground>
     )}
