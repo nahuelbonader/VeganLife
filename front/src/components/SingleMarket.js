@@ -22,14 +22,14 @@ const SingleMarket = ({ route }) => {
   const [myMarket] = stores.filter((s) => s._id === storeId);
 
   return (
-    <View>
+    <View style={styles.container}>
       <ImageBackground
         style={styles.banner}
         source={{
           uri: banner,
         }}
       ></ImageBackground>
-      <View style={styles.container}>
+      <View style={styles.containerData}>
         <Image style={styles.image} source={{ uri: myMarket.image }} />
         <View style={styles.info}>
           <View style={styles.delivery}>
