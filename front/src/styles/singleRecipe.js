@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     height: normalize(200),
     flexDirection: "row",
     marginVertical: normalize(12),
+    width: "95%",
+    alignSelf: "center",
   },
   image: {
     borderRadius: normalize(20),
@@ -36,12 +38,13 @@ const styles = StyleSheet.create({
     fontWeight: "200",
   },
   viewThree: {
+    flex: 1,
+    width: "90%",
+    alignSelf: "center",
     borderRadius: normalize(25),
     backgroundColor: "white",
-    paddingBottom: normalize(70),
+    paddingBottom: normalize(20),
     marginTop: normalize(5),
-    marginLeft: normalize(10),
-    marginRight: normalize(10),
   },
   title: {
     marginTop: normalize(15),
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center",
     fontWeight: "300",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
   },
   text: {
     textTransform: "uppercase",
@@ -95,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles
+export default styles;
