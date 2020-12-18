@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import normalize from "react-native-normalize";
-import colors from './colors'
+import colors from "./colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderWidth: 1,
     borderColor: colors.darkGray,
+    backgroundColor: colors.background,
   },
   info: {
     flexDirection: "row",
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.darkGray,
     borderBottomWidth: 0.5,
     borderRadius: 20,
-    paddingBottom: "5%"
+    paddingBottom: "5%",
   },
   infoDos: {
     flexDirection: "row",

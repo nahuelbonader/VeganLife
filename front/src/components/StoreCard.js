@@ -43,7 +43,9 @@ const StoreCard = ({ store, allProducts }) => {
             showsHorizontalScrollIndicator={false}
           />
         ) : (
-          <Text style={styles.noProducts}>Este comercio aún no ha cargado sus productos</Text>
+          <Text style={styles.noProducts}>
+            Este comercio aún no ha cargado sus productos
+          </Text>
         )}
       </View>
 

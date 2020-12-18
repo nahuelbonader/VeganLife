@@ -4,14 +4,14 @@ import colors from "./colors";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     height: 250,
     backgroundColor: colors.mediumGray,
     alignContent: "center",
     justifyContent: "center",
     marginTop: "5%",
-    marginHorizontal: "2%",
     borderRadius: 20,
+    width: "95%",
+    alignSelf: "center",
   },
   subcontainer1: {
     flex: 2,
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: "3%",
     paddingRight: "3%",
+    backgroundColor: colors.mediumGray,
     borderTopColor: colors.darkGray,
     borderTopWidth: 0.5,
     borderBottomColor: colors.darkGray,
@@ -34,8 +35,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   upper: {
-    flex: 1,
-    //width: "100%",
     flexDirection: "row",
     alignItems: "center",
   },
@@ -52,6 +51,7 @@ const styles = StyleSheet.create({
     height: 75,
     width: 75,
     borderRadius: 50,
+    backgroundColor: colors.background,
   },
   productContainer: {
     height: "95%",
