@@ -7,6 +7,7 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background,
     flex: 1,
+    width: "100%",
   },
   line: {
     marginTop: normalize(30),

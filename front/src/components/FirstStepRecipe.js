@@ -33,6 +33,9 @@ export default ({
       label={"Categoría"}
       containerStyle={styles.containerDropdown}
       data={categories}
+      fontSize={19}
+      animationDuration={350}
+      selectedItemColor={colors.dartmouthGreen}
     />
     <View style={styles.avatarContainer}>
       <TouchableOpacity onPress={openImage} style={styles.avatarTouchable}>

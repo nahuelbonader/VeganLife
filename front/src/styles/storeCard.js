@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flexDirection: "row",
-    // marginLeft: 35,
-    // marginTop: 20,
     height: 75,
     width: 75,
     borderRadius: 50,
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
   productContainer: {
     height: "95%",
     width: normalize(90),
-
     marginLeft: "4%",
     borderRadius: 10,
   },
@@ -90,12 +87,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  // linea: {
-  //   height: 1,
-  //   width: "90%",
-  //   backgroundColor: "#95A5A6",
-  //   marginHorizontal: "5%",
-  // },
 });
 
 export default styles;

@@ -15,9 +15,10 @@ import colors from "../styles/colors";
 const List = ({ data }) => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View style={styless.container}>
       <FlatList
-        style={styles.list}
+        contentContainerStyle={{ justifyContent: "center" }}
+        style={styless.list}
         keyExtractor={(content) => content._id}
         data={data}
         renderItem={({ item }) => {
@@ -51,9 +52,19 @@ const List = ({ data }) => {
 };
 
 const styless = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "90%",
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   description: {
     color: colors.carrot,
     marginBottom: " 3%",
+  },
+  list: {
+    width: "100%",
   },
 });
 

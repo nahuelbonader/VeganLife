@@ -37,7 +37,7 @@ export default StyleSheet.create({
     marginTop: "4%",
   },
   textContainer: {
-    width: "20%",
+    width: "21%",
     alignItems: "center",
     justifyContent: "space-around",
     paddingTop: "6%",
@@ -59,5 +59,8 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
+  },
+  input: {
+    borderBottomWidth: 0.5,
   },
 });

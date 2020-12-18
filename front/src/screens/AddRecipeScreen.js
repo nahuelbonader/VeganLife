@@ -9,7 +9,7 @@ import GoBackButton from "../components/GoBackButton";
 
 import PreviewRecipe from "../components/PreviewRecipe";
 
-import { postRecipe, fetchRecipes } from "../store/actions/recipes";
+import { postRecipe } from "../store/actions/recipes";
 import { handleOpenImage } from "../customFunctions/picker";
 
 import colors from "../styles/colors";
@@ -33,6 +33,7 @@ export default () => {
 
   const handleSubmit = () => {
     const [category] = categories.filter((c) => c.name == categoryName);
+    const date = new Date();
     const recipe = {
       title,
       image,
@@ -40,6 +41,7 @@ export default () => {
       instructions,
       category,
       owner: user._id,
+      date,
     };
     dispatch(postRecipe(recipe)).then(() => {
       navigation.navigate("Feed");

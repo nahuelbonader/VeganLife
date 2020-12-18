@@ -3,16 +3,17 @@ import normalize from "react-native-normalize";
 import colors from "./colors";
 
 const styles = StyleSheet.create({
-  container: {flex:1,
+  container: {
+    flex: 1,
     borderRadius: 15,
-    borderBottomColor: colors.darkGray,
+    borderBottomColor: colors.mediumGray,
     borderBottomWidth: 1,
     paddingBottom: normalize(15),
     marginBottom: normalize(15),
   },
   title: {
     marginLeft: normalize(15),
-    marginBottom: normalize(10),
+    marginBottom: normalize(15),
     fontSize: 20,
     color: colors.font,
     fontWeight: "500",
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    color: colors.font,
     textAlign: "center",
     fontWeight: "300",
     textTransform: "uppercase",

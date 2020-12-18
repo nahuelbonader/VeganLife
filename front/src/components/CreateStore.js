@@ -5,22 +5,20 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
-  Image
+  Image,
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { MaterialIcons } from "@expo/vector-icons";
 import { createStore } from "../store/actions/stores";
-import GooglePlacesInput from '../components/GooglePlacesInput';
+import GooglePlacesInput from "../components/GooglePlacesInput";
 import { handleOpenImage } from "../customFunctions/picker";
-import { userIcon } from "../utils/constants";
+import { storeImg } from "../utils/constants";
 import InputTime from "./InputHorario";
+import GoBackButton from "./GoBackButton";
 import styles from "../styles/createStore";
 import colors from "../styles/colors";
 
 export default ({ setMessage, restoreTab }) => {
-  
-
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.usersReducer);
 
@@ -28,7 +26,7 @@ export default ({ setMessage, restoreTab }) => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
   const [address, setAddress] = useState("");
-  const [location, setLocation] = useState({lat: 0, lng: 0})
+  const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [phone, setPhone] = useState("");
   const [CUIL, setCuil] = useState("");
   const [description, setDescription] = useState("");
@@ -50,8 +48,9 @@ export default ({ setMessage, restoreTab }) => {
   const [friday, setFriday] = useState({ ...openHours });
   const [saturday, setSaturday] = useState({ ...openHours });
 
-  const [firstPage, setFirstPage] = useState(true);
-  const goNext = () => setFirstPage(!firstPage);
+  const [page, setPage] = useState(0);
+  const goNext = () => setPage(page + 1);
+  const goBack = () => setPage(page - 1);
 
   const handleSubmit = () => {
     const open = [
@@ -75,11 +74,9 @@ export default ({ setMessage, restoreTab }) => {
         description,
         delivery,
         open,
-        location
+        location,
       })
     )
-
-
       .then((res) => {
         res instanceof Error
           ? setMessage("Lo sentimos, hubo un problema :(")
@@ -95,132 +92,158 @@ export default ({ setMessage, restoreTab }) => {
     }, 5000);
   };
 
-  const handleAdress = (address, location) =>{
-    setAddress(address)
-    setLocation(location)
-    console.log('ADDRESS', address, 'location', location)
-  }
+  const handleAdress = (address, location) => {
+    setAddress(address);
+    setLocation(location);
+  };
 
-  return firstPage ? (
-    
-    <View style={styles.container}>
-      <View style={styles.containerInputs}>
-        <View style={styles.containerInputsShorts}>
-          <TextInput
-            style={styles.inputShort}
-            placeholder="Nombre"
-            onChangeText={setName}
-            value={name}
-          />
-          <TextInput
-            keyboardType="email-address"
-            style={styles.inputShort}
-            placeholder="Email"
-            onChangeText={setEmail}
-            value={email}
-          />
-        </View>
+  const renderTitle = (page) => {
+    switch (page) {
+      case 0:
+        return <Text style={styles.titleText}>Registra tu comercio</Text>;
+      case 1:
+        return <Text style={styles.titleText}>Registra tu comercio</Text>;
+      case 2:
+        return <Text style={styles.titleText}>¿Qué días abren?</Text>;
+    }
+  };
 
-        {/* <View style={styles.inputGoogleContainer}> */}
-          
-        {/* </View> */}
+  const renderContent = (page) => {
+    switch (page) {
+      case 0:
+        return (
+          <>
+            <View style={styles.containerInputsShorts}>
+              <TextInput
+                style={styles.inputShort}
+                placeholder="Nombre"
+                onChangeText={setName}
+                value={name}
+              />
+              <TextInput
+                keyboardType="email-address"
+                style={styles.inputShort}
+                placeholder="Email"
+                onChangeText={setEmail}
+                value={email}
+              />
+            </View>
 
-        <View style={styles.containerInputsShorts}>
-          <TextInput
-            keyboardType="number-pad"
-            style={styles.inputShort}
-            placeholder="Número de teléfono"
-            onChangeText={setPhone}
-            value={phone}
-          />
+            <View style={styles.containerInputsShorts}>
+              <TextInput
+                keyboardType="number-pad"
+                style={styles.inputShort}
+                placeholder="Número de teléfono"
+                onChangeText={setPhone}
+                value={phone}
+              />
 
-          <TextInput
-            keyboardType="number-pad"
-            style={styles.inputShort}
-            placeholder="CUIL"
-            onChangeText={setCuil}
-            value={CUIL}
-          />
-        </View>
+              <TextInput
+                keyboardType="number-pad"
+                style={styles.inputShort}
+                placeholder="CUIL"
+                onChangeText={setCuil}
+                value={CUIL}
+              />
+            </View>
 
-        <TextInput
-          style={styles.inputDescription}
-          multiline
-          placeholder="Descripción"
-          onChangeText={setDescription}
-          value={description}
-          maxLength={100}
-          numberOfLines={3}
-        />
-
-      </View>
-      
-
-        <View style={styles.avatarContainer}>
-          <TouchableOpacity
-          style={styles.avatarPlaceholder}
-          onPress={() => handleOpenImage(setImage)}
-        >
-            <Image
-              style={styles.avatar}
-              source={{ uri: image ? image : userIcon }}
+            <TextInput
+              style={styles.inputDescription}
+              multiline
+              placeholder="Descripción"
+              onChangeText={setDescription}
+              value={description}
+              maxLength={100}
+              numberOfLines={3}
             />
-          </TouchableOpacity>
-        </View>
 
-        <GooglePlacesInput handleAdress={handleAdress}/>
-        
-      <View style={styles.deliveryContainer}>
-        <Text style={styles.questionText}>¿Hacen Delivery?</Text>
-        <View style={styles.deliveryOptions}>
-          <Text style={styles.optionText}>No</Text>
-          <RadioButton
-            status={!delivery ? "checked" : "unchecked"}
-            onPress={() => setDelivery(false)}
-            color={colors.carrot}
-            uncheckedColor={colors.greenligth}
-          />
-          <Text style={styles.optionText}>Si</Text>
-          <RadioButton
-            status={delivery ? "checked" : "unchecked"}
-            onPress={() => setDelivery(true)}
-            color={colors.carrot}
-            uncheckedColor={colors.greenligth}
-          />
-        </View>
-      </View>
+            <View style={styles.avatarContainer}>
+              <TouchableOpacity
+                style={styles.avatarTouchable}
+                onPress={() => handleOpenImage(setImage)}
+              >
+                <Image
+                  style={styles.avatar}
+                  source={image ? { uri: image } : storeImg}
+                />
+              </TouchableOpacity>
+              <Text style={styles.text}>
+                Selecciona una imagen de tu galería
+              </Text>
+            </View>
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <View style={styles.googleInputContainer}>
+              <GooglePlacesInput handleAdress={handleAdress} />
+            </View>
 
-      <TouchableOpacity style={styles.next} onPress={goNext}>
-        <Text style={styles.textSubmit}>Siguiente</Text>
-      </TouchableOpacity>
-    </View>
-  ) : (
+            <View style={styles.deliveryContainer}>
+              <Text style={styles.questionText}>¿Hacen Delivery?</Text>
+
+              <View style={styles.deliveryOptions}>
+                <Text style={styles.optionText}>No</Text>
+                <RadioButton
+                  status={!delivery ? "checked" : "unchecked"}
+                  onPress={() => setDelivery(false)}
+                  color={colors.carrot}
+                  uncheckedColor={colors.greenligth}
+                />
+                <Text style={styles.optionText}>Si</Text>
+                <RadioButton
+                  status={delivery ? "checked" : "unchecked"}
+                  onPress={() => setDelivery(true)}
+                  color={colors.carrot}
+                  uncheckedColor={colors.greenligth}
+                />
+              </View>
+            </View>
+          </>
+        );
+      case 2:
+        return (
+          <ScrollView
+            style={styles.containerInputsHours}
+            showsVerticalScrollIndicator={false}
+          >
+            <InputTime dayName="Domingo" setDay={setSunday} />
+            <InputTime dayName="Lunes" setDay={setMonday} />
+            <InputTime dayName="Martes" setDay={setTuesday} />
+            <InputTime dayName="Miércoles" setDay={setWednesday} />
+            <InputTime dayName="Jueves" setDay={setThursday} />
+            <InputTime dayName="Viernes" setDay={setFriday} />
+            <InputTime dayName="Sábado" setDay={setSaturday} />
+          </ScrollView>
+        );
+    }
+  };
+
+  return (
     <View style={styles.container}>
-      <View style={styles.containerButtons}>
-        <TouchableOpacity style={styles.goBack} onPress={goNext}>
-          <MaterialIcons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.titleText}>¿Qué días abren?</Text>
+      <View style={styles.headerContainer}>
+        {page ? (
+          <View style={styles.goBackButton}>
+            <GoBackButton onPress={() => setPage(page - 1)} />
+          </View>
+        ) : null}
+        {renderTitle(page)}
       </View>
 
-      <ScrollView
-        style={styles.containerInputsHours}
-        showsVerticalScrollIndicator={false}
-      >
-        <InputTime dayName="Domingo" setDay={setSunday} />
-        <InputTime dayName="Lunes" setDay={setMonday} />
-        <InputTime dayName="Martes" setDay={setTuesday} />
-        <InputTime dayName="Miércoles" setDay={setWednesday} />
-        <InputTime dayName="Jueves" setDay={setThursday} />
-        <InputTime dayName="Viernes" setDay={setFriday} />
-        <InputTime dayName="Sábado" setDay={setSaturday} />
+      <View style={styles.contentContainer}>{renderContent(page)}</View>
 
-        <View style={styles.submitContainer}>
-          <TouchableOpacity style={styles.submit} onPress={handleSubmit}>
+      <View style={styles.buttonContainer}>
+        {page < 2 ? (
+          <TouchableOpacity style={styles.button} onPress={goNext}>
+            <Text style={styles.textSubmit}>Siguiente</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.textSubmit}>CREAR</Text>
           </TouchableOpacity>
-        </View>
-      </ScrollView>
+        )}
+      </View>
     </View>
   );
 };
