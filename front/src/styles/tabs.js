@@ -11,14 +11,14 @@ export default StyleSheet.create({
     backgroundColor: colors.darkGreen,
   },
   touchActive: {
-    color: "black",
-    fontWeight: "bold",
+    color: colors.background,
     borderBottomWidth: 2,
+    borderBottomColor: colors.background,
   },
   touchInactive: {
-    color: colors.background,
+    color: "black",
+    fontWeight: "bold",
     borderBottomWidth: 1,
-    borderBottomColor: colors.background,
   },
 
   // Light

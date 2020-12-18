@@ -3,83 +3,54 @@ import colors from "./colors";
 import normalize from "react-native-normalize";
 
 export default StyleSheet.create({
+  // CONTAINERS
   container: {
     flex: 1,
     width: "100%",
-  },
-
-  // First Page
-  containerInputs: {
-    flex: 4,
-    justifyContent: "center",
-    marginTop: "5%",
-  },
-  containerInputsShorts: {
-    height: "12%",
-    flexDirection: "row",
+    backgroundColor: colors.background,
+    alignItems: "center",
     justifyContent: "space-between",
-    marginTop: "5%",
   },
-  inputShort: {
-    fontSize: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.dartmouthGreen,
-    width: "48%",
-  },
-  inputLarge: {
-    fontSize: 16,
-    height: "12%",
-    borderBottomWidth: 1,
-    borderBottomColor: colors.dartmouthGreen,
-    marginTop: "5%",
-  },
-  inputDescription: {
-    fontSize: 16,
-    height: "20%",
-    borderBottomWidth: 1,
-    borderBottomColor: colors.dartmouthGreen,
-    marginTop: "10%",
-  },
-  separetorSpace: {
-    flex: 0.5,
-  },
-  deliveryContainer: {
-    flex: 2,
+  headerContainer: {
+    flex: 1,
     width: "100%",
-    marginTop: "20%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.ligthGray,
+    borderRadius: 20,
+  },
+  contentContainer: {
+    flex: 8,
+    width: "100%",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    flex: 1.3,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-    alignItems: "center",
-  },
-  questionText: {
-    flex: 0.2,
-    alignSelf: "center",
-    marginBottom: "2%",
-    fontSize: 17,
-    color: colors.font,
+  // General
+  titleText: {
+    fontSize: 20,
+    color: "black",
     fontWeight: "bold",
   },
-  deliveryOptions: {
-    flex: 0.5,
-    width: "50%",
-    alignSelf: "center",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    marginBottom: "8%",
+  goBackButton: {
+    position: "absolute",
+    alignSelf: "flex-start",
+    marginLeft: "5%",
   },
-  optionText: {
-    fontWeight: "bold",
-    marginRight: "-20%",
-  },
-  next: {
-    flex: 0.7,
+  button: {
+    height: "60%",
     width: "50%",
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.dartmouthGreen,
-    borderRadius: 25,
-    marginBottom: "10%",
+    borderRadius: normalize(30),
   },
   textSubmit: {
     color: colors.background,
@@ -87,46 +58,102 @@ export default StyleSheet.create({
     textTransform: "uppercase",
   },
 
-  // Second Page
-  containerButtons: {
-    flex: 0.1,
-    width: "100%",
+  // First Page
+  containerInputsShorts: {
+    height: "10%",
     flexDirection: "row",
-    alignItems: "center",
+    justifyContent: "space-between",
+    marginVertical: "2.5%",
+    width: "90%",
   },
-  goBack: {
-    height: normalize(30),
-    width: normalize(30),
-    backgroundColor: colors.dartmouthGreen,
-    borderRadius: 20,
+  inputShort: {
+    fontSize: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.dartmouthGreen,
+    width: "48%",
+  },
+  inputDescription: {
+    fontSize: 16,
+    height: "17%",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.dartmouthGreen,
+    marginBottom: "5%",
+    width: "90%",
+  },
+  avatarContainer: {
+    marginTop: "7%",
+    marginBottom: "5%",
+    flex: 1,
+    shadowColor: "#151734",
+    shadowRadius: 30,
+    shadowOpacity: 0.4,
     alignItems: "center",
+    width: "100%",
+  },
+  avatarTouchable: {
+    width: "43%",
+    height: "77%",
+    backgroundColor: colors.background,
+    borderRadius: 100,
     justifyContent: "center",
+    alignItems: "center",
+    borderColor: colors.mediumGray,
+    borderWidth: 2,
+    marginBottom: "3%",
   },
-  titleText: {
+  avatar: {
+    alignSelf: "center",
+    width: "100%",
+    height: "100%",
+    borderRadius: 100,
+  },
+  text: {
+    color: colors.niceGray,
+    fontSize: 15,
+  },
+
+  // Second Page
+  googleInputContainer: {
     flex: 7,
-    fontSize: 20,
+    width: "90%",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.ligthGray,
+  },
+  deliveryContainer: {
+    flex: 3,
+    width: "90%",
+    marginTop: "3%",
+    alignItems: "center",
+    paddingVertical: "10%",
+    marginBottom: "10%",
+    borderBottomWidth: 1,
+    borderBottomColor: colors.ligthGray,
+  },
+  questionText: {
+    flex: 1,
+    alignSelf: "center",
+    marginBottom: "2%",
+    fontSize: 17,
     color: colors.font,
     fontWeight: "bold",
-    marginLeft: "20%",
   },
+  deliveryOptions: {
+    flex: 1,
+    width: "50%",
+    alignSelf: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  optionText: {
+    fontWeight: "bold",
+    marginRight: "-20%",
+  },
+
+  // Third Page
   containerInputsHours: {
     flex: 1,
-    width: "100%",
+    width: "90%",
     alignSelf: "center",
-  },
-  submitContainer: {
-    height: 80,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "3%",
-    marginBottom: "10%",
-  },
-  submit: {
-    flex: 0.7,
-    width: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.dartmouthGreen,
-    borderRadius: 25,
   },
 });

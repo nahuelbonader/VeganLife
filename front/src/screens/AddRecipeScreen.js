@@ -9,7 +9,7 @@ import GoBackButton from "../components/GoBackButton";
 
 import PreviewRecipe from "../components/PreviewRecipe";
 
-import { postRecipe, fetchRecipes } from "../store/actions/recipes";
+import { postRecipe } from "../store/actions/recipes";
 import { handleOpenImage } from "../customFunctions/picker";
 
 import colors from "../styles/colors";
@@ -65,7 +65,6 @@ export default () => {
             image={image}
             handleCategorie={setCategory}
             categories={categoriesDropdown}
-            value={categoryName}
           />
         );
       case 1:

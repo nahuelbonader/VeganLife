@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   upper: {
     flex: 1,
-    width: "100%",
+    //width: "100%",
     flexDirection: "row",
     alignItems: "center",
   },
@@ -87,12 +87,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  // linea: {
-  //   height: 1,
-  //   width: "90%",
-  //   backgroundColor: "#95A5A6",
-  //   marginHorizontal: "5%",
-  // },
 });
 
 export default styles;

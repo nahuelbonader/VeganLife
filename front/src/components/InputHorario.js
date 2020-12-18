@@ -80,12 +80,12 @@ const Input = ({ dayName, setDay }) => {
       {!open ? null : (
         <View style={styles.openContainer}>
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Desde</Text>
-            <Text style={styles.text}>Hasta</Text>
+            <Text style={styles.descriptionText}>Mañana</Text>
+            <Text style={styles.descriptionText}>Tarde</Text>
           </View>
 
           <View style={styles.hoursContainer}>
-            <Text style={styles.descriptionText}>Mañana</Text>
+            <Text style={styles.text}>Desde</Text>
             <View style={styles.timeContainer}>
               <Time
                 text={hoursOpenMorning}
@@ -101,24 +101,6 @@ const Input = ({ dayName, setDay }) => {
             </View>
             <View style={styles.timeContainer}>
               <Time
-                text={hoursCloseMorning}
-                handleChange={handleChange("hoursCloseMorning")}
-                time={"hh"}
-              />
-              <Text style={styles.descriptionText}>:</Text>
-              <Time
-                text={minutesCloseMorning}
-                handleChange={handleChange("minutesCloseMorning")}
-                time={"mm"}
-              />
-            </View>
-          </View>
-
-          <View style={styles.hoursContainer}>
-            <Text style={styles.descriptionText}>Tarde</Text>
-
-            <View style={styles.timeContainer}>
-              <Time
                 text={hoursOpenAftenoon}
                 handleChange={handleChange("hoursOpenAftenoon")}
                 time={"hh"}
@@ -127,6 +109,23 @@ const Input = ({ dayName, setDay }) => {
               <Time
                 text={minutesOpenAfternoon}
                 handleChange={handleChange("minutesOpenAfternoon")}
+                time={"mm"}
+              />
+            </View>
+          </View>
+
+          <View style={styles.hoursContainer}>
+            <Text style={styles.text}>Hasta</Text>
+            <View style={styles.timeContainer}>
+              <Time
+                text={hoursCloseMorning}
+                handleChange={handleChange("hoursCloseMorning")}
+                time={"hh"}
+              />
+              <Text style={styles.descriptionText}>:</Text>
+              <Time
+                text={minutesCloseMorning}
+                handleChange={handleChange("minutesCloseMorning")}
                 time={"mm"}
               />
             </View>

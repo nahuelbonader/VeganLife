@@ -121,4 +121,22 @@ export default StyleSheet.create({
   textSubmit: {
     color: colors.background,
   },
+  avatarContainer: {
+    shadowColor: "#151734",
+    shadowRadius: 30,
+    shadowOpacity: 0.4,
+  },
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    backgroundColor: "#E1E2E6",
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 68,
+  },
 });
