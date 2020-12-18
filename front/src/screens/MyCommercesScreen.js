@@ -12,7 +12,7 @@ const MyCommerceScreen = () => {
     for (let i = 0; i < stores.length; i++) {
       if (stores[i].admins.length > 0) {
         for (let j = 0; j < stores[i].admins.length; j++) {
-          if (stores[i].admins[j] == user._id) filter.push(stores[i]);
+          if (stores[i].admins[j]._id == user._id) filter.push(stores[i]);
         }
       }
     }

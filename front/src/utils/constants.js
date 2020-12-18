@@ -12,8 +12,7 @@ export const storeImg = require("../../assets/store.png");
 
 export const newRecipeImg = "https://img.pngio.com/la-alimentacion-saludable-previene-el-cancer-gastronomiacom-espaa-alimento-saludable-png-595_300.png"
 
-export const banner =
-  "https://image.freepik.com/vector-gratis/diseno-inconsutil-vector-fondo-modelo-zanahoria_22159-88.jpg";
+export const banner = "https://image.freepik.com/vector-gratis/diseno-inconsutil-vector-fondo-modelo-zanahoria_22159-88.jpg";
 
 export const location = "https://www.flaticon.com/svg/static/icons/svg/927/927667.svg";
 

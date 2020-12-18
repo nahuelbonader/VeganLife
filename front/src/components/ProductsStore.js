@@ -7,13 +7,19 @@ import {
   TextInput,
   Modal,
   TouchableWithoutFeedback,
+  Image
 } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
+import { handleOpenImage } from "../customFunctions/picker";
+import { userIcon } from "../utils/constants";
+
+
 
 import { RadioButton } from "react-native-paper";
 import ProductsList from "./ProductsList";
 import useInputs from "../hooks/useInputs";
 import styles from "../styles/productsStore";
+
 
 import colors from "../styles/colors";
 
@@ -22,8 +28,9 @@ export default ({ products, categories, addProduct }) => {
   const [available, setAvailable] = useState(false);
   const [alert, setAlert] = useState(false);
   const [alertText, setAlertText] = useState("");
+  const [image, setImage] = useState("");
   const [inputs, handleChange] = useInputs();
-  const { title, image, categoryStore, description, price, stock } = inputs;
+  const { title, categoryStore, description, price, stock } = inputs;
   const categoriesDropDown = categories.map((c) => ({ value: c }));
 
   const createProduct = () => {
@@ -58,17 +65,28 @@ export default ({ products, categories, addProduct }) => {
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+            <TouchableOpacity
+              style={styles.avatarPlaceholder}
+              onPress={() => handleOpenImage(setImage)}
+            >
+              <View style={styles.avatarContainer}>
+                <Image
+                  style={styles.avatar}
+                  source={{ uri: image ? image : userIcon }}
+                />
+              </View>
+            </TouchableOpacity>
+              {/* <TextInput
+                value={image}
+                style={styles.input}
+                placeholder="Imagen Url"
+                onChangeText={handleChange("image")}
+              /> */}
               <TextInput
                 value={title}
                 style={styles.input}
                 placeholder="Nombre"
                 onChangeText={handleChange("title")}
-              />
-              <TextInput
-                value={image}
-                style={styles.input}
-                placeholder="Imagen Url"
-                onChangeText={handleChange("image")}
               />
               <TextInput
                 value={description}

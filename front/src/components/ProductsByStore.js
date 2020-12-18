@@ -17,21 +17,26 @@ const ProductsByStore = ({ category, products }) => {
 
   return (
     <View>
-      <FlatList
-        data={productsCategory}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("SingleProduct", { productId: item._id })
-            }
-          >
-            <Image style={styles.products} source={{ uri: item.image }} />
-          </TouchableOpacity>
-        )}
-        keyExtractor={(index) => index}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      />
+      {productsCategory.length ? (
+        <>
+          <Text style={styles.categoryName}>{category}</Text>
+          <FlatList
+            data={productsCategory}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("SingleProduct", { productId: item._id })
+                }
+              >
+                <Image style={styles.products} source={{ uri: item.image }} />
+              </TouchableOpacity>
+            )}
+            keyExtractor={(index) => index}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </>
+      ) : null}
     </View>
   );
 };

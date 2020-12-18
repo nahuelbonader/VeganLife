@@ -54,13 +54,10 @@ const SingleMarket = ({ route }) => {
 
         <FlatList
           data={myMarket.productsCategories}
-          renderItem={({ item, index }) => (
-            <View>
-              <Text style={styles.categoryName}>{item}</Text>
-              <ProductsByStore category={item} products={productsStore} />
-            </View>
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <ProductsByStore category={item} products={productsStore} />
           )}
-          keyExtractor={(index) => index}
         />
       </View>
     </View>

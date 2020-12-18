@@ -7,8 +7,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     borderRadius: 15,
-    textAlign: "center",
-    borderBottomColor: colors.darkGray,
+    borderBottomColor: colors.mediumGray,
     borderBottomWidth: 1,
     paddingBottom: normalize(15),
     marginBottom: normalize(15),
@@ -28,7 +27,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    color: colors.font,
     textAlign: "center",
     textTransform: "uppercase",
     fontWeight: "200",

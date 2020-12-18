@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStores } from "../store/actions/stores";
 import StoreCard from "../components/StoreCard";
 import { useNavigation } from "@react-navigation/native";
+import colors from "../styles/colors";
 
 const StoreFeed = () => {
   const navigation = useNavigation();
@@ -16,7 +17,7 @@ const StoreFeed = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={stores}
         renderItem={({ item }) => (
@@ -33,6 +34,13 @@ const StoreFeed = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+});
 
 export default StoreFeed;
 

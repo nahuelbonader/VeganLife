@@ -8,6 +8,7 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "stretch",
     backgroundColor: colors.background,
+    width: "100%",
   },
   alertContainer: {
     flex: 1,
@@ -26,6 +27,5 @@ export default StyleSheet.create({
   },
   viewMarkets: {
     flex: 7,
-    marginHorizontal: "5%",
   },
 });

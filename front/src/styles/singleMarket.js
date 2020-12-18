@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import normalize from "react-native-normalize";
+import color from './colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,12 +27,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
     textTransform: "uppercase",
+    color: color.darkGreen
   },
   address: {
     fontSize: 15,
     fontWeight: "200",
     marginTop: 10,
     marginBottom: 5,
+    paddingRight: 20
   },
   open: {
     fontSize: 15,
@@ -55,13 +58,6 @@ const styles = StyleSheet.create({
   infoDos: {
     flexDirection: "row",
     marginLeft: 20,
-  },
-  categoryName: {
-    marginLeft: 20,
-    marginRight: 20,
-    fontSize: 15,
-    textTransform: "uppercase",
-    fontWeight: "300",
   },
   location: {
     height: 10,

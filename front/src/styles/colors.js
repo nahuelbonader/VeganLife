@@ -15,6 +15,7 @@ const colors = {
   niceGray: "#C3C5CD",
   darkGray: "#737373",
   transparent: "rgba(52, 52, 52, 0.8)",
+  lightGrey: "#d1d1d1"
 };
 
 export default colors;

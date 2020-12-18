@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import MapView, {Callout, Marker} from "react-native-maps";
-import { useSelector } from "react-redux";
-
+import {useSelector} from 'react-redux'
 import { Text, View, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, Animated, Dimensions} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import styles from "../styles/map"
+import { useNavigation } from "@react-navigation/native";
 import {markers} from '../components/mapData'
 import StarRating from '../components/StarRating'
 const { width, height } = Dimensions.get("window");
-const CARD_HEIGHT = 220;
+const CARD_HEIGHT = 260;
 const CARD_WIDTH = width * 0.8;
 const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
@@ -19,16 +19,18 @@ const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
 
 const Map = () => {
-
-  const { stores } = useSelector((state) => state.storesReducer);
-
-  console.log('STOREEEES', stores)
+  const stores = useSelector((state) => state.storesReducer.stores);
+  const navigation = useNavigation();
+  //console.log ('STORES', stores)
+ 
 
   const initialMapState = {
     markers,
     region: {
-      latitude: 22.62938671242907,
-      longitude: 88.4354486029795,
+      latitude: -34.57866,
+      longitude: -58.42857,
+      //latitude: 22.62938671242907,
+      //longitude: 88.4354486029795,
       latitudeDelta: 0.04864195044303443,
       longitudeDelta: 0.040142817690068,
     }
@@ -114,14 +116,14 @@ const Map = () => {
               ],
             };
             return(
-            <MapView.Marker key={index} coordinate={stores.location} onPress={(e)=>onMarkerPress(e)}>
-              <Animated.View style={[styleMap.markerWrap, scaleStyle]}>
-                <Animated.Image
-                  source={require('../../assets/map_marker.png')}
-                  style={[styleMap.marker]}
-                  resizeMode="cover"
-                />
-              </Animated.View>
+              <MapView.Marker key={index} coordinate={{latitude: store.location.lat, longitude: store.location.lng}} onPress={(e)=>onMarkerPress(e)}>
+                <Animated.View style={[styleMap.markerWrap, scaleStyle]}>
+                  <Animated.Image
+                    source={require('../../assets/map_marker.png')}
+                    style={[styleMap.marker]}
+                    resizeMode="cover"
+                  />
+                </Animated.View>
             </MapView.Marker>
             )
           })}          
@@ -193,10 +195,13 @@ const Map = () => {
           {useNativeDriver: true}
         )}
         >
-          {stores.map((store, index) =>(
+          {stores.map((store, index) =>
+          {console.log('IMAGEEEEEEEEEEEEEEEEEEEEEN',store.image)
+            return (
+            
             <View style={styleMap.card} key={index}>
               <Image 
-                source={store.image}
+                source={{ uri: store.image }}
                 style={styleMap.cardImage}
                 resizeMode="cover"
               /> 
@@ -206,7 +211,7 @@ const Map = () => {
                 <Text numberOfLines={1} style={styleMap.cardDescription}>{store.description}</Text>
                 <View style={styleMap.button}>
                   <TouchableOpacity
-                    onPress={() => console.log('BOTON COMPRAR')}
+                    onPress={() => navigation.navigate('SingleMarket', {storeId: store._id})}
                     style={[styleMap.signIn, {
                       borderColor: '#FF6347',
                       borderWidth: 1
@@ -214,12 +219,12 @@ const Map = () => {
                     >
                       <Text style={[styleMap.textSign, {
                         color: '#FF6347'
-                      }]}>Comprar ahora!</Text>
+                      }]}>Comprar Ahora</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </View> 
-          ))}  
+          )})}  
         </Animated.ScrollView>
       </View>
     );
@@ -287,6 +292,7 @@ const Map = () => {
     //   paddingRight: width - CARD_WIDTH,
     // },
     card: {
+      flex: 1,
       padding: 10,
       elevation: 2,
       backgroundColor: "#FFF",
@@ -300,15 +306,16 @@ const Map = () => {
       height: CARD_HEIGHT,
       width: CARD_WIDTH,
       overflow: "hidden",
+      marginBottom: '4%'
     },
     cardImage: {
-      flex: 3,
+      flex: 3.5,
       width: "100%",
       height: "100%",
       alignSelf: "center",
     },
     textContent: {
-      flex: 2,
+      flex: 1,
       padding: 10,
     },
     cardtitle: {
