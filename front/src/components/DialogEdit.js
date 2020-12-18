@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import { View, ScrollView, TextInput, StyleSheet } from "react-native";
 import { Dialog, Portal, Text, Button, RadioButton } from "react-native-paper";
 import colors from "../styles/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import API from "../api/api";
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../store/actions/products";
+import { useDispatch, useSelector } from "react-redux";
+import { editProduct } from "../store/actions/products";
 
-const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
+const DialogEdit = ({ visible, hideDialog, productId }) => {
   const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.productsReducer);
+  const [product] = products.filter((p) => p._id == productId);
+
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
@@ -24,41 +20,21 @@ const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
   const [available, setAvailable] = useState("");
   const [checked, setChecked] = useState("first");
 
-  // ESTO NO VA, DISPARA PEDIDOS EN CADA RENDERIZACIÓN
   useEffect(() => {
-    API.get(`/products/${productId}`)
-      .then((res) => res.data)
-      .then((data) => {
-        setTitle(data.title);
-        setPrice(data.price.toString());
-        setImage(data.image);
-        setCategory(data.categoryStore);
-        setDescription(data.description);
-        setStock(data.stock.toString());
-        setAvailable(data.available);
-        if (!data.available) setChecked("second");
-      })
-      .catch((err) => console.log(err));
-  }, [productId]);
+    if (product) {
+      setTitle(product.title);
+      setPrice(product.price.toString());
+      setImage(product.image);
+      setCategory(product.categoryStore);
+      setDescription(product.description);
+      setStock(product.stock.toString());
+      setAvailable(product.available);
+    }
+  }, [product]);
 
-  // esto hay que manejarlo directamente en las actions del store
-  const handleSubmit = () => {
-    API.put(`/products/${productId}`, {
-      title,
-      price,
-      image,
-      categoryStore,
-      description,
-      stock,
-      available,
-      checked,
-    })
-      .then((res) => res.data)
-      .then(() => {
-        setVisible(false);
-        dispatch(fetchProducts());
-      })
-      .catch((err) => console.log(err));
+  const handleSubmit = (product) => {
+    dispatch(editProduct(product));
+    hideDialog();
   };
 
   return (
@@ -121,6 +97,8 @@ const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
               <View style={styles.row2}>
                 <Text>Si</Text>
                 <RadioButton
+                  color={colors.carrot}
+                  uncheckedColor={colors.greenligth}
                   value="first"
                   status={checked === "first" ? "checked" : "unchecked"}
                   onPress={() => {
@@ -130,6 +108,8 @@ const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
                 />
                 <Text>No</Text>
                 <RadioButton
+                  color={colors.carrot}
+                  uncheckedColor={colors.greenligth}
                   value="second"
                   status={checked === "second" ? "checked" : "unchecked"}
                   onPress={() => {
@@ -142,15 +122,27 @@ const DialogEdit = ({ visible, setVisible, hideDialog, productId }) => {
             <Dialog.Actions>
               <View style={styles.row}>
                 <View style={styles.exit}>
-                  <Button
-                    color={colors.carrot}
-                    onPress={() => setVisible(false)}
-                  >
+                  <Button color={colors.carrot} onPress={hideDialog}>
                     salir
                   </Button>
                 </View>
                 <View style={styles.edit}>
-                  <Button color={colors.greenligth} onPress={handleSubmit}>
+                  <Button
+                    color={colors.greenligth}
+                    onPress={() =>
+                      handleSubmit({
+                        title,
+                        price,
+                        image,
+                        categoryStore,
+                        description,
+                        stock,
+                        available,
+                        checked,
+                        _id: productId,
+                      })
+                    }
+                  >
                     editar
                   </Button>
                 </View>

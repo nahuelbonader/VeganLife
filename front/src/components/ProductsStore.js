@@ -2,53 +2,59 @@ import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
-  FlatList,
   TouchableOpacity,
   TextInput,
   Modal,
   TouchableWithoutFeedback,
-  Image
+  Image,
 } from "react-native";
 import { Dropdown } from "react-native-material-dropdown";
 import { handleOpenImage } from "../customFunctions/picker";
-import { userIcon } from "../utils/constants";
-
-
-
+import { productImg } from "../utils/constants";
 import { RadioButton } from "react-native-paper";
 import ProductsList from "./ProductsList";
-import useInputs from "../hooks/useInputs";
+
 import styles from "../styles/productsStore";
-
-
 import colors from "../styles/colors";
 
-export default ({ products, categories, addProduct }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [available, setAvailable] = useState(false);
+export default ({ products, categories, addProduct, deleteProduct }) => {
   const [alert, setAlert] = useState(false);
   const [alertText, setAlertText] = useState("");
-  const [image, setImage] = useState("");
-  const [inputs, handleChange] = useInputs();
-  const { title, categoryStore, description, price, stock } = inputs;
   const categoriesDropDown = categories.map((c) => ({ value: c }));
 
-  const createProduct = () => {
-    addProduct({
-      title,
-      image,
-      categoryStore,
-      description,
-      price,
-      stock,
-      available,
-    });
-    setModalVisible(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [categoryStore, setCategory] = useState("");
+  const [available, setAvailable] = useState(false);
+
+  const createProduct = async (category) => {
+    const success = await addProduct(category);
+    if (success) {
+      setImage("");
+      setTitle("");
+      setDescription("");
+      setPrice(0);
+      setStock(0);
+      setCategory("");
+      setAvailable(false);
+      setModalVisible(false);
+    } else {
+      setAlert(true);
+      setAlertText("Hubo un error en la carga del producto");
+    }
   };
+
+  useEffect(() => {
+    if (alert) setAlert(false);
+  }, [image, title, description, price, stock, categoryStore]);
 
   return (
     <View style={styles.container}>
-      <ProductsList data={products} />
+      <ProductsList data={products} deleteProduct={deleteProduct} />
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => setModalVisible(true)}
@@ -65,34 +71,29 @@ export default ({ products, categories, addProduct }) => {
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-            <TouchableOpacity
-              style={styles.avatarPlaceholder}
-              onPress={() => handleOpenImage(setImage)}
-            >
               <View style={styles.avatarContainer}>
-                <Image
-                  style={styles.avatar}
-                  source={{ uri: image ? image : userIcon }}
-                />
+                <TouchableOpacity
+                  style={styles.avatarPlaceholder}
+                  onPress={() => handleOpenImage(setImage)}
+                >
+                  <Image
+                    style={styles.avatar}
+                    source={image ? { uri: image } : productImg}
+                  />
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
-              {/* <TextInput
-                value={image}
-                style={styles.input}
-                placeholder="Imagen Url"
-                onChangeText={handleChange("image")}
-              /> */}
+
               <TextInput
                 value={title}
                 style={styles.input}
-                placeholder="Nombre"
-                onChangeText={handleChange("title")}
+                placeholder="Título"
+                onChangeText={setTitle}
               />
               <TextInput
                 value={description}
                 style={styles.input}
                 placeholder="Descripción"
-                onChangeText={handleChange("description")}
+                onChangeText={setDescription}
               />
               <View style={styles.rowContainer}>
                 <Text style={styles.text}>$</Text>
@@ -101,7 +102,7 @@ export default ({ products, categories, addProduct }) => {
                   value={price}
                   style={styles.shortInput}
                   placeholder="0000"
-                  onChangeText={handleChange("price")}
+                  onChangeText={setPrice}
                 />
                 <Text style={styles.text}> Stock: </Text>
                 <TextInput
@@ -109,14 +110,17 @@ export default ({ products, categories, addProduct }) => {
                   value={stock}
                   style={styles.shortInput}
                   placeholder="0000"
-                  onChangeText={handleChange("stock")}
+                  onChangeText={setStock}
                 />
               </View>
               <Dropdown
-                onChangeText={handleChange("categoryStore")}
+                onChangeText={setCategory}
                 label={"Categoría"}
                 containerStyle={styles.dropdown}
                 data={categoriesDropDown}
+                fontSize={16}
+                animationDuration={350}
+                selectedItemColor={colors.dartmouthGreen}
               />
               <Text style={styles.questionText}>¿Está disponible?</Text>
               <View style={styles.optionsContainer}>
@@ -137,7 +141,17 @@ export default ({ products, categories, addProduct }) => {
               </View>
 
               <TouchableOpacity
-                onPress={createProduct}
+                onPress={() =>
+                  createProduct({
+                    title,
+                    image,
+                    categoryStore,
+                    description,
+                    price,
+                    stock,
+                    available,
+                  })
+                }
                 style={styles.btnSubmit}
               >
                 <Text style={styles.textSubmit}>Confirmar</Text>

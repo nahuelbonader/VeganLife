@@ -26,6 +26,9 @@ const ProductController = {
       new: true,
       runValidators: true,
     })
+      .then((product) =>
+        product.populate({ path: "store", select: "name" }).execPopulate()
+      )
       .then((updated) => {
         res.status(200).send(updated);
       })
