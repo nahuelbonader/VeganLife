@@ -45,7 +45,8 @@ const SingleRecipe = ({
   const [showIngredients, setShowIngredients] = useState(false);
 
   return (
-    <ScrollView style={{ backgroundColor: "#F1F4FB" }}>
+    <ScrollView style={{ backgroundColor: "#F1F4FB", width: "100%" }}>
+      <View></View>
       <View style={styles.viewStyle}>
         <Image
           style={styles.image}

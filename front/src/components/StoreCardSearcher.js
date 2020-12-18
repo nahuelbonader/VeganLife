@@ -9,7 +9,7 @@ export default ({ item }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => console.log("ir a comercio")}
+      onPress={() => navigation.navigate("SingleMarket", { storeId: item._id })}
       style={styles.touchableContainer}
     >
       <View style={styles.container}>

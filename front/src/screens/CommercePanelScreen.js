@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { Octicons } from "@expo/vector-icons";
-
-import { userIcon } from "../utils/constants";
+import { storeImg } from "../utils/constants";
 import Tabs from "../components/Tabs";
 import Products from "../components/ProductsStore";
 import Categories from "../components/CategoriesStore";
 import { editStore } from "../store/actions/stores";
-import { createProduct } from "../store/actions/products";
+import { createProduct, deleteProduct } from "../store/actions/products";
 
 import colors from "../styles/colors";
 import normalize from "react-native-normalize";
@@ -55,7 +53,18 @@ export default ({ route }) => {
   };
 
   const addProduct = (product) => {
-    dispatch(createProduct({ ...product, store: store._id }));
+    let success = false;
+
+    return dispatch(createProduct({ ...product, store: store._id })).then(
+      (res) => {
+        if (res) success = true;
+        return success;
+      }
+    );
+  };
+
+  const removeProduct = (product) => {
+    dispatch(deleteProduct(product));
   };
 
   return (
@@ -63,21 +72,23 @@ export default ({ route }) => {
       <View style={styles.viewUser}>
         <Image
           style={styles.img}
-          source={{ uri: store.image ? store.image : userIcon }}
+          source={store.image ? { uri: store.image } : storeImg}
         />
         <Text style={styles.name}> {store.name} </Text>
         {store.superAdmin === user._id ? (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("SuperAdminCommerce", {
-                storeId: store._id,
-                admins: store.admins,
-              })
-            }
-            style={styles.button2}
-          >
-            <Octicons name="gear" size={24} color="#bfe3bf" />
-          </TouchableOpacity>
+          <View style={styles.iconContainer}>
+            <Octicons
+              onPress={() =>
+                navigation.navigate("SuperAdminCommerce", {
+                  storeId: store._id,
+                  admins: store.admins,
+                })
+              }
+              name="gear"
+              size={30}
+              color={colors.darkGreen}
+            />
+          </View>
         ) : null}
       </View>
 
@@ -94,6 +105,7 @@ export default ({ route }) => {
             products={productsStore}
             categories={store.productsCategories}
             addProduct={addProduct}
+            deleteProduct={removeProduct}
           />
         ) : tabSelected == tabs.sales ? null : tabSelected ==
           tabs.categories ? (
@@ -115,25 +127,43 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   viewUser: {
-    flex: 1.5,
-    marginHorizontal: "5%",
+    flex: 1,
+    width: "90%",
+    alignSelf: "center",
     backgroundColor: colors.containers,
     flexDirection: "row",
     borderRadius: 35,
-    marginTop: "4%",
+    marginTop: "3%",
+    justifyContent: "center",
   },
   img: {
+    flex: 2.5,
     alignSelf: "center",
     marginHorizontal: "6%",
-    width: "15%",
-    height: "55%",
+    height: "80%",
     borderRadius: 100,
+    borderWidth: 2,
+    borderColor: colors.darkGreen,
+    backgroundColor: colors.background,
   },
   name: {
-    color: "green",
+    flex: 8,
     fontWeight: "bold",
     fontSize: 20,
     alignSelf: "center",
+  },
+  iconContainer: {
+    flex: 1.2,
+    color: colors.darkGreen,
+    backgroundColor: colors.background,
+    borderRadius: 20,
+    borderColor: colors.darkGreen,
+    borderWidth: 2,
+    height: "40%",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: "5%",
   },
   viewOptions: {
     flex: 0.5,
@@ -171,14 +201,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#86D3A6",
-  },
-  button2: {
-    backgroundColor: colors.greenligth,
-    position: "absolute",
-    right: "8.5%",
-    top: "36%",
-    paddingHorizontal: normalize(20),
-    paddingVertical: normalize(7),
-    borderRadius: 30,
   },
 });

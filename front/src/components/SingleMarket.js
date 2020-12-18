@@ -11,7 +11,7 @@ import {
 import { useSelector } from "react-redux";
 import ProductsByStore from "./ProductsByStore";
 import styles from "../styles/singleMarket";
-import { banner, location } from "../utils/constants";
+import { banner, storeImg } from "../utils/constants";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const SingleMarket = ({ route }) => {
@@ -30,7 +30,10 @@ const SingleMarket = ({ route }) => {
         }}
       ></ImageBackground>
       <View style={styles.containerData}>
-        <Image style={styles.image} source={{ uri: myMarket.image }} />
+        <Image
+          style={styles.image}
+          source={myMarket.image ? { uri: myMarket.image } : storeImg}
+        />
         <View style={styles.info}>
           <View style={styles.delivery}>
             <Icon name="bicycle" size={30} />

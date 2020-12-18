@@ -31,7 +31,7 @@ export default StyleSheet.create({
   },
   modalView: {
     width: "80%",
-    height: normalize(450),
+    height: normalize(460),
     backgroundColor: colors.mediumGray,
     borderRadius: 20,
     alignItems: "center",
@@ -68,9 +68,13 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   dropdown: {
+    borderBottomColor: colors.dartmouthGreen,
+    borderBottomWidth: 1,
     width: "85%",
+    height: "13%",
     paddingLeft: "1.5%",
     marginBottom: "5%",
+    marginTop: "-8%",
   },
   text: {
     fontWeight: "bold",
@@ -93,7 +97,7 @@ export default StyleSheet.create({
     marginRight: "-20%",
   },
   textAlert: {
-    backgroundColor: colors.darkGray,
+    backgroundColor: colors.mediumGray,
     color: colors.carrot,
     marginTop: "5%",
     paddingHorizontal: "3%",
@@ -122,9 +126,13 @@ export default StyleSheet.create({
     color: colors.background,
   },
   avatarContainer: {
+    marginTop: "3%",
     shadowColor: "#151734",
     shadowRadius: 30,
     shadowOpacity: 0.4,
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: colors.darkGreen,
   },
   avatarPlaceholder: {
     width: 100,

@@ -10,10 +10,13 @@ export const portada = require("../../assets/bannerVC.jpg");
 
 export const storeImg = require("../../assets/store.png");
 
-export const newRecipeImg = "https://img.pngio.com/la-alimentacion-saludable-previene-el-cancer-gastronomiacom-espaa-alimento-saludable-png-595_300.png"
+export const productImg = require("../../assets/product.jpg");
+
+export const newRecipeImg =
+  "https://img.pngio.com/la-alimentacion-saludable-previene-el-cancer-gastronomiacom-espaa-alimento-saludable-png-595_300.png";
 
 export const banner =
   "https://www.studyfinds.org/wp-content/uploads/2020/01/AdobeStock_289529994-816x520.jpeg";
 
-export const location = "https://www.flaticon.com/svg/static/icons/svg/927/927667.svg";
-
+export const location =
+  "https://www.flaticon.com/svg/static/icons/svg/927/927667.svg";
