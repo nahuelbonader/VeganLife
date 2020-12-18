@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: "2%",
     justifyContent: "center",
-    width: "90%",
+    width: "85%",
     borderBottomColor: colors.dartmouthGreen,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
   },
   avatarContainer: {
     flex: 9,
@@ -84,10 +84,10 @@ const styles = StyleSheet.create({
   // INPUTS
   input: {
     height: normalize(40),
-    width: "90%",
+    width: "85%",
     fontSize: 20,
     borderBottomColor: colors.dartmouthGreen,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     paddingLeft: "2%",
     marginBottom: "3%",
   },
@@ -103,7 +103,9 @@ const styles = StyleSheet.create({
 
   // TEXT
   text: {
-    color: colors.niceGray,
+    color: "black",
+    fontWeight: "200",
     fontSize: 15,
+    textTransform: "uppercase"
   },
 });

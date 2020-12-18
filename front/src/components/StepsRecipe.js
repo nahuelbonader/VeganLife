@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontSize: 17,
-    fontWeight: "bold",
+    fontWeight: "300",
     color: colors.darkGreen,
     textTransform: "uppercase",
     width: "90%",

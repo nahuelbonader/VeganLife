@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: "center",
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "200",
+    textTransform: "uppercase"
   },
   textBtn: {
     color: colors.background,

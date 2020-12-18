@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     textTransform: "uppercase",
-    fontWeight: "200",
+    fontWeight: "300",
     marginTop: 5,
   },
   image: {
-    width: 70,
+    width: 75,
     height: 70,
     marginLeft: 10,
     marginRight: 10,

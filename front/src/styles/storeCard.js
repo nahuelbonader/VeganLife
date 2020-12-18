@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingLeft: "7%",
+    paddingLeft: "3%",
+    paddingRight: "3%",
     borderTopColor: colors.darkGray,
-    borderTopWidth: 1,
+    borderTopWidth: 0.5,
     borderBottomColor: colors.darkGray,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderRadius: 20,
   },
   upper: {
@@ -45,7 +46,6 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     color: colors.font,
     textTransform: "uppercase",
-    fontWeight: "bold",
   },
   image: {
     flexDirection: "row",
@@ -56,13 +56,12 @@ const styles = StyleSheet.create({
   productContainer: {
     height: "95%",
     width: normalize(90),
-    marginLeft: "4%",
     borderRadius: 10,
   },
   products: {
-    height: "100%",
-    width: "100%",
-    borderRadius: 10,
+    height: "95%",
+    width: "85%",
+    borderRadius: 20,
   },
   info: {
     flex: 1,
@@ -71,21 +70,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   address: {
-    color: colors.font,
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "300",
     textTransform: "uppercase",
     marginLeft: "10%",
+    marginTop: "2%",
+    maxWidth: "80%",
   },
   open: {
     justifyContent: "center",
     alignItems: "center",
+    fontWeight: "200",
     fontSize: 16,
     color: colors.font,
   },
   icon: {
     alignItems: "center",
     flexDirection: "row",
+  },
+  noProducts: {
+    marginLeft: "15%",
+    marginRight: "10%",
+    textAlign: "center",
+    fontSize: 12,
+    fontWeight: "300",
+    textTransform: "uppercase",
   },
 });
 

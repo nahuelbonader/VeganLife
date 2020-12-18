@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   header: {
     color: "green",
     marginLeft: normalize(20),
-    marginTop: normalize(2),
+    marginTop: normalize(),
     fontSize: normalize(20),
     fontWeight: "300",
     textTransform: "uppercase",

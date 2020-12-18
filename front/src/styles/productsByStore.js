@@ -10,9 +10,9 @@ const styles = StyleSheet.create({
     width: 100,
     marginBottom: 20,
     marginTop: 7,
-    marginLeft: 20,
-    marginRight: 210,
-    borderRadius: 50,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 20,
   },
   categoryName: {
     marginLeft: 20,

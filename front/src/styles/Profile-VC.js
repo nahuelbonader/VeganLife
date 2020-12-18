@@ -15,19 +15,21 @@ export default StyleSheet.create({
   profileContainer: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: "20%",
+    marginTop: "18%",
     alignItems: "center",
   },
   avatar: {
-    height: 100,
-    width: 100,
+    height: 120,
+    width: 120,
     borderRadius: normalize(70),
-    borderWidth: 3,
-    borderColor: colors.niceGray,
+    borderWidth: 2,
+    borderColor: colors.mediumGray,
   },
   name: {
     fontSize: normalize(18),
-    fontWeight: "bold",
+    fontWeight: "300",
+    textTransform: "uppercase",
+    marginTop: 10
   },
   statsContainer: {
     flex: 0.5,
@@ -52,18 +54,19 @@ export default StyleSheet.create({
   statTitle: {
     color: "#C3C5CD",
     fontSize: 13,
-    fontWeight: "500",
+    fontWeight: "300",
     marginTop: 4,
   },
 
   recipesContainer: {
     flex: 2,
-    marginTop: "4%",
+    
   },
   recipesTitle: {
-    fontSize: 20,
+    fontSize: 18,
     color: "green",
-    fontWeight: "bold",
+    textTransform: "uppercase",
+    fontWeight: "200",
     marginLeft: normalize(10),
     marginBottom: normalize(7),
   },
@@ -72,7 +75,7 @@ export default StyleSheet.create({
   },
   recipeImage: {
     width: 200,
-    height: 150,
+    height: 160,
     marginHorizontal: normalize(5),
   },
   recipeBorder: {
@@ -85,7 +88,8 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   recipesCoverTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 15,
+    fontWeight: "200",
+    textTransform: "uppercase"
   },
 });

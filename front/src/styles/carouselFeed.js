@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginLeft: normalize(15),
-    marginBottom: normalize(15),
+    marginBottom: normalize(10),
     fontSize: 20,
     color: colors.font,
     fontWeight: "500",
