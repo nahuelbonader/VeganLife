@@ -1,5 +1,5 @@
 import { SET_STORES, ADD_STORE, EDIT_STORE } from "../constant";
-import API from "../../api/api";
+import API from "../../api";
 
 const setStores = (data) => ({ type: SET_STORES, payload: data });
 

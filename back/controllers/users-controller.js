@@ -32,7 +32,7 @@ const UserController = {
   },
   delete(req, res, next) {
     User.findByIdAndUpdate(req.params.id, { active: false }, { new: true })
-      .then((user) => res.send(user))
+      .then((user) => res.send(user)) // ¿QUÉ PASA SI EL ID NO EXISTE?
       .catch((err) => next(err));
   },
   loginUser(req, res, next) {

@@ -1,5 +1,5 @@
 import { SET_RECIPES, ADD_RECIPE } from "../constant";
-import API from "../../api/api";
+import API from "../../api";
 
 const setRecipes = (data) => ({ type: SET_RECIPES, payload: data });
 
