@@ -4,7 +4,7 @@ import {
   EDIT_PRODUCT,
   DELETE_PRODUCT,
 } from "../constant";
-import API from "../../api/api";
+import API from "../../api";
 
 const setProducts = (data) => ({ type: SET_PRODUCTS, payload: data });
 

@@ -3,7 +3,7 @@ import {
   SET_FAVS_PRODUCTS,
   SET_FAVS_STORES,
 } from "../constant";
-import API from "../../api/api";
+import API from "../../api";
 
 // RECIPES
 const setRecipes = (data) => ({ type: SET_FAVS_RECIPES, payload: data });

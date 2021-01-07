@@ -1,5 +1,5 @@
 import { SET_USER, SET_USERS } from "../constant";
-import API from "../../api/api";
+import API from "../../api";
 
 const setUser = (data) => ({ type: SET_USER, payload: data });
 
