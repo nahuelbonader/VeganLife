@@ -32,11 +32,13 @@ const Register = ({ navigation }) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
+        console.log("aca");
         const fuid = res.user.uid;
         return registerUser({ name, email, fuid, image });
       })
       .then(() => navigation.navigate("Login"))
       .catch((err) => {
+        console.log("falló");
         const error = String(err);
         if (error.includes(errors.format)) setError(alerts.format);
         else if (error.includes(errors.email)) setError(alerts.email);
@@ -49,11 +51,10 @@ const Register = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <Logo text="Crear cuenta" />
+        <Logo text='Crear cuenta' />
         <TouchableOpacity
           style={styles.avatarPlaceholder}
-          onPress={() => picker(setImage)}
-        >
+          onPress={() => picker(setImage)}>
           <View style={styles.avatarContainer}>
             <Image
               style={styles.avatar}
@@ -62,26 +63,26 @@ const Register = ({ navigation }) => {
           </View>
         </TouchableOpacity>
         <InputData
-          title="Nombre"
+          title='Nombre'
           handleChange={handleChange("name")}
           text={name}
         />
         <InputData
-          title="Correo"
+          title='Correo'
           handleChange={handleChange("email")}
           text={email}
         />
         <InputData
-          title="Password"
+          title='Password'
           handleChange={handleChange("password")}
           text={password}
           secureTextEntry={true}
         />
         <Text style={styles.alert}>{errorMessage}</Text>
-        <Button onPressBtn={handleSubmit} textBtn="Registrarse" />
+        <Button onPressBtn={handleSubmit} textBtn='Registrarse' />
         <Invitation
-          question="¿Ya tienes cuenta?"
-          invitation="Inicia Sesión"
+          question='¿Ya tienes cuenta?'
+          invitation='Inicia Sesión'
           onPressInvitation={() => navigation.navigate("Login")}
         />
       </View>
