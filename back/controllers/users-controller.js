@@ -7,6 +7,7 @@ const UserController = {
       .catch((err) => next(err));
   },
   create(req, res, next) {
+    console.log(req.body);
     User.findOne({ email: req.body.email, active: false })
       .then((user) => {
         return user

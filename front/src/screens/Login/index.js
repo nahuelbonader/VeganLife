@@ -28,8 +28,16 @@ const Login = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((res) => dispatch(fetchUser({ email, fuid: res.user.uid })))
-      .then(() => navigation.navigate("Home"))
+      .then(({ user }) => {
+        console.log("user en register", user);
+        if (user.emailVerified) {
+          dispatch(fetchUser({ email, fuid: user.uid }));
+          navigation.navigate("Home");
+        } else {
+          console.log("you must verify your email in order to continue");
+          navigation.navigate("VerifyAccount");
+        }
+      })
       .catch((err) => {
         const error = String(err);
         const errorCredential = errors.credentials.filter((e) =>
@@ -45,15 +53,15 @@ const Login = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <Logo text="Iniciar Sesión" />
+        <Logo text='Iniciar Sesión' />
         <View style={styles.line} />
         <InputData
-          title="Correo"
+          title='Correo'
           handleChange={handleChange("email")}
           text={email}
         />
         <InputData
-          title="Password"
+          title='Password'
           handleChange={handleChange("password")}
           text={password}
           secureTextEntry={true}
@@ -61,10 +69,10 @@ const Login = ({ navigation }) => {
 
         <Text style={styles.alert}>{errorMessage}</Text>
 
-        <Button onPressBtn={handleSubmit} textBtn="Iniciar Sesión" />
+        <Button onPressBtn={handleSubmit} textBtn='Iniciar Sesión' />
 
         <Invitation
-          invitation="¿Olvidaste tu contraseña?"
+          invitation='¿Olvidaste tu contraseña?'
           onPressInvitation={() => navigation.navigate("ForgotPassword")}
         />
 
@@ -74,9 +82,9 @@ const Login = ({ navigation }) => {
         </View>
 
         <Invitation
-          question="¿No tienes cuenta?"
+          question='¿No tienes cuenta?'
           onPressInvitation={() => navigation.navigate("Register")}
-          invitation="Registrate"
+          invitation='Registrate'
         />
       </View>
     </TouchableWithoutFeedback>

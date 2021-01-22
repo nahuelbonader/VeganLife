@@ -31,12 +31,16 @@ const Register = ({ navigation }) => {
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        console.log("aca");
-        const fuid = res.user.uid;
-        return registerUser({ name, email, fuid, image });
+      .then(({ user }) => {
+        const fuid = user.uid;
+        registerUser({ name, email, fuid, image });
+        return user;
       })
-      .then(() => navigation.navigate("Login"))
+      .then((user) => {
+        console.log(user, "user en register");
+        user.sendEmailVerification();
+      })
+      .then(() => navigation.navigate("VerifyAccount"))
       .catch((err) => {
         console.log("falló");
         const error = String(err);

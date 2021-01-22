@@ -30,11 +30,18 @@ export default ({ navigation }) => {
   const checkIfLogged = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        // console.log(user, "user en feed");
+        if (!user.emailVerified) {
+          // console.log("you must verify your email");
+          navigation.navigate("Login");
+        }
         const { email, uid } = user;
         dispatch(fetchUser({ email, fuid: uid })).catch((err) =>
           console.log(err)
         );
-      } else navigation.navigate("Login");
+      } else {
+        navigation.navigate("Login");
+      }
     });
   };
 

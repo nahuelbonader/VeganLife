@@ -6,7 +6,6 @@ const Purchase = require("./Purchase");
 const Recipe = require("./Recipe");
 const Store = require("./Store");
 const User = require("./User");
-const AccountValidationCode = require("./AccountValidationCode");
 
 module.exports = {
   Cart,
@@ -17,5 +16,4 @@ module.exports = {
   Recipe,
   Store,
   User,
-  AccountValidationCode,
 };
