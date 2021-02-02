@@ -1,16 +1,16 @@
-import "react-native-gesture-handler";
+// import "react-native-gesture-handler";
 import React from "react";
+import { Provider } from "react-redux";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider as PaperProvider } from "react-native-paper";
-import { Provider } from "react-redux";
-import store from "./store";
-import DrawerContent from "./navigations/Drawer";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import FeedStack from "./navigations/FeedStack";
-import Login from "./screens/Login";
-import Register from "./screens/Register";
-import ForgotPassword from "./screens/ForgotPassword";
-import Splash from "./commons/Splash";
+import store from "./src/store";
+import DrawerContent from "./src/navigations/Drawer";
+import FeedStack from "./src/navigations/FeedStack";
+import Login from "./src/screens/Login";
+import Register from "./src/screens/Register";
+import ForgotPassword from "./src/screens/ForgotPassword";
+import Splash from "./src/commons/Splash";
 
 const Drawer = createDrawerNavigator();
 

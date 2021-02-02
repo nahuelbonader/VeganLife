@@ -2,14 +2,13 @@ import React from "react";
 import { TouchableOpacity, Image, View } from "react-native";
 import { Appbar, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { userIcon, VLICon } from "../../utils/constants";
 import useInputs from "../../hooks/useInputs";
 import SearchBar from "./partials/SearchBar";
 import styles from "./styles";
 
 const Header = ({ previous }) => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
   const user = useSelector((state) => state.usersReducer.user);
   const currentRoute = useSelector((state) => state.bottomRouteReducer);
@@ -18,16 +17,7 @@ const Header = ({ previous }) => {
   return (
     <Appbar.Header style={styles.back}>
       {previous ? (
-        <Appbar.BackAction
-          onPress={() => {
-            if (currentRoute.route == 3) {
-              dispatch(setSearchBar(true));
-              navigation.goBack();
-            } else {
-              navigation.goBack();
-            }
-          }}
-        />
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
       ) : (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Avatar.Image
@@ -38,7 +28,7 @@ const Header = ({ previous }) => {
         </TouchableOpacity>
       )}
       <View style={styles.logoContiner}>
-        {currentRoute.route == 3 && currentRoute.showSearchBar ? (
+        {currentRoute.route == 3 ? (
           <SearchBar search={search} setSearch={setSearch} />
         ) : (
           <Image style={styles.logo} source={VLICon} />

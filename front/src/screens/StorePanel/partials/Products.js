@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   Image,
 } from "react-native";
-import { Dropdown } from "react-native-material-dropdown";
+import Dropdown from "react-native-dropdown-menu";
 import handleOpenImage from "../../../functions/picker";
 import { productImg } from "../../../utils/constants";
 import { RadioButton } from "react-native-paper";
@@ -113,15 +113,17 @@ export default ({ products, categories, addProduct, deleteProduct }) => {
                   onChangeText={setStock}
                 />
               </View>
-              <Dropdown
-                onChangeText={setCategory}
-                label={"Categoría"}
-                containerStyle={styles.dropdown}
+              <Dropdown // CORREGIR: https://www.npmjs.com/package/react-native-dropdown-menu
+                style={{ flex: 1 }}
+                bgColor={"white"}
+                tintColor={"#666666"}
+                activityTintColor={"green"}
+                handler={setCategory}
+                // style={styles.dropdown}
                 data={categoriesDropDown}
-                fontSize={16}
-                animationDuration={350}
-                selectedItemColor={colors.dartmouthGreen}
-              />
+              >
+                <Text>Categorías</Text>
+              </Dropdown>
               <Text style={styles.questionText}>¿Está disponible?</Text>
               <View style={styles.optionsContainer}>
                 <Text style={styles.optionText}>Si</Text>
