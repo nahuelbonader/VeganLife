@@ -3,7 +3,6 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Portal, FAB, Provider } from "react-native-paper";
-import { Text, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import setRoute from "../../store/actions/bottomRoutes";
 import AddRecipe from "../../screens/AddRecipe";
@@ -14,8 +13,6 @@ import Map from "../../screens/Map";
 import styles from "./styles";
 
 const Tab = createMaterialBottomTabNavigator();
-
-const PostRecipe = () => <Text>PostRecipe</Text>;
 
 const BottomNav = ({ navigation }) => {
   const dispatch = useDispatch();

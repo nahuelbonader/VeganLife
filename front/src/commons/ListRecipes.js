@@ -1,43 +1,34 @@
 import React from "react";
 import {
   Text,
-  FlatList,
   TouchableOpacity,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import colors from "../styles/colors";
 
 const ListRecipes = ({ recipes }) => {
   const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        numColumns={2}
-        contentContainerStyle={styles.flatlist}
-        data={recipes}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Recipe", { recipeId: item._id })
-            }
-            style={styles.touchable}
+      {/* <View style={styles.flatlist}> */}
+      {recipes.map((item) => (
+        <TouchableOpacity
+          key={item._id}
+          onPress={() => navigation.navigate("Recipe", { recipeId: item._id })}
+          style={styles.touchable}
+        >
+          <ImageBackground
+            style={styles.image}
+            imageStyle={styles.border}
+            source={{ uri: item.image }}
           >
-            <ImageBackground
-              style={styles.image}
-              imageStyle={styles.border}
-              source={{ uri: item.image }}
-            >
-              <Text style={styles.text}>{item.title}</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(recipes) => recipes._id}
-        showsVerticalScrollIndicator={false}
-      />
+            <Text style={styles.text}>{item.title}</Text>
+          </ImageBackground>
+        </TouchableOpacity>
+      ))}
     </SafeAreaView>
   );
 };
@@ -46,12 +37,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "white",
     margin: 10,
     borderRadius: 20,
-  },
-  flatlist: {
-    marginVertical: 10,
+    paddingVertical: 10,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   touchable: {
     marginHorizontal: 5,

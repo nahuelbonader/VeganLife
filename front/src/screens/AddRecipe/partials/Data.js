@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
-import { Dropdown } from "react-native-material-dropdown";
+import DropdownMenu from "react-native-dropdown-menu";
 import { newRecipeImg } from "../../../utils/constants";
 import styles from "../styles/data";
 import colors from "../../../styles/colors";
@@ -20,15 +20,14 @@ export default ({
       onChangeText={handleInput}
       value={title}
     />
-    <Dropdown
-      onChangeText={handleCategorie}
-      label={"Categoría"}
-      containerStyle={styles.containerDropdown}
+    <DropdownMenu // CORREGIR: https://www.npmjs.com/package/react-native-dropdown-menu
+      handler={handleCategorie}
+      style={styles.containerDropdown}
       data={categories}
-      fontSize={19}
-      animationDuration={350}
-      selectedItemColor={colors.dartmouthGreen}
-    />
+    >
+      <Text>Categorías</Text>
+    </DropdownMenu>
+
     <View style={styles.avatarContainer}>
       <TouchableOpacity onPress={openImage} style={styles.avatarTouchable}>
         <Image

@@ -29,7 +29,6 @@ const FacebookLoginComponent = () => {
   };
 
   const onSignIn = (facebookUser) => {
-    console.log("facebookUser", facebookUser);
     if (facebookUser) {
       // User is signed-in Facebook.
       var unsubscribe = firebase.auth().onAuthStateChanged((firebaseUser) => {
@@ -55,7 +54,6 @@ const FacebookLoginComponent = () => {
                   .then(() => dispatch(fetchUser({ email, fuid: uid })))
                   .then(() => navigation.navigate("Home"));
               } else {
-                console.log("VIEJO USUARIO");
                 const { email, id } = res.user;
                 dispatch(fetchUser({ email, fuid: id })).then(() =>
                   navigation.navigate("Home")
@@ -80,14 +78,12 @@ const FacebookLoginComponent = () => {
       const result = await Facebook.logInWithReadPermissionsAsync({
         permissions: ["public_profile", "email"],
       });
-      console.log("RESULTADO", result);
       if (result.type === "success") {
         // Get the user's name using Facebook's Graph API
         const response = await fetch(
           `https://graph.facebook.com/me?access_token=${result.token}&fields=id,name,email,picture.height(500)`
         );
         const data = await response.json();
-        console.log("UNA DATA PIOLA", data);
         onSignIn(result);
         Alert.alert("logueado", `hola ${data.name}!`);
       } else {

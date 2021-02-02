@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import AddRecipe from "../screens/AddRecipe";
 import BottomNav from "./BottomNav";
 import CookToday from "../screens/CookToday";
 import Header from "./Header";
@@ -29,6 +30,7 @@ const FeedStack = () => {
         ),
       }}
     >
+      {/* <Stack.Screen name="AddRecipe" component={AddRecipe} /> */}
       <Stack.Screen name="Bottom" component={BottomNav} />
       <Stack.Screen name="Recipe" component={Recipe} />
       <Stack.Screen name="SingleCategory" component={SingleCategory} />
